@@ -4,7 +4,7 @@ import theme from "./theme.js";
 
 export default defineUserConfig({
   sourceDir: "src",
-  base: "/SecRandom-docs/",
+  base: "/",
 
   lang: "zh-CN",
   title: "SecRandom",
