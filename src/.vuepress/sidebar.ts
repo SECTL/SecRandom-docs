@@ -2,7 +2,7 @@ import { sidebar } from "vuepress-theme-hope";
 
 export default sidebar({
   "/": [
-//    "",////删掉行前两个//和本句前后的////，可以添加一个回到主页的按钮，原理未知////
+    "", // 主页按钮
    // "portfolio",//封印了一个博客主页，我们已在team.md完美复刻它
     {
       text: "总览",

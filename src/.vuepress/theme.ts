@@ -4,7 +4,8 @@ import navbar from "./navbar.js";
 import sidebar from "./sidebar.js";
 
 export default hopeTheme({
-  hostname: "https://SecRandom-docs.github.io",
+  // 星野提示：开发环境不需要设置 hostname，会自动使用本地地址
+  // hostname: "https://SecRandom-docs.github.io",
 
   author: {
     name: "黎泽懿",
@@ -19,6 +20,11 @@ export default hopeTheme({
 
   // 导航栏
   navbar: [
+    { // 星野添加：主页链接
+      text: "主页",
+      link: "/",
+      icon: "/logo.png",
+    },
     {
       text: "总览",
       link: "/Overview/",
@@ -62,7 +68,8 @@ export default hopeTheme({
   sidebar,
 
   // 页脚
-  footer: "使用 <a href='https://theme-hope.vuejs.press/zh/'target='_blank'>VuePress Theme Hope</a> 主题 | MIT 协议   Icons by <a href='https://icons8.com'target='_blank'>Icons8.com</a>",
+  footer: "使用 <a href='https://theme-hope.vuejs.press/zh/'target='_blank'>VuePress Theme Hope</a> 主题 | MIT 协议",
+  // 星野提示：已移除 Icons8.com 引用，所有图标已替换为本地图标
   displayFooter: true,
 
   //Copyright信息
@@ -175,7 +182,7 @@ export default hopeTheme({
     //},
 
     components: {
-      components: ["Badge", "VPCard"],
+      components: ["Badge", "VPCard", "GlobalHint"],
     },
 
     icon: {
