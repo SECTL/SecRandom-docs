@@ -50,9 +50,9 @@ SecRandom的应用范围广泛，主要适用于以下场景：
 
 ## 七、如何上手？
 
-1. 访问 SECTL/SecRandom 仓库，点击“Release”下载最新稳定版或测试版。([直接前往Release页面](https://github.com/SECTL/SecRandom/releases))
-2. 根据说明运行 Windows 可执行文件。
-3. 输入名单、选择抽取方式，一键开始，让结果既随机又公平。
+1. 访问 SECTL/SecRandom 仓库，点击“Release”下载最新稳定版或测试版。[直接前往Release页面](https://github.com/SECTL/SecRandom/releases)
+2. 解压后运行程序目录中的 .exe 可执行文件。
+3. 输入名单、选择抽取范围，一键开始，让结果既随机又公平。
 
 
 # 总结
