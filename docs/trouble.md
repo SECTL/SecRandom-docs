@@ -22,6 +22,8 @@
 ### 10.1.3 兼容性注意事项
 - **Windows**：
   - 支持Windows 7/10/11 的 x64版本
+> - **注意**
+> 32位操作系统不支持语音播报功能
 - **macOS**：
   - 官方不支持 macOS
 - **Linux**：
@@ -42,9 +44,11 @@
 
 - **GitHub Issues**：[提交问题](https://github.com/SECTL/SecRandom/issues)（推荐）
   - 使用对应模板，如遇到没有的情况可以自行新建issue
+- **加入QQ群聊**: [点击加入](https://qm.qq.com/q/xKPIYiTDRC)
 
 ## 10.3 常见问题参考
-
+### 进行设置调整后程序无法启动：
+  尝试删除程序全部配置文件（位于 程序目录/app/Settings 中）后重新运行应用。
 如遇到其他问题，可参考以下资源：
 - [GitHub问题库](https://github.com/SECTL/SecRandom/issues?q=is%3Aissue+is%3Aclosed)（已解决问题）
 
