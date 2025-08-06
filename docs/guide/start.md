@@ -7,13 +7,13 @@
 
 ### 1.1 硬件要求
 - <badge type="tip" text="处理器" /> 主频 1GHz 或更高
-- <badge type="tip" text="内存" /> 至少 512 MB
+- <badge type="tip" text="内存" /> 至少 4 GB
 - <badge type="info" text="存储" /> 至少 100MB 可用空间
 - <badge type="warning" text="显示器" /> 最低分辨率 1024×768(px)
 
 ### 1.2 软件要求
-- <badge type="tip" text="Windows 系统" /> Windows 7/8/10/11（32位或64位）
-- <badge type="tip" text="Python 环境" />（源码运行）Python 3.8及以上版本，已安装 pip 包管理器
+- <badge type="tip" text="Windows 系统" /> Windows 7/10/11（32位或64位）
+- <badge type="tip" text="Python 环境" />（源码运行）Python 3.8.10及以上版本，已安装 pip 包管理器
 
 ## 二、下载方式
 SecRandom提供多种下载渠道，您可以根据需求选择最适合的方式：
@@ -28,6 +28,10 @@ SecRandom提供多种下载渠道，您可以根据需求选择最适合的方�
 - 根据您的操作系统选择相应的发布版本
 - 下载
 
+### 2.3 第三方分流下载
+- 123云盘分流：[123云盘](https://www.123684.com/s/9529jv-U4Fxh)
+（官方提供源）
+
 ## 三、文件验证
 为确保下载文件的完整性和安全性，建议进行文件验证：
 
@@ -41,7 +45,7 @@ SecRandom提供多种下载渠道，您可以根据需求选择最适合的方�
 
 ### 4.1 源码运行（适用于开发人员和高级用户）
 
-1. 确保已安装Python 3.8+和Git
+1. 确保已安装Python 3.8.10+和Git
 2. 打开命令提示符或PowerShell
 3. 克隆仓库：`git clone https://github.com/SECTL/SecRandom.git`
 4. 进入项目目录：`cd SecRandom`
