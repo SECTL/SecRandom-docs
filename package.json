@@ -1,27 +1,16 @@
 {
-  "name": "sec-random",
-  "description": "一个简洁、美观、公平、易用的班级抽号软件，专为教育场景设计，集成动态权重算法与防篡改机制，实现一键多模式随机抽取，让课堂点名更高效、更透明。",
-  "version": "0.0.1",
-  "license": "GPL-3.0",
-  "type": "module",
-  "scripts": {
-    "docs:build": "vuepress-vite build src",
-    "docs:clean-dev": "vuepress-vite dev src --clean-cache",
-    "docs:dev": "vuepress-vite dev src",
-    "docs:update-package": "pnpm dlx vp-update"
-  },
   "devDependencies": {
-    "@vuepress/bundler-vite": "2.0.0-rc.24",
-    "@vuepress/plugin-slimsearch": "2.0.0-rc.112",
-    "sass-embedded": "^1.89.2",
-    "vue": "^3.5.17",
-    "vuepress": "2.0.0-rc.24",
-    "vuepress-theme-hope": "2.0.0-rc.94"
+    "vitepress": "^1.6.3"
   },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild"
-    ]
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
-  "packageManager": "pnpm@9.15.4+sha512.b2dc20e2fc72b3e18848459b37359a32064663e5627a51e4c74b2c29dd8e8e0491483c3abb40789cfd578bf362fb6ba8261b05f0387d76792ed6e23ea3b1b6a0"
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.7.2",
+    "busuanzi.pure.js": "^1.0.3",
+    "medium-zoom": "^1.1.0",
+    "vitepress-plugin-group-icons": "^1.6.1"
+  }
 }

@@ -1,0 +1,57 @@
+:root {
+  --vp-c-brand-1: #0C81E2;
+  --vp-c-brand-2: #37a2fa;
+  --vp-c-brand-3: #4DA9F5;
+}
+
+.dark {
+  --vp-c-brand-1: #4DA9F5;
+  --vp-c-brand-2: #37a2fa;
+  --vp-c-brand-3: #0C81E2;
+}
+/* 以前的vp-c-brand已弃用 */
+
+/* 也可自行单独修改brand按钮 */
+/* :root {
+  --vp-button-brand-border: #F6CEEC;
+  --vp-button-brand-text: #F6CEEC;
+  --vp-button-brand-bg: #D939CD;
+
+  --vp-button-brand-hover-border: #F6CEEC;
+  --vp-button-brand-hover-text: #fff;
+  --vp-button-brand-hover-bg: #D939CD;
+
+  --vp-button-brand-active-border: #F6CEEC;
+} */
+
+.medium-zoom-overlay {
+  z-index: 30;
+}
+
+.medium-zoom-image {
+  z-index: 9999 !important;/* 给的值是21，但是实测盖不住，直接999 */
+}
+
+.rendered-md img { 
+    max-width: 100%;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.rendered-md {
+    display: none;  /* 默认隐藏 */
+}
+
+.rendered-md.active {
+    display: block; /* 只有在 active 状态下才显示 */
+    max-width: 100%;
+}
+
+/* VPFeatures 页卡悬浮效果 */
+.VPFeatures .items .item {
+  transition: transform 0.3s;
+}
+
+.VPFeatures .items .item:hover {
+  transform: translateY(-5px);
+}
