@@ -41,6 +41,20 @@ const members = [
       { icon: 'qq', link: 'https://tool.gljlw.com/qq/?qq=3256651295' }
     ]
   }
+  {
+    avatar: 'https://www.github.com/zhangjianjian7.png',
+    name: '叶背影',
+    title: '文档',
+    links: [
+      { icon: 'github', link: 'https://github.com/zhangjianjian7' },
+      { icon: 'bilibili', link: 'https://space.bilibili.com/1762621716' }
+    ]
+  }
+  {
+    avatar: 'https://www.github.com/jursin.png',
+    name: 'Jursin',
+    title: '响应式前端页面设计&文档'
+  }
 ]
 </script>
 
