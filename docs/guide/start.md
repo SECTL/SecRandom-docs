@@ -8,7 +8,7 @@
 ### 1.1 硬件要求
 - <badge type="tip" text="处理器" /> 主频 1GHz 或更高
 - <badge type="tip" text="内存" /> 至少 4 GB
-- <badge type="info" text="存储" /> 至少 100MB 可用空间
+- <badge type="info" text="存储" /> 至少 200MB 可用空间
 - <badge type="warning" text="显示器" /> 最低分辨率 1024×768(px)
 
 ### 1.2 软件要求
@@ -18,15 +18,15 @@
 ## 二、下载方式
 SecRandom提供多种下载渠道，您可以根据需求选择最适合的方式：
 
-### 2.1 官方GitHub仓库（推荐）
-- 访问官方仓库：[SECTL/SecRandom](https://github.com/SECTL/SecRandom)
-- 点击右上角的「Code」按钮，选择「Download ZIP」
-- 或使用Git命令克隆仓库：`git clone https://github.com/SECTL/SecRandom.git`
-
-### 2.2 发布页面下载
+### 2.1 Github 发布页面下载（推荐）
 - 进入GitHub仓库的「Releases」页面
 - 根据您的操作系统选择相应的发布版本
 - 下载
+
+### 2.1 官方GitHub仓库（源码下载）
+- 访问官方仓库：[SECTL/SecRandom](https://github.com/SECTL/SecRandom)
+- 点击右上角的「Code」按钮，选择「Download ZIP」
+- 或使用Git命令克隆仓库：`git clone https://github.com/SECTL/SecRandom.git`
 
 ### 2.3 第三方分流下载
 - 123云盘分流：[123云盘](https://www.123684.com/s/9529jv-U4Fxh)
