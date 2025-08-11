@@ -28,9 +28,12 @@ const members = [
     ]
   },
   {
-    avatar: 'https://s1.aigei.com/src/img/png/99/9905f63f0ac84e208384244c5b23ee53.png?imageMogr2/auto-orient/thumbnail/!282x282r/gravity/Center/crop/282x282/quality/85/%7CimageView2/2/w/282&e=2051020800&token=P7S2Xpzfz11vAkASLTkfHN7Fw-oOZBecqeJaxypL:WNG863ZQ7bUeD3BN9YoTrvL2vRc=',
+    avatar: 'slc.jpg',
     name: 'system-linux-cmb',
-    title: '应用测试'
+    title: '应用测试',
+    links: [
+      { icon: 'github', link: 'https://github.com/Fox-block-offcial' }
+    ]
   },
   {
     avatar: 'https://www.github.com/yuanbenxin.png',
@@ -38,11 +41,12 @@ const members = [
     title: '响应式前端页面设计及维护&文档',
     links: [
       { icon: 'github', link: 'https://github.com/yuanbenxin' },
-      { icon: 'qq', link: 'https://tool.gljlw.com/qq/?qq=3256651295' }
-    ]
+      { icon: 'qq', link: 'https://tool.gljlw.com/qq/?qq=3256651295' },
+      { icon: 'maildotru', link: 'yuanbenxin@outlook.com' }
+          ]
   },
   {
-    avatar: 'https://www.github.com/zhangjianjian7.png',
+    avatar: 'yby.jpg',
     name: '叶背影',
     title: '文档',
     links: [
