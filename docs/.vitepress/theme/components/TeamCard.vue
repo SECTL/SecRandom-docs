@@ -21,7 +21,9 @@ export default {
         "黎泽懿 Aionflux(设计&创意&策划&维护&文档&测试)",
         "弃稞之草(创意&维护)",
         "system-linux-cmb(应用测试)",
-        "本新同学(响应式前端页面设计及维护&文档)"
+        "本新同学(响应式前端页面设计及维护&文档)",
+        "叶背影(文档)",
+        "Jursin(前端页面设计&文档)"
       ];
       this.setupTypingEffect('typing-text', 'cursor', texts)
     }
