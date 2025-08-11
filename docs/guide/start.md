@@ -2,28 +2,60 @@
 
 <ArticleMetadata />
 
-## 一、最低运行要求
+## 一、系统要求与兼容性
 在下载和运行SecRandom之前，请确保您的设备满足以下最低系统要求：
 
-### 1.1 硬件要求
-- <badge type="tip" text="处理器" /> 主频 1GHz 或更高
-- <badge type="tip" text="内存" /> 至少 4 GB
-- <badge type="info" text="存储" /> 至少 200MB 可用空间
-- <badge type="warning" text="显示器" /> 最低分辨率 1024×768(px)
+### 最低硬件要求
+- <badge type="tip" text="处理器" /> 主频 1GHz 双核处理器
+- <badge type="tip" text="内存" /> 2 GB
+- <badge type="info" text="存储" /> 300MB 可用空间
+- <badge type="warning" text="显示器" /> 1024×768(px)
+- <badge type="tip" text="操作系统" />Windows 7
 
-### 1.2 软件要求
-- <badge type="tip" text="Windows 系统" /> Windows 7/10/11（32位或64位）
-- <badge type="tip" text="Python 环境" />（源码运行）Python 3.8.10及以上版本，已安装 pip 包管理器
+### 推荐系统配置
+- **操作系统**：Windows 10/11 64位
+- **处理器**：2.5GHz四核处理器或更高
+- **内存**：4GB 或更高
+- **硬盘空间**：500MB可用空间（含缓存和备份）
+- **显示器**：1366×768(px)或更高  
+- **其他**：互联网连接（仅用于更新服务和插件安装）
+
+### 软件要求
+以源码形式运行时，则还需满足以下要求：
+- <badge type="tip" text="Python 环境" />Python 3.8.10及以上版本，已安装 pip 包管理器
+
+### 10.1.3 操作系统兼容性
+- **Windows**：支持Windows 7/10/11 的 32/64位版本
+>**注意**  
+32位操作系统不支持语音播报功能
+- **macOS和Linux**：不支持
 
 ## 二、下载方式
-SecRandom提供多种下载渠道，您可以根据需求选择最适合的方式：
+SecRandom提供多种下载渠道，您可以根据需求选择最适合的版本和下载方式：
+
+> ### 如何选择应该下载的文件：
+> #### 第一步：选择系统架构  
+> - **x64**：适用于64位Windows系统（推荐）  
+> - **x86**：适用于32位Windows系统  
+>
+> #### 第二步：选择打包模式  
+> - **目录模式**（文件名包含 `dir`）：  
+>   - 体积相对较大  
+>   - 支持重启功能  
+>   - 适合需要频繁重启或对启动速度有要求的用户  
+>
+> - **单文件模式**（文件名包含 `onefile`）：  
+>   - 体积较小  
+>   - 不支持重启功能  
+>   - 只有一个可执行文件，便于携带  
+>   - 适合对文件大小敏感，不需要重启功能，希望进行简易更新（即使用新版资源直接覆盖原有资源以更新程序）~~或电脑配置较高~~的用户
 
 ### 2.1 Github 发布页面下载（推荐）
 - 进入GitHub仓库的「Releases」页面
 - 根据您的操作系统选择相应的发布版本
 - 下载
 
-### 2.1 官方GitHub仓库（源码下载）
+### 2.2 官方GitHub仓库（源码下载）
 - 访问官方仓库：[SECTL/SecRandom](https://github.com/SECTL/SecRandom)
 - 点击右上角的「Code」按钮，选择「Download ZIP」
 - 或使用Git命令克隆仓库：`git clone https://github.com/SECTL/SecRandom.git`
@@ -31,6 +63,9 @@ SecRandom提供多种下载渠道，您可以根据需求选择最适合的方�
 ### 2.3 第三方分流下载
 - 123云盘分流：[123云盘](https://www.123684.com/s/9529jv-U4Fxh)
 （官方提供源）
+
+### 第三步：下载对应文件
+根据你的系统状况和网络环境选择，下载对应的 `.zip` 或 `.exe` 文件即可
 
 ## 三、文件验证
 为确保下载文件的完整性和安全性，建议进行文件验证：
@@ -43,9 +78,18 @@ SecRandom提供多种下载渠道，您可以根据需求选择最适合的方�
 ## 四、运行步骤
 根据您下载的文件类型，选择以下相应的运行方式：
 
-### 4.1 源码运行（适用于开发人员和高级用户）
+### 4.1 可执行文件运行（适用于普通用户）
+1. 下载Windows版本的ZIP压缩包
+2. 右键点击压缩包，选择「提取全部」，指定解压路径
+3. 进入解压后的文件夹，找到`SecRandom.exe`文件
+4. 双击运行程序（首次运行可能会有Windows Defender SmartScreen提示）：
+   - 点击「更多信息」
+   - 点击「仍要运行」
+5. （可选）创建桌面快捷方式：右键`SecRandom.exe`，选择「发送到」→「桌面快捷方式」
 
-1. 确保已安装Python 3.8.10+和Git
+### 4.2 源码运行（适用于开发人员和高级用户）
+
+1. 确保已安装Python 3.8.10+（建议安装3.13+）和Git
 2. 打开命令提示符或PowerShell
 3. 克隆仓库：`git clone https://github.com/SECTL/SecRandom.git`
 4. 进入项目目录：`cd SecRandom`
@@ -57,15 +101,6 @@ SecRandom提供多种下载渠道，您可以根据需求选择最适合的方�
 6. 安装依赖：`pip install -r requirements.txt`
    > 若出现网络问题，可使用国内镜像：`pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple`
 7. 启动程序：`python main.py`
-
-### 4.2 可执行文件运行（适用于普通用户）
-1. 下载Windows版本的ZIP压缩包
-2. 右键点击压缩包，选择「提取全部」，指定解压路径
-3. 进入解压后的文件夹，找到`SecRandom.exe`文件
-4. 双击运行程序（首次运行可能会有Windows Defender SmartScreen提示）：
-   - 点击「更多信息」
-   - 点击「仍要运行」
-5. （可选）创建桌面快捷方式：右键`SecRandom.exe`，选择「发送到」→「桌面快捷方式」
 
 ## 六、常见运行问题解决
 
