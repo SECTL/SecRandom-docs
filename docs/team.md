@@ -11,7 +11,7 @@ const members = [
   {
     avatar: '恩情.jpg',
     name: '黎泽懿 Aionflux',
-    title: '设计&创意&策划&维护&文档&测试',
+    title: '设计 & 创意 & 策划 & 维护 & 文档 & 测试',
     links: [
       { icon: 'github', link: 'https://github.com/lzy98276' },
       { icon: 'qq', link: 'https://tool.gljlw.com/qq/?qq=3267139343' },
@@ -22,7 +22,7 @@ const members = [
   {
     avatar: 'qgzc.png',
     name: '弃稞之草',
-    title: '创意&维护',
+    title: '创意 & 维护',
     links: [
       { icon: 'github', link: 'https://github.com/QiKeZhiCao' },
       { icon: 'bilibili', link: 'https://space.bilibili.com/3493114889112202' }
@@ -39,7 +39,7 @@ const members = [
   {
     avatar: 'bx.jpg',
     name: '本新同学',
-    title: '响应式前端页面设计及维护&文档',
+    title: '响应式前端页面设计及维护 & 文档',
     links: [
       { icon: 'github', link: 'https://github.com/yuanbenxin' },
       { icon: 'qq', link: 'https://tool.gljlw.com/qq/?qq=3256651295' },
@@ -58,7 +58,7 @@ const members = [
   {
     avatar: 'Jursin.jpg',
     name: 'Jursin',
-    title: '前端页面设计&文档',
+    title: '前端页面设计 & 文档',
     links: [
       { icon: 'github', link: 'https://github.com/jursin' }
     ]
