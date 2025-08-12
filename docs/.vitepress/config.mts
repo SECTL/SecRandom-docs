@@ -121,7 +121,7 @@ export default defineConfig({
       label: '页面导航'
     },
     editLink: {
-      pattern: 'https://github.com/SECTL/SecRandom/edit/main/docs/:path',
+      pattern: 'https://github.com/SECTL/SecRandom-docs/edit/main/docs/:path',
       text: '在 GitHub 上编辑此页面'
     },
     docFooter: {
