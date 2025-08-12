@@ -24,7 +24,8 @@ const members = [
     name: '弃稞之草',
     title: '创意&维护',
     links: [
-      { icon: 'github', link: 'https://github.com/QiKeZhiCao' }
+      { icon: 'github', link: 'https://github.com/QiKeZhiCao' },
+      { icon: 'bilibili', link: 'https://space.bilibili.com/3493114889112202' }
     ]
   },
   {
