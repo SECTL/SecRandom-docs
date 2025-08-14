@@ -37,7 +37,8 @@ export default defineConfig({
           ]
       },
       { text: '🛠️ 故障排除', link: '/trouble' },
-      { text: '👥 团队', link: '/team' }
+      { text: '👥 团队', link: '/team' },
+      { text: '💲 捐赠', link:'/donate.html'}
     ],
 
     // 侧边栏配置

@@ -1,0 +1,70 @@
+/* 全局动画和样式 */
+:global(body, html) {
+  margin: 0;
+  padding: 0;
+  font-family: "微软雅黑", sans-serif;
+  background: radial-gradient(circle at center, #ff4d4d, #ffb84d);
+  color: #fff;
+}
+
+:global(h1) {
+  font-size: 3rem;
+  text-shadow: 2px 2px 10px #000;
+  animation: rainbowText 3s linear infinite;
+}
+
+@keyframes rainbowText {
+  0%{color:#ff4d4d;} 20%{color:#ffb84d;} 40%{color:#fff066;} 
+  60%{color:#4dff4d;} 80%{color:#4dffff;} 100%{color:#ff4dff;}
+}
+
+.container {
+  position: relative;
+  background: rgba(0,0,0,0.5);
+  margin: 50px auto;
+  padding: 40px;
+  border-radius: 20px;
+  max-width: 400px;
+  box-shadow: 0 0 50px rgba(0,0,0,0.7);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.qrcode-container {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.qrcode {
+  width: 150px;
+  height: 150px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  transform: scale(0);
+  animation: pop 0.5s forwards;
+}
+
+.qrcode:nth-child(1) { animation-delay: 0.2s; }
+.qrcode:nth-child(2) { animation-delay: 0.5s; }
+
+@keyframes pop { to { transform: scale(1); } }
+
+.tip {
+  font-size: 1rem;
+  opacity: 0.8;
+  margin-top: 5px;
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
