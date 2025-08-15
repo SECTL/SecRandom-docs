@@ -1,5 +1,5 @@
 ---
-sidebar: false
+layout: home
 ---
 
 <Download />
