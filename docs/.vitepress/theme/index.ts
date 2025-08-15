@@ -15,6 +15,7 @@ import Linkcard from './components/Linkcard.vue'
 import ArticleMetadata from './components/ArticleMetadata.vue'
 import HomeUnderline from './components/HomeUnderline.vue'
 import TeamCard from './components/TeamCard.vue'
+import Download from './components/Download.vue'
 
 export default {
   extends: DefaultTheme,
@@ -27,6 +28,7 @@ export default {
   enhanceApp({ app, router, siteData }) {
     app.component('BilibiliVideo', BilibiliVideo);
     app.component('Linkcard' , Linkcard);
+    app.component('Download' , Download);
     app.component('ArticleMetadata' , ArticleMetadata);
     app.component('HomeUnderline' , HomeUnderline);
     app.component('TeamCard' , TeamCard)

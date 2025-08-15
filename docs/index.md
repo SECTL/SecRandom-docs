@@ -10,9 +10,12 @@ hero:
     alt: Logo
   actions:
     - theme: brand
+      text: 🎯 立即下载
+      link: /download
+    - theme: brand
       text: 总览
       link: /overview
-    - theme: brand
+    - theme: alt
       text: GitHub 仓库
       link: https://github.com/SECTL/SecRandom
     - theme: alt
