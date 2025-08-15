@@ -43,7 +43,7 @@ export default defineConfig({
       { text: '🛠️ 故障排除', link: '/trouble' },
       { text: '👥 团队', link: '/team' },
       { text: '📥 下载', link: '/download' },
-      { text: '📋 版本历史', link: '/trouble' },
+      { text: '📋 版本历史', link: '/changelog' },
       { text: '💲 捐赠', link: '/donate' }
     ],
 
@@ -79,7 +79,7 @@ export default defineConfig({
       { text: '🛠️ 故障排除', link: '/trouble' },
       { text: '👥 团队', link: '/team' },
       { text: '📥 下载', link: '/download' },
-      { text: '📋 版本历史', link: '/trouble' },
+      { text: '📋 版本历史', link: '/changelog' },
       { text: '💲 捐赠', link: '/donate' }
     ],
 
