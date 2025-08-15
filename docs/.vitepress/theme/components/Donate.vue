@@ -19,29 +19,52 @@
 </template>
 
 <script setup>
-    el.addEventListener('click', ()=>{
-    const overlay = document.createElement('div');
-    overlay.className = 'modal-overlay';
+import { onMounted } from 'vue'
 
-    const modal = document.createElement('div');
-    modal.className = 'modal-card';
-    modal.innerHTML = `
-      <img src="${el.querySelector('img').src}" alt="二维码">
-      <div class="modal-title">SecRandom团队再次感谢您的支持</div>
-      <div class="modal-subtitle">点击周围空白关闭</div>
-    `;
+onMounted(() => {
+  // ===== 1. 销毁 medium-zoom 防止冲突 =====
+  if (window.__mediumZoom__) {
+    try {
+      window.__mediumZoom__.detach()
+      console.log('medium-zoom 已销毁')
+    } catch (err) {
+      console.warn('medium-zoom 销毁失败', err)
+    }
+  } else {
+    // 没挂到 window 上，直接克隆替换所有 img，移除绑定事件
+    document.querySelectorAll('img').forEach(img => {
+      img.replaceWith(img.cloneNode(true))
+    })
+    console.log('medium-zoom 事件已清除')
+  }
 
-    overlay.appendChild(modal);
-    document.body.appendChild(overlay);
+  // ===== 2. 自定义放大逻辑 =====
+  document.querySelectorAll('.qrcode-wrapper').forEach(el => {
+    el.addEventListener('click', () => {
+      const overlay = document.createElement('div')
+      overlay.className = 'modal-overlay'
 
-    // 点击空白关闭
-    overlay.addEventListener('click', (e)=>{
-      if(e.target===overlay){
-        document.body.removeChild(overlay);
-      }
-    });
-  });
-});
+      const modal = document.createElement('div')
+      modal.className = 'modal-card'
+
+      // 强制放大时尺寸一致
+      modal.innerHTML = `
+        <img src="${el.querySelector('img').src}" alt="二维码" style="width: 320px; height: auto; max-width: 80vw; max-height: 70vh; object-fit: contain;">
+        <div class="modal-title">SecRandom团队再次感谢您的支持</div>
+        <div class="modal-subtitle">点击周围空白关闭</div>
+      `
+
+      overlay.appendChild(modal)
+      document.body.appendChild(overlay)
+
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+          document.body.removeChild(overlay)
+        }
+      })
+    })
+  })
+})
 </script>
 
 <style scoped>
@@ -121,5 +144,48 @@ p {
   .donate-container { padding: 30px 20px; }
   .qrcode-container { gap: 20px; }
   .qrcode { width: 110px; height: 110px; }
+} 
+</style>
+
+<!-- 弹窗全局样式 -->
+<style>
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 9999;
+}
+
+.modal-card {
+  background: var(--vp-c-bg, #fff);
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-card img {
+  display: block;
+  border-radius: 12px;
+}
+
+.modal-title {
+  margin-top: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.modal-subtitle {
+  margin-top: 6px;
+  font-size: 12px;
+  opacity: .7;
+  text-align: center;
 }
 </style>
