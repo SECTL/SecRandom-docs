@@ -644,23 +644,25 @@ function startLoadingTimer() {
 /**
  * 切换发布详情显示/隐藏
  */
-window.toggleReleaseDetails = function(index) {
-  const truncated = document.getElementById(`release-truncated-${index}`)
-  const full = document.getElementById(`release-full-${index}`)
-  const btn = document.getElementById(`expand-btn-${index}`)
-  
-  if (!truncated || !full || !btn) return
-  
-  if (full.style.display === 'none') {
-    // 展开：隐藏截断内容，显示完整内容
-    truncated.style.display = 'none'
-    full.style.display = 'block'
-    btn.textContent = '收起'
-  } else {
-    // 收起：显示截断内容，隐藏完整内容
-    truncated.style.display = 'block'
-    full.style.display = 'none'
-    btn.textContent = '展开详情'
+if (typeof window !== 'undefined') {
+  window.toggleReleaseDetails = function(index) {
+    const truncated = document.getElementById(`release-truncated-${index}`)
+    const full = document.getElementById(`release-full-${index}`)
+    const btn = document.getElementById(`expand-btn-${index}`)
+    
+    if (!truncated || !full || !btn) return
+    
+    if (full.style.display === 'none') {
+      // 展开：隐藏截断内容，显示完整内容
+      truncated.style.display = 'none'
+      full.style.display = 'block'
+      btn.textContent = '收起'
+    } else {
+      // 收起：显示截断内容，隐藏完整内容
+      truncated.style.display = 'block'
+      full.style.display = 'none'
+      btn.textContent = '展开详情'
+    }
   }
 }
 
@@ -762,10 +764,12 @@ function removeWarningMessage() {
 /**
  * 页面卸载时清理资源
  */
-window.addEventListener('beforeunload', () => {
-  stopLoadingTimer()
-  console.log('🧹 页面卸载，清理资源完成')
-})
+if (typeof window !== 'undefined') {
+  window.addEventListener('beforeunload', () => {
+    stopLoadingTimer()
+    console.log('🧹 页面卸载，清理资源完成')
+  })
+}
 </script>
 
 <style>
