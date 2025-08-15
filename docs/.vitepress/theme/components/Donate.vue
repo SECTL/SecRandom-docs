@@ -20,6 +20,7 @@
 
 <script setup>
 import { onMounted } from 'vue'
+
 onMounted(() => {
   // 给所有二维码容器绑定点击事件
   document.querySelectorAll('.qrcode-wrapper').forEach(el => {
@@ -48,6 +49,7 @@ onMounted(() => {
   })
 })
 </script>
+
 <style scoped>
 .donate-container {
   display: flex;
@@ -125,5 +127,50 @@ p {
   .donate-container { padding: 30px 20px; }
   .qrcode-container { gap: 20px; }
   .qrcode { width: 110px; height: 110px; }
+} 
+</style>
+
+<!-- 弹窗全局样式 -->
+<style>
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 9999;
+}
+
+.modal-card {
+  background: var(--vp-c-bg, #fff);
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-card img {
+  max-width: 80vw;
+  max-height: 70vh;
+  display: block;
+  border-radius: 12px;
+}
+
+.modal-title {
+  margin-top: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.modal-subtitle {
+  margin-top: 6px;
+  font-size: 12px;
+  opacity: .7;
+  text-align: center;
 }
 </style>
