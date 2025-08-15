@@ -1,4 +1,8 @@
 <template>
+  <div class="title">
+      <h1>捐赠</h1>
+  </div>
+
   <div class="donate-container">
     <h1>支持我，温暖继续</h1>
     <p>每一份捐赠都是动力，让我们一起创造更美好的内容！</p>
@@ -86,6 +90,18 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.title {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem;
+}
+
+.title h1 {
+  font-size: 2.5rem;
+  color: var(--vp-c-brand-1);
+  margin-bottom: 0rem;
+}
+
 .donate-container {
   display: flex;
   flex-direction: column;
@@ -100,21 +116,77 @@ onMounted(() => {
   margin: 40px 0;
 }
 
-h1 { font-size:2.8rem; font-weight:600; color:var(--vp-c-text-1); margin:0 0 20px 0; text-align:center; }
-p { font-size:1.4rem; color:var(--vp-c-text-1); text-align:center; margin:0 0 30px 0; }
-.thanks { margin-top:25px; font-size:0.9rem; color: var(--vp-c-text-1); }
+h1 {
+  font-size: 2.8rem;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+  margin: 0 0 20px 0;
+  text-align: center;
+}
 
-.qrcode-container { display:flex; gap:30px; flex-wrap:wrap; justify-content:center; }
-.qrcode-wrapper { display:flex; flex-direction:column; align-items:center; background:var(--vp-c-bg-alt); backdrop-filter:blur(15px); border-radius:20px; padding:15px; box-shadow:0 4px 20px rgba(0,0,0,0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; }
-.qrcode-wrapper:hover { transform:scale(1.05); box-shadow:0 8px 28px rgba(0,0,0,0.15); }
+p {
+  font-size: 1.4rem;
+  color: var(--vp-c-text-1);
+  text-align: center;
+  margin: 0 0 30px 0;
+}
 
-.qrcode { width:140px; height:140px; border-radius:16px; margin-bottom:10px; object-fit:cover; }
-.tip { font-size:0.9rem; color: var(--vp-c-text-1); }
+.thanks {
+  margin-top: 25px;
+  font-size: 1.4rem;
+  color: var(--vp-c-text-1);
+}
 
-@media(max-width:768px){
-  .donate-container { padding:30px 20px; }
-  .qrcode-container { gap:20px; }
-  .qrcode { width:110px; height:110px; }
+.qrcode-container {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.qrcode-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--vp-c-bg-alt);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.qrcode-wrapper:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.15);
+}
+
+.qrcode {
+  width: 250px;
+  height: 250px;
+  border-radius: 16px;
+  margin-bottom: 10px;
+  object-fit: cover;
+}
+
+.tip {
+  font-size: 1.4rem;
+  color: var(--vp-c-text-1);
+}
+
+@media(max-width:768px) {
+  .donate-container {
+    padding: 30px 20px;
+  }
+
+  .qrcode-container {
+    gap: 20px;
+  }
+
+  .qrcode {
+    width: 110px;
+    height: 110px;
+  }
 }
 </style>
 
@@ -141,7 +213,21 @@ p { font-size:1.4rem; color:var(--vp-c-text-1); text-align:center; margin:0 0 30
   align-items:center;
 }
 
-.modal-card img { display:block; border-radius:12px; }
-.modal-title { margin-top:12px; font-weight:600; text-align:center; }
-.modal-subtitle { margin-top:6px; font-size:12px; opacity:.7; text-align:center; }
+.modal-card img {
+  display: block;
+  border-radius: 12px;
+}
+
+.modal-title {
+  margin-top: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.modal-subtitle {
+  margin-top: 6px;
+  font-size: 12px;
+  opacity: .7;
+  text-align: center;
+}
 </style>

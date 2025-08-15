@@ -1,6 +1,9 @@
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, computed, onBeforeUnmount } from 'vue'
 import { marked } from 'marked'
+
+const deviceDropdownRef = ref<HTMLElement | null>(null)
+const sourceDropdownRef = ref<HTMLElement | null>(null)
 
 interface DeviceType {
   id: string
@@ -150,7 +153,20 @@ function getFileIcon(fileName: string): string {
   return '📄'
 }
 
+function handleClickOutside(event: MouseEvent) {
+  const target = event.target as HTMLElement
+  if (deviceDropdownRef.value && !deviceDropdownRef.value.contains(target)) {
+    isDeviceDropdownOpen.value = false
+  }
+  if (sourceDropdownRef.value && !sourceDropdownRef.value.contains(target)) {
+    isSourceDropdownOpen.value = false
+  }
+}
+
 onMounted(async () => {
+  // 添加全局点击事件监听
+  document.addEventListener('click', handleClickOutside)
+  
   // 自动获取SecRandom发布信息
   isLoading.value = true
   hasError.value = false
@@ -235,8 +251,12 @@ onMounted(async () => {
 })
 </script>
 
+onBeforeUnmount(() => {
+  document.removeEventListener('click', handleClickOutside)
+})
+
 <template>
-  <div class="download-container">
+  <div class="download-container" @click.stop>
     <div class="download-header">
       <h1>下载 SecRandom</h1>
       <p class="subtitle">选择适合您需求的版本（仅支持Windows）</p>
@@ -246,7 +266,7 @@ onMounted(async () => {
     <div class="filter-section">
       <div class="filter-group">
         <label>版本类型：</label>
-        <div class="dropdown" :class="{ open: isDeviceDropdownOpen }">
+        <div class="dropdown" :class="{ open: isDeviceDropdownOpen }" ref="deviceDropdownRef">
           <button @click="isDeviceDropdownOpen = !isDeviceDropdownOpen" class="dropdown-button">
             {{ dynamicDeviceTypes.find(t => t.id === selectedDeviceType)?.name }}
             <span class="arrow">▼</span>
@@ -270,7 +290,7 @@ onMounted(async () => {
 
       <div class="filter-group">
         <label>下载源：</label>
-        <div class="dropdown" :class="{ open: isSourceDropdownOpen }">
+        <div class="dropdown" :class="{ open: isSourceDropdownOpen }" ref="sourceDropdownRef">
           <button @click="isSourceDropdownOpen = !isSourceDropdownOpen" class="dropdown-button">
             {{ downloadSources.find(s => s.id === selectedDownloadSource)?.name }}
             <span class="arrow">▼</span>
@@ -378,9 +398,6 @@ onMounted(async () => {
 
 <style scoped>
 .download-container {
-  width: 100%;
-  max-width: none;
-  margin: 0;
   padding: 2rem 0rem;
 }
 
@@ -415,7 +432,7 @@ onMounted(async () => {
 .filter-group label {
   display: block;
   margin-bottom: 0.5rem;
-  font-weight: 500;
+  font-weight: bold;
 }
 
 .dropdown {
@@ -426,7 +443,7 @@ onMounted(async () => {
   width: 100%;
   padding: 0.75rem 1rem;
   border: 1px solid var(--vp-c-border);
-  border-radius: 0.5rem;
+  border-radius: 0.7rem;
   background: var(--vp-c-bg);
   color: var(--vp-c-text-1);
   cursor: pointer;
@@ -571,8 +588,8 @@ onMounted(async () => {
 
 .file-list {
   background: var(--vp-c-bg-soft);
-  border-radius: 0.75rem;
-  padding: 1.5rem 1rem;
+  border-radius: 0.7rem;
+  padding: 2.0rem 2.0rem;
   width: 100%;
   box-sizing: border-box;
 }
@@ -620,7 +637,7 @@ onMounted(async () => {
   padding: 1rem;
   background: var(--vp-c-bg);
   border: 1px solid var(--vp-c-border);
-  border-radius: 0.5rem;
+  border-radius: 0.7rem;
   transition: all 0.2s;
 }
 
@@ -659,7 +676,7 @@ onMounted(async () => {
   background: var(--vp-c-brand-1);
   color: white;
   text-decoration: none;
-  border-radius: 0.25rem;
+  border-radius: 0.7rem;
   transition: background 0.2s;
 }
 
