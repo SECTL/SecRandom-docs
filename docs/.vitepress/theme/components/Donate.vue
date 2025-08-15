@@ -19,31 +19,35 @@
 </template>
 
 <script setup>
-    el.addEventListener('click', ()=>{
-    const overlay = document.createElement('div');
-    overlay.className = 'modal-overlay';
+import { onMounted } from 'vue'
+onMounted(() => {
+  // 给所有二维码容器绑定点击事件
+  document.querySelectorAll('.qrcode-wrapper').forEach(el => {
+    el.addEventListener('click', () => {
+      const overlay = document.createElement('div')
+      overlay.className = 'modal-overlay'
 
-    const modal = document.createElement('div');
-    modal.className = 'modal-card';
-    modal.innerHTML = `
-      <img src="${el.querySelector('img').src}" alt="二维码">
-      <div class="modal-title">SecRandom团队再次感谢您的支持</div>
-      <div class="modal-subtitle">点击周围空白关闭</div>
-    `;
+      const modal = document.createElement('div')
+      modal.className = 'modal-card'
+      modal.innerHTML = `
+        <img src="${el.querySelector('img').src}" alt="二维码">
+        <div class="modal-title">SecRandom团队再次感谢您的支持</div>
+        <div class="modal-subtitle">点击周围空白关闭</div>
+      `
 
-    overlay.appendChild(modal);
-    document.body.appendChild(overlay);
+      overlay.appendChild(modal)
+      document.body.appendChild(overlay)
 
-    // 点击空白关闭
-    overlay.addEventListener('click', (e)=>{
-      if(e.target===overlay){
-        document.body.removeChild(overlay);
-      }
-    });
-  });
-});
+      // 点击空白关闭
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+          document.body.removeChild(overlay)
+        }
+      })
+    })
+  })
+})
 </script>
-
 <style scoped>
 .donate-container {
   display: flex;
