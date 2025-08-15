@@ -17,7 +17,6 @@ export default defineConfig({
     // 导航栏配置
     nav: [
       { text: '🏠 总览', link: '/overview' },
-      { text: '📥 下载', link: '/download' },
       { text: '📚 指南',
         items: [
           { text: '💻 下载与运行', link: '/guide/start' },
@@ -43,13 +42,14 @@ export default defineConfig({
       },
       { text: '🛠️ 故障排除', link: '/trouble' },
       { text: '👥 团队', link: '/team' },
+      { text: '📥 下载', link: '/download' },
+      { text: '📋 版本历史', link: '/trouble' },
       { text: '💲 捐赠', link: '/donate' }
     ],
 
     // 侧边栏配置
     sidebar: [
       { text: '🏠 总览', link: '/overview' },
-      { text: '📥 下载', link: '/download' },
       { text: '📚 指南',
         collapsed: true,
         items: [
@@ -78,6 +78,8 @@ export default defineConfig({
       },
       { text: '🛠️ 故障排除', link: '/trouble' },
       { text: '👥 团队', link: '/team' },
+      { text: '📥 下载', link: '/download' },
+      { text: '📋 版本历史', link: '/trouble' },
       { text: '💲 捐赠', link: '/donate' }
     ],
 
