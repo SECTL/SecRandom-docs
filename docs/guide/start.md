@@ -2,120 +2,178 @@
 
 <ArticleMetadata />
 
-## 一、最低运行要求
-> [!TIP]
-> 在下载和运行SecRandom之前，请确保您的设备满足以下最低系统要求：
+> 🚀 **快速上手** - 三步完成SecRandom的下载、验证与运行
 
-### 1.1 硬件要求
-- <badge type="tip" text="处理器" /> 主频 1GHz 或更高
-- <badge type="tip" text="内存" /> 至少 4 GB
-- <badge type="tip" text="存储" /> 至少 200MB 可用空间
-- <badge type="tip" text="显示器" /> 最低分辨率 1024×768(px)
+---
 
-### 1.2 软件要求
-- <badge type="tip" text="Windows 系统" /> Windows 7/10/11（32位或64位）
-- <badge type="tip" text="Python 环境（以源码运行时）" />Python 3.8.10及以上版本，已安装 pip 包管理器
+## 📋 系统要求检查表
 
-## 二、下载方式
-SecRandom提供多种下载渠道，您可以根据需求选择最适合的方式：
+### ✅ 最低配置要求
+| 类别 | 要求 | 状态 |
+|------|------|------|
+| 💻 **处理器** | 主频 1GHz 或更高 | ✅ 推荐64位 |
+| 🧠 **内存** | 至少 4 GB | ✅ 推荐8GB+ |
+| 💾 **存储** | 200MB 可用空间 | ✅ 推荐SSD |
+| 🖥️ **显示器** | 1024×768 分辨率 | ✅ 推荐1080p |
 
-### 2.1 Github 发布页面下载（推荐）
-- 进入GitHub仓库的[「Releases」](https://github.com/SECTL/SecRandom/releases)页面
-- 根据您的操作系统选择相应的发布版本
-- 下载
+### 🎯 软件环境
+| 使用方式 | 系统要求 | Python版本 |
+|----------|----------|------------|
+| 🏃 **可执行文件** | Windows 7/10/11 | 无需安装 |
+| 🛠️ **源码运行** | Windows 7/10/11 | Python 3.8.10+ |
 
-### 2.1 官方GitHub仓库（源码下载）
-- 访问[官方仓库](https://github.com/SECTL/SecRandom)
-- 点击右上角的「Code」按钮，选择「Download ZIP」
-- 或使用Git命令克隆仓库：
+---
+
+## 📥 下载方式对比
+
+### 🏆 推荐方案
+
+#### 🎯 **方案1：GitHub Releases（推荐）**
+- ✅ **官方发布** - 经过完整测试的稳定版本
+- ✅ **自动更新** - 内置版本检测功能
+- ✅ **安全验证** - 提供SHA256校验值
+- ✅ **多版本** - 支持x86/x64架构
+
+**操作步骤：**
+1. 访问 [GitHub Releases](https://github.com/SECTL/SecRandom/releases)
+2. 选择最新版本（如 `v1.1.3.0-beta`）
+3. 下载对应架构的文件：
+   - `x64` - 64位系统推荐
+   - `x86` - 32位系统专用
+
+#### 🌟 **方案2：GitHub仓库（源码）**
+- ✅ **最新代码** - 获取最新功能和修复
+- ✅ **开发友好** - 支持二次开发
+- ✅ **透明开源** - 完整源代码可见
+
+**获取方式：**
 ```bash
+# 方式1：直接下载ZIP
+访问 [官方仓库](https://github.com/SECTL/SecRandom) → Code → Download ZIP
+
+# 方式2：使用Git克隆
 git clone https://github.com/SECTL/SecRandom.git
 ```
 
-### 2.3 第三方分流下载
-::: info 官方分流
-- 123云盘：[点我跳转](https://www.123684.com/s/9529jv-U4Fxh)
-:::
+#### 📦 **方案3：第三方分流**
+- ⚡ **高速下载** - 国内镜像加速
+- 🎯 **官方认证** - 123云盘官方分流
 
-## 三、文件验证
-为确保下载文件的完整性和安全性，建议进行文件验证：
+**访问链接：** [123云盘下载](https://www.123684.com/s/9529jv-U4Fxh)
 
-### 3.1 校验文件哈希值
-1. 在[发布页面](https://github.com/SECTL/SecRandom/releases)找到对应版本的SHA256校验值
-   ::: details 例如： v1.1.3.0-beta的校验值为
-   |文件名|SHA256|
-   |:----|:----|
-   |SecRandom-Windows-v1.1.3.0-beta-x64-dir.zip|6fc0c2a839c35d817fc54aabc71b84c9c1ca1af27c13a4dfc6fee1113899d999|
-   |SecRandom-Windows-v1.1.3.0-beta-x64-onefile.zip|a4d539e6fecb503b1b0918d534635ff5ebe8e3a78b9ee3c47f3d2dd65a5ff11d|
-   |SecRandom-Windows-v1.1.3.0-beta-x86-dir.zip|	a3bcceb6a427d3a3a22fc9fd1a973dcb3da7b0df763411c10b5940133630360a|
-   |SecRandom-Windows-v1.1.3.0-beta-x86-onefile.zip|48ba45f06660e55e9f356f35455e16b196508b2eae1f6a577a0a984379d43dea|
-   :::
-2. 在本地计算下载文件的哈希值：
-3. 比较计算结果与发布页面提供的校验值是否一致
+---
 
-## 四、运行步骤
-根据您下载的文件类型，选择以下相应的运行方式：
+## 🔐 文件安全验证
 
-### 4.1 可执行文件运行（适用于普通用户）
-1. 下载Windows版本的ZIP压缩包
-2. 右键点击压缩包，选择「提取全部」，指定解压路径
-3. 进入解压后的文件夹，找到`SecRandom.exe`文件
-4. 双击运行程序（首次运行可能会有Windows Defender SmartScreen提示）：
-   - 点击「更多信息」
-   - 点击「仍要运行」
-5. （可选）创建桌面快捷方式：右键`SecRandom.exe`，选择「发送到」→「桌面快捷方式」
+### 🛡️ SHA256校验流程
 
-### 4.2 源码运行（适用于开发人员和高级用户）
+#### 📊 **校验值示例（v1.1.3.0-beta）**
+| 文件名 | SHA256校验值 |
+|--------|--------------|
+| SecRandom-Windows-v1.1.3.0-beta-x64-dir.zip | `6fc0c2a839c35d817fc54aabc71b84c9c1ca1af27c13a4dfc6fee1113899d999` |
+| SecRandom-Windows-v1.1.3.0-beta-x64-onefile.zip | `a4d539e6fecb503b1b0918d534635ff5ebe8e3a78b9ee3c47f3d2dd65a5ff11d` |
 
-1. 确保已安装Python 3.8.10+和Git
-2. 打开命令提示符或PowerShell
-3. 克隆仓库：`git clone https://github.com/SECTL/SecRandom.git`
-4. 进入项目目录：`cd SecRandom`
-5. 创建虚拟环境（可选但推荐）：
+#### 🔍 **Windows校验步骤**
+1. **打开PowerShell**
+2. **计算文件哈希值**：
+   ```powershell
+   Get-FileHash 文件名.zip -Algorithm SHA256
    ```
-   python -m venv venv
-   .\venv\Scripts\activate
-   ```
-6. 安装依赖：`pip install -r requirements.txt`
-   ::: details 若出现网络问题，可设置使用国内镜像：
-   ```bash
-   pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
-   ```
-7. 启动程序：`python main.py`
+3. **对比结果**：与发布页面提供的校验值完全一致
 
-## 六、常见运行问题解决
+---
 
-### 6.1 Python环境相关问题
-#### 问题：`python`命令未找到
-**解决方法**：
-- 确认已安装Python并添加到系统PATH
-- 尝试使用`py`命令代替`python`
-- 可尝试使用`python3`命令
+## 🚀 运行指南
 
-#### 问题：依赖安装失败（如`No module named xxx`）
-**解决方法**：
-- 更新pip：`pip install --upgrade pip`
-- 安装缺失的依赖：`pip install 缺失的模块名`
-- 对于系统特定依赖，参考项目README中的系统依赖说明
+### 🎯 **普通用户 - 可执行文件运行**
 
-### 6.2 图形界面相关问题
-#### 问题：程序启动后无窗口显示
-**解决方法**：
-- 检查屏幕分辨率是否满足最低要求
-- 尝试删除配置文件重置设置
+#### 📋 **快速启动清单**
+- [ ] 下载Windows版本ZIP包
+- [ ] 解压到指定文件夹
+- [ ] 双击 `SecRandom.exe` 运行
+- [ ] 创建桌面快捷方式（可选）
 
-#### 问题：界面显示异常或乱码
-**解决方法**：
-- 更新显卡驱动
-- 调整系统显示缩放比例为100%
-- 删除字体缓存
+#### ⚡ **详细步骤**
+1. **解压文件**
+   - 右键ZIP包 → "提取全部" → 选择路径
+   - 或使用7-Zip/WinRAR解压
 
-## 2.7 运行后验证
-成功启动SecRandom后，请确认以下几点以确保程序正常运行：
+2. **首次运行**
+   - 双击 `SecRandom.exe`
+   - 如出现Windows Defender提示：
+     - 点击"更多信息" → "仍要运行"
 
-1. **主界面完整性**：检查是否显示所有功能按钮（抽人、抽奖、设置等）
-2. **资源加载**：确认界面图标、背景等资源显示正常
-3. **基本功能测试**：点击各按钮，确认能正常切换界面
-4. **版本信息**：进入「关于」页面，确认版本号与下载版本一致
+3. **创建快捷方式**
+   - 右键 `SecRandom.exe` → "发送到" → "桌面快捷方式"
 
-如果您遇到任何未在此处列出的问题，请访问[问题反馈页面](https://github.com/SECTL/SecRandom/issues)提交issue，我们会尽快处理。
+### 🛠️ **开发者 - 源码运行**
+
+#### 📋 **环境准备**
+```bash
+# 1. 安装Python 3.8.10+
+# 2. 安装Git
+# 3. 克隆项目
+git clone https://github.com/SECTL/SecRandom.git
+cd SecRandom
+
+# 4. 创建虚拟环境（推荐）
+python -m venv venv
+.\venv\Scripts\activate  # Windows
+
+# 5. 安装依赖
+pip install -r requirements.txt
+
+# 6. 启动程序
+python main.py
+```
+
+#### 🌐 **国内镜像加速**
+```bash
+# 使用清华镜像源
+pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+```
+
+---
+
+## 🔧 常见问题速查表
+
+### ❗ Python环境问题
+| 问题现象 | 解决方案 |
+|----------|----------|
+| `python`命令未找到 | 使用 `py` 或 `python3` 命令 |
+| 模块导入失败 | 更新pip: `pip install --upgrade pip` |
+| 依赖安装超时 | 使用国内镜像源 |
+
+### 🖥️ 界面显示问题
+| 问题现象 | 解决方案 |
+|----------|----------|
+| 启动无窗口 | 检查分辨率 ≥1024×768 |
+| 界面乱码 | 更新显卡驱动，缩放100% |
+| 图标缺失 | 删除配置文件重置 |
+
+---
+
+## ✅ 运行验证清单
+
+启动成功后，请确认以下功能正常：
+
+- [ ] **主界面完整** - 抽人、抽奖、设置按钮齐全
+- [ ] **资源加载** - 图标、背景显示正常
+- [ ] **功能切换** - 各页面可正常跳转
+- [ ] **版本确认** - 关于页面显示正确版本号
+
+---
+
+## 🆘 技术支持
+
+### 📞 **问题反馈渠道**
+- 🐛 [GitHub Issues](https://github.com/SECTL/SecRandom/issues)
+- 💬 QQ交流群：833875216
+- 📧 邮件反馈：查看项目README
+
+### 📚 **相关文档**
+- 📖 [快速入门指南](basic.md)
+- ⚙️ [基础设置教程](interface.md)
+- 🔧 [高级功能配置](../settings/advanced.md)
+
+> 💡 **提示**：遇到问题先查看[故障排除](../trouble.md)页面，80%的常见问题都有解决方案！

@@ -37,7 +37,8 @@ export default defineConfig({
       { text: '⚙️ 设置',
         items: [
           { text: '🔑 基本设置', link: '/settings/basic' },
-          { text: '🔒 高级设置', link: '/settings/advanced' }
+          { text: '🔒 高级设置', link: '/settings/advanced' },
+          { text: '🔌 插件管理', link: '/settings/plugins' }
           ]
       },
       { text: '🛠️ 故障排除', link: '/trouble' },
@@ -70,7 +71,8 @@ export default defineConfig({
         collapsed: true,
         items: [
           { text: '🔑 基本设置', link: '/settings/basic' },
-          { text: '🔒 高级设置', link: '/settings/advanced' }
+          { text: '🔒 高级设置', link: '/settings/advanced' },
+          { text: '🔌 插件管理', link: '/settings/plugins' }
           ]
       },
       { text: '🛠️ 故障排除', link: '/trouble' },

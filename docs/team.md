@@ -58,7 +58,7 @@ const members = [
   {
     avatar: 'Jursin.jpg',
     name: 'Jursin',
-    title: '前端页面设计 & 文档',
+    title: '响应式前端页面设计及维护 & 文档',
     links: [
       { icon: 'github', link: 'https://github.com/jursin' }
     ]
