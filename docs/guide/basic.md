@@ -24,7 +24,8 @@ SecRandom支持从多种格式文件导入名单，避免手动输入的繁琐�
 2. 在文件选择对话框中，选择要导入的文件：
    - **支持格式**：CSV、Excel (XLSX、XLS)、NamePicker 软件名单文件
    - **文件要求**：
-     - CSV/NamePicker文件：每行一个人员信息，字段用逗号分隔
+     - CSV文件：每行一个人员信息，字段用逗号分隔
+     - NamePicker文件：参见[NamePicker文档](https://namepicker-docs.netlify.app/usage/names.html)
      - Excel文件：第一行应为表头（姓名、编号等）
 3. 点击「打开」后，进入导入配置界面：
    - 确认导入文件和表头字段选择对应
