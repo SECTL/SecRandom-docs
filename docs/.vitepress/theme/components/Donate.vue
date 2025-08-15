@@ -5,11 +5,11 @@
 
     <div class="qrcode-container">
       <div class="qrcode-wrapper">
-        <img class="qrcode zoomable" src="/wechat.png" alt="微信捐赠">
+        <img class="qrcode" src="/wechat.png" alt="微信捐赠">
         <div class="tip">微信扫码捐赠</div>
       </div>
       <div class="qrcode-wrapper">
-        <img class="qrcode zoomable" src="/alipay.png" alt="支付宝捐赠">
+        <img class="qrcode" src="/alipay.png" alt="支付宝捐赠">
         <div class="tip">支付宝扫码捐赠</div>
       </div>
     </div>
@@ -23,50 +23,53 @@ import { onMounted } from 'vue'
 
 onMounted(() => {
   // ===============================
-  // 暴力禁用 Medium-Zoom 多重保障
+  // 🔥终极暴力禁用 Medium-Zoom，多重保险
   // ===============================
-
-  const disableZoom = () => {
-    // 1. 销毁已有 Medium-Zoom 实例
+  const killMediumZoom = () => {
+    // 1. 销毁已有实例
     if (window.mediumZoom) {
       window.mediumZoom.detach()
       window.mediumZoom = null
     }
 
-    // 2. 全局重写 Medium-Zoom
+    // 2. 全局覆盖 mediumZoom
     Object.defineProperty(window, 'mediumZoom', {
       get() { return () => {} },
-      set() { return }
+      set() {},
     })
 
-    // 3. 替换所有图片节点，避免残留事件
+    // 3. 替换所有图片节点，移除残留事件
     document.querySelectorAll('img').forEach(img => {
       const clone = img.cloneNode(true)
       img.replaceWith(clone)
     })
   }
 
-  // 4. 延迟执行两次，保证插件初始化后也被干掉
-  setTimeout(disableZoom, 50)
-  setTimeout(disableZoom, 500)
+  // 4. 延迟多次执行，覆盖任何初始化
+  setTimeout(killMediumZoom, 50)
+  setTimeout(killMediumZoom, 300)
+  setTimeout(killMediumZoom, 1000)
 
   // ===============================
-  // 自定义二维码点击放大
+  // 🔹自定义点击放大逻辑
   // ===============================
-  const imgs = document.querySelectorAll('.qrcode-wrapper img.zoomable')
-  imgs.forEach(img => {
-    img.style.cursor = 'zoom-in'
-    img.addEventListener('click', () => {
+  const wrappers = document.querySelectorAll('.qrcode-wrapper')
+  wrappers.forEach(wrapper => {
+    wrapper.style.cursor = 'pointer'
+    wrapper.addEventListener('click', e => {
+      e.stopPropagation() // 阻止任何冒泡，确保 Medium-Zoom 不触发
+
+      const img = wrapper.querySelector('img')
       const overlay = document.createElement('div')
       overlay.className = 'modal-overlay'
 
       const modal = document.createElement('div')
       modal.className = 'modal-card'
 
-      // 统一放大尺寸
-      const fixedSize = 320
+      // 统一尺寸，保证视觉一致
+      const size = 320
       modal.innerHTML = `
-        <img src="${img.src}" style="width: ${fixedSize}px; height: ${fixedSize}px; object-fit: contain;">
+        <img src="${img.src}" style="width:${size}px;height:${size}px;object-fit:contain;">
         <div class="modal-title">SecRandom团队再次感谢您的支持</div>
         <div class="modal-subtitle">点击周围空白关闭</div>
       `
@@ -74,8 +77,8 @@ onMounted(() => {
       overlay.appendChild(modal)
       document.body.appendChild(overlay)
 
-      overlay.addEventListener('click', e => {
-        if (e.target === overlay) document.body.removeChild(overlay)
+      overlay.addEventListener('click', ev => {
+        if (ev.target === overlay) document.body.removeChild(overlay)
       })
     })
   })
@@ -97,18 +100,18 @@ onMounted(() => {
   margin: 40px 0;
 }
 
-h1 { font-size: 2.8rem; font-weight: 600; color: var(--vp-c-text-1); margin:0 0 20px 0; text-align:center; }
-p { font-size: 1.4rem; color: var(--vp-c-text-1); text-align:center; margin:0 0 30px 0; }
+h1 { font-size:2.8rem; font-weight:600; color:var(--vp-c-text-1); margin:0 0 20px 0; text-align:center; }
+p { font-size:1.4rem; color:var(--vp-c-text-1); text-align:center; margin:0 0 30px 0; }
 .thanks { margin-top:25px; font-size:0.9rem; color: var(--vp-c-text-1); }
 
 .qrcode-container { display:flex; gap:30px; flex-wrap:wrap; justify-content:center; }
-.qrcode-wrapper { display:flex; flex-direction:column; align-items:center; background: var(--vp-c-bg-alt); backdrop-filter: blur(15px); border-radius:20px; padding:15px; box-shadow:0 4px 20px rgba(0,0,0,0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; }
-.qrcode-wrapper:hover { transform: scale(1.05); box-shadow: 0 8px 28px rgba(0,0,0,0.15); }
+.qrcode-wrapper { display:flex; flex-direction:column; align-items:center; background:var(--vp-c-bg-alt); backdrop-filter:blur(15px); border-radius:20px; padding:15px; box-shadow:0 4px 20px rgba(0,0,0,0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.qrcode-wrapper:hover { transform:scale(1.05); box-shadow:0 8px 28px rgba(0,0,0,0.15); }
 
 .qrcode { width:140px; height:140px; border-radius:16px; margin-bottom:10px; object-fit:cover; }
 .tip { font-size:0.9rem; color: var(--vp-c-text-1); }
 
-@media (max-width: 768px) {
+@media(max-width:768px){
   .donate-container { padding:30px 20px; }
   .qrcode-container { gap:20px; }
   .qrcode { width:110px; height:110px; }
@@ -122,12 +125,12 @@ p { font-size: 1.4rem; color: var(--vp-c-text-1); text-align:center; margin:0 0 
   display:flex;
   align-items:center;
   justify-content:center;
-  background: rgba(0,0,0,0.45);
+  background:rgba(0,0,0,0.45);
   z-index:9999;
 }
 
 .modal-card {
-  background: var(--vp-c-bg,#fff);
+  background:var(--vp-c-bg,#fff);
   border-radius:20px;
   padding:16px;
   box-shadow:0 20px 60px rgba(0,0,0,0.25);
