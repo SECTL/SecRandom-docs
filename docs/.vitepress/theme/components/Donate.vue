@@ -22,13 +22,37 @@
 import { onMounted } from 'vue'
 
 onMounted(() => {
-  // ===== 1. 卸载 Medium-Zoom =====
-  if (window.mediumZoom) {
-    window.mediumZoom.detach()
-    window.mediumZoom = null
+  // ===============================
+  // 暴力禁用 Medium-Zoom 多重保障
+  // ===============================
+
+  const disableZoom = () => {
+    // 1. 销毁已有 Medium-Zoom 实例
+    if (window.mediumZoom) {
+      window.mediumZoom.detach()
+      window.mediumZoom = null
+    }
+
+    // 2. 全局重写 Medium-Zoom
+    Object.defineProperty(window, 'mediumZoom', {
+      get() { return () => {} },
+      set() { return }
+    })
+
+    // 3. 替换所有图片节点，避免残留事件
+    document.querySelectorAll('img').forEach(img => {
+      const clone = img.cloneNode(true)
+      img.replaceWith(clone)
+    })
   }
 
-  // ===== 2. 自定义二维码点击放大 =====
+  // 4. 延迟执行两次，保证插件初始化后也被干掉
+  setTimeout(disableZoom, 50)
+  setTimeout(disableZoom, 500)
+
+  // ===============================
+  // 自定义二维码点击放大
+  // ===============================
   const imgs = document.querySelectorAll('.qrcode-wrapper img.zoomable')
   imgs.forEach(img => {
     img.style.cursor = 'zoom-in'
@@ -41,7 +65,6 @@ onMounted(() => {
 
       // 统一放大尺寸
       const fixedSize = 320
-
       modal.innerHTML = `
         <img src="${img.src}" style="width: ${fixedSize}px; height: ${fixedSize}px; object-fit: contain;">
         <div class="modal-title">SecRandom团队再次感谢您的支持</div>
@@ -51,10 +74,8 @@ onMounted(() => {
       overlay.appendChild(modal)
       document.body.appendChild(overlay)
 
-      overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) {
-          document.body.removeChild(overlay)
-        }
+      overlay.addEventListener('click', e => {
+        if (e.target === overlay) document.body.removeChild(overlay)
       })
     })
   })
@@ -95,7 +116,6 @@ p { font-size: 1.4rem; color: var(--vp-c-text-1); text-align:center; margin:0 0 
 </style>
 
 <style>
-/* 弹窗全局样式 */
 .modal-overlay {
   position: fixed;
   inset:0;
