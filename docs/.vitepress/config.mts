@@ -1,6 +1,5 @@
 import { defineConfig } from 'vitepress'
 import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-icons'
-import path from 'path'
 
 export default defineConfig({
   title: "SecRandom",
@@ -38,7 +37,8 @@ export default defineConfig({
         items: [
           { text: '🔑 基本设置', link: '/settings/basic' },
           { text: '🔒 高级设置', link: '/settings/advanced' },
-          { text: '🔌 插件管理', link: '/settings/plugins' }
+          { text: '🔌 插件管理', link: '/settings/plugins' },
+          { text: '🔗 URL协议', link: '/settings/url' }
           ]
       },
       { text: '🛠️ 故障排除', link: '/trouble' },
@@ -72,11 +72,13 @@ export default defineConfig({
         items: [
           { text: '🔑 基本设置', link: '/settings/basic' },
           { text: '🔒 高级设置', link: '/settings/advanced' },
-          { text: '🔌 插件管理', link: '/settings/plugins' }
+          { text: '🔌 插件管理', link: '/settings/plugins' },
+          { text: '🔗 URL协议', link: '/settings/url' }
           ]
       },
       { text: '🛠️ 故障排除', link: '/trouble' },
-      { text: '👥 团队', link: '/team' }
+      { text: '👥 团队', link: '/team' },
+      { text: '💲 捐赠', link: '/donate' }
     ],
 
 
