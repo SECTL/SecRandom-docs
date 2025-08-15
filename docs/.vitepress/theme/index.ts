@@ -16,6 +16,7 @@ import ArticleMetadata from './components/ArticleMetadata.vue'
 import HomeUnderline from './components/HomeUnderline.vue'
 import TeamCard from './components/TeamCard.vue'
 import Download from './components/Download.vue'
+import Donate from './components/Donate.vue'
 
 export default {
   extends: DefaultTheme,
@@ -31,7 +32,8 @@ export default {
     app.component('Download' , Download);
     app.component('ArticleMetadata' , ArticleMetadata);
     app.component('HomeUnderline' , HomeUnderline);
-    app.component('TeamCard' , TeamCard)
+    app.component('TeamCard' , TeamCard);
+    app.component('Donate' , Donate)
     if (inBrowser) {
       router.onAfterRouteChanged = () => {
         busuanzi.fetch()
