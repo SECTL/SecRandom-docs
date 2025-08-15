@@ -1,4 +1,4 @@
-#SecRandom 插件系统
+# SecRandom 插件系统
 <ArticleMetadata />
 
 > SecRandom提供了插件系统，可以通过注入插件来实现SecRandom尚未实现的功能
@@ -16,3 +16,4 @@
 ## 编写自己的插件
 
 ### 待补充
+
