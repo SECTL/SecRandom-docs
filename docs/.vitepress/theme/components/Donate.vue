@@ -22,50 +22,103 @@
 import { onMounted } from 'vue'
 
 onMounted(() => {
-  // ===== 1. 销毁 medium-zoom 防止冲突 =====
-  if (window.__mediumZoom__) {
-    try {
-      window.__mediumZoom__.detach()
-      console.log('medium-zoom 已销毁')
-    } catch (err) {
-      console.warn('medium-zoom 销毁失败', err)
-    }
-  } else {
-    // 没挂到 window 上，直接克隆替换所有 img，移除绑定事件
-    document.querySelectorAll('img').forEach(img => {
-      img.replaceWith(img.cloneNode(true))
+  // 1. 强制禁用 medium-zoom
+  try {
+    // 移除 data-zoom 属性
+    document.querySelectorAll('img[data-zoom]').forEach(img => {
+      img.removeAttribute('data-zoom')
     })
-    console.log('medium-zoom 事件已清除')
+    // 移除 medium-zoom 加的事件监听
+    const imgs = document.querySelectorAll('img')
+    imgs.forEach(img => {
+      const clone = img.cloneNode(true)
+      img.replaceWith(clone) // 用克隆替换原图，相当于移除了所有事件
+    })
+    console.log('✅ medium-zoom 已强制禁用')
+  } catch (err) {
+    console.warn('❌ 禁用 medium-zoom 失败', err)
   }
 
+
   // ===== 2. 自定义放大逻辑 =====
-  document.querySelectorAll('.qrcode-wrapper').forEach(el => {
-    el.addEventListener('click', () => {
+<script setup>
+// 等待 DOM 渲染完成
+import { onMounted } from 'vue'
+
+onMounted(() => {
+  // 1. 强制禁用 medium-zoom
+  try {
+    // 移除它加的 data-zoom 属性
+    document.querySelectorAll('img[data-zoom]').forEach(img => {
+      img.removeAttribute('data-zoom')
+    })
+    // 移除 medium-zoom 加的事件监听
+    const imgs = document.querySelectorAll('img')
+    imgs.forEach(img => {
+      const clone = img.cloneNode(true)
+      img.replaceWith(clone) // 用克隆替换原图，相当于移除了所有事件
+    })
+    console.log('✅ medium-zoom 已强制禁用')
+  } catch (err) {
+    console.warn('❌ 禁用 medium-zoom 失败', err)
+  }
+
+  // 2. 自定义放大逻辑（让两张图放大时大小一致）
+  const imgs = document.querySelectorAll('.zoomable')
+  imgs.forEach(img => {
+    img.addEventListener('click', () => {
       const overlay = document.createElement('div')
-      overlay.className = 'modal-overlay'
+      overlay.style.position = 'fixed'
+      overlay.style.top = 0
+      overlay.style.left = 0
+      overlay.style.width = '100vw'
+      overlay.style.height = '100vh'
+      overlay.style.background = 'rgba(0,0,0,0.8)'
+      overlay.style.display = 'flex'
+      overlay.style.alignItems = 'center'
+      overlay.style.justifyContent = 'center'
+      overlay.style.zIndex = 9999
 
-      const modal = document.createElement('div')
-      modal.className = 'modal-card'
+      const bigImg = document.createElement('img')
+      bigImg.src = img.src
+      bigImg.style.maxWidth = '80vw'
+      bigImg.style.maxHeight = '80vh'
+      bigImg.style.objectFit = 'contain'
 
-      // 强制放大时尺寸一致
-      modal.innerHTML = `
-        <img src="${el.querySelector('img').src}" alt="二维码" style="width: 320px; height: auto; max-width: 80vw; max-height: 70vh; object-fit: contain;">
-        <div class="modal-title">SecRandom团队再次感谢您的支持</div>
-        <div class="modal-subtitle">点击周围空白关闭</div>
-      `
+      // ✅ 统一大小逻辑
+      // 先获取两张原图的尺寸，取一个最大宽高作为展示基准
+      const allImgs = Array.from(document.querySelectorAll('.zoomable'))
+      let maxW = 0, maxH = 0
+      allImgs.forEach(i => {
+        const temp = new Image()
+        temp.src = i.src
+        temp.onload = () => {
+          maxW = Math.max(maxW, temp.width)
+          maxH = Math.max(maxH, temp.height)
+        }
+      })
+      // 给放大图固定成同一比例的尺寸（缩放到相同的宽高范围）
+      bigImg.style.width = maxW + 'px'
+      bigImg.style.height = maxH + 'px'
 
-      overlay.appendChild(modal)
+      overlay.appendChild(bigImg)
       document.body.appendChild(overlay)
 
-      overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) {
-          document.body.removeChild(overlay)
-        }
+      overlay.addEventListener('click', () => {
+        overlay.remove()
       })
     })
   })
 })
 </script>
+
+<template>
+  <div>
+    <img src="/img1.png" class="zoomable" style="width: 300px;" />
+    <img src="/img2.png" class="zoomable" style="width: 200px;" />
+  </div>
+</template>
+
 
 <style scoped>
 .donate-container {
