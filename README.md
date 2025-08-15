@@ -1,6 +1,8 @@
  # SecRandom 文档
 
-使用 VitePress 搭建
+使用 VitePress 搭建，Netlify 部署
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f31b1cc4-0fdf-45fd-96f2-ef92ec108fde/deploy-status)](https://app.netlify.com/projects/secrandom/deploys)
 
 ## 快速开始
 - 环境要求
@@ -23,6 +25,7 @@
 - 预览生产版本
   ```bash
   npm run docs:preview
+  ```
 - 内容编写指南
   - 所有文档使用 Markdown 格式编写
   - 在 docs 目录下创建新的 .md 文件即可自动生成对应页面
@@ -30,10 +33,8 @@
   - 在 `/docs/.vitepress/config.mts` 中配置站点
 
 ## 贡献指南
-欢迎参与文档贡献：
-
 - Fork 本项目
-- 创建新分支
-- 提交更改
-- 推送到分支
+- 修改并提交 commit
+- 推送到 main 分支或新建 dev 分支
 - 创建 Pull Request
+- 等待审核后合并
