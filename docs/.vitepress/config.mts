@@ -44,7 +44,8 @@ export default defineConfig({
       { text: '👥 团队', link: '/team' },
       { text: '📥 下载', link: '/download' },
       { text: '📋 版本历史', link: '/changelog' },
-      { text: '💲 捐赠', link: '/donate' }
+      { text: '💲 捐赠', link: '/donate' },
+      { text: '🔗 Hub', link: 'https://sectl-hub.netlify.app/' }
     ],
 
     // 侧边栏配置
@@ -80,7 +81,8 @@ export default defineConfig({
       { text: '👥 团队', link: '/team' },
       { text: '📥 下载', link: '/download' },
       { text: '📋 版本历史', link: '/changelog' },
-      { text: '💲 捐赠', link: '/donate' }
+      { text: '💲 捐赠', link: '/donate' },
+      { text: '🔗 Hub', link: 'https://sectl-hub.netlify.app/' }
     ],
 
 
