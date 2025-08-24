@@ -99,6 +99,19 @@
 
 </div>
 
+### 8. 闪抽界面
+<div class="config-card">
+
+- **URL**: `secrandom://direct_extraction`
+- **功能**: 打开闪抽界面，快速进行抽取操作，并会在设定的时间后自动关闭。(关闭时间可在设置中进行调整)
+
+**使用场景**：
+- 需要快速完成单次抽取操作
+- 课堂或会议中进行快速随机选择
+- 活动中需要短时间内完成抽取并自动结束
+
+</div>
+
 ## 带Action参数的URL
 
 ### 抽人相关操作
@@ -183,6 +196,21 @@ start secrandom://reward?action=stop
 
 </div>
 
+### 闪抽相关操作
+<div class="config-card highlight">
+
+#### 使用闪抽
+- **URL**: `secrandom://direct_extraction`
+- **功能**: 自动切换到闪抽界面并开始抽取操作，当到达设定时间会自动关闭。
+
+**使用示例**：
+```batch
+# 批处理文件示例
+start secrandom://direct_extraction
+```
+
+</div>
+
 ## 💡 URL协议使用指南
 
 <div class="tip-box">
@@ -260,6 +288,10 @@ class SecRandomController:
         """打开设置界面"""
         os.system(f"start {self.base_url}settings")
 
+    def open_direct_extraction(self):
+        """使用闪抽"""
+        os.system(f"start {self.base_url}direct_extraction")
+
 # 使用示例
 controller = SecRandomController()
 controller.open_main()
@@ -295,6 +327,16 @@ class SecRandomController {
     async stopPumping() {
         return new Promise((resolve, reject) => {
             exec(`start ${this.baseUrl}pumping?action=stop`, (error) => {
+                if (error) reject(error);
+                else resolve();
+            });
+        });
+    }
+
+    async openDirectExtraction() {
+        // 使用闪抽
+        return new Promise((resolve, reject) => {
+            exec(`start ${this.baseUrl}direct_extraction`, (error) => {
                 if (error) reject(error);
                 else resolve();
             });
@@ -351,6 +393,16 @@ class SecRandomController
             UseShellExecute = true
         });
     }
+
+    public void OpenDirectExtraction()
+    {
+        // 使用闪抽
+        Process.Start(new ProcessStartInfo
+        {
+            FileName = BaseUrl + "direct_extraction",
+            UseShellExecute = true
+        });
+    }
 }
 
 // 使用示例
@@ -385,6 +437,23 @@ class SecRandomController {
     public void stopPumping() {
         try {
             Desktop.getDesktop().browse(new URI(BASE_URL + "pumping?action=stop"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void openSettings() {
+        try {
+            Desktop.getDesktop().browse(new URI(BASE_URL + "settings"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void openDirectExtraction() {
+        // 使用闪抽
+        try {
+            Desktop.getDesktop().browse(new URI(BASE_URL + "direct_extraction"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -498,6 +567,11 @@ timeout /t 2 >nul
 
 echo 5. 打开设置界面
 start secrandom://settings
+timeout /t 2 >nul
+
+echo 6. 使用闪抽
+start secrandom://direct_extraction
+timeout /t 2 >nul
 
 echo 演示完成！
 pause
@@ -526,6 +600,7 @@ function Invoke-SecRandom {
 Invoke-SecRandom -Action "main"
 Invoke-SecRandom -Action "pumping" -Parameters "action=start"
 Invoke-SecRandom -Action "settings"
+Invoke-SecRandom -Action "direct_extraction"
 ```
 
 #### Web 应用集成
@@ -534,6 +609,7 @@ Invoke-SecRandom -Action "settings"
 <button onclick="openSecRandom('main')">打开SecRandom</button>
 <button onclick="startPumping()">开始抽人</button>
 <button onclick="stopPumping()">停止抽人</button>
+<button onclick="openDirectExtraction()">使用闪抽</button>
 
 <script>
 function openSecRandom(action, params = '') {
@@ -547,6 +623,11 @@ function startPumping() {
 
 function stopPumping() {
     openSecRandom('pumping', 'action=stop');
+}
+
+function openDirectExtraction() {
+    // 使用闪抽
+    openSecRandom('direct_extraction');
 }
 </script>
 ```

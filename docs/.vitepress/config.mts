@@ -38,13 +38,17 @@ export default defineConfig({
           { text: '🔒 高级设置', link: '/settings/advanced' },
           { text: '🔌 插件管理', link: '/settings/plugins' },
           { text: '🔗 URL协议', link: '/settings/url' }
-          ]
+        ]
       },
-      { text: '🛠️ 故障排除', link: '/trouble' },
-      { text: '👥 团队', link: '/team' },
-      { text: '📥 下载', link: '/download' },
-      { text: '📋 版本历史', link: '/changelog' },
-      { text: '💲 捐赠', link: '/donate' },
+      { text: '🆘 支持与资源',
+        items: [
+          { text: '🛠️ 故障排除', link: '/trouble' },
+          { text: '👥 团队', link: '/team' },
+          { text: '📥 下载', link: '/download' },
+          { text: '📋 版本历史', link: '/changelog' },
+          { text: '💲 捐赠', link: '/donate' }
+        ]
+      },
       { text: '🔗 Hub', link: 'https://sectl-hub.netlify.app/' }
     ],
 
@@ -75,13 +79,17 @@ export default defineConfig({
           { text: '🔒 高级设置', link: '/settings/advanced' },
           { text: '🔌 插件管理', link: '/settings/plugins' },
           { text: '🔗 URL协议', link: '/settings/url' }
-          ]
+        ]
       },
-      { text: '🛠️ 故障排除', link: '/trouble' },
-      { text: '👥 团队', link: '/team' },
-      { text: '📥 下载', link: '/download' },
-      { text: '📋 版本历史', link: '/changelog' },
-      { text: '💲 捐赠', link: '/donate' },
+      { text: '🆘 支持与资源',
+        items: [
+          { text: '🛠️ 故障排除', link: '/trouble' },
+          { text: '👥 团队', link: '/team' },
+          { text: '📥 下载', link: '/download' },
+          { text: '📋 版本历史', link: '/changelog' },
+          { text: '💲 捐赠', link: '/donate' }
+        ]
+      },
       { text: '🔗 Hub', link: 'https://sectl-hub.netlify.app/' }
     ],
 
