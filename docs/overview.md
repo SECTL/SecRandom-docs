@@ -79,6 +79,10 @@
   </a>
 </div>
 
+
+- ☁️ **或使用cloudreve分流** *（感谢Lotus大佬提供的分流，欢迎上大佬的[github主页](https://github.com/SummerLotus520/)看看或者进入[荷花大佬的群](https://qm.qq.com/q/d4Dd9EOvcI)看看）*：[分流链接](https://cloud.lotusshared.cn/s/A9QCA)
+
+
 > ✨ **让每一次随机都有温度，每一份公平都熠熠生辉！**
 >
 > 💡 **零门槛上手** · 🔒 **隐私保护** · 🎯 **公平透明**
