@@ -39,14 +39,14 @@ const baseDeviceTypes: DeviceType[] = [
   { 
     id: 'stable', 
     name: '正式版', 
-    icon: '✅', 
+    icon: '🚀', 
     description: '稳定版本，推荐日常使用',
     patterns: ['stable', 'release']
   },
   { 
     id: 'beta', 
     name: '测试版', 
-    icon: '🧪', 
+    icon: '🚧', 
     description: '测试版本，包含最新功能',
     patterns: ['beta', 'test', 'preview']
   }
@@ -163,15 +163,12 @@ function handleClickOutside(event: MouseEvent) {
   }
 }
 
-onMounted(async () => {
-  // 添加全局点击事件监听
-  document.addEventListener('click', handleClickOutside)
-  
-  // 自动获取SecRandom发布信息
+// 重试获取发布信息的方法
+async function retryFetch() {
   isLoading.value = true
   hasError.value = false
   errorMessage.value = ''
-  
+
   try {
     console.log('正在获取GitHub发布信息...')
     // 调用GitHub API获取SecRandom的所有发布信息
@@ -248,7 +245,7 @@ onMounted(async () => {
   } finally {
     isLoading.value = false
   }
-})
+}
 </script>
 
 onBeforeUnmount(() => {
@@ -324,7 +321,8 @@ onBeforeUnmount(() => {
     <!-- 错误状态 -->
     <div v-else-if="hasError" class="error">
       <p>{{ errorMessage }}</p>
-      <button @click="onMounted" class="retry-button">重试</button>
+      <button @click="retryFetch" class="retry-button">重试</button>
+
     </div>
 
     <!-- 文件列表 -->
