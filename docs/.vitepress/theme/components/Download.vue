@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, computed, onBeforeUnmount } from 'vue'
+import { ref, computed } from 'vue'
 import { marked } from 'marked'
 
 const deviceDropdownRef = ref<HTMLElement | null>(null)
@@ -16,6 +16,7 @@ interface DeviceType {
 interface DownloadSource {
   id: string
   name: string
+  icon: string
   description: string
   speed: string
   contributor?: {
@@ -54,11 +55,11 @@ const baseDeviceTypes: DeviceType[] = [
 
 // 下载源定义
 const downloadSources: DownloadSource[] = [
-  { id: 'github', name: 'GitHub 源', description: '官方发布渠道', speed: '海外较快' },
-  { id: 'ghfast', name: 'GitHub 第三方镜像源', description: 'ghfast.top 加速', speed: '国内较快' },
-  { id: 'ghproxy', name: 'GitHub 第三方镜像源', description: 'gh-proxy.com 加速', speed: '国内较快' },
-  { id: 'cloud123', name: '123云盘源', description: '云盘下载页面', speed: '不限速', contributor: { name: 'lzy98276', url: 'https://github.com/lzy98276' } },
-  { id: 'cloudreve', name: 'Cloudreve分流', description: 'Lotus大佬提供的分流', speed: '稳定快速', contributor: { name: 'Lotus', url: 'https://github.com/SummerLotus520/' } }
+  { id: 'github', name: 'GitHub 源', icon: '/svg/github.svg', description: '官方发布渠道', speed: '海外较快' },
+  { id: 'ghfast', name: 'GitHub 第三方镜像源', icon: '/svg/github.svg', description: 'ghfast.top 加速', speed: '国内较快' },
+  { id: 'ghproxy', name: 'GitHub 第三方镜像源', icon: '/svg/github.svg', description: 'gh-proxy.com 加速', speed: '国内较快' },
+  { id: 'cloud123', name: '123云盘源', icon: '/123pan.png', description: '云盘下载页面', speed: '不限速', contributor: { name: 'lzy98276', url: 'https://github.com/lzy98276' } },
+  { id: 'cloudreve', name: 'Cloudreve分流', icon: '/Cloudreve.png', description: 'Lotus大佬提供的分流', speed: '稳定快速', contributor: { name: 'Lotus', url: 'https://github.com/SummerLotus520/' } }
 ]
 
 // 动态设备类型
@@ -272,12 +273,8 @@ onBeforeUnmount(() => {
             <span class="arrow">▼</span>
           </button>
           <div class="dropdown-menu">
-            <div 
-              v-for="type in dynamicDeviceTypes" 
-              :key="type.id"
-              class="dropdown-item"
-              @click="handleVersionChange(type.id)"
-            >
+            <div v-for="type in dynamicDeviceTypes" :key="type.id" class="dropdown-item"
+              @click="handleVersionChange(type.id)">
               <span class="icon">{{ type.icon }}</span>
               <div class="item-content">
                 <div class="item-name">{{ type.name }}</div>
@@ -296,19 +293,17 @@ onBeforeUnmount(() => {
             <span class="arrow">▼</span>
           </button>
           <div class="dropdown-menu">
-            <div 
-              v-for="source in downloadSources" 
-              :key="source.id"
-              class="dropdown-item"
-              @click="selectedDownloadSource = source.id; isSourceDropdownOpen = false"
-            >
+            <div v-for="source in downloadSources" :key="source.id" class="dropdown-item"
+              @click="selectedDownloadSource = source.id; isSourceDropdownOpen = false">
+              <img :src="source.icon" class="source-icon" alt="Icon for {{ source.name }}"> <!-- 添加图标显示 -->
               <div class="item-content">
                 <div class="item-name">{{ source.name }}</div>
                 <div class="item-description">{{ source.description }} · {{ source.speed }}</div>
                 <div v-if="source.contributor" class="contributor">
-              由 <a :href="source.contributor.url" target="_blank">{{ source.contributor.name }}</a> 提供
-              <span v-if="source.id === 'cloudreve'"> · 欢迎进入 <a href="https://qm.qq.com/q/d4Dd9EOvcI" target="_blank">QQ群</a> 了解更多</span>
-            </div>
+                  由 <a :href="source.contributor.url" target="_blank">{{ source.contributor.name }}</a> 提供
+                  <span v-if="source.id === 'cloudreve'"> · 欢迎进入 <a href="https://qm.qq.com/q/d4Dd9EOvcI"
+                      target="_blank">QQ群</a> 了解更多</span>
+                </div>
               </div>
             </div>
           </div>
@@ -353,11 +348,7 @@ onBeforeUnmount(() => {
       </div>
 
       <div v-else class="files">
-        <div 
-          v-for="file in currentFiles" 
-          :key="file.name"
-          class="file-item"
-        >
+        <div v-for="file in currentFiles" :key="file.name" class="file-item">
           <div class="file-info">
             <span class="file-icon">{{ getFileIcon(file.name) }}</span>
             <div class="file-details">
@@ -365,28 +356,16 @@ onBeforeUnmount(() => {
               <div class="file-size">{{ formatFileSize(file.size) }}</div>
             </div>
           </div>
-          <a 
-            :href="getDownloadUrl(file)" 
-            class="download-button"
-            target="_blank"
-            v-if="selectedDownloadSource !== 'cloud123' && selectedDownloadSource !== 'cloudreve'"
-          >
+          <a :href="getDownloadUrl(file)" class="download-button" target="_blank"
+            v-if="selectedDownloadSource !== 'cloud123' && selectedDownloadSource !== 'cloudreve'">
             下载
           </a>
-          <a 
-            :href="getDownloadUrl(file)" 
-            class="download-button"
-            target="_blank"
-            v-else-if="selectedDownloadSource === 'cloud123'"
-          >
+          <a :href="getDownloadUrl(file)" class="download-button" target="_blank"
+            v-else-if="selectedDownloadSource === 'cloud123'">
             前往下载页面
           </a>
-          <a 
-            :href="getDownloadUrl(file)" 
-            class="download-button"
-            target="_blank"
-            v-else-if="selectedDownloadSource === 'cloudreve'"
-          >
+          <a :href="getDownloadUrl(file)" class="download-button" target="_blank"
+            v-else-if="selectedDownloadSource === 'cloudreve'">
             前往分流页面
           </a>
         </div>
@@ -505,6 +484,12 @@ onBeforeUnmount(() => {
 
 .dropdown-item:hover {
   background: var(--vp-c-brand-soft);
+}
+
+.source-icon {
+  width: 32px;
+  height: 32px;
+  margin-right: 0.5rem;
 }
 
 .icon {
