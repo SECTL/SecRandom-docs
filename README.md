@@ -4,6 +4,8 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/f31b1cc4-0fdf-45fd-96f2-ef92ec108fde/deploy-status)](https://app.netlify.com/projects/secrandom/deploys)
 
+![Alt](https://repobeats.axiom.co/api/embed/09ef1a08c32b802b653bc49cdb2ba79800dac1e6.svg "Repobeats analytics image")
+
 ## 快速开始
 - 环境要求
   - Node.js 20+
