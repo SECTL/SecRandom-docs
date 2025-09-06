@@ -37,7 +37,8 @@ export default defineConfig({
           { text: '🔑 基本设置', link: '/settings/basic' },
           { text: '🔒 高级设置', link: '/settings/advanced' },
           { text: '🔌 插件管理', link: '/settings/plugins' },
-          { text: '🔗 URL协议', link: '/settings/url' }
+          { text: '🔗 URL协议', link: '/settings/url' },
+          { text: '🩹 软件保活', link: '/settings/keep_alive' }
         ]
       },
       { text: '🆘 支持与资源',
@@ -78,7 +79,8 @@ export default defineConfig({
           { text: '🔑 基本设置', link: '/settings/basic' },
           { text: '🔒 高级设置', link: '/settings/advanced' },
           { text: '🔌 插件管理', link: '/settings/plugins' },
-          { text: '🔗 URL协议', link: '/settings/url' }
+          { text: '🔗 URL协议', link: '/settings/url' },
+          { text: '🩹 软件保活', link: '/settings/keep_alive' }
         ]
       },
       { text: '🆘 支持与资源',
