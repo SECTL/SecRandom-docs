@@ -32,14 +32,11 @@
 - ✅ **官方发布** - 经过完整测试的稳定版本
 - ✅ **自动更新** - 内置版本检测功能
 - ✅ **安全验证** - 提供SHA256校验值
-- ✅ **多版本** - 支持x86/x64架构
 
 **操作步骤：**
 1. 访问 [GitHub Releases](https://github.com/SECTL/SecRandom/releases)
 2. 选择最新版本（如 `v1.1.3.0-beta`）
-3. 下载对应架构的文件：
-   - `x64` - 64位系统推荐
-   - `x86` - 32位系统专用
+3. 下载文件
 
 #### 🌟 **方案2：GitHub仓库（源码）**
 - ✅ **最新代码** - 获取最新功能和修复
@@ -60,6 +57,27 @@ git clone https://github.com/SECTL/SecRandom.git
 - 🎯 **官方认证** - 123云盘官方分流
 
 **访问链接：** [123云盘下载](https://www.123684.com/s/9529jv-U4Fxh)
+
+#### 📦 **方案4：Cloudreve分流**
+
+<div align="center">
+
+| 特性 | 详情 |
+|:----:|:----|
+| **🌐 服务类型** | 第三方分流服务 |
+| **🚀 下载速度** | 稳定快速 |
+| **👨‍💻 提供者** | [Lotus](https://github.com/SummerLotus520/) |
+| **📝 描述** | Lotus大佬提供的分流服务 |
+
+</div>
+
+<div align="center">
+
+**访问链接：** [Cloudreve分流](https://cloudreve.lotus520.com)
+
+> 💡 **提示**：此分流服务由社区贡献者Lotus提供，感谢他的支持！
+
+</div>
 
 ---
 
