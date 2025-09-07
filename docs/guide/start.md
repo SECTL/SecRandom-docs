@@ -69,10 +69,6 @@ git clone https://github.com/SECTL/SecRandom.git
 | **👨‍💻 提供者** | [Lotus](https://github.com/SummerLotus520/) |
 | **📝 描述** | Lotus大佬提供的分流服务 |
 
-</div>
-
-<div align="center">
-
 **访问链接：** [Cloudreve分流](https://cloudreve.lotus520.com)
 
 > 💡 **提示**：此分流服务由社区贡献者Lotus提供，感谢他的支持！
