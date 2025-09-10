@@ -1,7 +1,7 @@
 // https://vitepress.dev/guide/custom-theme
 import { h, onMounted, watch, nextTick } from 'vue'
 import type { Theme } from 'vitepress'
-import { inBrowser, useRoute } from 'vitepress'
+import { inBrowser, useData, useRoute } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import './style.css'
 import './style/index.css'
@@ -17,6 +17,7 @@ import HomeUnderline from './components/HomeUnderline.vue'
 import TeamCard from './components/TeamCard.vue'
 import Download from './components/Download.vue'
 import Donate from './components/Donate.vue'
+import giscusTalk from 'vitepress-plugin-comment-with-giscus'
 
 export default {
   extends: DefaultTheme,
@@ -52,6 +53,27 @@ export default {
     watch(
       () => route.path,
       () => nextTick(() => initZoom())
+    );
+    // Get frontmatter and route
+    const { frontmatter } = useData();
+        
+    // giscus配置
+    giscusTalk({
+      repo: 'SECTL/SecRandom-docs', //仓库
+      repoId: 'R_kgDOPRYlZg', //仓库ID
+      category: 'General', // 讨论分类
+      categoryId: 'DIC_kwDOPRYlZs4CvPMD', //讨论分类ID
+      mapping: 'pathname',
+      inputPosition: 'bottom',
+      lang: 'zh-CN',
+      }, 
+      {
+        frontmatter, route
+      },
+      //默认值为true，表示已启用，此参数可以忽略；
+      //如果为false，则表示未启用
+      //您可以使用“comment:true”序言在页面上单独启用它
+      true
     );
   }
 } satisfies Theme
