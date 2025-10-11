@@ -188,7 +188,7 @@ pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 ### 📚 **相关文档**
 - 📖 [快速入门指南](basic.md)
-- ⚙️ [基础设置教程](interface.md)
-- 🔧 [高级功能配置](../settings/advanced.md)
+- ⚙️ [用户界面介绍](interface.md)
+- 🔧 [软件设置教程](../settings/basic.md)
 
 > 💡 **提示**：遇到问题先查看[故障排除](../trouble.md)页面，80%的常见问题都有解决方案！
