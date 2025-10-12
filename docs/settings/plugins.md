@@ -1,7 +1,8 @@
 # SecRandom 插件系统
 <ArticleMetadata />
 
-> 🚀 **SecRandom 插件系统** - 通过插件扩展实现无限可能的教育场景应用
+> 🚀 **SecRandom 插件系统** - 通过插件扩展实现无限可能的教育场景应用  
+> **📝 重要提醒**：SecRandom 已于 v1.3.0.0 版本中移除插件系统
 
 ## 🎯 核心特性
 
