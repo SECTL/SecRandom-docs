@@ -58,8 +58,7 @@ const downloadSources: DownloadSource[] = [
   { id: 'github', name: 'GitHub 源', icon: '/svg/github.svg', description: '官方发布渠道', speed: '海外较快' },
   { id: 'ghfast', name: 'GitHub 第三方镜像源', icon: '/svg/github.svg', description: 'ghfast.top 加速', speed: '国内较快' },
   { id: 'ghproxy', name: 'GitHub 第三方镜像源', icon: '/svg/github.svg', description: 'gh-proxy.com 加速', speed: '国内较快' },
-  { id: 'cloud123', name: '123云盘源', icon: '/123pan.png', description: '云盘下载页面', speed: '不限速', contributor: { name: 'lzy98276', url: 'https://github.com/lzy98276' } },
-  { id: 'cloudreve', name: 'Cloudreve分流', icon: '/Cloudreve.png', description: 'Lotus大佬提供的分流', speed: '稳定快速', contributor: { name: 'Lotus', url: 'https://github.com/SummerLotus520/' } }
+  { id: 'cloud123', name: '123云盘源', icon: '/123pan.png', description: '云盘下载页面', speed: '不限速', contributor: { name: 'lzy98276', url: 'https://github.com/lzy98276' } }
 ]
 
 // 动态设备类型
@@ -130,8 +129,6 @@ function getDownloadUrl(asset: any): string {
       return `https://gh-proxy.com/${asset.browser_download_url.replace('https://github.com/', '')}`
     case 'cloud123':
       return 'https://www.123684.com/s/9529jv-U4Fxh'
-    case 'cloudreve':
-      return 'https://cloud.lotusshared.cn/s/A9QCA'
     default:
       return asset.browser_download_url
   }
@@ -304,8 +301,6 @@ onBeforeUnmount(() => {
                 <div class="item-description">{{ source.description }} · {{ source.speed }}</div>
                 <div v-if="source.contributor" class="contributor">
                   由 <a :href="source.contributor.url" target="_blank">{{ source.contributor.name }}</a> 提供
-                  <span v-if="source.id === 'cloudreve'"> · 欢迎进入 <a href="https://qm.qq.com/q/d4Dd9EOvcI"
-                      target="_blank">QQ群</a> 了解更多</span>
                 </div>
               </div>
             </div>
@@ -360,16 +355,12 @@ onBeforeUnmount(() => {
             </div>
           </div>
           <a :href="getDownloadUrl(file)" class="download-button" target="_blank"
-            v-if="selectedDownloadSource !== 'cloud123' && selectedDownloadSource !== 'cloudreve'">
+            v-if="selectedDownloadSource !== 'cloud123'">
             下载
           </a>
           <a :href="getDownloadUrl(file)" class="download-button" target="_blank"
             v-else-if="selectedDownloadSource === 'cloud123'">
             前往下载页面
-          </a>
-          <a :href="getDownloadUrl(file)" class="download-button" target="_blank"
-            v-else-if="selectedDownloadSource === 'cloudreve'">
-            前往分流页面
           </a>
         </div>
       </div>
