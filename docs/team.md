@@ -49,9 +49,9 @@ const members = [
   {
     avatar: 'yby.jpg',
     name: '叶背影',
-    title: '文档',
+    title: '创意&文档',
     links: [
-      { icon: 'github', link: 'https://github.com/zhangjianjian7' },
+      { icon: 'github', link: 'https://github.com/LeafS825' },
       { icon: 'bilibili', link: 'https://space.bilibili.com/1762621716' }
     ]
   },
