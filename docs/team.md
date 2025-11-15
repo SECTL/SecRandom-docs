@@ -33,7 +33,9 @@ const members = [
     name: 'system-linux-cmb',
     title: '应用测试',
     links: [
-      { icon: 'github', link: 'https://github.com/Fox-block-offcial' }
+      { icon: 'github', link: 'https://github.com/Fox-block-offcial' },
+      { icon: 'qq', link: 'https://tool.gljlw.com/qq/?qq=3609676428' },
+      { icon: 'gmail', link: 'system_linux_cmb@163.com' }
     ]
   },
   {
@@ -64,7 +66,7 @@ const members = [
     ]
   },
   {
-    avatar: 'cjt.jpg',
+    avatar: 'chenjintang.jpg',
     name: 'chenjintang',
     title: '维护',
     links: [
