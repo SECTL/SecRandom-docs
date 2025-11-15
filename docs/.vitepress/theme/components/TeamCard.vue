@@ -23,7 +23,8 @@ export default {
         "system-linux-cmb(应用测试)",
         "本新同学(响应式前端页面设计及维护&文档)",
         "叶背影(创意&文档)",
-        "Jursin(前端页面设计&文档)"
+        "Jursin(前端页面设计&文档)",
+        "chenjintang(维护)"
       ];
       this.setupTypingEffect('typing-text', 'cursor', texts)
     }

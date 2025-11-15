@@ -9,7 +9,7 @@ import { VPTeamMembers } from 'vitepress/theme'
 
 const members = [
   {
-    avatar: '恩情.jpg',
+    avatar: 'lzy.jpg',
     name: '黎泽懿 Aionflux',
     title: '设计 & 创意 & 策划 & 维护 & 文档 & 测试',
     links: [
@@ -49,7 +49,7 @@ const members = [
   {
     avatar: 'yby.jpg',
     name: '叶背影',
-    title: '创意&文档',
+    title: '创意 & 文档',
     links: [
       { icon: 'github', link: 'https://github.com/LeafS825' },
       { icon: 'bilibili', link: 'https://space.bilibili.com/1762621716' }
@@ -61,6 +61,14 @@ const members = [
     title: '响应式前端页面设计及维护 & 文档',
     links: [
       { icon: 'github', link: 'https://github.com/jursin' }
+    ]
+  },
+  {
+    avatar: 'cjt.jpg',
+    name: 'chenjintang',
+    title: '维护',
+    links: [
+      { icon: 'github', link: 'https://github.com/chenjintang-shrimp' }
     ]
   }
 ]
