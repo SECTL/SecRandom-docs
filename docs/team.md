@@ -20,6 +20,14 @@ const members = [
     ]
   },
   {
+    avatar: 'chenjintang.jpg',
+    name: 'chenjintang',
+    title: '维护',
+    links: [
+      { icon: 'github', link: 'https://github.com/chenjintang-shrimp' }
+    ]
+  },
+  {
     avatar: 'qgzc.png',
     name: '弃稞之草',
     title: '创意 & 维护',
@@ -63,14 +71,6 @@ const members = [
     title: '响应式前端页面设计及维护 & 文档',
     links: [
       { icon: 'github', link: 'https://github.com/jursin' }
-    ]
-  },
-  {
-    avatar: 'chenjintang.jpg',
-    name: 'chenjintang',
-    title: '维护',
-    links: [
-      { icon: 'github', link: 'https://github.com/chenjintang-shrimp' }
     ]
   }
 ]
