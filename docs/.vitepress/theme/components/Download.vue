@@ -31,7 +31,7 @@ const hasError = ref(false)
 const errorMessage = ref('')
 const parsedBody = ref('')
 const selectedDeviceType = ref('stable')
-const selectedDownloadSource = ref('github')
+const selectedDownloadSource = ref('ghfast')
 const isDeviceDropdownOpen = ref(false)
 const isSourceDropdownOpen = ref(false)
 
