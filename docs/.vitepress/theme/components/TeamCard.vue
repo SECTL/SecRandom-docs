@@ -26,10 +26,44 @@ export default {
         "叶背影(创意&文档)",
         "Jursin(前端页面设计&文档)"
       ];
-      this.setupTypingEffect('typing-text', 'cursor', texts)
+      this.setupTypingEffect('typing-text', 'cursor', texts);
+      this.startRainbowColorAnimation('typing-text');
     }
   },
   methods: {
+    startRainbowColorAnimation(textElId) {
+      const rainbowColors = [
+        '#FF0000', // 红
+        '#FF7F00', // 橙
+        '#FFFF00', // 黄
+        '#00FF00', // 绿
+        '#0000FF', // 蓝
+        '#4B0082', // 靛
+        '#9400D3'  // 紫
+      ];
+      
+      const targetName = '黎泽懿 Aionflux';
+      const typingEl = document.getElementById(textElId);
+      
+      if (!typingEl) return;
+      
+      let colorIndex = 0;
+      let lastText = '';
+      
+      const colorChangeInterval = setInterval(() => {
+        const currentText = typingEl.textContent;
+        
+        // 只在文字包含目标名字时更新颜色
+        if (currentText.includes(targetName)) {
+          const html = currentText.replace(
+            targetName,
+            `<span class="rainbow-name" style="color: ${rainbowColors[colorIndex]}">${targetName}</span>`
+          );
+          typingEl.innerHTML = html;
+          colorIndex = (colorIndex + 1) % rainbowColors.length;
+        }
+      }, 600);
+    },
     setupTypingEffect(textElId, cursorElId, texts, typingSpeed = 100, deletingSpeed = 50) {
       const PAUSE_AFTER = 2000;
       const NEXT_DELAY = 500;
@@ -132,6 +166,11 @@ export default {
   background-color: var(--vp-c-brand);
   margin-left: 5px;
   animation: blink 1s steps(2, start) infinite;
+}
+
+.rainbow-name {
+  font-weight: 600;
+  transition: color 0.5s ease-in-out;
 }
 
 @keyframes blink {
