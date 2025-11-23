@@ -124,9 +124,9 @@ function getDownloadUrl(asset: any): string {
     case 'github':
       return asset.browser_download_url
     case 'ghfast':
-      return `https://ghfast.top/${asset.browser_download_url.replace('https://github.com/', '')}`
+      return `https://ghfast.top/${asset.browser_download_url}`
     case 'ghproxy':
-      return `https://gh-proxy.com/${asset.browser_download_url.replace('https://github.com/', '')}`
+      return `https://gh-proxy.com/${asset.browser_download_url}`
     case 'cloud123':
       return 'https://www.123684.com/s/9529jv-U4Fxh'
     default:
