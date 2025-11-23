@@ -62,7 +62,7 @@ export default {
           typingEl.innerHTML = html;
           colorIndex = (colorIndex + 1) % rainbowColors.length;
         }
-      }, 600);
+      }, 400);
     },
     setupTypingEffect(textElId, cursorElId, texts, typingSpeed = 100, deletingSpeed = 50) {
       const PAUSE_AFTER = 2000;
@@ -170,7 +170,7 @@ export default {
 
 .rainbow-name {
   font-weight: 600;
-  transition: color 0.5s ease-in-out;
+  transition: color 0.3s ease-in-out;
 }
 
 @keyframes blink {
