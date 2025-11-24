@@ -2,12 +2,12 @@
   --vp-layout-max-width: 1660px;
   /** 主题颜色 */
 
-  /*
-  --vp-c-brand-1: #5086a1;
-  --vp-c-brand-2: #6aa1b7;
-  --vp-c-brand-3: #8cccd5;
+  
+  --vp-c-brand-1: #4484bc;
+  --vp-c-brand-2: #327cbe;
+  --vp-c-brand-3: #137AD3;
   --vp-c-brand-soft: rgba(131, 208, 218, 0.314);
-  */
+ 
 
   /** 背景颜色 */
 
@@ -26,10 +26,10 @@
   --vp-c-text-3: rgba(60, 60, 67, 0.56);
   */
   --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: linear-gradient(120deg, var(--vp-c-purple-1) 30%, var(--vp-c-brand-2));
+  --vp-home-hero-name-background: linear-gradient(120deg, var(--vp-c-brand-3) 30%, var(--vp-c-brand-1));
   --vp-home-hero-tagline: var(--vp-c-text-2);
   --vp-home-hero-text: var(--vp-c-text-1);
-  --vp-home-hero-image-background-image: linear-gradient(-45deg, #C8F7D8 50%, #239F5B 50%);
+  --vp-home-hero-image-background-image: linear-gradient(-45deg, var(--vp-c-brand-3) 50%, var(--vp-c-brand-1) 50%);
   --vp-home-hero-image-filter: blur(44px);
 }
 
@@ -109,6 +109,10 @@
 .vp-friends {
   max-width: 1400px !important;
   padding: 0 !important
+}
+
+.vp-friends .title {
+  padding-top: 64px !important;
 }
 
 @media screen and (max-width: 768px) {

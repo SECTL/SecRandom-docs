@@ -1,5 +1,4 @@
 ---
-pageLayout: doc
 title: 下载与运行
 createTime: 2025/11/23 19:46:59
 ---

@@ -17,6 +17,14 @@ config:
           text: Github 仓库
           icon: fa-brands:github
           link: https://github.com/SECTL/SecRandom
+        - theme: alt
+          text: 下载
+          icon: lucide:download
+          link: /download
+        - theme: alt
+          text: Hub
+          icon: ic:baseline-screenshot
+          link: https://sectl-hub.netlify.app/
           
   - type: features
     features:

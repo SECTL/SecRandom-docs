@@ -2,8 +2,6 @@
 
 本仓库为 [SecRandom](https://github.com/SECTL/SecRandom) 文档仓库，使用 [vuepress](https://vuepress.vuejs.org/) 和 [vuepress-theme-plume](https://github.com/pengzhanbo/vuepress-theme-plume) 构建
 
-![Repobeats analytics image](https://repobeats.axiom.co/api/embed/09ef1a08c32b802b653bc49cdb2ba79800dac1e6.svg)
-
 ## 安装依赖
 
 ```sh

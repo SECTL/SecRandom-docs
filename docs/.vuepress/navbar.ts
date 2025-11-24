@@ -8,16 +8,20 @@ import { defineNavbarConfig } from 'vuepress-theme-plume'
 
 export default defineNavbarConfig([
   {
-    text: '指南',
+    text: '文档',
     icon: 'mi:book',
-    link: '/doc/guide/start',
+    items: [
+      { text: '指南', icon: 'ep:guide', link: '/doc/guide/start' },
+      { text: '核心功能', icon: 'icon-park-outline:spanner', link: '/doc/core-functions/person-extraction' },
+      { text: '设置', icon: 'garden:gear-stroke-16', link: '/doc/settings/basic' },
+    ],
   },
   {
     text: '常见问题',
     icon: 'mingcute:question-line',
     link: '/faq/',
   },
-  { text: '下载', icon: 'ic:outline-download', link: '/download' },
+  { text: '团队', icon: 'ic:round-people', link: '/team' },
   { text: '捐赠', icon: 'ic:outline-attach-money', link: '/donate' },
-  { text: '友链', icon: 'ic:round-people', link: '/friends' },
+  { text: '友链', icon: 'ic:round-link', link: '/friends' },
 ])

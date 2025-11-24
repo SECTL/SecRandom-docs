@@ -391,8 +391,9 @@ onBeforeUnmount(() => {
 
 .download-header h1 {
   font-size: 2.5rem;
+  font-weight: 600;
   color: var(--vp-c-brand-1);
-  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .subtitle {
