@@ -12,7 +12,7 @@ config:
         - theme: brand
           text: 阅读文档
           icon: lucide:list-start
-          link: /doc/guide/start
+          link: /doc/overview
         - theme: alt
           text: Github 仓库
           icon: fa-brands:github

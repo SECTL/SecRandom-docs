@@ -8,6 +8,7 @@ const Doc = defineCollection({
   linkPrefix: "/doc",
   title: "文档",
   sidebar: [
+    { text: '概览', icon: 'material-symbols:overview-outline-rounded', link: 'overview' },
     { text: '指南', icon: 'ep:guide', prefix: 'guide', items: 'auto' },
     { text: '核心功能', icon: 'icon-park-outline:spanner', prefix: 'core-functions', items: 'auto' },
     { text: '设置', icon: 'garden:gear-stroke-16', prefix: 'settings', items: 'auto' },
