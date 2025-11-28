@@ -6,7 +6,7 @@
 
 import { defineNavbarConfig } from 'vuepress-theme-plume'
 
-export default defineNavbarConfig([
+const zhNavbar = defineNavbarConfig([
   {
     text: '文档',
     icon: 'mi:book',
@@ -25,3 +25,25 @@ export default defineNavbarConfig([
   { text: '捐赠', icon: 'ic:outline-attach-money', link: '/donate' },
   { text: '友链', icon: 'ic:round-link', link: '/friends' },
 ])
+
+const enNavbar = defineNavbarConfig([
+  {
+    text: 'Documentation',
+    icon: 'mi:book',
+    items: [
+      { text: 'Guide', icon: 'ep:guide', link: '/en/doc/guide/start' },
+      { text: 'Core Functions', icon: 'icon-park-outline:spanner', link: '/en/doc/core-functions/person-extraction' },
+      { text: 'Settings', icon: 'garden:gear-stroke-16', link: '/en/doc/settings/basic' },
+    ],
+  },
+  {
+    text: 'FAQ',
+    icon: 'mingcute:question-line',
+    link: '/en/faq/',
+  },
+  { text: 'Team', icon: 'ic:round-people', link: '/en/team' },
+  { text: 'Donate', icon: 'ic:outline-attach-money', link: '/en/donate' },
+  { text: 'Friends', icon: 'ic:round-link', link: '/en/friends' },
+])
+
+export { zhNavbar, enNavbar }

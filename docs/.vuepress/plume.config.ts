@@ -1,5 +1,5 @@
 import { defineThemeConfig } from 'vuepress-theme-plume'
-import navbar from './navbar'
+import { zhNavbar, enNavbar } from './navbar'
 import collections from './collections'
 
 export default defineThemeConfig({
@@ -33,14 +33,6 @@ export default defineThemeConfig({
   // nextPage: true,   // 是否启用下一页链接
   // createTime: true, // 是否显示文章创建时间
 
-  footer: {
-    message: '使用 <a target="_blank" href="https://v2.vuepress.vuejs.org/">VuePress</a> & <a target="_blank" href="https://theme-plume.vuejs.press">vuepress-theme-plume</a> 搭建',
-    copyright: 'MIT 许可协议 | Copyright © 2025 <a href="https://github.com/SECTL" target="_blank">SECTL</a>',
-  },
-
-  navbar,
-  collections,
-
   /**
    * 公告板
    * @see https://theme-plume.vuejs.press/guide/features/bulletin/
@@ -59,4 +51,22 @@ export default defineThemeConfig({
   //   appearance: 'fade',  // 启用 深色模式切换过渡动画, 或配置过渡动画类型
   // },
 
+  locales: {
+    '/': {
+      navbar: zhNavbar,
+      footer: {
+        message: '使用 <a target="_blank" href="https://v2.vuepress.vuejs.org/">VuePress</a> & <a target="_blank" href="https://theme-plume.vuejs.press">vuepress-theme-plume</a> 搭建',
+        copyright: 'MIT 许可协议 | Copyright © 2025 <a href="https://github.com/SECTL" target="_blank">SECTL</a>',
+      },
+    },
+    '/en/': {
+      navbar: enNavbar,
+      footer: {
+        message: 'Built with <a target="_blank" href="https://v2.vuepress.vuejs.org/">VuePress</a> & <a target="_blank" href="https://theme-plume.vuejs.press">vuepress-theme-plume</a>',
+        copyright: 'MIT License | Copyright © 2025 <a href="https://github.com/SECTL" target="_blank">SECTL</a>',
+      },
+    },
+  },
+
+  collections,
 })

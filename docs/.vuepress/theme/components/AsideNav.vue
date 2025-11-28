@@ -17,6 +17,12 @@ const locales: Record<string, Locale> = {
     share: '分享此页面',
     copied: '链接已复制！'
   },
+  '/en/': {
+    star: 'Star on GitHub',
+    issue: 'Report an Issue',
+    share: 'Share this page',
+    copied: 'Link copied!'
+  },
 }
 
 const lang = useRouteLocale()

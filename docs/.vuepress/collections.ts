@@ -2,6 +2,8 @@
 
 import { defineCollection, defineCollections } from "vuepress-theme-plume";
 
+
+// 中文文档
 const Doc = defineCollection({
   type: "doc",
   dir: "doc",
