@@ -9,7 +9,7 @@ editLink: false
         <div class="card-content">
             <img src="/avatar/lzy.jpg" alt="lzy" width="80" />
             <div class="text-content">
-                <p class="name">黎泽懿 Aionflux</p>
+                <p class="name rainbow-name" id="rainbow-name">黎泽懿 Aionflux</p>
                 <p class="role">设计 & 创意 & 策划 & 维护 & 文档 & 测试</p>
             </div>
         </div>
@@ -36,7 +36,7 @@ editLink: false
         <div class="card-content">
             <img src="/avatar/slc.jpg" alt="slc" width="80" />
             <div class="text-content">
-                <p class="name">system-linux-cmb</p>
+                <p class="name">Fox-block</p>
                 <p class="role">应用测试</p>
             </div>
         </div>
@@ -70,6 +70,34 @@ editLink: false
     </LinkCard>
 </CardGrid>
 
+<script setup>
+import { onMounted, onBeforeUnmount } from 'vue';
+
+let animationId = null;
+
+// 速度控制：每帧色调变化量（越大越快）
+const HUE_STEP = 2;
+
+onMounted(() => {
+  const el = document.getElementById('rainbow-name');
+  if (!el) return;
+  
+  let hue = 0;
+  
+  function animate() {
+    el.style.color = `hsl(${hue}, 100%, 50%)`;
+    hue = (hue + HUE_STEP) % 360;
+    animationId = requestAnimationFrame(animate);
+  }
+  
+  animate();
+});
+
+onBeforeUnmount(() => {
+  if (animationId) cancelAnimationFrame(animationId);
+});
+</script>
+
 <style scoped>
 .card-content {
   display: flex;
@@ -91,6 +119,11 @@ editLink: false
   font-size: 1.3em;
   font-weight: 600;
   margin: 0;
+  transition: color 0.08s linear;
+}
+
+.rainbow-name {
+  color: hsl(0, 100%, 50%);
 }
 
 .role {

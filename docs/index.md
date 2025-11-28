@@ -10,6 +10,10 @@ config:
       image: /logo.png
       actions:
         - theme: brand
+          text: 下载
+          icon: lucide:download
+          link: /download
+        - theme: brand
           text: 阅读文档
           icon: lucide:list-start
           link: /doc/overview
@@ -17,10 +21,6 @@ config:
           text: Github 仓库
           icon: fa-brands:github
           link: https://github.com/SECTL/SecRandom
-        - theme: alt
-          text: 下载
-          icon: lucide:download
-          link: /download
         - theme: alt
           text: Hub
           icon: ic:baseline-screenshot
