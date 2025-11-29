@@ -46,7 +46,7 @@ editLink: false
             <img src="/avatar/bx.jpg" alt="bx" width="80" />
             <div class="text-content">
                 <p class="name">yuanbenxin</p>
-                <p class="role">Responsive Frontend Page Design and Maintenance & Documentation</p>
+                <p class="role">Responsive Frontend Page Design & Maintenance & Documentation</p>
             </div>
         </div>
     </LinkCard>
@@ -64,7 +64,7 @@ editLink: false
             <img src="/avatar/Jursin.jpg" alt="Jursin" width="80" />
             <div class="text-content">
                 <p class="name">Jursin</p>
-                <p class="role">Responsive Frontend Page Design and Maintenance & Documentation</p>
+                <p class="role">Responsive Frontend Page Design & Maintenance & Documentation</p>
             </div>
         </div>
     </LinkCard>

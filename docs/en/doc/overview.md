@@ -11,11 +11,6 @@ createTime: 2025/11/25 14:24:16
 ::: warning System Compatibility Notice
 Starting from version v1.2.4.9, SecRandom has stopped official support for `Windows 7` and `x86` systems. For the best experience, we strongly recommend using `Windows 10 x64` or higher.
  
-For users who still need to use this tool on Windows 7, you can manually adjust dependency library versions and repackage the tool to adapt to that system environment.
-
-For users who still need to use this tool on x86 systems, we recommend using `Python 3.8` for packaging to ensure optimal compatibility and stability.
-
-To self-package, please use the `requirements-windows-win7_x64_x86.txt` file in the repository root directory, which contains dependency library version information suitable for these systems.
 :::
 
 # Quick Start
