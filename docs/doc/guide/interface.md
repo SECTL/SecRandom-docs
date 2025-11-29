@@ -30,12 +30,12 @@ SecRandom采用现代化的界面设计理念，通过清晰的层次结构和�
 
 ### 🎯 **核心功能区**
 
-#### 👥 **抽人模式**
+#### 👥 **点名**
 <div class="feature-card">
 <div class="feature-header">
   <div class="feature-icon">👥</div>
   <div class="feature-info">
-    <h4>抽人模式</h4>
+    <h4>点名</h4>
     <p>智能随机选择学生，支持权重和分组</p>
   </div>
 </div>
@@ -46,12 +46,12 @@ SecRandom采用现代化的界面设计理念，通过清晰的层次结构和�
 </div>
 </div>
 
-#### 🎁 **抽奖模式**
+#### 🎁 **抽奖**
 <div class="feature-card">
 <div class="feature-header">
   <div class="feature-icon">🎁</div>
   <div class="feature-info">
-    <h4>抽奖模式</h4>
+    <h4>抽奖</h4>
     <p>奖品抽取管理，支持多级奖项</p>
   </div>
 </div>
@@ -72,19 +72,19 @@ SecRandom采用现代化的界面设计理念，通过清晰的层次结构和�
 </div>
 </div>
 
-#### ℹ️ **关于信息**
+#### ℹ️ **设置**
 <div class="feature-card">
 <div class="feature-header">
   <div class="feature-icon">ℹ️</div>
   <div class="feature-info">
-    <h4>关于信息</h4>
-    <p>版本信息、贡献者、开源协议</p>
+    <h4>设置</h4>
+    <p>进入设置界面</p>
   </div>
 </div>
 <div class="feature-details">
-  <span class="feature-tag">版本信息</span>
-  <span class="feature-tag">开源协议</span>
-  <span class="feature-tag">贡献者</span>
+  <span class="feature-tag">抽取设置</span>
+  <span class="feature-tag">名单管理</span>
+  <span class="feature-tag">关于信息</span>
 </div>
 </div>
 
