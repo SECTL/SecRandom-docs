@@ -20,7 +20,7 @@ createTime: 2025/11/24 23:33:37
 - 右侧面板 → **"抽人设置"**
 
 #### 3️⃣ 个性化配置
-![抽人设置界面](/images/person-extraction/ep.png)
+<img src="/images/person-extraction/ep.png" alt="抽人设置界面" width="800"/>
 
 | 功能设置 | 选项说明 | 推荐配置 |
 |----------|----------|----------|

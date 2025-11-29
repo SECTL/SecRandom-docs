@@ -9,7 +9,7 @@ editLink: false
         <div class="card-content">
             <img src="/avatar/lzy.jpg" alt="lzy" width="80" />
             <div class="text-content">
-                <p class="name rainbow-name" id="rainbow-name">黎泽懿 Aionflux</p>
+                <p class="name rainbow-name" id="rainbow-name">lzy98276</p>
                 <p class="role">Design & Creativity & Planning & Maintenance & Documentation & Testing</p>
             </div>
         </div>
@@ -27,7 +27,7 @@ editLink: false
         <div class="card-content">
             <img src="/avatar/qgzc.png" alt="qgzc" width="80" />
             <div class="text-content">
-                <p class="name">弃稞之草</p>
+                <p class="name">QiKeZhiCao</p>
                 <p class="role">Creativity & Maintenance</p>
             </div>
         </div>
@@ -45,7 +45,7 @@ editLink: false
         <div class="card-content">
             <img src="/avatar/bx.jpg" alt="bx" width="80" />
             <div class="text-content">
-                <p class="name">本新同学</p>
+                <p class="name">yuanbenxin</p>
                 <p class="role">Responsive Frontend Page Design and Maintenance & Documentation</p>
             </div>
         </div>
@@ -54,7 +54,7 @@ editLink: false
         <div class="card-content">
             <img src="/avatar/yby.jpg" alt="yby" width="80" />
             <div class="text-content">
-                <p class="name">叶背影</p>
+                <p class="name">LeafS825</p>
                 <p class="role">Creativity & Documentation</p>
             </div>
         </div>
