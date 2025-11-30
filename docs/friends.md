@@ -11,8 +11,4 @@ list:
     link: https://github.com/awesome-iwb/awesome-iwb
     avatar: /icon/Aiwb.png
     desc: 为广大电教倾情撰写，让班级大屏更好用！
-  - name: Awesome-Iwb
-    link: https://github.com/awesome-iwb/awesome-iwb
-    avatar: /icon/Aiwb.png
-    desc: 为广大电教倾情撰写，让班级大屏更好用！
 ---

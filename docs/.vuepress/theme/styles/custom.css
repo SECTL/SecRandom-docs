@@ -108,11 +108,12 @@
 /* friends */
 .vp-friends {
   max-width: 1400px !important;
-  padding: 0 !important
+  padding: 0 !important;
 }
 
 .vp-friends .title {
-  padding-top: 64px !important;
+  color: var(--vp-c-brand-1) !important;
+  padding: 40px 0 0 0 !important;
 }
 
 @media screen and (max-width: 768px) {
@@ -128,6 +129,7 @@
 .vp-friend {
   border-radius: 16px !important;
   transition: transform 0.3s;
+  background-color: #c8c8c81a !important;
 }
 
 .vp-friend:hover {
@@ -145,17 +147,17 @@
 }
 
 .avatar {
-  width: auto;
-  height: auto;
   padding: 8px;
   border-radius: 16px !important;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  background-color: transparent !important;
 }
 
 .avatar img {
-  max-width: 100%;
-  max-height: 100%;
   object-fit: contain !important;
+  object-position: center !important;
+}
+
+.vp-link.title {
+  color: var(--vp-c-text-1) !important;
 }
