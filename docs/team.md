@@ -19,7 +19,7 @@ editLink: false
             <img src="/avatar/chenjintang.jpg" alt="chenjintang" width="80" />
             <div class="text-content">
                 <p class="name">chenjintang</p>
-                <p class="role">维护</p>
+                <p class="role">SecRandomの义父 & 维护</p>
             </div>
         </div>
     </LinkCard>

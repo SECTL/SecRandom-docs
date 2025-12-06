@@ -4,7 +4,7 @@ import { plumeTheme } from 'vuepress-theme-plume'
 
 export default defineUserConfig({
   base: '/',
-  lang: 'zh-CN',
+  lang: 'zh-CN', // 默认语言为中文，浏览器会自动检测用户语言
   title: 'SecRandom',
   description: '',
 

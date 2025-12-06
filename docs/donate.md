@@ -11,16 +11,9 @@ title: 捐赠
   <h1>支持我，温暖继续</h1>
   <p>每一份捐赠都是动力，让我们一起创造更美好的内容！</p>
 
-  <div class="qrcode-container">
-    <div class="qrcode-wrapper">
-      <img class="qrcode" src="/images/wechat.png" alt="微信捐赠">
-      <div class="tip">微信扫码捐赠</div>
-    </div>
-    <div class="qrcode-wrapper">
-      <img class="qrcode" src="/images/alipay.png" alt="支付宝捐赠">
-      <div class="tip">支付宝扫码捐赠</div>
-    </div>
-  </div>
+  <a href="https://afdian.com/a/lzy0983" target="_blank" class="donate-btn">
+    <button class="afdian-button">💝 点击进入爱发电支持</button>
+  </a>
 
   <p class="thanks">感谢你的支持！❤️</p>
 </div>
@@ -67,36 +60,32 @@ p {
   margin-top: 25px;
 }
 
-.qrcode-container {
-  display: flex;
-  gap: 30px;
-  flex-wrap: wrap;
-  justify-content: center;
+.donate-btn {
+  margin: 30px 0;
+  text-decoration: none;
 }
 
-.qrcode-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: var(--vp-c-bg-alt);
-  backdrop-filter: blur(15px);
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.afdian-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 16px 40px;
+  font-size: 1.1rem;
+  border-radius: 28px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
 }
 
-.qrcode-wrapper:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.15);
+.afdian-button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.6);
+  opacity: 0.95;
 }
 
-.qrcode {
-  width: 250px;
-  height: 250px;
-  border-radius: 16px;
-  margin-bottom: 10px;
-  object-fit: cover;
+.afdian-button:active {
+  transform: scale(0.98);
 }
 
 @media (max-width: 768px) {
@@ -104,13 +93,9 @@ p {
     padding: 30px 20px;
   }
   
-  .qrcode-container {
-    gap: 20px;
-  }
-  
-  .qrcode {
-    width: 110px;
-    height: 110px;
+  .afdian-button {
+    padding: 12px 32px;
+    font-size: 1rem;
   }
 }
 

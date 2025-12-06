@@ -11,4 +11,8 @@ list:
     link: https://github.com/awesome-iwb/awesome-iwb
     avatar: /icon/Aiwb.png
     desc: 为广大电教倾情撰写，让班级大屏更好用！
+  - name: CNEL 电教委员指南
+    link: https://cnel.smart-teach.cn/
+    avatar: /icon/cnel.png
+    desc: 教你如何做一名优秀的电教委员
 ---
