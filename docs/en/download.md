@@ -1,7 +1,4 @@
 ---
-title: Download
+pageLayout: Download
+title: 下载
 ---
-
-# Download SecRandom
-
-Coming soon...

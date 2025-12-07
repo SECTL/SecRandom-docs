@@ -69,6 +69,10 @@
   font-size: 2.7rem !important;
 }
 
+.vp-home-doc-hero .tagline {
+  max-width: 500px;
+}
+
 @media screen and (max-width: 768px) {
   .vp-home-doc-hero .name {
     font-size: 2.7rem !important;
