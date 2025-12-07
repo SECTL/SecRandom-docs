@@ -81,6 +81,14 @@
   .vp-home-doc-hero .text {
     font-size: 1.7rem !important;
   }
+
+  .action {
+    max-width: 500px;
+  }
+
+  .action .vp-button {
+    margin: 5px !important;
+  }
 }
 
 .item {
