@@ -4,6 +4,8 @@ aside: false
 editLink: false
 ---
 
+<TeamCard />
+
 <CardGrid>
     <LinkCard title="作者" href="https://github.com/lzy98276">
         <div class="card-content">
@@ -76,7 +78,7 @@ import { onMounted, onBeforeUnmount } from 'vue';
 let animationId = null;
 
 // 速度控制：每帧色调变化量（越大越快）
-const HUE_STEP = 2;
+const HUE_STEP = 1;
 
 onMounted(() => {
   const el = document.getElementById('rainbow-name');
