@@ -66,14 +66,14 @@ export default defineThemeConfig({
       navbar: zhNavbar,
       footer: {
         message: '使用 <a target="_blank" href="https://v2.vuepress.vuejs.org/">VuePress</a> & <a target="_blank" href="https://theme-plume.vuejs.press">vuepress-theme-plume</a> 搭建',
-        copyright: 'MIT 许可协议 | Copyright © 2025 <a href="https://github.com/SECTL" target="_blank">SECTL</a>',
+        copyright: '<a href="https://secrandom.netlify.app/">SecRandom-Docs</a> © 2025 by <a href="https://github.com/SECTL">SECTL</a> is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>',
       },
     },
     '/en/': {
       navbar: enNavbar,
       footer: {
         message: 'Built with <a target="_blank" href="https://v2.vuepress.vuejs.org/">VuePress</a> & <a target="_blank" href="https://theme-plume.vuejs.press">vuepress-theme-plume</a>',
-        copyright: 'MIT License | Copyright © 2025 <a href="https://github.com/SECTL" target="_blank">SECTL</a>',
+        copyright: '<a href="https://secrandom.netlify.app/">SecRandom-Docs</a> © 2025 by <a href="https://github.com/SECTL">SECTL</a> is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;" width="19.1875" height="19.1875"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;" width="19.1875" height="19.1875"><img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;" width="19.1875" height="19.1875"><img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;" width="19.1875" height="19.1875">',
       },
     },
   },
