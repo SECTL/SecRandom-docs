@@ -15,4 +15,8 @@ list:
     link: https://cnel.smart-teach.cn/
     avatar: /icon/cnel.png
     desc: 教你如何做一名优秀的电教委员
+  - name: InkCanvasForClass CE
+    link: https://www.iccce.dpdns.org/
+    avatar: /icon/iccce.png
+    desc: InkCanvasForClass 社区版
 ---

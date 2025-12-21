@@ -14,8 +14,8 @@ title: 捐赠
   <a href="https://afdian.com/a/lzy0983" target="_blank" class="donate-btn">
     <button class="afdian-button">💝 点击进入爱发电支持</button>
   </a>
-
   <p class="thanks">感谢你的支持！❤️</p>
+  <a href="/donate-fancy.html">不感兴趣</a>
 </div>
 
 <style scoped>
@@ -137,5 +137,26 @@ p {
   font-size: 12px;
   opacity: 0.7;
   text-align: center;
+}
+
+.not-interested-btn {
+  margin: 10px 0 0 0;
+  text-decoration: none;
+}
+.not-interested-button {
+  background: linear-gradient(135deg, #aaa 0%, #ccc 100%);
+  color: #333;
+  border: none;
+  padding: 12px 32px;
+  font-size: 1rem;
+  border-radius: 28px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+  box-shadow: 0 2px 8px rgba(100,100,100,0.15);
+}
+.not-interested-button:hover {
+  transform: scale(1.05);
+  opacity: 0.92;
 }
 </style>
