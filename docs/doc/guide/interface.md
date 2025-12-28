@@ -33,7 +33,7 @@ SecRandom采用现代化的界面设计理念，通过清晰的层次结构和�
 #### 👥 **点名**
 <div class="feature-card">
 <div class="feature-header">
-  <div class="feature-icon">👥</div>
+  <div class="feature-icon"><img src="./images/ic_fluent_people_24_color.svg"></div>
   <div class="feature-info">
     <h4>点名</h4>
     <p>智能随机选择学生，支持权重和分组</p>
@@ -49,7 +49,7 @@ SecRandom采用现代化的界面设计理念，通过清晰的层次结构和�
 #### 🎁 **抽奖**
 <div class="feature-card">
 <div class="feature-header">
-  <div class="feature-icon">🎁</div>
+  <div class="feature-icon"><img src="./images/ic_fluent_gift_24_color.svg"></div>
   <div class="feature-info">
     <h4>抽奖</h4>
     <p>奖品抽取管理，支持多级奖项</p>
@@ -64,7 +64,7 @@ SecRandom采用现代化的界面设计理念，通过清晰的层次结构和�
 #### 📊 **历史记录**
 <div class="feature-card">
 <div class="feature-header">
-  <div class="feature-icon">📊</div>
+  <div class="feature-icon"><img src="./images/ic_fluent_history_24_color.svg"></div>
   <div class="feature-info">
     <h4>历史记录</h4>
     <p>完整的抽取历史，支持导出分析</p>
@@ -72,10 +72,10 @@ SecRandom采用现代化的界面设计理念，通过清晰的层次结构和�
 </div>
 </div>
 
-#### ℹ️ **设置**
+#### ⚙️ **设置**
 <div class="feature-card">
 <div class="feature-header">
-  <div class="feature-icon">ℹ️</div>
+  <div class="feature-icon"><img src="./images/ic_fluent_settings_24_color.svg"></div>
   <div class="feature-info">
     <h4>设置</h4>
     <p>进入设置界面</p>
