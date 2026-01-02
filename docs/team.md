@@ -70,6 +70,15 @@ editLink: false
             </div>
         </div>
     </LinkCard>
+    <LinkCard title="贡献者" href="github.com/lrsgzs">
+        <div class="card-content">
+            <img src="/avatar/lrs2187.jpg" alt="lrs2187" width="80" />
+            <div class="text-content">
+                <p class="name">lrs2187</p>
+                <p class="role">Classlsland 联动部分与插件制作</p>
+            </div>
+        </div>
+    </LinkCard>
 </CardGrid>
 
 <script setup>
