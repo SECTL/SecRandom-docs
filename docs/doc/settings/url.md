@@ -522,7 +522,7 @@ const MeetingSystem = {
 
 #### 办公软件集成
 **Office 插件 + SecRandom**
-```vba
+```vb
 ' Excel VBA 集成示例
 Sub StartRandomSelection()
     Dim shell As Object
