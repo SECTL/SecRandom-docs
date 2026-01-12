@@ -30,7 +30,7 @@ export default defineThemeConfig({
    */
   copyright: { 
     license: {
-      name: 'MIT',
+      name: 'CC BY-NC-SA 4.0',
       url: 'https://github.com/SECTL/SecRandom-docs/blob/main/LICENSE'
     },
     author: {
