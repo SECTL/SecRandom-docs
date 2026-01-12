@@ -56,6 +56,11 @@
   */
 /* } */
 
+.vp-social-link .vp-icon {
+  width : 20px !important;
+  height: 20px !important;
+}
+
 /* home */
 .vp-home-doc-hero .image {
   margin-top: 60px !important;
@@ -172,4 +177,12 @@
 
 .vp-link.title {
   color: var(--vp-c-text-1) !important;
+}
+
+.cc-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1em;
+  margin-left: 0.2em;
 }

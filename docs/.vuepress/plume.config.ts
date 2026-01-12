@@ -1,7 +1,8 @@
 import { defineThemeConfig } from 'vuepress-theme-plume'
 import { zhNavbar, enNavbar } from './navbar'
-import collections from './collections'
+import { zhcollections, encollections } from './collections'
 
+const currentYear = new Date().getFullYear()
 export default defineThemeConfig({
   logo: '/logo.png',
 
@@ -64,19 +65,19 @@ export default defineThemeConfig({
   locales: {
     '/': {
       navbar: zhNavbar,
+      collections: zhcollections,
       footer: {
-        message: '使用 <a target="_blank" href="https://v2.vuepress.vuejs.org/">VuePress</a> & <a target="_blank" href="https://theme-plume.vuejs.press">vuepress-theme-plume</a> 搭建',
-        copyright: '<a href="https://secrandom.netlify.app/">SecRandom-Docs</a> © 2025 by <a href="https://github.com/SECTL">SECTL</a> is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>',
+        message: '由 <a target="_blank" href="https://v2.vuepress.vuejs.org/">VuePress</a> & <a target="_blank" href="https://theme-plume.vuejs.press">vuepress-theme-plume</a> 驱动',
+        copyright: `© 2025-${currentYear} 版权所有 <a href="https://github.com/SECTL">SECTL</a> | 采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议<img class="cc-icon" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg"><img class="cc-icon" src="https://mirrors.creativecommons.org/presskit/icons/by.svg"><img class="cc-icon" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg"><img class="cc-icon" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg">`,
       },
     },
     '/en/': {
       navbar: enNavbar,
+      collections: encollections,
       footer: {
-        message: 'Built with <a target="_blank" href="https://v2.vuepress.vuejs.org/">VuePress</a> & <a target="_blank" href="https://theme-plume.vuejs.press">vuepress-theme-plume</a>',
-        copyright: '<a href="https://secrandom.netlify.app/">SecRandom-Docs</a> © 2025 by <a href="https://github.com/SECTL">SECTL</a> is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;" width="19.1875" height="19.1875"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;" width="19.1875" height="19.1875"><img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;" width="19.1875" height="19.1875"><img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;" width="19.1875" height="19.1875">',
+        message: 'Powered by <a target="_blank" href="https://v2.vuepress.vuejs.org/">VuePress</a> & <a target="_blank" href="https://theme-plume.vuejs.press">vuepress-theme-plume</a>',
+        copyright: `© 2025-${currentYear} by <a href="https://github.com/SECTL">SECTL</a> is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a><img class="cc-icon" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg"><img class="cc-icon" src="https://mirrors.creativecommons.org/presskit/icons/by.svg"><img class="cc-icon" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg"><img class="cc-icon" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg">`,
       },
     },
   },
-
-  collections,
 })

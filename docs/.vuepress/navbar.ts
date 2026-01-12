@@ -14,7 +14,7 @@ const zhNavbar = defineNavbarConfig([
       { text: '指南', icon: 'ep:guide', link: '/doc/guide/start' },
       { text: '核心功能', icon: 'icon-park-outline:spanner', link: '/doc/core-functions/person-extraction' },
       { text: '设置', icon: 'garden:gear-stroke-16', link: '/doc/settings/basic' },
-      { text: '资源', icon: 'carbon:document', link: '/doc/resources' },
+      { text: '资源', icon: 'carbon:document', link: '/doc/resources/contribute' },
       
     ],
   },
@@ -36,6 +36,7 @@ const enNavbar = defineNavbarConfig([
       { text: 'Guide', icon: 'ep:guide', link: '/en/doc/guide/start' },
       { text: 'Core Functions', icon: 'icon-park-outline:spanner', link: '/en/doc/core-functions/person-extraction' },
       { text: 'Settings', icon: 'garden:gear-stroke-16', link: '/en/doc/settings/basic' },
+      { text: 'Resources', icon: 'carbon:document', link: '/en/doc/resources/contribute' },
     ],
   },
   {

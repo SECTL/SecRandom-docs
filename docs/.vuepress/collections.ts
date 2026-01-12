@@ -9,6 +9,7 @@ const Doc = defineCollection({
   dir: "doc",
   linkPrefix: "/doc",
   title: "文档",
+  meta: { createTime: "long" },
   sidebar: [
     { text: '概览', icon: 'material-symbols:overview-outline-rounded', link: 'overview' },
     { text: '指南', icon: 'ep:guide', prefix: 'guide', items: 'auto' },
@@ -30,6 +31,35 @@ const Faq = defineCollection({
   categories: false, // 是否启用分类页
   //   postCover: 'right', // 文章封面位置
   //   pagination: 15, // 每页显示文章数量
+  meta: { createTime: "long" },
 });
 
-export default defineCollections([Doc, Faq]);
+// English docs
+const EnDoc = defineCollection({
+  type: "doc",
+  dir: "doc",
+  linkPrefix: "/doc",
+  title: "Documentation",
+  meta: { createTime: "long" },
+  sidebar: [
+    { text: 'Overview', icon: 'material-symbols:overview-outline-rounded', link: 'overview' },
+    { text: 'Guide', icon: 'ep:guide', prefix: 'guide', items: 'auto' },
+    { text: 'Core Functions', icon: 'icon-park-outline:spanner', prefix: 'core-functions', items: 'auto' },
+    { text: 'Settings', icon: 'garden:gear-stroke-16', prefix: 'settings', items: 'auto' },
+    { text: 'Resources', icon: 'carbon:document', prefix: 'resources', items: 'auto' },
+  ],
+});
+
+const EnFaq = defineCollection({
+  type: "post",
+  dir: "faq",
+  title: "FAQ",
+  link: "/faq/",
+  tags: false,
+  archives: false,
+  categories: false,
+  meta: { createTime: "long" },
+});
+
+export const zhcollections = defineCollections([Doc, Faq]);
+export const encollections = defineCollections([EnDoc, EnFaq]);
