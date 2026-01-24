@@ -24,7 +24,7 @@ config:
         - theme: alt
           text: Hub
           icon: ic:baseline-screenshot
-          link: https://sectl-hub.netlify.app/
+          link: https://sectl-hub.sectl.top/
           
   - type: features
     features:
