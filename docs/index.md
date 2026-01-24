@@ -25,10 +25,6 @@ config:
           text: Sectl 官网
           icon: fa-brands:github
           link: https://sectl.top/
-        - theme: alt
-          text: Hub
-          icon: ic:baseline-screenshot
-          link: https://hub.sectl.top/
           
   - type: features
     features:
