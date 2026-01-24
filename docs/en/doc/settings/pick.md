@@ -1,5 +1,5 @@
 ---
-title: Personalization Settings
+title: Drawing Settings
 createTime: 2026/01/02 15:29:12
 ---
 
@@ -9,81 +9,165 @@ createTime: 2026/01/02 15:29:12
 
 ## Drawing Settings
 
-### Drawing Function
+Drawing settings include three independent features: **Roll Call Settings**, **Quick Draw Settings**, and **Lottery Settings**. Each feature includes drawing function, display settings, and animation settings.
 
-**Drawing Mode**: Set the roll call drawing mode
-- Non-repetitive drawing: Exclude already drawn people after each drawing
-- Semi-repetitive drawing: Allow drawing specific people a certain number of times within the same round
-- Allow repetition: Completely allow drawing the same person repeatedly
+### 📚 Roll Call Settings
 
-**Clear Drawing Record Method**: Set the timing for clearing drawing records
-- Clear after restart: Automatically clear drawing records when the software restarts
-- Clear until all drawn: Clear records after drawing all people
+#### 🎲 Drawing Function
 
-**Semi-repetitive Drawing Count**: Set how many times each person is drawn before clearing drawing records
-- Range: 1-100
+| Configuration | Type | Range/Options | Description |
+|--------------|------|---------------|-------------|
+| **Drawing Mode** | Dropdown | Repetitive/Non-repetitive/Semi-repetitive | Controls drawing logic |
+| **Clear Record Method** | Dropdown | Manual/Auto/No Clear | Automatically disabled in repetitive mode |
+| **Semi-repetitive Count** | Number Input | 0-100 | Enabled in semi-repetitive mode, sets repeat count |
+| **Drawing Method** | Dropdown | By Class/By Gender/By Range | Controls drawing range |
+| **Default Drawing List** | Dropdown | Dynamically loaded class list | Sets default class to use |
 
-**Drawing Method**: Set the roll call drawing method
-- Random drawing: Completely random drawing method
-- Fair drawing: Ensure relatively balanced drawing probability
+#### 🎨 Display Settings
 
-**Default Drawing List**: Set the default drawing list for quick draw
+| Configuration | Type | Range/Options | Description |
+|--------------|------|---------------|-------------|
+| **Font Size** | Number Input | 10-1000px | Controls text display size |
+| **Use Global Font** | Dropdown | Yes/No | Whether to use global font settings |
+| **Custom Font** | Dropdown | System font list | Select custom font |
+| **Result Display Format** | Dropdown | Multiple format options | Controls result display method |
+| **Result Display Style** | Dropdown | Multiple style options | Controls result display style |
+| **Display Random Group Member** | Dropdown | Multiple format options | Controls random group member display format |
 
-### Display Settings
+#### 🎬 Animation Settings
 
-**Use Global Font**: Whether to use global font settings
-- Follow global font: Use system or application global settings font
-- Custom font: Set the font for the roll call interface separately
+**Basic Animation Settings**
 
-**Custom Font**: Select custom font
-- HarmonyOS Sans SC: Default use
-- Custom font: Select other custom fonts
+| Configuration | Type | Range/Options | Description |
+|--------------|------|---------------|-------------|
+| **Animation Mode** | Dropdown | Multiple animation effects | Select animation type |
+| **Animation Interval** | Number Input | 1-1000ms | Set animation switch interval |
+| **Auto Play Count** | Number Input | 1-1000 | Set auto play count |
+| **Result Flow Animation Style** | Toggle | Enable/Disable | Controls result flow animation |
+| **Result Flow Animation Duration** | Number Input | 0-2000ms | Set result flow animation duration |
 
-**Font Size**: Set the roll call result font size
-- Range: 10-2000px
+**Color Theme Settings**
 
-**Result Display Format**: Set the roll call result display format
-- Student ID + Name: Display student ID first then name
-- Name Only: Only display student name
-- Student ID Only: Only display student ID
+| Configuration | Type | Range/Options | Description |
+|--------------|------|---------------|-------------|
+| **Color Theme** | Dropdown | Multiple color themes | Select animation color theme |
+| **Fixed Color** | Color Picker | Custom color | Set fixed color (effective when theme is fixed color) |
 
-**Random Group Member Display Format**: Set the random group member display format
-:::tip What is this
-Random group member: When using the draw group mode, randomly select a member from the drawn group and display their name.
-:::
-- Do not display: Do not display random group member information
-- Group Name [Line Break] Name: Display group name first then line break to display name
-- Group Name [Hyphen] Name: Display group name first then connect name with hyphen
+**Student Image Settings**
 
-### Animation Settings
+| Configuration | Type | Range/Options | Description |
+|--------------|------|---------------|-------------|
+| **Student Image** | Toggle | Enable/Disable | Whether to display student images |
+| **Image Position** | Dropdown | Multiple position options | Set image display position |
+| **Open Image Folder** | Button | - | Open student image folder |
 
-**Animation Mode**: Set the roll call drawing animation effect
-- Auto play animation: Automatically play scrolling animation when drawing
-- Manual stop animation: Stop animation playback through manual operation
-- Direct display result: Directly display the final result after drawing is completed, without playing animation
+### ⚡ Quick Draw Settings
 
-**Animation Interval**: Set the roll call animation interval time (milliseconds)
+#### 🎲 Drawing Function
 
-**Auto Play Count**: Set the roll call animation auto play count
+| Configuration | Type | Range/Options | Description |
+|--------------|------|---------------|-------------|
+| **Drawing Mode** | Dropdown | Repetitive/Non-repetitive/Semi-repetitive | Controls drawing logic |
+| **Semi-repetitive Count** | Number Input | 0-100 | Enabled in semi-repetitive mode |
+| **Drawing Method** | Dropdown | By Class/By Gender/By Range | Controls drawing range |
+| **Default Drawing List** | Dropdown | Dynamically loaded class list | Sets default class to use |
+| **Drawing Count** | Number Input | 1-100 | Sets number of people to draw each time |
+| **Disable Time After Click** | Number Input | 0-60s | Time to disable button after click |
 
-### Color Theme Settings
+#### 🎨 Display Settings
 
-**Animation/Result Color Theme**: Set the roll call animation/result color
-- Off: Use default color style
-- Random color: Use random color for each drawing
-- Fixed color: Use fixed color as the display color for animation and result
+Same as Roll Call settings, including font size, global font, custom font, result display format, display random group member, etc.
 
-**Animation/Result Fixed Color**: If fixed color is selected above, set the roll call animation/result fixed color here
+#### 🎬 Animation Settings
 
-### Student Avatar Settings
+**Basic Animation Settings**
 
-**Display Student Image**: Set whether to display student images on the drawing page
-Example:
-![Display student image example](./images/1.png)
+| Configuration | Type | Range/Options | Description |
+|--------------|------|---------------|-------------|
+| **Animation Mode** | Dropdown | Multiple animation effects | Select animation type |
+| **Animation Interval** | Number Input | 1-1000ms | Set animation switch interval |
+| **Auto Play Count** | Number Input | 1-1000 | Set auto play count |
 
-**Student Image Folder**: Manage student image files
-- Image file name must match student name
-- Operation: Click "Student Image Folder" button to open the student image folder
+**Color Theme Settings**
+
+| Configuration | Type | Range/Options | Description |
+|--------------|------|---------------|-------------|
+| **Color Theme** | Dropdown | Multiple color themes | Select animation color theme |
+| **Fixed Color** | Color Picker | Custom color | Set fixed color |
+
+**Student Image Settings**
+
+Same as Roll Call settings.
+
+### 🎁 Lottery Settings
+
+#### 🎲 Drawing Function
+
+| Configuration | Type | Range/Options | Description |
+|--------------|------|---------------|-------------|
+| **Drawing Mode** | Dropdown | Repetitive/Non-repetitive/Semi-repetitive | Controls drawing logic |
+| **Clear Record Method** | Dropdown | Manual/Auto/No Clear | Automatically disabled in repetitive mode |
+| **Semi-repetitive Count** | Number Input | 0-100 | Enabled in semi-repetitive mode |
+| **Default Prize Pool** | Dropdown | Dynamically loaded prize pool list | Sets default prize pool to use |
+
+#### 🎨 Display Settings
+
+Same as Roll Call settings, including font size, global font, custom font, result display format, result display style, display random student, etc.
+
+#### 🎬 Animation Settings
+
+**Basic Animation Settings**
+
+Same as Roll Call settings.
+
+**Color Theme Settings**
+
+Same as Roll Call settings.
+
+**Prize Image Settings**
+
+| Configuration | Type | Range/Options | Description |
+|--------------|------|---------------|-------------|
+| **Prize Image** | Toggle | Enable/Disable | Whether to display prize images |
+| **Image Position** | Dropdown | Multiple position options | Set image display position |
+| **Open Image Folder** | Button | - | Open prize image folder |
+
+### 💡 Configuration Recommendations
+
+#### Roll Call Settings Recommendations
+
+- **Drawing Mode**: Choose based on teaching needs
+  - Repetitive: Suitable for scenarios requiring multiple roll calls
+  - Non-repetitive: Suitable for ensuring every student is called
+  - Semi-repetitive: Balances repetition and non-repetition, can set repeat count
+- **Animation Interval**: Recommended 80-100ms, smooth but not too fast
+- **Font Size**: Recommended 50-80px, adjust based on display screen size
+- **Student Image**: Enable if personalized display is needed
+
+#### Quick Draw Settings Recommendations
+
+- **Drawing Count**: Recommended 1-5 people, avoid drawing too many at once
+- **Disable Time After Click**: Recommended 3-5 seconds, prevent accidental operations
+- **Animation Interval**: Recommended 80-100ms
+- **Font Size**: Recommended 50-80px
+
+#### Lottery Settings Recommendations
+
+- **Drawing Mode**: Usually choose non-repetitive to ensure fair prize distribution
+- **Prize Image**: Recommended to enable, enhances visual effect
+- **Animation Interval**: Recommended 80-100ms
+- **Font Size**: Recommended 50-80px
+
+### 🔧 Special Feature Notes
+
+1. **File Monitor**: Roll Call and Lottery settings automatically monitor changes in list/prize pool folders, updating dropdown options in real-time
+
+2. **Drawing Mode Linkage**:
+   - Repetitive mode: Disables clear record and semi-repetitive count settings
+   - Non-repetitive mode: Enables clear record, disables semi-repetitive count
+   - Semi-repetitive mode: Enables clear record and semi-repetitive count settings
+
+3. **Background Loading**: Quick Draw and Lottery settings use background threads to load data, avoiding interface lag
 
 ## Floating Window Management
 

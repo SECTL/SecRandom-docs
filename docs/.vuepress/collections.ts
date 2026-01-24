@@ -13,7 +13,6 @@ const Doc = defineCollection({
   sidebar: [
     { text: '概览', icon: 'material-symbols:overview-outline-rounded', link: 'overview' },
     { text: '指南', icon: 'ep:guide', prefix: 'guide', items: 'auto' },
-    { text: '核心功能', icon: 'icon-park-outline:spanner', prefix: 'core-functions', items: 'auto' },
     { text: '设置', icon: 'garden:gear-stroke-16', prefix: 'settings', items: 'auto' },
     { text: '资源', icon: 'carbon:document', prefix: 'resources', items: 'auto' },
   ],
@@ -44,7 +43,6 @@ const EnDoc = defineCollection({
   sidebar: [
     { text: 'Overview', icon: 'material-symbols:overview-outline-rounded', link: 'overview' },
     { text: 'Guide', icon: 'ep:guide', prefix: 'guide', items: 'auto' },
-    { text: 'Core Functions', icon: 'icon-park-outline:spanner', prefix: 'core-functions', items: 'auto' },
     { text: 'Settings', icon: 'garden:gear-stroke-16', prefix: 'settings', items: 'auto' },
     { text: 'Resources', icon: 'carbon:document', prefix: 'resources', items: 'auto' },
   ],
