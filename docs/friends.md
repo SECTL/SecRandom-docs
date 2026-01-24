@@ -3,6 +3,26 @@ pageLayout: friends
 title: 友情链接
 editLink: false
 list:
+  - name: Python
+    link: https://www.python.org/
+    avatar: /icon/github.svg
+    desc: 强大的编程语言，简单易学
+  - name: PySide6
+    link: https://doc.qt.io/qtforpython/
+    avatar: /icon/github.svg
+    desc: Qt for Python，构建跨平台GUI应用
+  - name: QFluentWidgets
+    link: https://qfluentwidgets.com/
+    avatar: /icon/github.svg
+    desc: 优雅的Fluent Design组件库
+  - name: Loguru
+    link: https://github.com/Delgan/loguru
+    avatar: /icon/github.svg
+    desc: Python日志库，简单好用
+  - name: uv
+    link: https://github.com/astral-sh/uv
+    avatar: /icon/github.svg
+    desc: 极速的Python包管理器
   - name: 智教联盟论坛
     link: https://forum.smart-teach.cn/
     avatar: /icon/SmartTeach.png
@@ -15,8 +35,4 @@ list:
     link: https://cnel.smart-teach.cn/
     avatar: /icon/cnel.png
     desc: 教你如何做一名优秀的电教委员
-  - name: InkCanvasForClass CE
-    link: https://www.iccce.dpdns.org/
-    avatar: /icon/iccce.png
-    desc: InkCanvasForClass 社区版
 ---

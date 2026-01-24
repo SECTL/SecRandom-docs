@@ -4,33 +4,33 @@ createTime: 2025/11/29 12:58:02
 ---
 # 界面介绍
 
-> 🎨 **直观易用的界面设计** - 专为教育场景优化的现代化交互体验
+> **直观易用的界面设计** - 专为教育场景优化的现代化交互体验
 
-## 🎯 界面概览
+## 界面概览
 
 SecRandom采用现代化的界面设计理念，通过清晰的层次结构和直观的操作流程，让每位用户都能快速上手。界面支持**智能适配**和**个性化定制**，完美适配不同使用场景。
 
-## 🎨 主题与个性化
+## 主题与个性化
 
-### 🌈 **预设主题方案**
+### **预设主题方案**
 
-#### ☀️ **浅色主题**
+#### **浅色主题**
 - **适用场景**：教室、办公室等明亮环境
 - **配色特点**：白底黑字
 - **护眼指数**：⭐⭐⭐
 - **能耗优化**：⭐⭐⭐⭐
 
-#### 🌙 **深色主题**
+#### **深色主题**
 - **适用场景**：晚间使用、昏暗环境
 - **配色特点**：黑底白字
 - **护眼指数**：⭐⭐⭐⭐⭐
 - **专注模式**：减少眼部疲劳
 
-## 🧭 主界面功能导航
+## 主界面功能导航
 
-### 🎯 **核心功能区**
+### **核心功能区**
 
-#### 👥 **点名**
+#### **点名**
 <div class="feature-card">
 <div class="feature-header">
   <div class="feature-icon"><img src="./images/ic_fluent_people_24_color.svg"></div>
@@ -46,7 +46,7 @@ SecRandom采用现代化的界面设计理念，通过清晰的层次结构和�
 </div>
 </div>
 
-#### 🎁 **抽奖**
+#### **抽奖**
 <div class="feature-card">
 <div class="feature-header">
   <div class="feature-icon"><img src="./images/ic_fluent_gift_24_color.svg"></div>
@@ -61,7 +61,7 @@ SecRandom采用现代化的界面设计理念，通过清晰的层次结构和�
 </div>
 </div>
 
-#### 📊 **历史记录**
+#### **历史记录**
 <div class="feature-card">
 <div class="feature-header">
   <div class="feature-icon"><img src="./images/ic_fluent_history_24_color.svg"></div>
@@ -72,7 +72,7 @@ SecRandom采用现代化的界面设计理念，通过清晰的层次结构和�
 </div>
 </div>
 
-#### ⚙️ **设置**
+#### **设置**
 <div class="feature-card">
 <div class="feature-header">
   <div class="feature-icon"><img src="./images/ic_fluent_settings_24_color.svg"></div>
@@ -88,11 +88,11 @@ SecRandom采用现代化的界面设计理念，通过清晰的层次结构和�
 </div>
 </div>
 
-## 🧵 系统托盘菜单
+## 系统托盘菜单
 
-### 🎛️ **快速操作面板**
+### **快速操作面板**
 
-#### 🎭 **界面控制**
+#### **界面控制**
 <div class="tray-section">
 
 | 功能图标 | 操作名称 | 功能描述 |
