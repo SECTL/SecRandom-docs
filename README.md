@@ -1,7 +1,5 @@
 # SecRandom 文档站
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/f31b1cc4-0fdf-45fd-96f2-ef92ec108fde/deploy-status)](https://app.netlify.com/projects/secrandom/deploys)
-
 本仓库为 [SecRandom](https://github.com/SECTL/SecRandom) 文档仓库，使用 [vuepress](https://vuepress.vuejs.org/) 和 [vuepress-theme-plume](https://github.com/pengzhanbo/vuepress-theme-plume) 构建
 
 ## 安装依赖
