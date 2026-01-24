@@ -24,7 +24,7 @@ config:
         - theme: alt
           text: Hub
           icon: ic:baseline-screenshot
-          link: https://sectl-hub.sectl.top/
+          link: https://hub.sectl.top/
           
   - type: features
     features:
