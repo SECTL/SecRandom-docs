@@ -1,117 +1,92 @@
 ---
-title: prize-extraction
-createTime: 2025/11/29 13:06:48
+title: Prize Extraction Configuration
+createTime: 2025/11/29 12:56:30
 ---
-# Dynamic Weight System ⚖️
+# Prize Extraction Configuration 🎁
 
-## 🎯 Fair Draw - Introduction
+## 🚀 Quick Start
 
-> **Fair Draw** is an intelligent random selection method that uses a **dynamic weight algorithm** to ensure each member's chance of being selected is inversely proportional to their past selection frequency, thus achieving true fairness.
->
-> It is suitable for scenarios that require fair random selection, such as classroom questioning, task assignment, and activity participation.
+### 📋 Configure Prize Extraction Settings
 
-::: tip Key Advantages
-
-* **Smart Balancing**: Prevents frequent selection of the same student.
-* **Dynamic Adjustment**: Weights change in real-time based on historical data.
-* **Multi-dimensional Consideration**: Factors such as total times, group, and gender are all considered.
+::: tip Three Steps to Complete
+Just three simple steps to configure the perfect prize draw experience!
 :::
 
-## ⚙️ Dynamic Weight System
+#### 1️⃣ Open Settings Interface
+- **Method 1**: Right-click tray icon → Select "Settings"
 
-The Dynamic Weight System is the core engine of SecRandom for fair draws. It calculates the real-time weight of each member based on **5 key dimensions**:
+#### 2️⃣ Navigate to Prize Extraction Settings
+- Left sidebar → **"Extraction Settings"**
+- Right panel → **"Prize Extraction Settings"**
+<img src="./images/pe-1.png" alt="Prize Extraction Settings Interface" width="800"/>
 
-| Dimension                    | Purpose                                       | Weight Impact                         |
-| ---------------------------- | --------------------------------------------- | ------------------------------------- |
-| 📊 **Total Draw Count**      | Prevent frequent selection of the same person | More draws result in lower weight     |
-| 👥 **Group Balance**         | Ensure equal opportunities across groups      | Group draw frequency impacts weight   |
-| ⚧️ **Gender Balance**        | Maintain gender proportion balance            | Gender draw frequency impacts weight  |
-| 🎯 **Base Weight**           | Provide baseline fairness                     | Fixed baseline value                  |
-| 🆕 **Cold Start Protection** | Protect new members                           | First 10 draws have weight protection |
+#### 3️⃣ Personalized Configuration
 
-## 🔍 Algorithm Logic Explanation
+| Configuration Item | Description | Suggested Value |
+|-------------------|------------|-----------------|
+| **Font Size** | Prize result display size | 10-2000px |
+| **Animation Effect** | Prize draw process animation | Enabled |
+| **Sound Effect** | Prize draw completion prompt sound | Optional |
 
-### 📈 Weight Calculation Formula
+---
 
-The system calculates the final weight based on historical data through the following **5 steps**:
+## ⚖️ Prize Weight Configuration
 
-#### 1️⃣ Frequency Penalty Factor
+### 🎯 Weight Concept
+Weight determines the probability of each prize being drawn. **Higher value means higher probability**.
 
-Weight adjustment based on the total number of draws for a person:
+### � Configuration Steps
 
-```python
-frequency_factor = 1.0 / math.sqrt(student_history["total_number_of_times"] * 2 + 1)
-```
+#### 1️⃣ Enter Prize List
+- Settings interface → List Management → List Management
 
-**Example Calculation**:
+#### 2️⃣ Basic Configuration
+- **Prize Pool Name**: Give your prize pool a name (e.g., "Final Term Prizes")
+- **Prize List**: Enter all prize names in order
 
-* Student A was drawn 5 times → `1/√(5*2+1) = 1/√11 ≈ 0.302`
-* Weight value: 0.302 (smaller values mean lower probability of being selected)
+#### 3️⃣ Set Weights
+Click **"Set Prize Weights"** button and enter corresponding weight values:
 
-#### 2️⃣ Group Balance Factor
+| Prize Example | Weight Setting | Probability Description |
+|---------------|---------------|-------------------------|
+| 🥇 First Prize | 10 | High probability |
+| 🥈 Second Prize | 50 | Medium probability |
+| 🥉 Third Prize | 100 | Low probability |
+| 🎈 Participation Prize | 200 | Highest probability |
 
-Ensures equal opportunities for all groups:
+### ⚠️ Notes
 
-```python
-group_factor = 1.0 / (group_history * 0.2 + 1)
-```
-
-**Trigger Condition**: At least 3 groups have recorded draws.
-
-#### 3️⃣ Gender Balance Factor
-
-Maintains gender ratio balance:
-
-```python
-gender_factor = 1.0 / (gender_history * 0.2 + 1)
-```
-
-**Trigger Condition**: At least 2 genders have recorded draws.
-
-#### 4️⃣ Cold Start Protection Mechanism
-
-Protects newly joined students:
-
-```python
-if current_round < COLD_START_ROUNDS:  # COLD_START_ROUNDS = 10
-    frequency_factor = min(0.8, frequency_factor)
-```
-
-**Protection Effect**: New students enjoy a minimum weight protection of 0.8 for the first 10 draws.
-
-#### 5️⃣ Final Weight Synthesis
-
-The final weight is derived by combining all factors:
-
-```python
-student_weights = {
-    'base': BASE_WEIGHT * 0.2,           # Base Weight (20%)
-    'frequency': frequency_factor * 3.0,  # Frequency Penalty (60%)
-    'group': group_factor * 0.8,        # Group Balance (10%)
-    'gender': gender_factor * 0.8       # Gender Balance (10%)
-}
-```
-
-::: warning Weight Range
-The final weight is normalized to a reasonable range to prevent extreme values from impacting fairness.
+::: warning Weight Setting Guidelines
+- ❌ **Do not** use spaces as weight values
+- ✅ **Recommend** using positive integers (1-1000)
+- 🔄 **Unset** weights default to 1
 :::
 
-## 📊 Practical Application Effects
+### 🧮 Weight Calculation Example
 
-### Scenario Example
+Assume the following prizes and weights are set:
+```
+Prizes: Tablet  Phone  Headphones  Mouse Pad
+Weights:   10      50     100        200
+```
 
-Assume a class of 30 students, where:
+**Probability Calculation**:
+- Total weight = 10 + 50 + 100 + 200 = 360
+- Tablet probability = 10/360 ≈ 2.78%
+- Phone probability = 50/360 ≈ 13.89%
+- Headphones probability = 100/360 ≈ 27.78%
+- Mouse Pad probability = 200/360 ≈ 55.56%
 
-* Xiao Ming has been drawn 15 times (high frequency)
-* Xiao Hong has been drawn 3 times (medium frequency)
-* Xiao Gang is a new student (cold start)
+### � Best Practices
 
-**Weight Comparison**:
+#### 🎯 Fair Prize Draw Suggestions
+- **Big Prizes**: Set lower weights (5-20)
+- **Small Prizes**: Set higher weights (50-200)
+- **Participation Prizes**: Set highest weights (200+)
 
-* Xiao Ming: Low weight (significant frequency penalty)
-* Xiao Hong: Medium weight (normal level)
-* Xiao Gang: Protected weight (cold start mechanism)
-
-### 🎲 Draw Probability
-
-The system calculates the draw probability based on real-time weight, ensuring long-term fairness in the statistics.
+#### 📈 Activity Type Recommendations
+| Activity Type | Weight Configuration Suggestions |
+|---------------|---------------------------------|
+| **Classroom Prize Draw** | Big prize 10, small prize 50, participation prize 200 |
+| **Annual Meeting Prize Draw** | Grand prize 5, first prize 10, second prize 20, third prize 50 |
+| **Promotional Prize Draw** | Coupon 200, small gift 100, thank you for participating 500 |
