@@ -1,8 +1,8 @@
 <template>
   <div class="team-card">
     <div class="content-container">
-      <h6 class="intro-text">👋 你好，我们是</h6>
-      <h1 class="team-name">SecRandom<br/>开发团队：</h1>
+      <h6 class="intro-text">{{ introText }}</h6>
+      <h1 class="team-name">SecRandom<br/>{{ teamNameText }}</h1>
       <div class="typing-container">
         <h2 class="typing-text">
           <span id="typing-text"></span>
@@ -16,18 +16,49 @@
 <script>
 export default {
   name: 'TeamCard',
+  props: {
+    lang: {
+      type: String,
+      default: 'zh-CN',
+      validator: (value) => ['zh-CN', 'en'].includes(value)
+    }
+  },
+  computed: {
+    introText() {
+      return this.lang === 'en' ? '👋 Hello, we are' : '👋 你好，我们是';
+    },
+    teamNameText() {
+      return this.lang === 'en' ? 'Development Team:' : '开发团队：';
+    },
+    teamMembers() {
+      if (this.lang === 'en') {
+        return [
+          "lzy98276 (Design & Creativity & Planning & Maintenance & Documentation & Testing)",
+          "chenjintang (Maintenance)",
+          "QiKeZhiCao (Creativity & Maintenance)",
+          "Fox-block (Application Testing)",
+          "yuanbenxin (Responsive Frontend Page Design & Maintenance & Documentation)",
+          "LeafS825 (Creativity & Documentation)",
+          "Jursin (Responsive Frontend Page Design & Maintenance & Documentation)",
+          "lrs2187 (ClassIsland integration and plugin development)"
+        ];
+      } else {
+        return [
+          "黎泽懿 Aionflux(设计&创意&策划&维护&文档&测试)",
+          "chenjintang(SecRandomの义父 & 维护)",
+          "弃稞之草(创意&维护)",
+          "Fox-block(应用测试)",
+          "本新同学(响应式前端页面设计及维护&文档)",
+          "叶背影(创意&文档)",
+          "Jursin(响应式前端页面设计及维护&文档)",
+          "lrs2187(Classlsland 联动部分与插件制作)"
+        ];
+      }
+    }
+  },
   mounted() {
     if (typeof window !== 'undefined' && typeof document !== 'undefined') {
-      const texts = [
-        "黎泽懿 Aionflux(设计&创意&策划&维护&文档&测试)",
-        "chenjintang(SecRandomの义父 & 维护)",
-        "弃稞之草(创意&维护)",
-        "system-linux-cmb(应用测试)",
-        "本新同学(响应式前端页面设计及维护&文档)",
-        "叶背影(创意&文档)",
-        "Jursin(前端页面设计&文档)"
-      ];
-      this.setupTypingEffect('typing-text', 'cursor', texts);
+      this.setupTypingEffect('typing-text', 'cursor', this.teamMembers);
       this.startRainbowColorAnimation('typing-text');
     }
   },
@@ -90,31 +121,32 @@ export default {
 <style scoped>
 .team-card {
   font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
-  margin-bottom: 0;
+  padding: 60px 0 30px 0;
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .content-container {
   position: relative;
   text-align: left;
   padding: 40px;
-  border-radius: 15px;
-  max-width: 800px;
-  min-width: 500px;
-  border: 1px solid rgba(35, 136, 246, 0.3);
+  border-radius: 8px;
+  min-width: 1000px;
+  border: 1px solid var(--vp-c-brand-2);
   backdrop-filter: blur(5px);
   margin: 0 auto;
-  background: var(--vp-c-bg-alt);
+  background: var(--vp-c-bg-soft);
 }
 
 .intro-text {
   color: var(--vp-c-brand);
-  font-size: 24px;
+  font-size: 28px;
   margin-bottom: 10px;
 }
 
 .team-name {
-  font-size: 72px;
+  font-size: 58px;
   margin-bottom: 0;
   font-weight: 700;
   line-height: 1.1;
@@ -123,15 +155,13 @@ export default {
 }
 
 .typing-container {
-  border-top: 1px solid var(--vp-c-divider);
-  padding-top: 20px;
   min-height: 60px;
   min-width: 40ch;
   overflow: hidden;
 }
 
 .typing-text {
-  font-size: 25px;
+  font-size: 28px;
   display: flex;
   align-items: center;
   font-weight: 500;
