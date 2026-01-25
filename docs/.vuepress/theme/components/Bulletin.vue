@@ -19,7 +19,16 @@ const router = useRouter()
 const showNotification = ref(false)
 const readBulletinIds = ref<Set<string>>(new Set())
 
-const rawBulletins = import.meta.glob('../../../bulletin/*.md', { query: '?raw', import: 'default', eager: true })
+// 根据当前路径判断语言环境来决定加载哪个目录的公告
+const currentPath = typeof window !== 'undefined' ? window.location.pathname : '';
+const isEnglish = currentPath.startsWith('/en/');
+
+let rawBulletins;
+if (isEnglish) {
+  rawBulletins = import.meta.glob('../../../en/bulletin/*.md', { query: '?raw', import: 'default', eager: true });
+} else {
+  rawBulletins = import.meta.glob('../../../bulletin/*.md', { query: '?raw', import: 'default', eager: true });
+}
 
 const simpleHash = (str: string) => {
   let hash = 0
@@ -55,10 +64,10 @@ const getBulletinsFromFiles = (): BulletinItem[] => {
       })
     }
     
-    // Handle pin
-    let pin = 0
-    if (frontmatter.pin === 'super') pin = 2
-    else if (frontmatter.pin === 'true' || frontmatter.pin === true) pin = 1
+    // Handle sticky
+    let sticky = 0
+    if (typeof frontmatter.sticky === 'number') sticky = frontmatter.sticky
+    else if (frontmatter.sticky === 'true' || frontmatter.sticky === true) sticky = 1
     
     // Excerpt
     let excerpt = frontmatter.excerpt
@@ -76,8 +85,8 @@ const getBulletinsFromFiles = (): BulletinItem[] => {
     
     // Icon
     let icon = '🔔'
-    if (pin === 2) icon = '📢'
-    else if (pin === 1) icon = '📌'
+    if (sticky >= 10) icon = '📢'  // High priority sticky
+    else if (sticky >= 1) icon = '📌'  // Normal sticky
     
     const hash = simpleHash(content)
     const key = `${id}-${hash}`
@@ -85,11 +94,11 @@ const getBulletinsFromFiles = (): BulletinItem[] => {
     items.push({
       id,
       title: frontmatter.title || id,
-      content: excerpt || '点击查看详情',
-      link: `/bulletin/${id}.html`,
+      content: excerpt || (isEnglish ? 'Click for details' : '点击查看详情'),
+      link: isEnglish ? `/en/bulletin/${id}.html` : `/bulletin/${id}.html`,
       icon,
       key,
-      pin,
+      sticky,
       createTime: frontmatter.createTime || ''
     })
   }
@@ -200,8 +209,8 @@ onMounted(() => {
           <span v-else class="vpi-bell" />
         </span>
         <div class="notification-text">
-          <div class="notification-title">新公告</div>
-          <div class="notification-message">{{ unreadBulletins[0].title || `您有 ${unreadBulletins.length} 条未读公告` }}</div>
+          <div class="notification-title">{{ isEnglish ? 'New Bulletin' : '新公告' }}</div>
+          <div class="notification-message">{{ unreadBulletins[0].title || (isEnglish ? `You have ${unreadBulletins.length} unread bulletin(s)` : `您有 ${unreadBulletins.length} 条未读公告`) }}</div>
         </div>
         <button class="notification-close" @click.stop="closeNotification">
           <span class="vpi-close" />

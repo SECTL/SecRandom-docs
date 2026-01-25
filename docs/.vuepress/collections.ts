@@ -104,5 +104,16 @@ const EnFaq = defineCollection({
   meta: { createTime: "long" },
 });
 
+const EnBulletin = defineCollection({
+  type: "post",
+  dir: "en/bulletin",
+  title: "Bulletin",
+  link: "/en/bulletin/",
+  tags: false,
+  archives: false,
+  categories: false,
+  meta: { createTime: "long" },
+});
+
 export const zhcollections = defineCollections([Doc, Faq, Bulletin]);
-export const encollections = defineCollections([EnDoc, EnFaq]);
+export const encollections = defineCollections([EnDoc, EnFaq, EnBulletin]);
