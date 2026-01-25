@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, watch } from 'vue'
+import { ref, computed, onMounted, watch, nextTick } from 'vue'
 import { useThemeData } from 'vuepress-theme-plume/client'
 import { useRouter } from 'vuepress/client'
 
@@ -64,10 +64,13 @@ const getBulletinsFromFiles = (): BulletinItem[] => {
       })
     }
     
-    // Handle sticky
+    // Handle 'sticky' (VuePress theme field)
     let sticky = 0
-    if (typeof frontmatter.sticky === 'number') sticky = frontmatter.sticky
-    else if (frontmatter.sticky === 'true' || frontmatter.sticky === true) sticky = 1
+    if (typeof frontmatter.sticky === 'number') {
+      sticky = frontmatter.sticky
+    } else if (frontmatter.sticky === 'true' || frontmatter.sticky === true) {
+      sticky = 1
+    }
     
     // Excerpt
     let excerpt = frontmatter.excerpt
@@ -99,13 +102,14 @@ const getBulletinsFromFiles = (): BulletinItem[] => {
       icon,
       key,
       sticky,
-      createTime: frontmatter.createTime || ''
+      createTime: frontmatter.createTime || '',
+      layout: frontmatter.layout || 'bottom-right'
     })
   }
   
   items.sort((a, b) => {
-    if (a.pin !== b.pin) return b.pin - a.pin
-    return (b.createTime || '').localeCompare(a.createTime || '')
+    // 只按sticky值降序排序（sticky值越大越靠前）
+    return (b.sticky || 0) - (a.sticky || 0)
   })
   
   return items.slice(0, 3) as BulletinItem[]
@@ -168,6 +172,15 @@ watch(hasUnread, (val) => {
   showNotification.value = val
 })
 
+// Watch for route changes to add pinned indicators when navigating to bulletin pages
+watch(() => router.currentRoute.value.path, async (newPath) => {
+  if (newPath.includes('/bulletin')) {
+    // 等待DOM更新后添加置顶标签
+    await nextTick()
+    setTimeout(addPinnedIndicators, 500)
+  }
+}, { immediate: true })
+
 const closeNotification = () => {
   // Mark the current displayed bulletin as read when closed
   if (unreadBulletins.value.length > 0) {
@@ -197,7 +210,66 @@ onMounted(() => {
   // Immediate check in case watcher didn't trigger (though it should if we add immediate: true, 
   // but let's just rely on reactive state or manual init)
   showNotification.value = hasUnread.value
+  
+  // Add pinned indicators to the bulletin list on pages that show bulletin lists
+  setTimeout(addPinnedIndicators, 1000) // Wait for content to load
 })
+
+// Function to add pinned indicators to bulletin list items
+const addPinnedIndicators = () => {
+  if (typeof document === 'undefined') return
+  
+  // Look for bulletin list items
+  const bulletinItems = document.querySelectorAll('.vp-post-item')
+  
+  bulletinItems.forEach(item => {
+    // Get the link element to extract the bulletin ID
+    const linkEl = item.querySelector('a.vp-link')
+    if (!linkEl) return
+    
+    const href = linkEl.getAttribute('href')
+    if (!href) return
+    
+    // Extract bulletin ID from href
+    const match = href.match(/\/bulletin\/(.+)\.html$/)
+    if (!match) return
+    
+    const bulletinId = match[1]
+    
+    // Check if this bulletin is pinned by looking in our bulletin list
+    const bulletin = bulletins.value.find(b => b.id === bulletinId)
+    
+    if (bulletin && (bulletin.sticky >= 1) && !item.querySelector('.pinned-indicator')) {
+      // Create pinned indicator element
+      const indicator = document.createElement('span')
+      indicator.className = `pinned-indicator ${bulletin.sticky >= 10 ? 'super-pinned' : 'normal-pinned'}`
+      indicator.innerHTML = bulletin.sticky >= 10 
+        ? (isEnglish ? '📢 Super Pinned' : '📢 超级置顶') 
+        : (isEnglish ? '📌 Pinned' : '📌 置顶')
+      
+      // Find the meta element (contains the date)
+      const metaEl = item.querySelector('.post-meta')
+      if (metaEl) {
+        // Insert the indicator after the meta element
+        metaEl.parentNode?.insertBefore(indicator, metaEl.nextSibling)
+      } else {
+        // Fallback: insert at the beginning of the item content
+        const contentEl = item.querySelector('.post-item-content')
+        if (contentEl) {
+          contentEl.insertBefore(indicator, contentEl.firstChild)
+        }
+      }
+      
+      // Also add CSS classes to item for visual indication
+      item.classList.add('pinned')
+      if (bulletin.sticky >= 10) {
+        item.classList.add('super-pinned-item')
+      } else {
+        item.classList.add('pinned-item')
+      }
+    }
+  })
+}
 </script>
 
 <template>
@@ -209,8 +281,12 @@ onMounted(() => {
           <span v-else class="vpi-bell" />
         </span>
         <div class="notification-text">
-          <div class="notification-title">{{ isEnglish ? 'New Bulletin' : '新公告' }}</div>
-          <div class="notification-message">{{ unreadBulletins[0].title || (isEnglish ? `You have ${unreadBulletins.length} unread bulletin(s)` : `您有 ${unreadBulletins.length} 条未读公告`) }}</div>
+          <div class="notification-title">
+            <span v-if="unreadBulletins[0]?.sticky >= 10" class="pinned-label super-pinned">{{ isEnglish ? '📢 Super Pinned:' : '📢 超级置顶:' }}</span>
+            <span v-else-if="unreadBulletins[0]?.sticky >= 1" class="pinned-label normal-pinned">{{ isEnglish ? '📌 Pinned:' : '📌 置顶:' }}</span>
+            <span>{{ unreadBulletins[0].title || (isEnglish ? `You have ${unreadBulletins.length} unread bulletin(s)` : `您有 ${unreadBulletins.length} 条未读公告`) }}</span>
+          </div>
+          <div class="notification-message">{{ unreadBulletins[0].content }}</div>
         </div>
         <button class="notification-close" @click.stop="closeNotification">
           <span class="vpi-close" />
@@ -264,6 +340,26 @@ onMounted(() => {
   font-weight: bold;
   color: var(--vp-c-text-1);
   margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pinned-label {
+  font-size: 10px;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-weight: normal;
+}
+
+.super-pinned {
+  background-color: #ff6b6b;
+  color: white;
+}
+
+.normal-pinned {
+  background-color: #ffd93d;
+  color: #333;
 }
 
 .notification-message {
@@ -315,5 +411,39 @@ onMounted(() => {
 .slide-up-leave-to {
   opacity: 0;
   transform: translateY(20px);
+}
+
+/* Styles for pinned indicators in bulletin list */
+.pinned-indicator {
+  font-size: 0.7em;
+  padding: 0.25em 0.5em;
+  border-radius: 3px;
+  font-weight: normal;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  white-space: nowrap;
+  display: inline-block;
+  border: 1px solid transparent;
+}
+
+.pinned-indicator.super-pinned {
+  background-color: #ff6b6b;
+  color: white;
+  border-color: #ff5252;
+}
+
+.pinned-indicator.normal-pinned {
+  background-color: #ffd93d;
+  color: #333;
+  border-color: #ffcc00;
+}
+
+/* Visual indicators for pinned items in the list */
+.vp-post-item.pinned {
+  border-left: 3px solid #ffd93d !important; /* Normal pinned */
+}
+
+.vp-post-item.super-pinned-item {
+  border-left: 3px solid #ff6b6b !important; /* Super pinned */
 }
 </style>

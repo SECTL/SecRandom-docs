@@ -46,13 +46,17 @@ export const getBulletinList = (bulletinDir: string) => {
         }
     }
 
+    // Determine if this is an English bulletin based on the path
+    const isEnglishPath = bulletinDir.includes('/en/') || bulletinDir.includes('\\en\\');
+    
     return {
       id: file.replace('.md', ''),
       title: frontmatter.title || file.replace('.md', ''),
       createTime: frontmatter.createTime || '',
       pin,
-      content: excerpt || '点击查看详情',
-      mtime: stat.mtimeMs // Add mtime for version tracking
+      content: excerpt || (isEnglishPath ? 'Click for details' : '点击查看详情'),
+      mtime: stat.mtimeMs, // Add mtime for version tracking
+      isEnglish: isEnglishPath
     }
   })
   
@@ -76,7 +80,7 @@ export const getBulletinList = (bulletinDir: string) => {
       id: b.id,
       title: b.title,
       content: b.content,
-      link: `/bulletin/${b.id}.html`,
+      link: b.isEnglish ? `/en/bulletin/${b.id}.html` : `/bulletin/${b.id}.html`,
       icon,
       key // Unique key for read status
     }
