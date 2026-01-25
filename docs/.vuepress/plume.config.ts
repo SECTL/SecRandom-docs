@@ -1,13 +1,6 @@
 import { defineThemeConfig } from 'vuepress-theme-plume'
 import { zhNavbar, enNavbar } from './navbar'
 import { zhcollections, encollections } from './collections'
-import { getBulletinList } from './bulletin'
-import { fileURLToPath } from 'url'
-import { dirname, resolve } from 'path'
-
-const __dirname = dirname(fileURLToPath(import.meta.url))
-const bulletinDir = resolve(__dirname, '../bulletin')
-const bulletinList = getBulletinList(bulletinDir)
 
 const currentYear = new Date().getFullYear()
 export default defineThemeConfig({
@@ -57,10 +50,7 @@ export default defineThemeConfig({
    */
   bulletin: {
     layout: 'bottom-right',
-    content: '',
-    title: '',
-    items: bulletinList,
-  } as any,
+  },
 
   /* 过渡动画 @see https://theme-plume.vuejs.press/config/basic/#transition */
   transition: {

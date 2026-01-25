@@ -19,7 +19,102 @@ const router = useRouter()
 const showNotification = ref(false)
 const readBulletinIds = ref<Set<string>>(new Set())
 
+// 根据当前路径判断语言环境来决定加载哪个目录的公告
+const currentPath = typeof window !== 'undefined' ? window.location.pathname : '';
+const isEnglish = currentPath.startsWith('/en/');
+
+let rawBulletins;
+if (isEnglish) {
+  rawBulletins = import.meta.glob('../../../en/bulletin/*.md', { query: '?raw', import: 'default', eager: true });
+} else {
+  rawBulletins = import.meta.glob('../../../bulletin/*.md', { query: '?raw', import: 'default', eager: true });
+}
+
+const simpleHash = (str: string) => {
+  let hash = 0
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charCodeAt(i)
+    hash = ((hash << 5) - hash) + char
+    hash = hash & hash
+  }
+  return hash
+}
+
+const getBulletinsFromFiles = (): BulletinItem[] => {
+  const items: any[] = []
+  
+  for (const path in rawBulletins) {
+    const filename = path.split('/').pop() || ''
+    if (!filename.endsWith('.md') || filename.toLowerCase().includes('index')) continue
+    
+    const id = filename.replace('.md', '')
+    const content = rawBulletins[path] as string
+    
+    // Parse frontmatter
+    const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/)
+    const frontmatter: any = {}
+    if (match) {
+      match[1].split(/\r?\n/).forEach(line => {
+        const parts = line.split(':')
+        if (parts.length >= 2) {
+          const key = parts[0].trim()
+          const val = parts.slice(1).join(':').trim()
+          frontmatter[key] = val.replace(/^['"](.*)['"]$/, '$1')
+        }
+      })
+    }
+    
+    // Handle sticky
+    let sticky = 0
+    if (typeof frontmatter.sticky === 'number') sticky = frontmatter.sticky
+    else if (frontmatter.sticky === 'true' || frontmatter.sticky === true) sticky = 1
+    
+    // Excerpt
+    let excerpt = frontmatter.excerpt
+    if (!excerpt) {
+        const body = content.replace(/^---\r?\n[\s\S]*?\r?\n---/, '').trim()
+        const lines = body.split(/\r?\n/)
+        for (const line of lines) {
+            const cleanLine = line.trim()
+            if (cleanLine && !cleanLine.startsWith('#') && !cleanLine.startsWith('![')) {
+                excerpt = cleanLine
+                break
+            }
+        }
+    }
+    
+    // Icon
+    let icon = '🔔'
+    if (sticky >= 10) icon = '📢'  // High priority sticky
+    else if (sticky >= 1) icon = '📌'  // Normal sticky
+    
+    const hash = simpleHash(content)
+    const key = `${id}-${hash}`
+    
+    items.push({
+      id,
+      title: frontmatter.title || id,
+      content: excerpt || (isEnglish ? 'Click for details' : '点击查看详情'),
+      link: isEnglish ? `/en/bulletin/${id}.html` : `/bulletin/${id}.html`,
+      icon,
+      key,
+      sticky,
+      createTime: frontmatter.createTime || ''
+    })
+  }
+  
+  items.sort((a, b) => {
+    if (a.pin !== b.pin) return b.pin - a.pin
+    return (b.createTime || '').localeCompare(a.createTime || '')
+  })
+  
+  return items.slice(0, 3) as BulletinItem[]
+}
+
 const bulletins = computed<BulletinItem[]>(() => {
+  const fileItems = getBulletinsFromFiles()
+  if (fileItems.length > 0) return fileItems
+
   const config = theme.value.bulletin
   if (!config) return []
   
@@ -85,6 +180,11 @@ const closeNotification = () => {
 
 const jumpToBulletinPage = () => {
   const item = unreadBulletins.value[0]
+  
+  if (item) {
+    markAsRead(item.key || item.id)
+  }
+
   if (item?.link) {
     router.push(item.link)
   } else {
@@ -109,8 +209,8 @@ onMounted(() => {
           <span v-else class="vpi-bell" />
         </span>
         <div class="notification-text">
-          <div class="notification-title">新公告</div>
-          <div class="notification-message">{{ unreadBulletins[0].title || `您有 ${unreadBulletins.length} 条未读公告` }}</div>
+          <div class="notification-title">{{ isEnglish ? 'New Bulletin' : '新公告' }}</div>
+          <div class="notification-message">{{ unreadBulletins[0].title || (isEnglish ? `You have ${unreadBulletins.length} unread bulletin(s)` : `您有 ${unreadBulletins.length} 条未读公告`) }}</div>
         </div>
         <button class="notification-close" @click.stop="closeNotification">
           <span class="vpi-close" />
