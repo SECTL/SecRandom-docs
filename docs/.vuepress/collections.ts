@@ -16,7 +16,6 @@ const Doc = defineCollection({
       { text: '下载与运行', link: 'start' },
       { text: '软件引导流程', link: 'software-guide' },
       { text: '界面介绍', link: 'interface' },
-      { text: '基本操作指南', link: 'basic' },
     ] },
     { text: '设置', icon: 'garden:gear-stroke-16', prefix: 'settings', items: [
       { text: '基本设置', link: 'basic' },
@@ -64,7 +63,6 @@ const EnDoc = defineCollection({
       { text: 'Download & Run', link: 'start' },
       { text: 'Software Guide', link: 'software-guide' },
       { text: 'Interface', link: 'interface' },
-      { text: 'Basic Guide', link: 'basic' },
     ] },
     { text: 'Settings', icon: 'garden:gear-stroke-16', prefix: 'settings', items: [
       { text: 'Basic Settings', link: 'basic' },
