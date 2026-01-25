@@ -16,6 +16,7 @@ const zhNavbar = defineNavbarConfig([
       { text: '资源', icon: 'carbon:document', link: '/doc/resources/contribute' },
     ],
   },
+  { text: '公告', icon: 'mingcute:notification-line', link: '/bulletin/' },
   {
     text: '常见问题',
     icon: 'mingcute:question-line',
@@ -36,6 +37,7 @@ const enNavbar = defineNavbarConfig([
       { text: 'Resources', icon: 'carbon:document', link: '/en/doc/resources/contribute' },
     ],
   },
+  { text: 'Bulletin', icon: 'mingcute:notification-line', link: '/en/bulletin/' },
   {
     text: 'FAQ',
     icon: 'mingcute:question-line',
