@@ -106,9 +106,9 @@ const EnFaq = defineCollection({
 
 const EnBulletin = defineCollection({
   type: "post",
-  dir: "en/bulletin",
+  dir: "bulletin",
   title: "Bulletin",
-  link: "/en/bulletin/",
+  link: "/bulletin/",
   tags: false,
   archives: false,
   categories: false,
