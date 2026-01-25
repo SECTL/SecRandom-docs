@@ -6,7 +6,7 @@ export default defineUserConfig({
   base: '/',
   lang: 'zh-CN', // 默认语言为中文，浏览器会自动检测用户语言
   title: 'SecRandom',
-  description: '',
+  description: '一个易用的点名/抽奖软件，专为教育场景设计，让课堂点名更高效透明！',
 
   head: [
     ['link', { rel: 'icon', type: 'image/png', href: '/logo.png' }],
@@ -30,10 +30,10 @@ export default defineUserConfig({
 
   theme: plumeTheme({
     /* 添加您的部署域名, 有助于 SEO, 生成 sitemap */
-    // hostname: 'https://your_site_url',
+    hostname: 'https://secrandom.sectl.top/',
 
     /* 文档仓库配置，用于 editLink */
-    docsRepo: 'https://github.com/SECTL/SecRandom',
+    docsRepo: 'https://github.com/SECTL/SecRandom-docs',
     docsDir: 'docs',
     docsBranch: 'main',
 
