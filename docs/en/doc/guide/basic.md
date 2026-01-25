@@ -45,7 +45,6 @@ Click the start button to perform random selection
 **Supported Formats**
 - **CSV Files**: One person per line, comma-separated fields
 - **Excel Files**: XLSX/XLS format, first row is header
-- **NamePicker Files**: Compatible with NamePicker software format
 
 **Import Steps**
 1. **Click Import** - Select "Quick Import Student List"
