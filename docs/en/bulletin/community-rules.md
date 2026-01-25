@@ -1,6 +1,6 @@
 ---
 title: 📢 Community Rules
-createTime: 2025-01-25 15:42:00
+createTime: 2025/01/25 15:42:00
 pin: super
 excerpt: To maintain a good community environment, please read these rules carefully before communicating.
 ---
