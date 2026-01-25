@@ -46,9 +46,9 @@ config:
       - title: 主题自定义
         icon: lucide:palette
         details: 支持自定义主题，满足不同用户需求
-      - title: IPC/URL集成
+      - title: IPC/URL 集成
         icon: lucide:link
-        details: 支持IPC/URL调用，与其他软件无缝集成
+        details: 支持 IPC/URL 调用，与其他软件无缝集成
       - title: 开机即用
         icon: lucide:power
         details: 开机自启后台待命，抢回课堂时间
@@ -61,7 +61,7 @@ config:
       - title: 现代美观
         icon: lucide:sparkles
         details: 仿Win11 Fluent Design，简洁大气
-      - title: 联动ClassIsland等软件
-        icon: lucide:share-2
-        details: 与ClassIsland等软件联动，实现更方便的点名结果显示/更多联动
+      - title: 联动 ClassIsland 等软件
+        icon: mdi:vector-combine
+        details: 与 ClassIsland 等软件联动，实现更方便的点名结果显示/更多联动
 ---
