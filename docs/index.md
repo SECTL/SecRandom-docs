@@ -29,39 +29,39 @@ config:
   - type: features
     features:
       - title: 灵活抽选
-        icon: 🛍️
+        icon: lucide:users
         details: 点名(单人&多人&小组&性别)/抽奖(可显示学生&小组)，全场景覆盖
       - title: 公平核心
-        icon: 🎲
+        icon: lucide:scale
         details: 动态权重+概率可视化，公平看得见
       - title: 多名单设计
-        icon: 📋
+        icon: lucide:clipboard-list
         details: 一份程序管理多名单，操作更简便
       - title: 浮窗闪抽
-        icon: 🖱️
+        icon: lucide:mouse-pointer-2
         details: 浮窗一点，随时抽取，教学不中断
       - title: 语音播报
-        icon: 🗣️
+        icon: lucide:volume-2
         details: 语音清晰播报，全班即时知晓
       - title: 主题自定义
-        icon: 🎨
+        icon: lucide:palette
         details: 支持自定义主题，满足不同用户需求
       - title: IPC/URL集成
-        icon: 🔗
+        icon: lucide:link
         details: 支持IPC/URL调用，与其他软件无缝集成
       - title: 开机即用
-        icon: ⏳
+        icon: lucide:power
         details: 开机自启后台待命，抢回课堂时间
       - title: 密码功能
-        icon: �
+        icon: lucide:lock
         details: 支持密码/TOTP/U盘解锁，防止学生乱玩
       - title: 记录可控
-        icon: 📝
+        icon: lucide:file-text
         details: 完整的历史记录，所有数据均可随时调取
       - title: 现代美观
-        icon: 🎨
+        icon: lucide:sparkles
         details: 仿Win11 Fluent Design，简洁大气
       - title: 联动ClassIsland等软件
-        icon: 🔗
+        icon: lucide:share-2
         details: 与ClassIsland等软件联动，实现更方便的点名结果显示/更多联动
 ---
