@@ -2,6 +2,8 @@
 title: 团队
 aside: false
 editLink: false
+contributors: false
+changelog: false
 ---
 
 <TeamCard />

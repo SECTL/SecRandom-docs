@@ -2,6 +2,8 @@
 title: Team
 aside: false
 editLink: false
+contributors: false
+changelog: false
 ---
 
 <CardGrid>
