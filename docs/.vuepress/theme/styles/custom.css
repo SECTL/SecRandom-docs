@@ -101,10 +101,88 @@
 }
 
 .item:hover {
-  transform: scale(1.05);
+  transform: translateY(-5px);
 }
 
-/* Hide default Plume bulletin to use custom one */
-.vp-bulletin {
-  display: none !important;
+/* doc */
+.content-container {
+  margin: 0 !important;
+}
+
+.vp-doc-container.has-aside .content-container {
+  max-width: 1000px !important;
+}
+
+/* faq */
+.posts-container.no-profile {
+  max-width: 1400px !important;
+}
+
+.vp-posts-nav.local .nav-link {
+  max-width: 175px !important;
+}
+
+/* friends */
+.vp-friends {
+  max-width: 1400px !important;
+  padding: 0 !important;
+}
+
+.vp-friends .title {
+  color: var(--vp-c-brand-1) !important;
+  padding: 40px 0 0 0 !important;
+}
+
+@media screen and (max-width: 768px) {
+  .vp-friends {
+    padding-top: 20px !important;
+  }
+}
+
+.vp-friends-group {
+  padding-top: 0 !important;
+}
+
+.vp-friend {
+  border-radius: 16px !important;
+  transition: transform 0.3s;
+  background-color: #c8c8c81a !important;
+}
+
+.vp-friend:hover {
+  transform: translateY(-5px);
+}
+
+.friends-list {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+@media screen and (max-width: 768px) {
+  .friends-list {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  }
+}
+
+.avatar {
+  padding: 8px;
+  border-radius: 16px !important;
+  display: flex;
+  background-color: transparent !important;
+}
+
+.avatar img {
+  object-fit: contain !important;
+  object-position: center !important;
+}
+
+.vp-link.title {
+  color: var(--vp-c-text-1) !important;
+}
+
+.cc-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1em;
+  margin-left: 0.2em;
 }
