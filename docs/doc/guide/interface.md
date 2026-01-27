@@ -2,194 +2,78 @@
 title: 界面介绍
 createTime: 2025/11/29 12:58:02
 ---
+
 # 界面介绍
 
-> 🎨 **直观易用的界面设计** - 专为教育场景优化的现代化交互体验
+## 界面概览
 
-## 🎯 界面概览
+SecRandom 采用 Fluent Design 设计语言，基于 PySide6 和 qfluentwidgets 框架构建现代化用户界面。主窗口继承自 FluentWindow，提供流畅的导航体验和一致的视觉风格。界面支持窗口大小记忆、自动居中、最大化状态保存等功能，确保用户获得舒适的使用体验。
 
-SecRandom采用现代化的界面设计理念，通过清晰的层次结构和直观的操作流程，让每位用户都能快速上手。界面支持**智能适配**和**个性化定制**，完美适配不同使用场景。
+## 主题与个性化
 
-## 🎨 主题与个性化
+### 预设主题方案
 
-### 🌈 **预设主题方案**
+#### 浅色主题
+- 适用于明亮环境，提供清晰明快的视觉体验
+- 通过 Theme.LIGHT 配置启用
 
-#### ☀️ **浅色主题**
-- **适用场景**：教室、办公室等明亮环境
-- **配色特点**：白底黑字
-- **护眼指数**：⭐⭐⭐
-- **能耗优化**：⭐⭐⭐⭐
+#### 深色主题
+- 适用于暗光环境，减少眼部疲劳
+- 通过 Theme.DARK 配置启用
+- 支持自动主题模式（Theme.AUTO），根据系统设置自动切换
 
-#### 🌙 **深色主题**
-- **适用场景**：晚间使用、昏暗环境
-- **配色特点**：黑底白字
-- **护眼指数**：⭐⭐⭐⭐⭐
-- **专注模式**：减少眼部疲劳
+#### 主题色自定义
+- 支持自定义主题色，可通过十六进制颜色码或颜色名称设置
+- 主题色应用于按钮、进度条等界面元素，实现个性化外观
 
-## 🧭 主界面功能导航
+#### 字体个性化
+- 内置 HarmonyOS Sans SC 字体家族
+- 支持多种字重选择（Light/Medium/Bold）
+- 可加载自定义字体文件
 
-### 🎯 **核心功能区**
+## 主界面功能导航
 
-#### 👥 **点名**
-<div class="feature-card">
-<div class="feature-header">
-  <div class="feature-icon"><img src="./images/ic_fluent_people_24_color.svg"></div>
-  <div class="feature-info">
-    <h4>点名</h4>
-    <p>智能随机选择学生，支持权重和分组</p>
-  </div>
-</div>
-<div class="feature-details">
-  <span class="feature-tag">教育专用</span>
-  <span class="feature-tag">权重算法</span>
-  <span class="feature-tag">分组管理</span>
-</div>
-</div>
+### 核心功能区
 
-#### 🎁 **抽奖**
-<div class="feature-card">
-<div class="feature-header">
-  <div class="feature-icon"><img src="./images/ic_fluent_gift_24_color.svg"></div>
-  <div class="feature-info">
-    <h4>抽奖</h4>
-    <p>奖品抽取管理，支持多级奖项</p>
-  </div>
-</div>
-<div class="feature-details">
-  <span class="feature-tag">奖品管理</span>
-  <span class="feature-tag">多级奖项</span>
-</div>
-</div>
+#### 点名页面
+- 图标：ic_fluent_people_20_filled
+- 功能：随机点名、点名历史记录、点名设置
+- 支持通过 URL 协议和 IPC 调用快速跳转
 
-#### 📊 **历史记录**
-<div class="feature-card">
-<div class="feature-header">
-  <div class="feature-icon"><img src="./images/ic_fluent_history_24_color.svg"></div>
-  <div class="feature-info">
-    <h4>历史记录</h4>
-    <p>完整的抽取历史，支持导出分析</p>
-  </div>
-</div>
-</div>
+#### 抽奖页面
+- 图标：ic_fluent_gift_20_filled
+- 功能：抽奖抽取、奖品管理、抽奖历史
+- 支持权重设置、公平抽取算法
 
-#### ⚙️ **设置**
-<div class="feature-card">
-<div class="feature-header">
-  <div class="feature-icon"><img src="./images/ic_fluent_settings_24_color.svg"></div>
-  <div class="feature-info">
-    <h4>设置</h4>
-    <p>进入设置界面</p>
-  </div>
-</div>
-<div class="feature-details">
-  <span class="feature-tag">抽取设置</span>
-  <span class="feature-tag">名单管理</span>
-  <span class="feature-tag">关于信息</span>
-</div>
-</div>
+#### 历史记录页面
+- 图标：ic_fluent_history_20_filled
+- 功能：查看点名和抽奖历史记录
+- 支持数据统计和历史数据导出
 
-## 🧵 系统托盘菜单
+#### 设置页面
+- 图标：ic_fluent_settings_20_filled
+- 功能：全局设置管理
+- 包含基础设置、抽取设置、历史管理、列表管理、通知设置、语音设置、安全设置等多个子模块
 
-### 🎛️ **快速操作面板**
+#### 导航栏个性化
+- 支持自定义导航项位置（顶部/底部/隐藏）
+- 可根据用户偏好调整界面布局
 
-#### 🎭 **界面控制**
-<div class="tray-section">
+## 系统托盘菜单
 
-| 功能图标 | 操作名称 | 功能描述 |
-|----------|----------|----------|
-| <span class="icon"><img src="./images/uiicon-1.png" alt="关于信息" style="width: 250px;"></span> | 关于信息 | 显示程序详细信息 |
-| <span class="icon"><img src="./images/uiicon-2.png" alt="显示/隐藏主界面" style="width: 250px;"></span> | 显示/隐藏主界面 | 快速切换窗口显示状态 |
-| <span class="icon"><img src="./images/uiicon-3.png" alt="显示/隐藏浮窗" style="width: 250px;"></span> | 显示/隐藏浮窗 | 控制浮窗显示，仅当前会话有效 |
-| <span class="icon"><img src="./images/uiicon-4.png" alt="打开设置" style="width: 250px;"></span> | 打开设置 | 快速进入设置界面 |
-| <span class="icon"><img src="./images/uiicon-5.png" alt="重启/退出" style="width: 250px;"></span> | 重启/退出 | 程序重启或安全退出 |
+### 快速操作面板
 
-</div>
+#### 界面控制
+- 显示/隐藏主窗口：快速切换主窗口显示状态
+- 显示/隐藏悬浮窗：控制悬浮窗的显示
+- 打开设置：快速访问设置页面
+- 关于 SecRandom：显示应用信息
 
-<style>
-.feature-card {
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  border-radius: 12px;
-  padding: 20px;
-  margin: 15px 0;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
-}
+#### 应用控制
+- 重启应用：快速重启程序
+- 退出应用：安全退出程序
 
-.feature-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-}
-
-.feature-header {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 10px;
-}
-
-.feature-icon {
-  width: 48px;
-  height: 48px;
-  font-size: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  background: rgba(52, 152, 219, 0.1);
-}
-
-.feature-info h4 {
-  margin: 0;
-  color: #2c3e50;
-  font-size: 1.2em;
-}
-
-.feature-info p {
-  margin: 5px 0 0 0;
-  color: #5a6c7d;
-  font-size: 0.9em;
-}
-
-.feature-details {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.feature-tag {
-  background: #3498db;
-  color: white;
-  padding: 4px 8px;
-  border-radius: 12px;
-  font-size: 0.75em;
-}
-
-.tray-section {
-  border-radius: 8px;
-  padding: 15px;
-  margin: 15px 0;
-}
-
-.tray-section table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.tray-section th,
-.tray-section td {
-  padding: 8px;
-  text-align: left;
-  border-bottom: 1px solid #dee2e6;
-}
-
-@media (max-width: 768px) {
-  .feature-header {
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .feature-card {
-    padding: 15px;
-  }
-}
-</style>
+#### 托盘特性
+- 支持右键菜单自动关闭
+- 菜单位置智能调整，避免超出屏幕边界
+- 支持通过 URL 命令和 IPC 调用触发托盘操作

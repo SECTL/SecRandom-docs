@@ -1,12 +1,11 @@
 ---
 title: 团队
-aside: false
-editLink: false
+pageLayout: page
 ---
 
-<TeamCard />
+<TeamCard lang="zh-CN" />
 
-<CardGrid>
+<CardGrid class="container">
     <LinkCard title="作者" href="https://github.com/lzy98276">
         <div class="card-content">
             <img src="/avatar/lzy.jpg" alt="lzy" width="80" />
@@ -81,8 +80,11 @@ editLink: false
     </LinkCard>
 </CardGrid>
 
+<VPComment class="comment" />
+
 <script setup>
 import { onMounted, onBeforeUnmount } from 'vue';
+import VPComment from '@theme/VPComment.vue'
 
 let animationId = null;
 
@@ -110,6 +112,13 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  justify-content: center;
+  padding: 30px 0;
+}
+
 .card-content {
   display: flex;
   align-items: center;
@@ -142,5 +151,17 @@ onBeforeUnmount(() => {
   font-weight: 500;
   color: var(--vp-c-text-2);
   margin: 0;
+}
+
+.comment {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 0 2rem;
+}
+
+@media (max-width: 768px) {
+  .container, .comment {
+    margin: 0 15px;
+  }
 }
 </style>

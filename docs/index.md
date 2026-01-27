@@ -6,7 +6,7 @@ config:
     hero:
       name: SecRandom
       text: 助力每一节课堂教学
-      tagline: 一个易用的班级抽号软件，专为教育场景设计，让课堂点名更高效透明
+      tagline: 一个易用的点名/抽奖软件，专为教育场景设计，让课堂点名更高效透明！
       image: /logo.png
       actions:
         - theme: brand
@@ -22,46 +22,46 @@ config:
           icon: fa-brands:github
           link: https://github.com/SECTL/SecRandom
         - theme: alt
-          text: Hub
-          icon: ic:baseline-screenshot
-          link: https://sectl-hub.netlify.app/
+          text: Sectl 官网
+          icon: fa-brands:github
+          link: https://sectl.top/
           
   - type: features
     features:
       - title: 灵活抽选
-        icon: 🛍️
-        details: 抽单人/多人/小组/性别，全场景覆盖
+        icon: lucide:users
+        details: 点名(单人&多人&小组&性别)/抽奖(可显示学生&小组)，全场景覆盖
       - title: 公平核心
-        icon: 🎲
-        details: 动态权重+概率可视，真公平看得见
-      - title: 多班管理
-        icon: 📋
-        details: 一份程序管多班名单，告别繁琐操作
-      - title: 浮窗快抽
-        icon: 🖱️
-        details: 一点浮窗，随时随地可抽，不打断教学
+        icon: lucide:scale
+        details: 动态权重+概率可视化，公平看得见
+      - title: 多名单设计
+        icon: lucide:clipboard-list
+        details: 一份程序管理多名单，操作更简便
+      - title: 浮窗闪抽
+        icon: lucide:mouse-pointer-2
+        details: 浮窗一点，随时抽取，教学不中断
       - title: 语音播报
-        icon: 🗣️
-        details: 结果播报清晰，全班都能知晓
-      - title: 插件扩展
-        icon: 🔌
-        details: 支持自定义插件，无限扩展功能边界
-      - title: URL集成
-        icon: 🔗
-        details: 一键导入在线名单，云端同步更便捷
+        icon: lucide:volume-2
+        details: 语音清晰播报，全班即时知晓
+      - title: 主题自定义
+        icon: lucide:palette
+        details: 支持自定义主题，满足不同用户需求
+      - title: IPC/URL 集成
+        icon: lucide:link
+        details: 支持 IPC/URL 调用，与其他软件无缝集成
       - title: 开机即用
-        icon: ⏳
+        icon: lucide:power
         details: 开机自启后台待命，抢回课堂时间
-      - title: 界面分明
-        icon: 🖥️
-        details: 主抽选、设置分离，清爽高效
+      - title: 密码功能
+        icon: lucide:lock
+        details: 支持密码/TOTP/U盘解锁，防止学生乱玩
       - title: 记录可控
-        icon: 📝
-        details: 历史记录带时间戳，开关自如护隐私
+        icon: lucide:file-text
+        details: 完整的历史记录，所有数据均可随时调取
       - title: 现代美观
-        icon: 🎨
+        icon: lucide:sparkles
         details: 仿Win11 Fluent Design，简洁大气
-      - title: 自动清除
-        icon: 🗑️
-        details: 记录自动清除，节约空间
+      - title: 联动 ClassIsland 等软件
+        icon: mdi:vector-combine
+        details: 与 ClassIsland 等软件联动，实现更方便的点名结果显示/更多联动
 ---
