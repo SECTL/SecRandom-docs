@@ -144,19 +144,19 @@ const platforms = computed<DeviceType[]>(() => [
   { 
     id: 'win10', 
     name: 'Windows 10/11', 
-    icon: '🪟', 
+    icon: '/icon/Windows11.svg', 
     description: t.value.win10
   },
   { 
     id: 'linux', 
     name: 'Linux', 
-    icon: '🐧', 
+    icon: '/icon/Linux.svg', 
     description: t.value.linux
   },
   { 
     id: 'win7', 
     name: 'Windows 7', 
-    icon: '🧱', 
+    icon: '/icon/Windows7.svg', 
     description: t.value.unsupported,
     disabled: true,
     disabledReason: t.value.unsupported
@@ -164,7 +164,7 @@ const platforms = computed<DeviceType[]>(() => [
   { 
     id: 'macos', 
     name: 'macOS', 
-    icon: '🍎', 
+    icon: '/icon/macOS.png', 
     description: t.value.unsupported,
     disabled: true,
     disabledReason: t.value.unsupported
@@ -219,7 +219,7 @@ watch(currentRelease, async (newRelease) => {
   isNotesLoading.value = true
   
   // Use setTimeout to push to next tick/task
-  setTimeout(() => {
+  setTimeout(async () => {
     const body = newRelease.body
     let content = body
     
@@ -271,7 +271,7 @@ watch(currentRelease, async (newRelease) => {
     content = content.replace(/<img[^>]*>/g, '')
     content = content.replace(/!\[.*?\]\(.*?\)/g, '')
   
-    processedReleaseNotes.value = marked(content)
+    processedReleaseNotes.value = await marked(content)
     isNotesLoading.value = false
   }, 10)
 }, { immediate: true })
@@ -432,7 +432,7 @@ onBeforeUnmount(() => {
         
         <div class="platform-selector" ref="deviceDropdownRef">
           <button class="selector-btn" @click.stop="isDeviceDropdownOpen = !isDeviceDropdownOpen">
-            <span class="icon">{{ platforms.find(p => p.id === selectedPlatform)?.icon }}</span>
+            <img :src="platforms.find(p => p.id === selectedPlatform)?.icon" class="platform-icon">
             <span class="text">{{ platforms.find(p => p.id === selectedPlatform)?.name }}</span>
             <span class="arrow" :class="{ open: isDeviceDropdownOpen }">▼</span>
           </button>
@@ -445,7 +445,7 @@ onBeforeUnmount(() => {
               :class="{ active: selectedPlatform === p.id, disabled: p.disabled }"
               @click="handlePlatformChange(p.id)"
             >
-              <span class="item-icon">{{ p.icon }}</span>
+              <img :src="p.icon" class="item-icon">
               <div class="item-info">
                 <div class="item-name">
                   {{ p.name }}
@@ -610,7 +610,7 @@ onBeforeUnmount(() => {
 }
 
 .banner {
-  background: url('./images/secrandom.png') no-repeat center center;
+  background: url('/images/banner.png') no-repeat center center;
   background-size: cover;
   color: white;
   padding: 60px 20px;
@@ -669,6 +669,16 @@ onBeforeUnmount(() => {
   background: rgba(255, 255, 255, 0.25);
 }
 
+.platform-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
 .dropdown-menu {
   position: absolute;
   top: 100%;
@@ -687,6 +697,7 @@ onBeforeUnmount(() => {
 
 .dropdown-item {
   display: flex;
+  align-items: center;
   gap: 15px;
   padding: 15px;
   cursor: pointer;
@@ -710,7 +721,13 @@ onBeforeUnmount(() => {
 }
 
 .item-icon {
-  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
 }
 
 .item-name {

@@ -144,23 +144,13 @@
 }
 
 .vp-friend {
-  border-radius: 16px !important;
-  transition: transform 0.3s;
+  border: solid 1px var(--vp-c-divider);
+  border-radius: 12px !important;
   background-color: #c8c8c81a !important;
 }
 
 .vp-friend:hover {
-  transform: translateY(-5px);
-}
-
-.friends-list {
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-}
-
-@media screen and (max-width: 768px) {
-  .friends-list {
-    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
-  }
+  border: solid 1px var(--vp-c-brand-2);
 }
 
 .avatar {

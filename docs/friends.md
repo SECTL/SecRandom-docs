@@ -2,6 +2,7 @@
 pageLayout: friends
 title: 友情链接
 editLink: false
+cols: 3
 list:
   - name: Python
     link: https://www.python.org/
