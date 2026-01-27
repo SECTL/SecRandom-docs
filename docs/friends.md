@@ -30,7 +30,7 @@ list:
     desc: 全国最大的电教委交流社区
   - name: Awesome-Iwb
     link: https://github.com/awesome-iwb/awesome-iwb
-    avatar: /icon/AIwb.png
+    avatar: /icon/Aiwb.png
     desc: 为广大电教倾情撰写，让班级大屏更好用！
   - name: Awesome-Class-Softwares
     link: https://acs.jursin.top/
