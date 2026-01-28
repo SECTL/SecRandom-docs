@@ -107,7 +107,10 @@ export default defineUserConfig({
     //   artPlayer: true,    // 启用嵌入 artPlayer 本地视频 语法 @[artPlayer](url)
     //   audioReader: true,  // 启用嵌入音频朗读功能 语法 @[audioReader](url)
       icon: { provider: 'iconify', size: '1.5rem' },
-    //   table: true,        // 启用表格增强容器语法 ::: table
+      table: {
+        align: 'center',
+      },
+      field: true,
     //   codepen: true,      // 启用嵌入 codepen 语法 @[codepen](user/slash)
     //   replit: true,       // 启用嵌入 replit 语法 @[replit](user/repl-name)
     //   codeSandbox: true,  // 启用嵌入 codeSandbox 语法 @[codeSandbox](id)

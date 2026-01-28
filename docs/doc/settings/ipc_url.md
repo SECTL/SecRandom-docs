@@ -27,34 +27,34 @@ SecRandom 采用统一的窗口管理入口，所有窗口操作均通过以下�
 
 | 命令组 | 命令 | 用途 | 是否只读 | 是否影响界面 |
 |--------|------|------|----------|--------------|
-| **窗口控制** | `window/main` | 主窗口控制 | 否 | 是 |
-| | `window/settings` | 设置窗口控制 | 否 | 是 |
-| | `window/float` | 浮窗控制 | 否 | 是 |
-| **托盘功能** | `tray/toggle` | 切换显示 | 否 | 是 |
-| | `tray/settings` | 打开设置 | 否 | 是 |
-| | `tray/float` | 浮窗控制 | 否 | 是 |
-| | `tray/restart` | 重启程序 | 否 | 是 |
-| | `tray/exit` | 退出程序 | 否 | 是 |
-| **点名控制** | `roll_call/quick_draw` | 快速点名 | 否 | 是 |
-| | `roll_call/start` | 开始点名 | 否 | 是 |
-| | `roll_call/stop` | 停止点名 | 否 | 是 |
-| | `roll_call/reset` | 重置点名 | 否 | 是 |
-| | `roll_call/set_count` | 设置点名人数 | 否 | 是 |
-| | `roll_call/set_group` | 设置分组 | 否 | 是 |
-| | `roll_call/set_gender` | 设置性别 | 否 | 是 |
-| | `roll_call/set_list` | 设置名单 | 否 | 是 |
-| **抽奖控制** | `lottery/start` | 开始抽奖 | 否 | 是 |
-| | `lottery/stop` | 停止抽奖 | 否 | 是 |
-| | `lottery/reset` | 重置抽奖 | 否 | 是 |
-| | `lottery/set_count` | 设置抽奖人数 | 否 | 是 |
-| | `lottery/set_pool` | 设置奖池 | 否 | 是 |
-| | `lottery/set_range` | 设置范围 | 否 | 是 |
-| | `lottery/set_gender` | 设置性别 | 否 | 是 |
-| | `lottery/set_list` | 设置名单 | 否 | 是 |
-| **数据获取** | `data/roll_call_list` | 获取点名名单 | 是 | 否 |
-| | `data/lottery_list` | 获取抽奖名单 | 是 | 否 |
-| | `data/roll_call_history` | 获取点名历史 | 是 | 否 |
-| | `data/lottery_history` | 获取抽奖历史 | 是 | 否 |
+| **窗口控制** {rowspan=3} | `window/main` | 主窗口控制 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
+| | `window/settings` | 设置窗口控制 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
+| | `window/float` | 浮窗控制 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
+| **托盘功能** {rowspan=5} | `tray/toggle` | 切换显示 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
+| | `tray/settings` | 打开设置 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
+| | `tray/float` | 浮窗控制 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
+| | `tray/restart` | 重启程序 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
+| | `tray/exit` | 退出程序 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
+| **点名控制** {rowspan=8} | `roll_call/quick_draw` | 快速点名 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
+| | `roll_call/start` | 开始点名 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
+| | `roll_call/stop` | 停止点名 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
+| | `roll_call/reset` | 重置点名 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
+| | `roll_call/set_count` | 设置点名人数 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
+| | `roll_call/set_group` | 设置分组 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
+| | `roll_call/set_gender` | 设置性别 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
+| | `roll_call/set_list` | 设置名单 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
+| **抽奖控制** {rowspan=8} | `lottery/start` | 开始抽奖 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
+| | `lottery/stop` | 停止抽奖 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
+| | `lottery/reset` | 重置抽奖 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
+| | `lottery/set_count` | 设置抽奖人数 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
+| | `lottery/set_pool` | 设置奖池 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
+| | `lottery/set_range` | 设置范围 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
+| | `lottery/set_gender` | 设置性别 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
+| | `lottery/set_list` | 设置名单 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
+| **数据获取** {rowspan=4} | `data/roll_call_list` | 获取点名名单 | <p style="color: green;">是</p> | <p style="color: red;">否</p> |
+| | `data/lottery_list` | 获取抽奖名单 | <p style="color: green;">是</p> | <p style="color: red;">否</p> |
+| | `data/roll_call_history` | 获取点名历史 | <p style="color: green;">是</p> | <p style="color: red;">否</p> |
+| | `data/lottery_history` | 获取抽奖历史 | <p style="color: green;">是</p> | <p style="color: red;">否</p> |
 
 ## 通用参数
 
@@ -62,13 +62,27 @@ SecRandom 采用统一的窗口管理入口，所有窗口操作均通过以下�
 
 ### 动作参数
 
-| 参数名 | 类型 | 可选值 | 说明 |
-|--------|------|--------|------|
-| `action` | string | `show` / `hide` / `toggle` | 控制窗口显示状态 |
-| `mode` | string | `show` / `hide` / `toggle` | action 的别名，优先级相同 |
-| `op` | string | `show` / `hide` / `toggle` | action 的别名，优先级相同 |
-| `do` | string | `show` / `hide` / `toggle` | action 的别名，优先级相同 |
-| `visible` | number | `1` / `0` | `1` 等价于 `show`，`0` 等价于 `hide` |
+:::: field-group
+::: field name="action" type="'show' | 'hide' | 'toggle'" default="''"
+控制窗口显示状态
+:::
+
+::: field name="mode" type="'show' | 'hide' | 'toggle'" default="''"
+action 的别名，优先级相同
+:::
+
+::: field name="op" type="'show' | 'hide' | 'toggle'" default="''"
+action 的别名，优先级相同
+:::
+
+::: field name="do" type="'show' | 'hide' | 'toggle'" default="''"
+action 的别名，优先级相同
+:::
+
+::: field name="visible" type="1 | 0" default=""
+`1` 等价于 `show`，`0` 等价于 `hide`
+:::
+::::
 
 ### 参数解析规则
 
@@ -92,13 +106,27 @@ SecRandom 采用统一的窗口管理入口，所有窗口操作均通过以下�
 
 ### 参数表
 
-| 参数名 | 类型 | 可选值 | 说明 | 默认值 |
-|--------|------|--------|------|--------|
-| `action` | string | `show` / `hide` / `toggle` | 控制窗口显示状态 | `toggle` |
-| `page` | string | 见下方页面列表 | 切换主窗口页面 | 不切换页面 |
-| `page_name` | string | 同 `page` | page 的别名 | 同 `page` |
-| `name` | string | 同 `page` | page 的别名 | 同 `page` |
-| `value` | string | 同 `page` | page 的别名 | 同 `page` |
+:::: field-group
+::: field name="action" type="'show' | 'hide' | 'toggle'" default="'toggle'"
+控制窗口显示状态
+:::
+
+::: field name="page" type="'roll_call_page' | 'lottery_page' | 'history_page'" default="''"
+切换主窗口页面
+:::
+
+::: field name="page_name" type="'roll_call_page' | 'lottery_page' | 'history_page'" default="''"
+`page` 的别名
+:::
+
+::: field name="name" type="'roll_call_page' | 'lottery_page' | 'history_page'" default="''"
+`page` 的别名
+:::
+
+::: field name="value" type="'roll_call_page' | 'lottery_page' | 'history_page'" default="''"
+`page` 的别名
+:::
+::::
 
 ### 行为说明
 
@@ -127,14 +155,31 @@ SecRandom 采用统一的窗口管理入口，所有窗口操作均通过以下�
 
 ### 参数表
 
-| 参数名 | 类型 | 可选值 | 说明 | 默认值 |
-|--------|------|--------|------|--------|
-| `action` | string | `show` / `hide` / `toggle` | 控制窗口显示状态 | `toggle` |
-| `page` | string | 见下方页面列表 | 打开指定设置页面 | `basicSettingsInterface` |
-| `page_name` | string | 同 `page` | page 的别名 | 同 `page` |
-| `name` | string | 同 `page` | page 的别名 | 同 `page` |
-| `value` | string | 同 `page` | page 的别名 | 同 `page` |
-| `preview` | boolean | `1` / `0` / `true` / `false` / `yes` / `no` / `on` / `off` | 是否以预览模式打开 | `false` |
+:::: field-group
+::: field name="action" type="'show' | 'hide' | 'toggle'" default="'toggle'"
+控制窗口显示状态
+:::
+
+::: field name="page" type="'basicSettingsInterface' | 'listManagementInterface' | 'extractionSettingsInterface'" default="'basicSettingsInterface'"
+打开指定设置页面
+:::
+
+::: field name="page_name" type="'basicSettingsInterface' | 'listManagementInterface' | 'extractionSettingsInterface'" default="'basicSettingsInterface'"
+`page` 的别名
+:::
+
+::: field name="name" type="'basicSettingsInterface' | 'listManagementInterface' | 'extractionSettingsInterface'" default="'basicSettingsInterface'"
+`page` 的别名
+:::
+
+::: field name="value" type="'basicSettingsInterface' | 'listManagementInterface' | 'extractionSettingsInterface'" default="'basicSettingsInterface'"
+`page` 的别名
+:::
+
+::: field name="preview" type="'1' | '0' | 'true' | 'false' | 'yes' | 'no' | 'on' | 'off'" default="'false'"
+是否以预览模式打开
+:::
+::::
 
 ### 行为说明
 
@@ -167,13 +212,27 @@ SecRandom 采用统一的窗口管理入口，所有窗口操作均通过以下�
 
 ### 参数表
 
-| 参数名 | 类型 | 可选值 | 说明 | 默认值 |
-|--------|------|--------|------|--------|
-| `action` | string | `show` / `hide` / `toggle` | 控制浮窗显示状态 | `toggle` |
-| `mode` | string | `show` / `hide` / `toggle` | action 的别名 | 同 `action` |
-| `op` | string | `show` / `hide` / `toggle` | action 的别名 | 同 `action` |
-| `do` | string | `show` / `hide` / `toggle` | action 的别名 | 同 `action` |
-| `visible` | number | `1` / `0` | `1` 等价于 `show`，`0` 等价于 `hide` | - |
+:::: field-group
+::: field name="action" type="'show' | 'hide' | 'toggle'" default="'toggle'"
+控制浮窗显示状态
+:::
+
+::: field name="mode" type="'show' | 'hide' | 'toggle'" default="'toggle'"
+`action` 的别名
+:::
+
+::: field name="op" type="'show' | 'hide' | 'toggle'" default="'toggle'"
+`action` 的别名
+:::
+
+::: field name="do" type="'show' | 'hide' | 'toggle'" default="'toggle'"
+`action` 的别名
+:::
+
+::: field name="visible" type="1 | 0" default="''"
+`1` 等价于 `show`，`0` 等价于 `hide`
+:::
+::::
 
 ### 行为说明
 
@@ -390,10 +449,15 @@ SecRandom 采用统一的窗口管理入口，所有窗口操作均通过以下�
 
 **参数表**：
 
-| 参数名 | 类型 | 可选值 | 说明 | 默认值 |
-|--------|------|--------|------|--------|
-| `count` | number | 正整数 | 点名人数 | 1 |
-| `value` | number | 正整数 | count 的别名 | 同 `count` |
+:::: field-group
+::: field name="count" type="正整数" default="1"
+点名人数
+:::
+
+::: field name="value" type="正整数" default="1"
+`count` 的别名
+:::
+::::
 
 **返回值说明**：
 ```json
@@ -416,11 +480,19 @@ SecRandom 采用统一的窗口管理入口，所有窗口操作均通过以下�
 
 **参数表**：
 
-| 参数名 | 类型 | 可选值 | 说明 | 默认值 |
-|--------|------|--------|------|--------|
-| `group` | string | 分组名称 | 分组名称 | 默认分组 |
-| `group_name` | string | 分组名称 | group 的别名 | 同 `group` |
-| `name` | string | 分组名称 | group 的别名 | 同 `group` |
+:::: field-group
+::: field name="group" type="string" default="默认分组"
+分组名称
+:::
+
+::: field name="group_name" type="string" default="默认分组"
+分组名称
+:::
+
+::: field name="name" type="string" default="默认分组"
+`group` 的别名
+:::
+::::
 
 **返回值说明**：
 ```json
@@ -443,10 +515,15 @@ SecRandom 采用统一的窗口管理入口，所有窗口操作均通过以下�
 
 **参数表**：
 
-| 参数名 | 类型 | 可选值 | 说明 | 默认值 |
-|--------|------|--------|------|--------|
-| `gender` | string | `all` / `male` / `female` | 性别筛选 | `all` |
-| `value` | string | `all` / `male` / `female` | gender 的别名 | 同 `gender` |
+:::: field-group
+::: field name="gender" type="'all' | 'male' | 'female'" default="'all'"
+性别筛选
+:::
+
+::: field name="value" type="'all' | 'male' | 'female'" default="'all'"
+`gender` 的别名
+:::
+::::
 
 **返回值说明**：
 ```json
@@ -470,11 +547,19 @@ SecRandom 采用统一的窗口管理入口，所有窗口操作均通过以下�
 
 **参数表**：
 
-| 参数名 | 类型 | 可选值 | 说明 | 默认值 |
-|--------|------|--------|------|--------|
-| `class_name` | string | 班级名称 | 班级名称 | 默认班级 |
-| `list_name` | string | 名单名称 | class_name 的别名 | 同 `class_name` |
-| `name` | string | 名单名称 | class_name 的别名 | 同 `class_name` |
+:::: field-group
+::: field name="class_name" type="string" default="默认班级"
+班级名称
+:::
+
+::: field name="list_name" type="string" default="默认班级"
+`class_name` 的别名
+:::
+
+::: field name="name" type="string" default="默认班级"
+`class_name` 的别名
+:::
+::::
 
 **返回值说明**：
 ```json
@@ -567,10 +652,15 @@ SecRandom 采用统一的窗口管理入口，所有窗口操作均通过以下�
 
 **参数表**：
 
-| 参数名 | 类型 | 可选值 | 说明 | 默认值 |
-|--------|------|--------|------|--------|
-| `count` | number | 正整数 | 抽奖人数 | 1 |
-| `value` | number | 正整数 | count 的别名 | 同 `count` |
+:::: field-group
+::: field name="count" type="正整数" default="1"
+抽奖人数
+:::
+
+::: field name="value" type="正整数" default="1"
+`count` 的别名
+:::
+::::
 
 **返回值说明**：
 ```json
@@ -593,11 +683,19 @@ SecRandom 采用统一的窗口管理入口，所有窗口操作均通过以下�
 
 **参数表**：
 
-| 参数名 | 类型 | 可选值 | 说明 | 默认值 |
-|--------|------|--------|------|--------|
-| `pool_name` | string | 奖池名称 | 奖池名称 | 默认奖池 |
-| `pool` | string | 奖池名称 | pool_name 的别名 | 同 `pool_name` |
-| `name` | string | 奖池名称 | pool_name 的别名 | 同 `pool_name` |
+:::: field-group
+::: field name="pool_name" type="string" default="默认奖池"
+奖池名称
+:::
+
+::: field name="pool" type="string" default="默认奖池"
+`pool_name` 的别名
+:::
+
+::: field name="name" type="string" default="默认奖池"
+`pool_name` 的别名
+:::
+::::
 
 **返回值说明**：
 ```json
@@ -620,10 +718,15 @@ SecRandom 采用统一的窗口管理入口，所有窗口操作均通过以下�
 
 **参数表**：
 
-| 参数名 | 类型 | 可选值 | 说明 | 默认值 |
-|--------|------|--------|------|--------|
-| `index` | number | 非负整数 | 范围索引 | 0 |
-| `value` | number | 非负整数 | index 的别名 | 同 `index` |
+:::: field-group
+::: field name="index" type="非负整数" default="0"
+范围索引
+:::
+
+::: field name="value" type="非负整数" default="0"
+`index` 的别名
+:::
+::::
 
 **返回值说明**：
 ```json
@@ -646,10 +749,15 @@ SecRandom 采用统一的窗口管理入口，所有窗口操作均通过以下�
 
 **参数表**：
 
-| 参数名 | 类型 | 可选值 | 说明 | 默认值 |
-|--------|------|--------|------|--------|
-| `gender` | string | `all` / `male` / `female` | 性别筛选 | `all` |
-| `value` | string | `all` / `male` / `female` | gender 的别名 | 同 `gender` |
+:::: field-group
+::: field name="gender" type="'all' | 'male' | 'female'" default="'all'"
+性别筛选
+:::
+
+::: field name="value" type="'all' | 'male' | 'female'" default="'all'"
+`gender` 的别名
+:::
+::::
 
 **返回值说明**：
 ```json
@@ -673,11 +781,19 @@ SecRandom 采用统一的窗口管理入口，所有窗口操作均通过以下�
 
 **参数表**：
 
-| 参数名 | 类型 | 可选值 | 说明 | 默认值 |
-|--------|------|--------|------|--------|
-| `class_name` | string | 班级名称 | 班级名称 | 默认班级 |
-| `list_name` | string | 名单名称 | class_name 的别名 | 同 `class_name` |
-| `name` | string | 名单名称 | class_name 的别名 | 同 `class_name` |
+:::: field-group
+::: field name="class_name" type="string" default="默认班级"
+班级名称
+:::
+
+::: field name="list_name" type="string" default="默认班级"
+`class_name` 的别名
+:::
+
+::: field name="name" type="string" default="默认班级"
+`class_name` 的别名
+:::
+::::
 
 **返回值说明**：
 ```json
@@ -752,9 +868,11 @@ print(resp)
 
 **参数（query）**：
 
-| 参数名 | 类型 | 必填 | 说明 | 兼容别名 |
-|--------|------|------|------|----------|
-| `class_name` | string | 是 | 班级名称 | `class` / `name` / `className` |
+:::: field-group
+::: field name="class_name" type="string" required
+班级名称（兼容别名：`class` / `name` / `className`）
+:::
+::::
 
 **成功返回（业务层 result）字段**：
 ```json
@@ -792,9 +910,11 @@ print(resp)
 
 **参数（query）**：
 
-| 参数名 | 类型 | 必填 | 说明 | 兼容别名 |
-|--------|------|------|------|----------|
-| `pool_name` | string | 是 | 奖池名称 | `pool` / `name` / `poolName` |
+:::: field-group
+::: field name="pool_name" type="string" required
+奖池名称（兼容别名：`pool` / `name` / `poolName`）
+:::
+::::
 
 **成功返回（业务层 result）字段**：
 ```json
@@ -832,9 +952,11 @@ print(resp)
 
 **参数（query）**：
 
-| 参数名 | 类型 | 必填 | 说明 | 兼容别名 |
-|--------|------|------|------|----------|
-| `class_name` | string | 是 | 班级名称 | `class` / `name` / `className` |
+:::: field-group
+::: field name="class_name" type="string" required
+班级名称（兼容别名：`class` / `name` / `className`）
+:::
+::::
 
 **成功返回（业务层 result）字段**：
 ```json
@@ -871,9 +993,11 @@ print(resp)
 
 **参数（query）**：
 
-| 参数名 | 类型 | 必填 | 说明 | 兼容别名 |
-|--------|------|------|------|----------|
-| `pool_name` | string | 是 | 奖池名称 | `pool` / `name` / `poolName` |
+:::: field-group
+::: field name="pool_name" type="string" required
+奖池名称（兼容别名：`pool` / `name` / `poolName`）
+:::
+::::
 
 **成功返回（业务层 result）字段**：
 ```json
@@ -1066,42 +1190,3 @@ start secrandom://window/main?action=show&page=roll_call_page
 - 检查命令格式是否正确
 - 确认参数值是否在允许范围内
 - 查看返回的错误信息以定位问题
-
-<style>
-.config-card {
-  padding: 1.25rem;
-  border-radius: 0.75rem;
-  margin: 1.5rem 0;
-  border: 1px solid var(--vp-c-divider);
-  background: var(--vp-c-bg-soft);
-  transition: all 0.2s ease;
-}
-
-.config-card:hover {
-  border-color: var(--vp-c-brand-1);
-  box-shadow: 0 2px 8px var(--vp-c-shadow-1);
-}
-
-.highlight {
-  background: var(--vp-c-blue-soft);
-  border-left: 4px solid var(--vp-c-blue-1);
-}
-
-.warning {
-  background: var(--vp-c-yellow-soft);
-  border-left: 4px solid var(--vp-c-yellow-1);
-}
-
-.theme {
-  background: var(--vp-c-purple-soft);
-  border-left: 4px solid var(--vp-c-purple-1);
-}
-
-.tip-box {
-  padding: 1.5rem;
-  border-radius: 0.75rem;
-  margin: 2rem 0;
-  background: var(--vp-c-tip-soft);
-  border-left: 4px solid var(--vp-c-tip-1);
-}
-</style>
