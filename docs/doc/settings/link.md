@@ -3,24 +3,24 @@ title: 联动设置
 createTime: 2026/01/17 21:52:27
 ---
 
-> <img src="/fluent-icons/link.svg" alt="link" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> **设置课表联动功能**
+> ::lucide:link:: **设置课表联动功能**
 > 
 > 通过灵活的课表联动配置，实现课堂与下课的专属功能，所有设置实时保存并自动生效。
 
-## <img src="/fluent-icons/target.svg" alt="target" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 数据源选择
+## ::lucide:target:: 数据源选择
 
 **数据源选择**：选择课程表数据源
 - 不使用数据联动：完全独立使用本系统
 - 使用CSES课表数据：使用来自CSES课表的课程表数据
 - 使用Classisland数据源：使用来自Classisland的课程表数据（需要在Classisland中安装联动插件）
 
-## <img src="/fluent-icons/target.svg" alt="target" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> CSES课程表导入
+## ::lucide:target:: CSES课程表导入
 
 **课程表导入**：导入CSES课程表
 - 从文件导入：通过文件导入CSES课程表
 - 查看当前配置：查看已有的CSES课程表配置
 
-## <img src="/fluent-icons/target.svg" alt="target" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 课间禁用设置
+## ::lucide:target:: 课间禁用设置
 
 **课间禁用功能**：在下课时间段内抽取需要安全验证
 - 开启：在下课时间段内抽取需要进行安全验证
@@ -34,7 +34,7 @@ createTime: 2026/01/17 21:52:27
 - 数值越大，解锁时间越早；数值越小，解锁时间越晚
 - 设置为0表示准时解锁
 
-## <img src="/fluent-icons/target.svg" alt="target" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 课前重置设置
+## ::lucide:target:: 课前重置设置
 
 **课前重置功能**：在上课前指定秒数内自动清除临时记录和界面结果
 - 开启：在上课前指定秒数自动清除临时记录和界面结果
@@ -45,7 +45,7 @@ createTime: 2026/01/17 21:52:27
 - 数值越小，清除时间越晚
 - 设置为0表示准时清除
 
-## <img src="/fluent-icons/target.svg" alt="target" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 科目历史记录过滤
+## ::lucide:target:: 科目历史记录过滤
 
 **科目历史记录过滤**：计算权重时只使用当前科目的历史记录
 - 开启：仅使用当前科目课程时间中产生的历史记录计算权重
@@ -58,7 +58,7 @@ createTime: 2026/01/17 21:52:27
 4. 根据教学需要配置科目历史记录过滤功能
 :::
 
-## <img src="/fluent-icons/globe.svg" alt="globe" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> ClassIsland通知服务
+## ::lucide:globe:: ClassIsland通知服务
 
 **通知服务类型**：选择通知服务类型
 - SecRandom：使用 SecRandom 通知窗口发送通知

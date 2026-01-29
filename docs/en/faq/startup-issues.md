@@ -2,7 +2,7 @@
 title: 'Program Cannot Start'
 createTime: 2025/12/13 10:56:49
 ---
-# <img src="/fluent-icons/help-circle.svg" alt="help-circle" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> Program Cannot Start
+# ::lucide:circle-help:: Program Cannot Start
 
 ## **Symptom 1**: Program cannot start after modifying settings
 

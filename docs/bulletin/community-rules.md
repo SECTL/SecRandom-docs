@@ -11,7 +11,7 @@ excerpt: 为了维护良好的社区环境，请在交流前仔细阅读本规�
 
 欢迎来到 SECTL 组织社区！为了保证良好的交流环境，请在交流时遵守以下规则。
 
-## <img src="/fluent-icons/ban.svg" alt="ban" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 禁止行为
+## ::lucide:ban:: 禁止行为
 
 在社区交流时，请遵守相关法律法规，**严禁**发布以下内容：
 
@@ -21,7 +21,7 @@ excerpt: 为了维护良好的社区环境，请在交流前仔细阅读本规�
 4.  **干扰秩序**：刷屏、恶意复读、频繁骚扰他人等干扰正常交流的行为。
 5.  **不当言论**：人身攻击、辱骂、引战等破坏社区氛围的言论。
 
-## <img src="/fluent-icons/lightbulb.svg" alt="lightbulb" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 提问与求助
+## ::lucide:lightbulb:: 提问与求助
 
 为了更高效地解决您的问题，提问前请遵循以下建议：
 
@@ -32,11 +32,11 @@ excerpt: 为了维护良好的社区环境，请在交流前仔细阅读本规�
     *   **诊断信息**：提供错误截图、录屏或程序日志。
 3.  **端正态度**：提问时请保持礼貌，遵循[《提问的智慧》](https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/main/README-zh_CN.md)。
 
-> <img src="/fluent-icons/x.svg" alt="x" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> **错误示范**：“软件打不开怎么办？”（无任何信息）
+> ::lucide:x:: **错误示范**：“软件打不开怎么办？”（无任何信息）
 >
-> <img src="/fluent-icons/check.svg" alt="check" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> **正确示范**：“我在 Windows 11 上使用 SecRandom v2.2.0，点击启动后无反应，这是我的错误日志截图...”
+> ::lucide:check:: **正确示范**：“我在 Windows 11 上使用 SecRandom v2.2.0，点击启动后无反应，这是我的错误日志截图...”
 
-## <img src="/fluent-icons/scale.svg" alt="scale" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 违规处理
+## ::lucide:scale:: 违规处理
 
 违反上述规定者，管理员将视情节轻重采取以下措施：
 *   口头警告 / 撤回违规内容

@@ -3,11 +3,11 @@ title: 通知设置
 createTime: 2026/01/10 00:00:00
 ---
 
-> <img src="/fluent-icons/bell.svg" alt="bell" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> **定制您的通知体验**
+> ::lucide:bell:: **定制您的通知体验**
 > 
 > 通过灵活的通知配置，让您在使用过程中获得最佳的提醒效果，所有设置实时保存并自动生效。
 
-## <img src="/fluent-icons/target.svg" alt="target" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 基础设置
+## ::lucide:target:: 基础设置
 
 **调用通知服务**：启用后调用通知服务发送点名结果
 

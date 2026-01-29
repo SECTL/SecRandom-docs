@@ -63,7 +63,7 @@ createTime: 2026/01/17 22:40:45
 - 按时间查看：历史记录使用时间排序
 - 按学生查看：查看选定学生的历史记录
 
-#### <img src="/fluent-icons/bar-chart-3.svg" alt="bar-chart-3" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 点名历史记录表格
+#### ::lucide:bar-chart-3:: 点名历史记录表格
 
 | 字段 | 说明 |
 |------|------|
@@ -87,7 +87,7 @@ createTime: 2026/01/17 22:40:45
 - 全部课程：显示所有课程的抽奖历史记录
 - 按课程查看：查看选定课程内产生的历史记录
 
-#### <img src="/fluent-icons/bar-chart-3.svg" alt="bar-chart-3" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 抽奖历史记录表格
+#### ::lucide:bar-chart-3:: 抽奖历史记录表格
 
 | 字段 | 说明 |
 |------|------|

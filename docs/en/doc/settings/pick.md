@@ -11,9 +11,9 @@ createTime: 2026/01/02 15:29:12
 
 Drawing settings include three independent features: **Roll Call Settings**, **Quick Draw Settings**, and **Lottery Settings**. Each feature includes drawing function, display settings, and animation settings.
 
-### <img src="/fluent-icons/library.svg" alt="library" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> Roll Call Settings
+### ::lucide:library:: Roll Call Settings
 
-#### <img src="/fluent-icons/dices.svg" alt="dices" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> Drawing Function
+#### ::lucide:dices:: Drawing Function
 
 | Configuration | Type | Range/Options | Description |
 |--------------|------|---------------|-------------|
@@ -23,7 +23,7 @@ Drawing settings include three independent features: **Roll Call Settings**, **Q
 | **Drawing Method** | Dropdown | By Class/By Gender/By Range | Controls drawing range |
 | **Default Drawing List** | Dropdown | Dynamically loaded class list | Sets default class to use |
 
-#### <img src="/fluent-icons/palette.svg" alt="palette" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> Display Settings
+#### ::lucide:palette:: Display Settings
 
 | Configuration | Type | Range/Options | Description |
 |--------------|------|---------------|-------------|
@@ -34,7 +34,7 @@ Drawing settings include three independent features: **Roll Call Settings**, **Q
 | **Result Display Style** | Dropdown | Multiple style options | Controls result display style |
 | **Display Random Group Member** | Dropdown | Multiple format options | Controls random group member display format |
 
-#### <img src="/fluent-icons/clapperboard.svg" alt="clapperboard" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> Animation Settings
+#### ::lucide:clapperboard:: Animation Settings
 
 **Basic Animation Settings**
 
@@ -61,9 +61,9 @@ Drawing settings include three independent features: **Roll Call Settings**, **Q
 | **Image Position** | Dropdown | Multiple position options | Set image display position |
 | **Open Image Folder** | Button | - | Open student image folder |
 
-### <img src="/fluent-icons/zap.svg" alt="zap" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> Quick Draw Settings
+### ::lucide:zap:: Quick Draw Settings
 
-#### <img src="/fluent-icons/dices.svg" alt="dices" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> Drawing Function
+#### ::lucide:dices:: Drawing Function
 
 | Configuration | Type | Range/Options | Description |
 |--------------|------|---------------|-------------|
@@ -74,11 +74,11 @@ Drawing settings include three independent features: **Roll Call Settings**, **Q
 | **Drawing Count** | Number Input | 1-100 | Sets number of people to draw each time |
 | **Disable Time After Click** | Number Input | 0-60s | Time to disable button after click |
 
-#### <img src="/fluent-icons/palette.svg" alt="palette" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> Display Settings
+#### ::lucide:palette:: Display Settings
 
 Same as Roll Call settings, including font size, global font, custom font, result display format, display random group member, etc.
 
-#### <img src="/fluent-icons/clapperboard.svg" alt="clapperboard" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> Animation Settings
+#### ::lucide:clapperboard:: Animation Settings
 
 **Basic Animation Settings**
 

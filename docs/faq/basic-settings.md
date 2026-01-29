@@ -3,7 +3,7 @@ title: 基础设置常见问题
 createTime: 2026/01/25 09:32:05
 ---
 
-# <img src="/fluent-icons/help-circle.svg" alt="help-circle" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 基础设置常见问题
+# ::lucide:circle-help:: 基础设置常见问题
 
 ### Q1: 为什么某些设置需要重启软件才能生效？
 

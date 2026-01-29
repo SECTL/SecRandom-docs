@@ -11,9 +11,9 @@ createTime: 2026/01/02 15:29:12
 
 抽取设置包含三个独立功能：**点名设置**、**闪抽设置**、**抽奖设置**。每个功能都包含抽取功能、显示设置、动画设置三个部分。
 
-### <img src="/fluent-icons/library.svg" alt="library" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 点名设置
+### ::lucide:library:: 点名设置
 
-#### <img src="/fluent-icons/dices.svg" alt="dices" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 抽取功能
+#### ::lucide:dices:: 抽取功能
 
 | 配置项 | 类型 | 范围/选项 | 说明 |
 |--------|------|-----------|------|
@@ -23,7 +23,7 @@ createTime: 2026/01/02 15:29:12
 | **抽取方式** | 下拉框 | 按班级抽取/按性别抽取/按范围抽取 | 控制抽取范围 |
 | **默认抽取名单** | 下拉框 | 动态加载班级列表 | 设置默认使用的班级 |
 
-#### <img src="/fluent-icons/palette.svg" alt="palette" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 显示设置
+#### ::lucide:palette:: 显示设置
 
 | 配置项 | 类型 | 范围/选项 | 说明 |
 |--------|------|-----------|------|
@@ -34,7 +34,7 @@ createTime: 2026/01/02 15:29:12
 | **结果显示样式** | 下拉框 | 多种样式选项 | 控制结果显示样式 |
 | **显示随机组员** | 下拉框 | 多种格式选项 | 控制随机组员显示格式 |
 
-#### <img src="/fluent-icons/clapperboard.svg" alt="clapperboard" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 动画设置
+#### ::lucide:clapperboard:: 动画设置
 
 **基础动画设置**
 
@@ -61,9 +61,9 @@ createTime: 2026/01/02 15:29:12
 | **图片位置** | 下拉框 | 多种位置选项 | 设置图片显示位置 |
 | **打开图片文件夹** | 按钮 | - | 打开学生图片文件夹 |
 
-### <img src="/fluent-icons/zap.svg" alt="zap" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 闪抽设置
+### ::lucide:zap:: 闪抽设置
 
-#### <img src="/fluent-icons/dices.svg" alt="dices" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 抽取功能
+#### ::lucide:dices:: 抽取功能
 
 | 配置项 | 类型 | 范围/选项 | 说明 |
 |--------|------|-----------|------|
@@ -74,11 +74,11 @@ createTime: 2026/01/02 15:29:12
 | **抽取人数** | 数字输入框 | 1-100 | 设置每次抽取的人数 |
 | **点击后禁用时间** | 数字输入框 | 0-60s | 点击后禁用按钮的时长 |
 
-#### <img src="/fluent-icons/palette.svg" alt="palette" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 显示设置
+#### ::lucide:palette:: 显示设置
 
 与点名设置相同，包含字体大小、全局字体、自定义字体、结果显示格式、显示随机组员等选项。
 
-#### <img src="/fluent-icons/clapperboard.svg" alt="clapperboard" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 动画设置
+#### ::lucide:clapperboard:: 动画设置
 
 **基础动画设置**
 
@@ -99,9 +99,9 @@ createTime: 2026/01/02 15:29:12
 
 与点名设置相同。
 
-### <img src="/fluent-icons/gift.svg" alt="gift" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 抽奖设置
+### ::lucide:gift:: 抽奖设置
 
-#### <img src="/fluent-icons/dices.svg" alt="dices" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 抽取功能
+#### ::lucide:dices:: 抽取功能
 
 | 配置项 | 类型 | 范围/选项 | 说明 |
 |--------|------|-----------|------|
@@ -110,11 +110,11 @@ createTime: 2026/01/02 15:29:12
 | **半重复抽取次数** | 数字输入框 | 0-100 | 半重复抽取时启用 |
 | **默认抽取奖池** | 下拉框 | 动态加载奖池列表 | 设置默认使用的奖池 |
 
-#### <img src="/fluent-icons/palette.svg" alt="palette" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 显示设置
+#### ::lucide:palette:: 显示设置
 
 与点名设置相同，包含字体大小、全局字体、自定义字体、结果显示格式、结果显示样式、显示随机学生等选项。
 
-#### <img src="/fluent-icons/clapperboard.svg" alt="clapperboard" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 动画设置
+#### ::lucide:clapperboard:: 动画设置
 
 **基础动画设置**
 
