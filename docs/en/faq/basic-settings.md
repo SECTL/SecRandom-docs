@@ -3,7 +3,7 @@ title: Basic Settings FAQ
 createTime: 2026/01/25 09:32:05
 ---
 
-# ❓ Basic Settings FAQ
+# <img src="/fluent-icons/help-circle.svg" alt="help-circle" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> Basic Settings FAQ
 
 ### Q1: Why do some settings require restarting the software to take effect?
 

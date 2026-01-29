@@ -3,17 +3,17 @@ title: 抽取设置
 createTime: 2026/01/02 15:29:12
 ---
 
-> 🎨 **个性化您的抽取体验**
+> **个性化您的抽取体验**
 > 
 > 通过丰富的定制选项，打造专属于您的抽取风格和浮窗体验。
 
-## 🎯 抽取设置
+## 抽取设置
 
 抽取设置包含三个独立功能：**点名设置**、**闪抽设置**、**抽奖设置**。每个功能都包含抽取功能、显示设置、动画设置三个部分。
 
-### 📚 点名设置
+### <img src="/fluent-icons/library.svg" alt="library" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 点名设置
 
-#### 🎲 抽取功能
+#### <img src="/fluent-icons/dices.svg" alt="dices" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 抽取功能
 
 | 配置项 | 类型 | 范围/选项 | 说明 |
 |--------|------|-----------|------|
@@ -23,7 +23,7 @@ createTime: 2026/01/02 15:29:12
 | **抽取方式** | 下拉框 | 按班级抽取/按性别抽取/按范围抽取 | 控制抽取范围 |
 | **默认抽取名单** | 下拉框 | 动态加载班级列表 | 设置默认使用的班级 |
 
-#### 🎨 显示设置
+#### <img src="/fluent-icons/palette.svg" alt="palette" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 显示设置
 
 | 配置项 | 类型 | 范围/选项 | 说明 |
 |--------|------|-----------|------|
@@ -34,7 +34,7 @@ createTime: 2026/01/02 15:29:12
 | **结果显示样式** | 下拉框 | 多种样式选项 | 控制结果显示样式 |
 | **显示随机组员** | 下拉框 | 多种格式选项 | 控制随机组员显示格式 |
 
-#### 🎬 动画设置
+#### <img src="/fluent-icons/clapperboard.svg" alt="clapperboard" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 动画设置
 
 **基础动画设置**
 
@@ -61,9 +61,9 @@ createTime: 2026/01/02 15:29:12
 | **图片位置** | 下拉框 | 多种位置选项 | 设置图片显示位置 |
 | **打开图片文件夹** | 按钮 | - | 打开学生图片文件夹 |
 
-### ⚡ 闪抽设置
+### <img src="/fluent-icons/zap.svg" alt="zap" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 闪抽设置
 
-#### 🎲 抽取功能
+#### <img src="/fluent-icons/dices.svg" alt="dices" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 抽取功能
 
 | 配置项 | 类型 | 范围/选项 | 说明 |
 |--------|------|-----------|------|
@@ -74,11 +74,11 @@ createTime: 2026/01/02 15:29:12
 | **抽取人数** | 数字输入框 | 1-100 | 设置每次抽取的人数 |
 | **点击后禁用时间** | 数字输入框 | 0-60s | 点击后禁用按钮的时长 |
 
-#### 🎨 显示设置
+#### <img src="/fluent-icons/palette.svg" alt="palette" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 显示设置
 
 与点名设置相同，包含字体大小、全局字体、自定义字体、结果显示格式、显示随机组员等选项。
 
-#### 🎬 动画设置
+#### <img src="/fluent-icons/clapperboard.svg" alt="clapperboard" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 动画设置
 
 **基础动画设置**
 
@@ -99,9 +99,9 @@ createTime: 2026/01/02 15:29:12
 
 与点名设置相同。
 
-### 🎁 抽奖设置
+### <img src="/fluent-icons/gift.svg" alt="gift" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 抽奖设置
 
-#### 🎲 抽取功能
+#### <img src="/fluent-icons/dices.svg" alt="dices" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 抽取功能
 
 | 配置项 | 类型 | 范围/选项 | 说明 |
 |--------|------|-----------|------|
@@ -110,11 +110,11 @@ createTime: 2026/01/02 15:29:12
 | **半重复抽取次数** | 数字输入框 | 0-100 | 半重复抽取时启用 |
 | **默认抽取奖池** | 下拉框 | 动态加载奖池列表 | 设置默认使用的奖池 |
 
-#### 🎨 显示设置
+#### <img src="/fluent-icons/palette.svg" alt="palette" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 显示设置
 
 与点名设置相同，包含字体大小、全局字体、自定义字体、结果显示格式、结果显示样式、显示随机学生等选项。
 
-#### 🎬 动画设置
+#### <img src="/fluent-icons/clapperboard.svg" alt="clapperboard" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 动画设置
 
 **基础动画设置**
 
@@ -132,7 +132,7 @@ createTime: 2026/01/02 15:29:12
 | **图片位置** | 下拉框 | 多种位置选项 | 设置图片显示位置 |
 | **打开图片文件夹** | 按钮 | - | 打开奖品图片文件夹 |
 
-### � 配置建议
+### 配置建议
 
 #### 点名设置建议
 
@@ -158,7 +158,7 @@ createTime: 2026/01/02 15:29:12
 - **动画间隔**：建议80-100ms
 - **字体大小**：建议50-80px
 
-### 🔧 特殊功能说明
+### 特殊功能说明
 
 1. **文件监视器**：点名设置和抽奖设置会自动监视名单/奖池文件夹的变化，实时更新下拉框选项
 
@@ -169,9 +169,9 @@ createTime: 2026/01/02 15:29:12
 
 3. **后台加载**：闪抽设置和抽奖设置使用后台线程加载数据，避免界面卡顿
 
-## 🪟 浮窗管理
+## 浮窗管理
 
-### ⚙️ 基本设置
+### 基本设置
 
 **启动时显示浮窗**：控制软件启动时是否自动显示浮窗
 
@@ -186,7 +186,7 @@ createTime: 2026/01/02 15:29:12
 
 **重置浮窗位置**：将浮窗位置重置为默认位置（一般位于屏幕的左上角）
 
-### 🎨 外观设置
+### 外观设置
 
 **浮窗控件配置**：选择在浮窗中显示的功能按钮
 - 点名：只显示点名功能按钮
@@ -219,7 +219,7 @@ createTime: 2026/01/02 15:29:12
 | 超大   | 70px×70px          | 40px×40px            |
 | 超级大 | 80px×80px          | 45px×45px            |
 
-### 📏 贴边设置
+### 贴边设置
 
 **贴边功能**：控制浮窗靠近屏幕边缘时是否自动收纳为悬浮按钮
 
@@ -230,18 +230,18 @@ createTime: 2026/01/02 15:29:12
 - 图标：显示功能图标
 - 箭头：显示箭头
 
-## 💡 个性设置小贴士
+## 个性设置小贴士
 
-### 🎯 抽取设置优化
+### 抽取设置优化
 
 - **显示效果**：根据教室大小调整字体大小，确保后排学生也能清晰看到
 - **动画体验**：适当调整动画间隔和播放次数，平衡视觉效果和抽取效率
 - **个性化主题**：开启颜色主题或设置艺术字体，让抽取过程更加生动
 
-### 🪟 浮窗设置技巧
+### 浮窗设置技巧
 
 - **便捷操作**：按钮数量设置为”抽人+闪抽“，提升课堂抽取效率
 - **界面整洁**：根据实际情况选择浮窗控件和显示样式，减少视觉干扰
 - **智能贴边**：利用贴边功能，既保持浮窗便捷性，又不影响其他软件使用
 
-> 📚 **更多帮助**：如有个性设置相关问题，欢迎查看[常见问题](/faq/001.md)或[联系我们](/team.md)获取支持！
+> **更多帮助**：如有个性设置相关问题，欢迎查看[常见问题](/faq/001.md)或[联系我们](/team.md)获取支持！

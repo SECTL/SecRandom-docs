@@ -2,7 +2,7 @@
 title: 贡献指南
 createTime: 2025/12/20 18:56:17
 ---
-# 📖 SecRandom 贡献指南
+# <img src="/fluent-icons/book-open.svg" alt="book-open" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> SecRandom 贡献指南
 
 SecRandom 欢迎**任何人**向我们的仓库提交代码。您可以帮助我们做很多工作，包括但不限于：
 
@@ -15,7 +15,7 @@ SecRandom 欢迎**任何人**向我们的仓库提交代码。您可以帮助我
 
 通过阅读本指南，您将会了解为 SecRandom 贡献代码的各个流程。您还会了解使用 commit 信息进行二进制构建的方式。现在就开始吧！
 
-## 🚀 快速开始
+## <img src="/fluent-icons/rocket.svg" alt="rocket" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 快速开始
 
 在向 SecRandom 项目贡献代码之前，请确保您已完成以下准备工作：
 
@@ -61,7 +61,7 @@ SecRandom 欢迎**任何人**向我们的仓库提交代码。您可以帮助我
     uv run ./main.py
     ```
 
-## 📤 提交您的贡献
+## <img src="/fluent-icons/upload.svg" alt="upload" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 提交您的贡献
 
 1. **创建分支**
 
@@ -99,7 +99,7 @@ SecRandom 欢迎**任何人**向我们的仓库提交代码。您可以帮助我
     - 点击 "Compare & pull request" (比较/拉取请求) 按钮
     - 填写 PR 描述并提交
 
-## 📋 贡献指南
+## <img src="/fluent-icons/clipboard-list.svg" alt="clipboard-list" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 贡献指南
 
 ### 代码规范
 
@@ -137,13 +137,13 @@ SecRandom 欢迎**任何人**向我们的仓库提交代码。您可以帮助我
 
 现在我们 **恭喜您成为 SecRandom 贡献者的一员！**
 
-如果您的 PR 没有通过，也没有关系。请仔细阅读我们的维护者给出的建议并且继续努力，早有一日，您会成为 SecRandom 贡献者的一员。加油😃👍！
+如果您的 PR 没有通过，也没有关系。请仔细阅读我们的维护者给出的建议并且继续努力，早有一日，您会成为 SecRandom 贡献者的一员。加油<img src="/fluent-icons/smile.svg" alt="smile" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /><img src="/fluent-icons/thumbs-up.svg" alt="thumbs-up" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" />！
 
-## 📖 Actions 构建工作流
+## <img src="/fluent-icons/book-open.svg" alt="book-open" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> Actions 构建工作流
 
 若您需要测试自动构建的二进制程序，您可以阅读以下文字来获取更多信息。
 
-### 🚀 GitHub Actions 统一构建工作流使用指南
+### <img src="/fluent-icons/rocket.svg" alt="rocket" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> GitHub Actions 统一构建工作流使用指南
 
 SecRandom 项目使用统一的 GitHub Actions 工作流进行构建和发布，配置文件位于 `.github/workflows/build-unified.yml`。该工作流支持多种触发方式和配置选项。
 

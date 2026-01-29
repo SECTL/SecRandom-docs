@@ -12,7 +12,7 @@ title: 捐赠
   <p>每一份捐赠都是动力，让我们一起创造更美好的内容！</p>
 
   <a href="https://afdian.com/a/lzy0983" target="_blank" class="donate-btn">
-    <button class="afdian-button">💝 点击进入爱发电支持</button>
+    <button class="afdian-button">点击进入爱发电支持</button>
   </a>
   <p class="thanks">感谢你的支持！❤️</p>
   <a href="/donate-fancy.html">不感兴趣</a>
@@ -66,7 +66,7 @@ p {
 }
 
 .afdian-button {
-  background: linear-gradient(#667eea 0%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
   padding: 16px 40px;

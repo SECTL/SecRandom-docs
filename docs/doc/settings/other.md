@@ -3,11 +3,11 @@ title: 其他设置
 createTime: 2026/01/17 22:59:36
 ---
 
-> ⚙️ **其他功能设置**
+> <img src="/fluent-icons/settings.svg" alt="settings" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> **其他功能设置**
 > 
 > 通过灵活的快捷键和更新设置，提升您的使用效率，所有设置实时保存并自动生效。
 
-## 🎯 快捷键设置
+## <img src="/fluent-icons/target.svg" alt="target" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 快捷键设置
 
 **启用快捷键**：启用后可使用快捷键快速操作
 :::tip
@@ -16,7 +16,7 @@ createTime: 2026/01/17 22:59:36
 - 开启：启用快捷键功能
 - 关闭：禁用快捷键功能
 
-### ⌨️ 快捷键设置
+### ⌨ 快捷键设置
 
 设置打开功能的快捷键
 
@@ -24,7 +24,7 @@ createTime: 2026/01/17 22:59:36
 - 快捷键设置应避免与其他软件冲突，以免导致意外操作
 :::
 
-## 🎯 更新设置
+## <img src="/fluent-icons/target.svg" alt="target" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 更新设置
 
 **强制检查更新**：强制将应用更新到当前通道上的最新版本，即使此版本比应用当前版本更旧。
 

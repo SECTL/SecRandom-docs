@@ -9,8 +9,7 @@ title: Donate
 <div class="donate-container">
   <p>Your donation helps us continue developing and improving SecRandom.</p>
 
-  <a href="https://afdian.com/a/lzy0983" target="_blank" class="donate-btn">
-    <button class="afdian-button">💝 Donate on Afdian</button>
+  <a href="https://afdian.com/a/lzy0983" target="_blank" class="donate-btn afdian-button">Donate on Afdian
   </a>
 
   <p class="thanks">Thanks for your support!❤️</p>
@@ -96,45 +95,5 @@ p {
     padding: 12px 32px;
     font-size: 1rem;
   }
-}
-
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.45);
-  z-index: 9999;
-}
-
-.modal-card {
-  background: var(--vp-c-bg, #fff);
-  border-radius: 20px;
-  padding: 16px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
-  max-width: 90vw;
-  max-height: 90vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.modal-card img {
-  display: block;
-  border-radius: 12px;
-}
-
-.modal-title {
-  margin-top: 12px;
-  font-weight: 600;
-  text-align: center;
-}
-
-.modal-subtitle {
-  margin-top: 6px;
-  font-size: 12px;
-  opacity: 0.7;
-  text-align: center;
 }
 </style>

@@ -2,7 +2,7 @@
 title: '程序无法启动'
 createTime: 2025/12/13 10:56:49
 ---
-# ❓ 程序无法启动          
+# <img src="/fluent-icons/help-circle.svg" alt="help-circle" width="20" height="20" style="vertical-align: middle; margin-bottom: 2px;" /> 程序无法启动          
 
 ## **症状1**：修改设置后程序无法启动
 
