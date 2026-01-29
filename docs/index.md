@@ -45,24 +45,24 @@ config:
       - title: 语音播报
         icon: lucide:volume-2
         details: 语音清晰播报，全班即时知晓
-      - title: 主题自定义
-        icon: lucide:palette
-        details: 支持自定义主题，满足不同用户需求
-      - title: IPC/URL 集成
-        icon: lucide:link
-        details: 支持 IPC/URL 调用，与其他软件无缝集成
-      - title: 开机即用
-        icon: lucide:power
-        details: 开机自启后台待命，抢回课堂时间
-      - title: 密码功能
-        icon: lucide:lock
-        details: 支持密码/TOTP/U盘解锁，防止学生乱玩
       - title: 记录可控
         icon: lucide:file-text
         details: 完整的历史记录，所有数据均可随时调取
+      - title: 开机即用
+        icon: lucide:power
+        details: 开机自启后台待命，抢回课堂时间
+      - title: 主题自定义
+        icon: lucide:palette
+        details: 支持自定义主题，满足不同用户需求
       - title: 现代美观
         icon: lucide:sparkles
         details: 仿Win11 Fluent Design，简洁大气
+      - title: IPC/URL 集成
+        icon: lucide:link
+        details: 支持 IPC/URL 调用，与其他软件无缝集成
+      - title: 密码功能
+        icon: lucide:lock
+        details: 支持密码/TOTP/U盘解锁，防止学生乱玩
       - title: 联动 ClassIsland 等软件
         icon: mdi:vector-combine
         details: 与 ClassIsland 等软件联动，实现更方便的点名结果显示/更多联动

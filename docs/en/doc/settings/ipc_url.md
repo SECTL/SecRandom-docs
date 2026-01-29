@@ -27,34 +27,34 @@ SecRandom adopts a unified window management entry. All window operations are im
 
 | Command Group | Command | Purpose | Read-Only | Affects Interface |
 |---------------|---------|---------|-----------|-------------------|
-| **Window Control** | `window/main` | Main window control | No | Yes |
-| | `window/settings` | Settings window control | No | Yes |
-| | `window/float` | Floating window control | No | Yes |
-| **Tray Functions** | `tray/toggle` | Toggle display | No | Yes |
-| | `tray/settings` | Open settings | No | Yes |
-| | `tray/float` | Floating window control | No | Yes |
-| | `tray/restart` | Restart program | No | Yes |
-| | `tray/exit` | Exit program | No | Yes |
-| **Roll Call Control** | `roll_call/quick_draw` | Quick roll call | No | Yes |
-| | `roll_call/start` | Start roll call | No | Yes |
-| | `roll_call/stop` | Stop roll call | No | Yes |
-| | `roll_call/reset` | Reset roll call | No | Yes |
-| | `roll_call/set_count` | Set roll call count | No | Yes |
-| | `roll_call/set_group` | Set group | No | Yes |
-| | `roll_call/set_gender` | Set gender filter | No | Yes |
-| | `roll_call/set_list` | Set roll call list | No | Yes |
-| **Lottery Control** | `lottery/start` | Start lottery | No | Yes |
-| | `lottery/stop` | Stop lottery | No | Yes |
-| | `lottery/reset` | Reset lottery | No | Yes |
-| | `lottery/set_count` | Set lottery count | No | Yes |
-| | `lottery/set_pool` | Set prize pool | No | Yes |
-| | `lottery/set_range` | Set range | No | Yes |
-| | `lottery/set_gender` | Set gender filter | No | Yes |
-| | `lottery/set_list` | Set lottery list | No | Yes |
-| **Data Retrieval** | `data/roll_call_list` | Get roll call list | Yes | No |
-| | `data/lottery_list` | Get lottery list | Yes | No |
-| | `data/roll_call_history` | Get roll call history | Yes | No |
-| | `data/lottery_history` | Get lottery history | Yes | No |
+| **Window Control** {rowspan=3} | `window/main` | Main window control | <p style="color: red;">No</p> | <p style="color: green;">Yes</p> |
+| | `window/settings` | Settings window control | <p style="color: red;">No</p> | <p style="color: green;">Yes</p> |
+| | `window/float` | Floating window control | <p style="color: red;">No</p> | <p style="color: green;">Yes</p> |
+| **Tray Functions** {rowspan=5} | `tray/toggle` | Toggle display | <p style="color: red;">No</p> | <p style="color: green;">Yes</p> |
+| | `tray/settings` | Open settings | <p style="color: red;">No</p> | <p style="color: green;">Yes</p> |
+| | `tray/float` | Floating window control | <p style="color: red;">No</p> | <p style="color: green;">Yes</p> |
+| | `tray/restart` | Restart program | <p style="color: red;">No</p> | <p style="color: green;">Yes</p> |
+| | `tray/exit` | Exit program | <p style="color: red;">No</p> | <p style="color: green;">Yes</p> |
+| **Roll Call Control** {rowspan=8} | `roll_call/quick_draw` | Quick roll call | <p style="color: red;">No</p> | <p style="color: green;">Yes</p> |
+| | `roll_call/start` | Start roll call | <p style="color: red;">No</p> | <p style="color: green;">Yes</p> |
+| | `roll_call/stop` | Stop roll call | <p style="color: red;">No</p> | <p style="color: green;">Yes</p> |
+| | `roll_call/reset` | Reset roll call | <p style="color: red;">No</p> | <p style="color: green;">Yes</p> |
+| | `roll_call/set_count` | Set roll call count | <p style="color: red;">No</p> | <p style="color: green;">Yes</p> |
+| | `roll_call/set_group` | Set group | <p style="color: red;">No</p> | <p style="color: green;">Yes</p> |
+| | `roll_call/set_gender` | Set gender filter | <p style="color: red;">No</p> | <p style="color: green;">Yes</p> |
+| | `roll_call/set_list` | Set roll call list | <p style="color: red;">No</p> | <p style="color: green;">Yes</p> |
+| **Lottery Control** {rowspan=8} | `lottery/start` | Start lottery | <p style="color: red;">No</p> | <p style="color: green;">Yes</p> |
+| | `lottery/stop` | Stop lottery | <p style="color: red;">No</p> | <p style="color: green;">Yes</p> |
+| | `lottery/reset` | Reset lottery | <p style="color: red;">No</p> | <p style="color: green;">Yes</p> |
+| | `lottery/set_count` | Set lottery count | <p style="color: red;">No</p> | <p style="color: green;">Yes</p> |
+| | `lottery/set_pool` | Set prize pool | <p style="color: red;">No</p> | <p style="color: green;">Yes</p> |
+| | `lottery/set_range` | Set range | <p style="color: red;">No</p> | <p style="color: green;">Yes</p> |
+| | `lottery/set_gender` | Set gender filter | <p style="color: red;">No</p> | <p style="color: green;">Yes</p> |
+| | `lottery/set_list` | Set lottery list | <p style="color: red;">No</p> | <p style="color: green;">Yes</p> |
+| **Data Retrieval** {rowspan=4} | `data/roll_call_list` | Get roll call list | <p style="color: green;">Yes</p> | <p style="color: red;">No</p> |
+| | `data/lottery_list` | Get lottery list | <p style="color: green;">Yes</p> | <p style="color: red;">No</p> |
+| | `data/roll_call_history` | Get roll call history | <p style="color: green;">Yes</p> | <p style="color: red;">No</p> |
+| | `data/lottery_history` | Get lottery history | <p style="color: green;">Yes</p> | <p style="color: red;">No</p> |
 
 ## Common Parameters
 
@@ -62,13 +62,27 @@ All window commands support the following common parameters for controlling wind
 
 ### Action Parameters
 
-| Parameter Name | Type | Optional Values | Description |
-|----------------|------|-----------------|-------------|
-| `action` | string | `show` / `hide` / `toggle` | Control window display state |
-| `mode` | string | `show` / `hide` / `toggle` | Alias for action, same priority |
-| `op` | string | `show` / `hide` / `toggle` | Alias for action, same priority |
-| `do` | string | `show` / `hide` / `toggle` | Alias for action, same priority |
-| `visible` | number | `1` / `0` | `1` is equivalent to `show`, `0` is equivalent to `hide` |
+:::: field-group
+::: field name="action" type="'show' | 'hide' | 'toggle'" default="''"
+Control window display state
+:::
+
+::: field name="mode" type="'show' | 'hide' | 'toggle'" default="''"
+Alias for action, same priority
+:::
+
+::: field name="op" type="'show' | 'hide' | 'toggle'" default="''"
+Alias for action, same priority
+:::
+
+::: field name="do" type="'show' | 'hide' | 'toggle'" default="''"
+Alias for action, same priority
+:::
+
+::: field name="visible" type="1 | 0" default=""
+`1` is equivalent to `show`, `0` is equivalent to `hide`
+:::
+::::
 
 ### Parameter Parsing Rules
 
@@ -92,13 +106,27 @@ Main window control command, used to control the display state of the main windo
 
 ### Parameter Table
 
-| Parameter Name | Type | Optional Values | Description | Default Value |
-|----------------|------|-----------------|-------------|---------------|
-| `action` | string | `show` / `hide` / `toggle` | Control window display state | `toggle` |
-| `page` | string | See page list below | Switch main window page | Do not switch page |
-| `page_name` | string | Same as `page` | Alias for page | Same as `page` |
-| `name` | string | Same as `page` | Alias for page | Same as `page` |
-| `value` | string | Same as `page` | Alias for page | Same as `page` |
+:::: field-group
+::: field name="action" type="'show' | 'hide' | 'toggle'" default="'toggle'"
+Control window display state
+:::
+
+::: field name="page" type="'roll_call_page' | 'lottery_page' | 'history_page'" default="''"
+Switch main window page
+:::
+
+::: field name="page_name" type="'roll_call_page' | 'lottery_page' | 'history_page'" default="''"
+Alias for page
+:::
+
+::: field name="name" type="'roll_call_page' | 'lottery_page' | 'history_page'" default="''"
+Alias for page
+:::
+
+::: field name="value" type="'roll_call_page' | 'lottery_page' | 'history_page'" default="''"
+Alias for page
+:::
+::::
 
 ### Behavior Description
 
@@ -127,14 +155,31 @@ Settings window control command, used to control the display state of the settin
 
 ### Parameter Table
 
-| Parameter Name | Type | Optional Values | Description | Default Value |
-|----------------|------|-----------------|-------------|---------------|
-| `action` | string | `show` / `hide` / `toggle` | Control window display state | `toggle` |
-| `page` | string | See page list below | Open specified settings page | `basicSettingsInterface` |
-| `page_name` | string | Same as `page` | Alias for page | Same as `page` |
-| `name` | string | Same as `page` | Alias for page | Same as `page` |
-| `value` | string | Same as `page` | Alias for page | Same as `page` |
-| `preview` | boolean | `1` / `0` / `true` / `false` / `yes` / `no` / `on` / `off` | Whether to open in preview mode | `false` |
+:::: field-group
+::: field name="action" type="'show' | 'hide' | 'toggle'" default="'toggle'"
+Control window display state
+:::
+
+::: field name="page" type="'basicSettingsInterface' | 'listManagementInterface' | 'extractionSettingsInterface'" default="'basicSettingsInterface'"
+Open specified settings page
+:::
+
+::: field name="page_name" type="'basicSettingsInterface' | 'listManagementInterface' | 'extractionSettingsInterface'" default="'basicSettingsInterface'"
+Alias for page
+:::
+
+::: field name="name" type="'basicSettingsInterface' | 'listManagementInterface' | 'extractionSettingsInterface'" default="'basicSettingsInterface'"
+Alias for page
+:::
+
+::: field name="value" type="'basicSettingsInterface' | 'listManagementInterface' | 'extractionSettingsInterface'" default="'basicSettingsInterface'"
+Alias for page
+:::
+
+::: field name="preview" type="'1' | '0' | 'true' | 'false' | 'yes' | 'no' | 'on' | 'off'" default="'false'"
+Whether to open in preview mode
+:::
+::::
 
 ### Behavior Description
 
@@ -167,13 +212,27 @@ Floating window control command, used to control the display state of the floati
 
 ### Parameter Table
 
-| Parameter Name | Type | Optional Values | Description | Default Value |
-|----------------|------|-----------------|-------------|---------------|
-| `action` | string | `show` / `hide` / `toggle` | Control floating window display state | `toggle` |
-| `mode` | string | `show` / `hide` / `toggle` | Alias for action | Same as `action` |
-| `op` | string | `show` / `hide` / `toggle` | Alias for action | Same as `action` |
-| `do` | string | `show` / `hide` / `toggle` | Alias for action | Same as `action` |
-| `visible` | number | `1` / `0` | `1` is equivalent to `show`, `0` is equivalent to `hide` | - |
+:::: field-group
+::: field name="action" type="'show' | 'hide' | 'toggle'" default="'toggle'"
+Control floating window display state
+:::
+
+::: field name="mode" type="'show' | 'hide' | 'toggle'" default="'toggle'"
+Alias for action
+:::
+
+::: field name="op" type="'show' | 'hide' | 'toggle'" default="'toggle'"
+Alias for action
+:::
+
+::: field name="do" type="'show' | 'hide' | 'toggle'" default="'toggle'"
+Alias for action
+:::
+
+::: field name="visible" type="1 | 0" default="''"
+`1` is equivalent to `show`, `0` is equivalent to `hide`
+:::
+::::
 
 ### Behavior Description
 
@@ -390,10 +449,15 @@ Set roll call count command, specify the number of people to select in each roll
 
 **Parameter Table**:
 
-| Parameter Name | Type | Optional Values | Description | Default Value |
-|----------------|------|-----------------|-------------|---------------|
-| `count` | number | Positive integer | Roll call count | 1 |
-| `value` | number | Positive integer | Alias for count | Same as `count` |
+:::: field-group
+::: field name="count" type="正整数" default="1"
+Roll call count
+:::
+
+::: field name="value" type="正整数" default="1"
+Alias for count
+:::
+::::
 
 **Return Value Description**:
 ```json
@@ -416,11 +480,19 @@ Set group command, specify the group to use for roll call.
 
 **Parameter Table**:
 
-| Parameter Name | Type | Optional Values | Description | Default Value |
-|----------------|------|-----------------|-------------|---------------|
-| `group` | string | Group name | Group name | Default group |
-| `group_name` | string | Group name | Alias for group | Same as `group` |
-| `name` | string | Group name | Alias for group | Same as `group` |
+:::: field-group
+::: field name="group" type="string" default="Default group"
+Group name
+:::
+
+::: field name="group_name" type="string" default="Default group"
+Group name
+:::
+
+::: field name="name" type="string" default="Default group"
+Alias for group
+:::
+::::
 
 **Return Value Description**:
 ```json
@@ -443,10 +515,15 @@ Set gender filter command, specify the gender filter condition for roll call.
 
 **Parameter Table**:
 
-| Parameter Name | Type | Optional Values | Description | Default Value |
-|----------------|------|-----------------|-------------|---------------|
-| `gender` | string | `all` / `male` / `female` | Gender filter | `all` |
-| `value` | string | `all` / `male` / `female` | Alias for gender | Same as `gender` |
+:::: field-group
+::: field name="gender" type="'all' | 'male' | 'female'" default="'all'"
+Gender filter
+:::
+
+::: field name="value" type="'all' | 'male' | 'female'" default="'all'"
+Alias for gender
+:::
+::::
 
 **Return Value Description**:
 ```json
@@ -470,11 +547,19 @@ Set roll call list command, specify the list to use for roll call.
 
 **Parameter Table**:
 
-| Parameter Name | Type | Optional Values | Description | Default Value |
-|----------------|------|-----------------|-------------|---------------|
-| `class_name` | string | Class name | Class name | Default class |
-| `list_name` | string | List name | Alias for class_name | Same as `class_name` |
-| `name` | string | List name | Alias for class_name | Same as `class_name` |
+:::: field-group
+::: field name="class_name" type="string" default="Default class"
+Class name
+:::
+
+::: field name="list_name" type="string" default="Default class"
+Alias for class_name
+:::
+
+::: field name="name" type="string" default="Default class"
+Alias for class_name
+:::
+::::
 
 **Return Value Description**:
 ```json
@@ -567,10 +652,15 @@ Set lottery count command, specify the number of people to select in each lotter
 
 **Parameter Table**:
 
-| Parameter Name | Type | Optional Values | Description | Default Value |
-|----------------|------|-----------------|-------------|---------------|
-| `count` | number | Positive integer | Lottery count | 1 |
-| `value` | number | Positive integer | Alias for count | Same as `count` |
+:::: field-group
+::: field name="count" type="正整数" default="1"
+Lottery count
+:::
+
+::: field name="value" type="正整数" default="1"
+Alias for count
+:::
+::::
 
 **Return Value Description**:
 ```json
@@ -589,56 +679,73 @@ Set lottery count command, specify the number of people to select in each lotter
 
 #### lottery/set_pool
 
-Set prize pool command, specify the prize pool to use for lottery.
+Set prize pool command, specify the prize pool for lottery.
 
 **Parameter Table**:
 
-| Parameter Name | Type | Optional Values | Description | Default Value |
-|----------------|------|-----------------|-------------|---------------|
-| `pool_name` | string | Prize pool name | Prize pool name | Default prize pool |
-| `pool` | string | Prize pool name | Alias for pool_name | Same as `pool_name` |
-| `name` | string | Prize pool name | Alias for pool_name | Same as `pool_name` |
+:::: field-group
+::: field name="pool" type="string" default="Default prize pool"
+Prize pool name
+:::
+
+::: field name="pool_name" type="string" default="Default prize pool"
+Prize pool name
+:::
+
+::: field name="name" type="string" default="Default prize pool"
+Alias for pool
+:::
+::::
 
 **Return Value Description**:
 ```json
 {
   "status": "success",
-  "message": "Prize pool set to Special Prize Pool",
+  "message": "Prize pool set to First Prize",
   "data": {
-    "pool_name": "Special Prize Pool"
+    "pool": "First Prize"
   }
 }
 ```
 
 **Usage Examples**:
-- `secrandom://lottery/set_pool?pool_name=Special Prize Pool` - Set prize pool to "Special Prize Pool"
-- `secrandom://lottery/set_pool?pool=First Prize Pool` - Set prize pool to "First Prize Pool" (using alias)
+- `secrandom://lottery/set_pool?pool=First Prize` - Set prize pool to "First Prize"
+- `secrandom://lottery/set_pool?pool_name=Second Prize` - Set prize pool to "Second Prize" (using alias)
 
 #### lottery/set_range
 
-Set lottery range command, specify the index range for lottery.
+Set lottery range command, specify the range for lottery.
 
 **Parameter Table**:
 
-| Parameter Name | Type | Optional Values | Description | Default Value |
-|----------------|------|-----------------|-------------|---------------|
-| `index` | number | Non-negative integer | Range index | 0 |
-| `value` | number | Non-negative integer | Alias for index | Same as `index` |
+:::: field-group
+::: field name="range" type="string" default="Default range"
+Lottery range
+:::
+
+::: field name="range_name" type="string" default="Default range"
+Lottery range
+:::
+
+::: field name="name" type="string" default="Default range"
+Alias for range
+:::
+::::
 
 **Return Value Description**:
 ```json
 {
   "status": "success",
-  "message": "Lottery range set to index 0",
+  "message": "Lottery range set to 1-100",
   "data": {
-    "index": 0
+    "range": "1-100"
   }
 }
 ```
 
 **Usage Examples**:
-- `secrandom://lottery/set_range?index=0` - Set lottery range to index 0
-- `secrandom://lottery/set_range?value=1` - Set lottery range to index 1 (using alias)
+- `secrandom://lottery/set_range?range=1-100` - Set lottery range to "1-100"
+- `secrandom://lottery/set_range?range_name=101-200` - Set lottery range to "101-200" (using alias)
 
 #### lottery/set_gender
 
@@ -646,10 +753,15 @@ Set gender filter command, specify the gender filter condition for lottery.
 
 **Parameter Table**:
 
-| Parameter Name | Type | Optional Values | Description | Default Value |
-|----------------|------|-----------------|-------------|---------------|
-| `gender` | string | `all` / `male` / `female` | Gender filter | `all` |
-| `value` | string | `all` / `male` / `female` | Alias for gender | Same as `gender` |
+:::: field-group
+::: field name="gender" type="'all' | 'male' | 'female'" default="'all'"
+Gender filter
+:::
+
+::: field name="value" type="'all' | 'male' | 'female'" default="'all'"
+Alias for gender
+:::
+::::
 
 **Return Value Description**:
 ```json
@@ -673,11 +785,19 @@ Set lottery list command, specify the list to use for lottery.
 
 **Parameter Table**:
 
-| Parameter Name | Type | Optional Values | Description | Default Value |
-|----------------|------|-----------------|-------------|---------------|
-| `class_name` | string | Class name | Class name | Default class |
-| `list_name` | string | List name | Alias for class_name | Same as `class_name` |
-| `name` | string | List name | Alias for class_name | Same as `class_name` |
+:::: field-group
+::: field name="class_name" type="string" default="Default class"
+Class name
+:::
+
+::: field name="list_name" type="string" default="Default class"
+Alias for class_name
+:::
+
+::: field name="name" type="string" default="Default class"
+Alias for class_name
+:::
+::::
 
 **Return Value Description**:
 ```json
@@ -694,45 +814,9 @@ Set lottery list command, specify the list to use for lottery.
 - `secrandom://lottery/set_list?class_name=Grade 3 Class 1` - Set lottery list to "Grade 3 Class 1"
 - `secrandom://lottery/set_list?list_name=Grade 3 Class 2` - Set lottery list to "Grade 3 Class 2" (using alias)
 
-## data/* Data Retrieval Commands (Read-Only)
+## data/* Data Retrieval Commands
 
-Data retrieval commands are used to get roll call lists, lottery lists, roll call history records, and lottery history records. These commands **will not modify any settings or state**, and are only used for data queries.
-
-### Core Principles
-
-**Important: Only IPC calls will have return results (JSON response)**
-
-- Only IPC calls will have return results (JSON response)
-- Invoking through system URL protocol (`secrandom://...`) can only trigger actions, the caller cannot synchronously read any return data
-- Therefore: All `data/*` read commands can only be used as IPC requests (otherwise meaningless)
-
-### How to Get Return Results Through IPC
-
-To get return results from `data/*` commands through IPC, send a request and read the response.
-
-**Python Example Code**:
-
-```python
-from app.common.IPC_URL import URLIPCHandler
-
-ipc = URLIPCHandler("SecRandom", "secrandom")
-
-resp = ipc.send_ipc_message_by_name({
-    "type": "url",
-    "payload": {
-        "url": "data/roll_call_list?class_name=Grade 1 Class 1"  # Note: Use IPC command format here, no secrandom:// prefix needed
-    }
-})
-
-# Top level is IPC wrapper
-# resp -> {"success": True/False, "type": "url", "result": {...}} or {"success": False, "error": "..."}
-print(resp)
-```
-
-**Return Value Structure Description**:
-
-- **Top level fields**: `success` (whether successful), `type` (type), `result` (business result) or `error` (error message)
-- **Actual business data**: In `resp["result"]`, this is the dictionary returned by the URL command handler
+Data retrieval commands are used to query various data from SecRandom.
 
 ### Command List
 
@@ -745,363 +829,122 @@ print(resp)
 
 ### Parameter Description
 
-#### data/roll_call_list (Get Roll Call List)
+#### data/roll_call_list
 
-**IPC Command**:
-- `data/roll_call_list?class_name=xxx`
+Get roll call list command, retrieve the current roll call list.
 
-**Parameters (query)**:
+**Parameter Table**: No parameters
 
-| Parameter Name | Type | Required | Description | Compatible Aliases |
-|----------------|------|----------|-------------|-------------------|
-| `class_name` | string | Yes | Class name | `class` / `name` / `className` |
-
-**Success Return (Business Layer result) Fields**:
+**Return Value Description**:
 ```json
 {
   "status": "success",
   "message": "Roll call list retrieved successfully",
-  "class_name": "Grade 1 Class 1",
-  "data": [
-    {
-      "id": "001",
-      "name": "Zhang San",
-      "gender": "male"
-    },
-    {
-      "id": "002",
-      "name": "Li Si",
-      "gender": "female"
-    }
-  ]
+  "data": {
+    "list_name": "Grade 3 Class 1",
+    "students": [
+      {
+        "name": "Zhang San",
+        "id": "001"
+      },
+      {
+        "name": "Li Si",
+        "id": "002"
+      }
+    ]
+  }
 }
 ```
 
-**Missing Parameter Return (Business Layer result)**:
-```json
-{
-  "status": "error",
-  "message": "Missing parameter: class_name"
-}
-```
+**Usage Examples**:
+- `secrandom://data/roll_call_list` - Get roll call list
 
-#### data/lottery_list (Get Lottery List)
+#### data/lottery_list
 
-**IPC Command**:
-- `data/lottery_list?pool_name=xxx`
+Get lottery list command, retrieve the current lottery list.
 
-**Parameters (query)**:
+**Parameter Table**: No parameters
 
-| Parameter Name | Type | Required | Description | Compatible Aliases |
-|----------------|------|----------|-------------|-------------------|
-| `pool_name` | string | Yes | Prize pool name | `pool` / `name` / `poolName` |
-
-**Success Return (Business Layer result) Fields**:
+**Return Value Description**:
 ```json
 {
   "status": "success",
   "message": "Lottery list retrieved successfully",
-  "pool_name": "Special Prize Pool",
-  "data": [
-    {
-      "id": "001",
-      "name": "Zhang San",
-      "gender": "male"
-    },
-    {
-      "id": "002",
-      "name": "Li Si",
-      "gender": "female"
-    }
-  ]
+  "data": {
+    "list_name": "Grade 3 Class 1",
+    "students": [
+      {
+        "name": "Zhang San",
+        "id": "001"
+      },
+      {
+        "name": "Li Si",
+        "id": "002"
+      }
+    ]
+  }
 }
 ```
 
-**Missing Parameter Return (Business Layer result)**:
-```json
-{
-  "status": "error",
-  "message": "Missing parameter: pool_name"
-}
-```
+**Usage Examples**:
+- `secrandom://data/lottery_list` - Get lottery list
 
-#### data/roll_call_history (Get Roll Call History)
+#### data/roll_call_history
 
-**IPC Command**:
-- `data/roll_call_history?class_name=xxx`
+Get roll call history command, retrieve the roll call history records.
 
-**Parameters (query)**:
+**Parameter Table**: No parameters
 
-| Parameter Name | Type | Required | Description | Compatible Aliases |
-|----------------|------|----------|-------------|-------------------|
-| `class_name` | string | Yes | Class name | `class` / `name` / `className` |
-
-**Success Return (Business Layer result) Fields**:
+**Return Value Description**:
 ```json
 {
   "status": "success",
   "message": "Roll call history retrieved successfully",
-  "class_name": "Grade 1 Class 1",
-  "data": [
-    {
-      "time": "2025-11-29 13:00:00",
-      "students": [
-        {
-          "id": "001",
-          "name": "Zhang San"
-        }
-      ]
-    }
-  ]
+  "data": {
+    "history": [
+      {
+        "time": "2025-11-29 13:00:00",
+        "students": [
+          {
+            "name": "Zhang San",
+            "id": "001"
+          }
+        ]
+      }
+    ]
+  }
 }
 ```
 
-**Missing Parameter Return (Business Layer result)**:
-```json
-{
-  "status": "error",
-  "message": "Missing parameter: class_name"
-}
-```
+**Usage Examples**:
+- `secrandom://data/roll_call_history` - Get roll call history
 
-#### data/lottery_history (Get Lottery History)
+#### data/lottery_history
 
-**IPC Command**:
-- `data/lottery_history?pool_name=xxx`
+Get lottery history command, retrieve the lottery history records.
 
-**Parameters (query)**:
+**Parameter Table**: No parameters
 
-| Parameter Name | Type | Required | Description | Compatible Aliases |
-|----------------|------|----------|-------------|-------------------|
-| `pool_name` | string | Yes | Prize pool name | `pool` / `name` / `poolName` |
-
-**Success Return (Business Layer result) Fields**:
+**Return Value Description**:
 ```json
 {
   "status": "success",
   "message": "Lottery history retrieved successfully",
-  "pool_name": "Special Prize Pool",
-  "data": [
-    {
-      "time": "2025-11-29 13:00:00",
-      "winners": [
-        {
-          "id": "001",
-          "name": "Zhang San",
-          "prize": "Special Prize"
-        }
-      ]
-    }
-  ]
+  "data": {
+    "history": [
+      {
+        "time": "2025-11-29 13:00:00",
+        "students": [
+          {
+            "name": "Zhang San",
+            "id": "001"
+          }
+        ]
+      }
+    ]
+  }
 }
 ```
 
-**Missing Parameter Return (Business Layer result)**:
-```json
-{
-  "status": "error",
-  "message": "Missing parameter: pool_name"
-}
-```
-
-## Page List
-
-### Main Window Switchable Page List
-
-The main window supports switching to the following pages, specified through the `window/main?page=...` parameter:
-
-| Page Identifier | Page Name | Description | Short Alias |
-|-----------------|-----------|-------------|-------------|
-| `roll_call_page` | Roll Call Page | Roll call function page of the main window | `roll` |
-| `lottery_page` | Lottery Page | Lottery function page of the main window | `lottery` |
-| `history_page` | History Page | History record page of the main window | `history` |
-| `settingsInterface` | Settings Placeholder Page | Main window sidebar "Settings" placeholder page | None |
-
-**Description**:
-- `main_window` only means "show main window", it is not a switchable sub-page
-- Using short aliases can simplify calls, e.g., `page=roll` is equivalent to `page=roll_call_page`
-- When switching pages, the window display action is automatically executed (default is show)
-
-### Settings Window Openable Page List
-
-The settings window supports opening the following pages, specified through the `window/settings?page=...` parameter:
-
-| Page Identifier | Page Name | Description |
-|-----------------|-----------|-------------|
-| `basicSettingsInterface` | Basic Settings | Basic function settings of SecRandom |
-| `listManagementInterface` | List Management | List management and editing |
-| `extractionSettingsInterface` | Extraction Settings | Roll call and extraction related settings |
-| `floatingWindowManagementInterface` | Floating Window Management | Floating window display and behavior settings |
-| `notificationSettingsInterface` | Notification Settings | Notification prompt related settings |
-| `safetySettingsInterface` | Security Settings | Security and privacy related settings |
-| `customSettingsInterface` | Custom Settings | User custom function settings |
-| `voiceSettingsInterface` | Voice Settings | Voice broadcast related settings |
-| `historyInterface` | History Settings | History record management and settings |
-| `moreSettingsInterface` | More Settings | Other extended settings |
-| `updateInterface` | Update | Software update related page |
-| `aboutInterface` | About | Software information and version description |
-
-**Description**:
-- When no `page` parameter is passed, `basicSettingsInterface` (Basic Settings) is opened by default
-- Settings window pages do not support short aliases, full page identifiers must be used
-- Can be opened in preview mode with the `preview=1` parameter
-
-## Migration Guide
-
-The URL/IPC protocol entries for old versions (below 2.2.6) have been removed. Please use the new unified entry for replacement.
-
-### Removed Old Entries
-
-The following old entries are no longer supported:
-- `main/roll` → Removed
-- `main/lottery` → Removed
-- `main/` → Removed
-- `settings/basic` → Removed
-- `settings/list` → Removed
-- `settings/extraction` → Removed
-- `settings/floating` → Removed
-- `settings/notification` → Removed
-- `settings/safety` → Removed
-- `settings/custom` → Removed
-- `settings/voice` → Removed
-- `settings/history` → Removed
-- `settings/more` → Removed
-- `settings/update` → Removed
-- `settings/about` → Removed
-- `settings/` → Removed
-
-### Equivalent Replacement Examples
-
-| Old Entry | New Entry (Equivalent Replacement) |
-|-----------|-----------------------------------|
-| `secrandom://main/roll` | `secrandom://window/main?page=roll_call_page` |
-| `secrandom://main/lottery` | `secrandom://window/main?page=lottery_page` |
-| `secrandom://main/` | `secrandom://window/main` |
-| `secrandom://settings/basic` | `secrandom://window/settings?page=basicSettingsInterface` |
-| `secrandom://settings/list` | `secrandom://window/settings?page=listManagementInterface` |
-| `secrandom://settings/extraction` | `secrandom://window/settings?page=extractionSettingsInterface` |
-| `secrandom://settings/floating` | `secrandom://window/settings?page=floatingWindowManagementInterface` |
-| `secrandom://settings/notification` | `secrandom://window/settings?page=notificationSettingsInterface` |
-| `secrandom://settings/safety` | `secrandom://window/settings?page=safetySettingsInterface` |
-| `secrandom://settings/custom` | `secrandom://window/settings?page=customSettingsInterface` |
-| `secrandom://settings/voice` | `secrandom://window/settings?page=voiceSettingsInterface` |
-| `secrandom://settings/history` | `secrandom://window/settings?page=historyInterface` |
-| `secrandom://settings/more` | `secrandom://window/settings?page=moreSettingsInterface` |
-| `secrandom://settings/update` | `secrandom://window/settings?page=updateInterface` |
-| `secrandom://settings/about` | `secrandom://window/settings?page=aboutInterface` |
-| `secrandom://settings/` | `secrandom://window/settings` |
-
-## FAQ
-
-For frequently asked questions about IPC & URL protocols, please see: [IPC & URL Protocol FAQ](../../faq/ipc-url-faq.md)
-
-## Quick Reference
-
-Quick reference for the most commonly used commands:
-
-| Function | Command |
-|----------|---------|
-| Open main window and switch to roll call page | `secrandom://window/main?action=show&page=roll_call_page` |
-| Open settings window and show basic settings | `secrandom://window/settings?action=show&page=basicSettingsInterface` |
-| Toggle floating window display state | `secrandom://window/float` |
-| Quick roll call | `secrandom://roll_call/quick_draw` |
-| Start roll call | `secrandom://roll_call/start` |
-| Set roll call count | `secrandom://roll_call/set_count?count=3` |
-| Start lottery | `secrandom://lottery/start` |
-| Set lottery count | `secrandom://lottery/set_count?count=5` |
-| Restart program | `secrandom://tray/restart` |
-
-## Usage Examples
-
-### URL Protocol Usage
-
-**Creating Shortcuts**
-1. Right-click desktop → New → Shortcut
-2. Enter URL protocol (e.g., `secrandom://window/main?action=show&page=roll_call_page`)
-3. Name the shortcut and complete creation
-
-**Batch Script**
-```batch
-@echo off
-echo Starting SecRandom main interface...
-start secrandom://window/main?action=show&page=roll_call_page
-```
-
-**Browser Invocation**
-```html
-<a href="secrandom://window/main?action=show&page=roll_call_page">Open SecRandom Roll Call Page</a>
-```
-
-### IPC Protocol Usage
-
-**Python Example**
-For complete Python usage examples, please refer to: [secrandom_ipc_send_url.py](https://github.com/SECTL/SecRandom/blob/master/secrandom_ipc_send_url.py)
-
-**JavaScript Example**
-For complete JavaScript usage examples, please refer to: [secrandom_ipc_send_url.js](https://github.com/SECTL/SecRandom/blob/master/secrandom_ipc_send_url.js)
-
-### Notes
-
-1. **Protocol Registration**: Ensure SecRandom has correctly registered the URL protocol
-2. **Security Considerations**: Only use protocols listed in official documentation
-3. **Parameter Validation**: Ensure parameter values are correct when using parameters
-4. **Error Handling**: It is recommended to add error handling mechanisms when using protocols
-5. **IPC Communication**: IPC protocol requires the program to be in running state to use
-6. **Data Read-Only**: `data/*` commands will not modify any data, only used for queries
-
-### Troubleshooting
-
-**Protocol Cannot Open**
-- Check if SecRandom is correctly installed
-- Reinstall the software to fix protocol registration
-- Check if system security software is blocking protocol invocation
-- If all above factors are excluded, report bug to developer
-
-**IPC Communication Failure**
-- Confirm SecRandom program is running
-- Check if IPC service is started normally
-- View software logs for detailed error information
-
-**Command Execution Failure**
-- Check if command format is correct
-- Confirm parameter values are within allowed range
-- View returned error messages to locate the problem
-
-<style>
-.config-card {
-  padding: 1.25rem;
-  border-radius: 0.75rem;
-  margin: 1.5rem 0;
-  border: 1px solid var(--vp-c-divider);
-  background: var(--vp-c-bg-soft);
-  transition: all 0.2s ease;
-}
-
-.config-card:hover {
-  border-color: var(--vp-c-brand-1);
-  box-shadow: 0 2px 8px var(--vp-c-shadow-1);
-}
-
-.highlight {
-  background: var(--vp-c-blue-soft);
-  border-left: 4px solid var(--vp-c-blue-1);
-}
-
-.warning {
-  background: var(--vp-c-yellow-soft);
-  border-left: 4px solid var(--vp-c-yellow-1);
-}
-
-.theme {
-  background: var(--vp-c-purple-soft);
-  border-left: 4px solid var(--vp-c-purple-1);
-}
-
-.tip-box {
-  padding: 1.5rem;
-  border-radius: 0.75rem;
-  margin: 2rem 0;
-  background: var(--vp-c-tip-soft);
-  border-left: 4px solid var(--vp-c-tip-1);
-}
-</style>
+**Usage Examples**:
+- `secrandom://data/lottery_history` - Get lottery history
