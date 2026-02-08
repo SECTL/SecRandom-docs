@@ -19,5 +19,8 @@ Click the link to join the group chat [SECTL Studio](https://qm.qq.com/q/Xqn9MUU
 ### QQ Channel
 Click the link to join the Tencent channel [SECTL Studio](https://pd.qq.com/s/6fjp337yb)
 
+### Discord Server
+Click the link to join the Discord server [SECTL Studio](https://discord.gg/PmE7nPbha)
+
 ### GitHub Issue
 If you are sure that the problem you encountered is a Bug, or you want to propose a new feature, please submit an Issue.

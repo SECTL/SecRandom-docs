@@ -158,6 +158,7 @@ Each version's release page provides SHA256 checksum values in the following for
 - [GitHub Issues](https://github.com/SECTL/SecRandom/issues)
 - [QQ Group](https://qm.qq.com/q/iWcfaPHn7W)
 - [QQ Channel](https://pd.qq.com/s/4x5dafd34?b=9)
+- [Discord Server](https://discord.gg/PmE7nPbha)
 - Email feedback: lzy98276@sectl.com
 
 > **Tip**: If you encounter problems, check the `FAQ` page first. 80% of common problems have solutions!

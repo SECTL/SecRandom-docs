@@ -190,6 +190,7 @@ Get the latest version from [Download Page](/download), choose the appropriate i
 - **Official Website**: [https://secrandom.sectl.top](https://secrandom.sectl.top)
 - **GitHub**: [Give us a Star](https://github.com/SECTL/SecRandom)
 - **QQ Group**: 833875216 [Click to Join](https://qm.qq.com/q/PCqYgev4Em)
+- **Discord**: [Join Server](https://discord.gg/PmE7nPbha)
 - **Bilibili**: [Follow Us](https://space.bilibili.com/520571577)
 - **Afdian Support**: [Support Project Development](https://afdian.com/a/lzy0983)
 - **Feedback**: Welcome to contact us anytime

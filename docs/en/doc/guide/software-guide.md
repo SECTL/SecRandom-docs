@@ -328,6 +328,8 @@ If you encounter problems during the configuration process, you can get help thr
 - ::lucide:library:: View [FAQ](../../faq/trouble.md)
 - ::lucide:message-circle:: Join [QQ Group](https://qm.qq.com/q/PCqYgev4Em)
 - ::lucide:bug:: Submit [GitHub Issues](https://github.com/SECTL/SecRandom/issues)
+- ::lucide:message-circle:: Join [QQ Channel](https://pd.qq.com/s/4x5dafd34?b=9)
+- ::lucide:message-circle:: Join [Discord Server](https://discord.gg/PmE7nPbha)
 
 ::: tip Feedback
 Your feedback is very important to us! If you have any suggestions or find problems, please feel free to tell us.
