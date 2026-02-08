@@ -7,20 +7,20 @@ createTime: 2026/01/17 21:52:27
 >
 > Through flexible schedule integration configuration, achieve exclusive functions for class and break times. All settings are saved in real-time and take effect automatically.
 
-## Data Source Selection
+## ::lucide:database:: Data Source Selection
 
 **Data Source Selection**: Select the schedule data source
 - Do not use data integration: Use the system completely independently
 - Use CSES schedule data: Use schedule data from CSES
 - Use Classisland data source: Use schedule data from Classisland (requires installing the integration plugin in Classisland)
 
-## CSES Schedule Import
+## ::lucide:file-input:: CSES Schedule Import
 
 **Schedule Import**: Import CSES schedule
 - Import from file: Import CSES schedule through file
 - View current configuration: View existing CSES schedule configuration
 
-## Break Time Disable Settings
+## ::lucide:settings:: Break Time Disable Settings
 
 **Break Time Disable Function**: Require security verification when drawing during break times
 - On: Drawing during break times requires security verification
@@ -34,7 +34,7 @@ createTime: 2026/01/17 21:52:27
 - The larger the value, the earlier the unlock time; the smaller the value, the later the unlock time
 - Setting to 0 means unlocking on time
 
-## Pre-class Reset Settings
+## ::lucide:settings:: Pre-class Reset Settings
 
 **Pre-class Reset Function**: Automatically clear temporary records and interface results within a specified number of seconds before class starts
 - On: Automatically clear temporary records and interface results within a specified number of seconds before class
@@ -45,7 +45,7 @@ createTime: 2026/01/17 21:52:27
 - The smaller the value, the later the clearing time
 - Setting to 0 means clearing on time
 
-## Subject History Filter
+## ::lucide:history:: Subject History Filter
 
 **Subject History Filter**: Only use history records of the current subject when calculating weights
 - On: Only use history records generated during current subject class time to calculate weights
@@ -59,7 +59,7 @@ Link settings recommendations:
 4. Configure subject history filter function according to teaching needs
 :::
 
-## ClassIsland Notification Service
+## ::lucide:bell:: ClassIsland Notification Service
 
 **Notification Service Type**: Select notification service type
 - SecRandom: Use SecRandom notification window to send notifications

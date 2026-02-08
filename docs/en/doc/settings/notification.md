@@ -7,7 +7,7 @@ createTime: 2026/01/10 00:00:00
 >
 > Through flexible notification configuration, get the best reminder effect during use. All settings are saved in real-time and take effect automatically.
 
-## Basic Settings
+## ::lucide:settings:: Basic Settings
 
 **Call Notification Service**: After enabling, call the notification service to send roll call results
 
@@ -17,7 +17,7 @@ createTime: 2026/01/10 00:00:00
 
 **Floating Notification Threshold**: Set the number threshold for triggering transfer to main interface notification
 
-### Floating Window Mode
+### ::lucide:app-window:: Floating Window Mode
 
 **Monitor Selection**: Select the monitor to display the roll call notification floating window
 

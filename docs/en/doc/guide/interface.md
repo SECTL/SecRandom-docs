@@ -5,11 +5,11 @@ createTime: 2025/11/29 12:58:02
 
 # SecRandom Interface Guide
 
-## Interface Overview
+## ::lucide:layout-dashboard:: Interface Overview
 
 SecRandom adopts the Fluent Design design language, building a modern user interface based on the PySide6 and qfluentwidgets frameworks. The main window inherits from FluentWindow, providing smooth navigation experience and consistent visual style. The interface supports features like window size memory, automatic centering, and maximized state preservation, ensuring users get a comfortable experience.
 
-## Themes and Personalization
+## ::lucide:palette:: Themes and Personalization
 
 ### Preset Theme Options
 
@@ -31,9 +31,9 @@ SecRandom adopts the Fluent Design design language, building a modern user inter
 - Supports multiple font weights (Light/Medium/Bold)
 - Supports loading custom font files
 
-## Main Interface Navigation
+## ::lucide:layout-dashboard:: Main Interface Navigation
 
-### Core Feature Areas
+### ::lucide:star:: Core Feature Areas
 
 #### Roll Call Page
 - Icon: ic_fluent_people_20_filled
@@ -59,7 +59,7 @@ SecRandom adopts the Fluent Design design language, building a modern user inter
 - Supports custom navigation item positions (top/bottom/hidden)
 - Interface layout can be adjusted according to user preferences
 
-## System Tray Menu
+## ::lucide:inbox:: System Tray Menu
 
 ### Quick Action Panel
 

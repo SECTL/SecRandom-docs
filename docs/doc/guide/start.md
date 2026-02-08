@@ -7,7 +7,7 @@ createTime: 2025/11/23 19:46:59
 
 ---
 
-## 系统要求检查表
+## ::lucide:settings:: 系统要求检查表
 
 ### 最低配置要求
 | 类别 | 要求 | 推荐 |
@@ -25,7 +25,7 @@ createTime: 2025/11/23 19:46:59
 
 ---
 
-## 下载方式
+## ::lucide:download:: 下载方式
 
 ### 推荐方案
 
@@ -56,7 +56,7 @@ createTime: 2025/11/23 19:46:59
 
 ---
 
-## 文件完整性验证
+## ::lucide:checksum:: 文件完整性验证
 
 ### SHA256校验流程
 
@@ -87,7 +87,7 @@ createTime: 2025/11/23 19:46:59
 
 ---
 
-## 运行指南
+## ::lucide:rocket:: 运行指南
 
 ### Windows系统
 
@@ -145,9 +145,9 @@ createTime: 2025/11/23 19:46:59
 
 ---
 
-## 技术支持
+## ::lucide:life-buoy:: 技术支持
 
-### **问题反馈渠道**
+### ::lucide:circle-help:: **问题反馈渠道**
 - [GitHub Issues](https://github.com/SECTL/SecRandom/issues)
 - [QQ交流群](https://qm.qq.com/q/iWcfaPHn7W)
 - [QQ频道](https://pd.qq.com/s/4x5dafd34?b=9)

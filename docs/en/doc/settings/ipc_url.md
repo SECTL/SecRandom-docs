@@ -8,7 +8,7 @@ createTime: 2025/11/29 13:02:57
 >
 > This page provides a complete list of IPC and URL protocols supported by SecRandom software. Through these protocols, you can quickly access various functional modules of the software and perform specific operations.
 
-## Overview
+## ::lucide:telescope:: Overview
 
 SecRandom supports two protocol types:
 - **URL Protocol**: Invoked through `secrandom://` protocol, suitable for external applications and browsers
@@ -23,7 +23,7 @@ SecRandom adopts a unified window management entry. All window operations are im
 - `window/settings` - Settings window control
 - `window/float` - Floating window control
 
-## Complete Command Overview Table
+## ::lucide:telescope:: Complete Command Overview Table
 
 | Command Group | Command | Purpose | Read-Only | Affects Interface |
 |---------------|---------|---------|-----------|-------------------|
@@ -84,7 +84,7 @@ Alias for action, same priority
 :::
 ::::
 
-### Parameter Parsing Rules
+### ::lucide:scroll-text:: Parameter Parsing Rules
 
 1. **Priority**: `action` / `mode` / `op` / `do` / `visible` have the same priority. Parameters are parsed in the order they appear, and later parameters will override earlier ones
 2. **Default Value**: When no action parameters are passed, the default `toggle` operation is executed (hide if currently displayed, otherwise show)
@@ -93,7 +93,7 @@ Alias for action, same priority
    - `hide` - Force window to hide
    - `toggle` - Toggle window display state
 
-### Parameter Usage Examples
+### ::lucide:play:: Parameter Usage Examples
 
 - `secrandom://window/main?action=show` - Show main window
 - `secrandom://window/main?visible=1` - Show main window (using visible parameter)
@@ -136,7 +136,7 @@ Alias for page
 4. **Page parameter aliases**: `page` / `page_name` / `name` / `value` have the same priority, later parameters will override earlier ones
 5. **Page alias support**: Supports short aliases (e.g., `roll` → `roll_call_page`), see page list for details
 
-### Usage Examples
+### ::lucide:play:: Usage Examples
 
 - `secrandom://window/main` - Toggle main window display state
 - `secrandom://window/main?action=show` - Show main window
@@ -149,7 +149,7 @@ Alias for page
 - `secrandom://window/main?action=show&page=lottery` - Show main window and switch to lottery page (using alias)
 - `secrandom://window/main?visible=1&page=history` - Show main window and switch to history page (using visible and alias)
 
-## window/settings
+## ::lucide:settings:: window/settings
 
 Settings window control command, used to control the display state of the settings window and open specific settings pages.
 
@@ -189,7 +189,7 @@ Whether to open in preview mode
 4. **Preview parameter**: When set to true value (`1`/`true`/`yes`/`on`), open settings page in preview mode
 5. **Page parameter aliases**: `page` / `page_name` / `name` / `value` have the same priority, later parameters will override earlier ones
 
-### Usage Examples
+### ::lucide:play:: Usage Examples
 
 - `secrandom://window/settings` - Toggle settings window display state (default open basic settings)
 - `secrandom://window/settings?action=show` - Show settings window
@@ -206,7 +206,7 @@ Whether to open in preview mode
 - `secrandom://window/settings?action=show&page=historyInterface` - Show settings window and open history settings
 - `secrandom://window/settings?action=show&page=moreSettingsInterface&preview=true` - Show settings window and open more settings in preview mode
 
-## window/float
+## ::lucide:app-window:: window/float
 
 Floating window control command, used to control the display state of the floating window.
 
@@ -240,7 +240,7 @@ Alias for action
 2. **Action parameters passed**: Execute specified action (show/hide/toggle)
 3. **Floating window does not support page switching**: Floating window commands do not support `page` parameter
 
-### Usage Examples
+### ::lucide:play:: Usage Examples
 
 - `secrandom://window/float` - Toggle floating window display state
 - `secrandom://window/float?action=show` - Show floating window
@@ -251,11 +251,11 @@ Alias for action
 - `secrandom://window/float?visible=1` - Show floating window (using visible parameter)
 - `secrandom://window/float?visible=0` - Hide floating window (using visible parameter)
 
-## tray/* Tray Function Commands
+## ::lucide:box:: tray/* Tray Function Commands
 
 Tray function commands are used to control various functions of the tray menu.
 
-### Command List
+### ::lucide:list:: Command List
 
 | Command | Description |
 |---------|-------------|
@@ -352,11 +352,11 @@ Exit SecRandom program command.
 **Usage Examples**:
 - `secrandom://tray/exit` - Exit SecRandom program
 
-## roll_call/* Roll Call Control Commands
+## ::lucide:user-check:: roll_call/* Roll Call Control Commands
 
 Roll call control commands are used to control the start, stop, reset of roll call functions and set roll call parameters.
 
-### Command List
+### ::lucide:list:: Command List
 
 | Command | Description |
 |---------|-------------|
@@ -576,11 +576,11 @@ Alias for class_name
 - `secrandom://roll_call/set_list?class_name=Grade 3 Class 1` - Set roll call list to "Grade 3 Class 1"
 - `secrandom://roll_call/set_list?list_name=Grade 3 Class 2` - Set roll call list to "Grade 3 Class 2" (using alias)
 
-## lottery/* Lottery Control Commands
+## ::lucide:gift:: lottery/* Lottery Control Commands
 
 Lottery control commands are used to control the start, stop, reset of lottery functions and set lottery parameters.
 
-### Command List
+### ::lucide:list:: Command List
 
 | Command | Description |
 |---------|-------------|
@@ -814,11 +814,11 @@ Alias for class_name
 - `secrandom://lottery/set_list?class_name=Grade 3 Class 1` - Set lottery list to "Grade 3 Class 1"
 - `secrandom://lottery/set_list?list_name=Grade 3 Class 2` - Set lottery list to "Grade 3 Class 2" (using alias)
 
-## data/* Data Retrieval Commands
+## ::lucide:database:: data/* Data Retrieval Commands
 
 Data retrieval commands are used to query various data from SecRandom.
 
-### Command List
+### ::lucide:list:: Command List
 
 | Command | Description |
 |---------|-------------|

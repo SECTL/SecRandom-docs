@@ -7,9 +7,9 @@ createTime: 2026/01/17 22:40:45
 >
 > Through flexible history management settings, you can control the saving and viewing of roll call and lottery history records. All settings are saved in real-time and take effect automatically.
 
-## History Management
+## ::lucide:history:: History Management
 
-### Roll Call History
+### ::lucide:user-check:: Roll Call History
 
 **Enable Roll Call History**: Control whether to enable the roll call history function
 - On: Save roll call history records
@@ -21,7 +21,7 @@ createTime: 2026/01/17 22:40:45
 **Clear Roll Call History**: Clear roll call history records for the selected class
 - Click the "Clear" button to delete all roll call history records for the selected class
 
-### Lottery History
+### ::lucide:gift:: Lottery History
 
 **Enable Lottery History**: Control whether to enable the lottery history function
 - On: Save lottery history records
@@ -33,7 +33,7 @@ createTime: 2026/01/17 22:40:45
 **Clear Lottery History**: Clear lottery history records for the selected prize pool
 - Click the "Clear" button to delete all lottery history records for the selected prize pool
 
-## Roll Call History Table
+## ::lucide:history:: Roll Call History Table
 
 **Select Class**: Select the class to view history records
 - Support selecting different classes to view corresponding roll call history table
@@ -43,7 +43,7 @@ createTime: 2026/01/17 22:40:45
 - View by Time: Sort history records by time
 - View by Student: View history records for the selected student
 
-### Roll Call History Table
+### ::lucide:user-check:: Roll Call History Table
 
 | Field | Description |
 |--------|-------------|
@@ -52,7 +52,7 @@ createTime: 2026/01/17 22:40:45
 | **Roll Call Count** | Total number of times the student was called |
 | **Weight** | Student's weight value in roll call |
 
-## Lottery History Table
+## ::lucide:gift:: Lottery History Table
 
 **Select Prize Pool**: Select the prize pool to view history records
 - Support selecting different prize pools to view corresponding lottery history table

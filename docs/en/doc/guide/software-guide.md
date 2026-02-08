@@ -31,12 +31,12 @@ Completing the entire setup process takes approximately 15-20 minutes. Data migr
 
 ## ::lucide:circle-1:: Welcome Page
 
-### Page Content
+### ::lucide:layout:: Page Content
 
 - Displays SecRandom logo and title
 - Simple welcome interface
 
-### Operation Steps
+### ::lucide:mouse-pointer-click:: Operation Steps
 
 Click the **"Start"** button to proceed to the next step.
 
@@ -44,12 +44,12 @@ Click the **"Start"** button to proceed to the next step.
 
 ## ::lucide:circle-2:: Language Selection Page
 
-### Page Content
+### ::lucide:layout:: Page Content
 
 - Provides multiple language options
 - Language change requires restarting the application to take effect
 
-### Operation Steps
+### ::lucide:mouse-pointer-click:: Operation Steps
 
 1. Select your preferred language from the dropdown list (e.g., "中文", "English")
 2. Click "Next" to continue
@@ -62,14 +62,14 @@ Language changes require restarting the application to take effect.
 
 ## ::lucide:circle-3:: License Agreement Page
 
-### Page Content
+### ::lucide:layout:: Page Content
 
 Contains two tabs:
 
 - **License Agreement**: Displays GPL license agreement
 - **Disclaimer**: Displays software disclaimer
 
-### Operation Steps
+### ::lucide:mouse-pointer-click:: Operation Steps
 
 1. **Read Agreement**: Switch between the two tabs and read the agreement content completely
 2. **Scroll to Bottom**: Must scroll to the bottom of the agreement to check the agreement option
@@ -86,12 +86,12 @@ You must check both "Agree to License Agreement" and "Agree to Disclaimer" to pr
 
 ## ::lucide:circle-4:: Data Migration Page
 
-### Page Content
+### ::lucide:layout:: Page Content
 
 - Provides manual import of old data functionality
 - If you have used SecRandom before, you can import data from the old version
 
-### Operation Steps
+### ::lucide:mouse-pointer-click:: Operation Steps
 
 #### If You Need to Import Data
 
@@ -112,11 +112,11 @@ Data migration is an optional step. If you are using it for the first time or do
 
 ## ::lucide:circle-5:: Basic Settings Page
 
-### Page Content
+### ::lucide:layout:: Page Content
 
 Configure the basic appearance and behavior settings of the software.
 
-### Operation Steps
+### ::lucide:mouse-pointer-click:: Operation Steps
 
 #### ::lucide:circle-1:: Simplified Mode
 
@@ -146,11 +146,11 @@ It is recommended to select the "Follow System" theme, so that the software will
 
 ## ::lucide:circle-6:: List Management Page
 
-### Page Content
+### ::lucide:layout:: Page Content
 
 Manage student lists and class information.
 
-### Operation Steps
+### ::lucide:mouse-pointer-click:: Operation Steps
 
 #### ::lucide:circle-1:: Create Class
 
@@ -194,11 +194,11 @@ List management is an optional step. You can continue configuring it later in se
 
 ## ::lucide:circle-7:: Enhanced Features Page
 
-### Page Content
+### ::lucide:layout:: Page Content
 
 Contains three tabs to configure enhanced features of the software.
 
-### Operation Steps
+### ::lucide:mouse-pointer-click:: Operation Steps
 
 #### Tab 1: TTS Settings
 
@@ -241,11 +241,11 @@ Enhanced features are optional steps. You can continue configuring them later in
 
 ## ::lucide:circle-8:: Test Page
 
-### Page Content
+### ::lucide:layout:: Page Content
 
 Test if the features you configured are working properly.
 
-### Operation Steps
+### ::lucide:mouse-pointer-click:: Operation Steps
 
 #### ::lucide:circle-1:: Test TTS Voice
 
@@ -274,11 +274,11 @@ It is recommended to test all functions to ensure correct configuration before c
 
 ## ::lucide:circle-9:: Links Page
 
-### Page Content
+### ::lucide:layout:: Page Content
 
 Provides related links for you to get more information and support.
 
-### Operation Steps
+### ::lucide:mouse-pointer-click:: Operation Steps
 
 #### View Links
 
@@ -304,7 +304,7 @@ After setup is complete, the software will remember your configuration. If you n
 
 You have completed the initial configuration of SecRandom! You can now start using the software.
 
-### Quick Start
+### ::lucide:play:: Quick Start
 
 | Action | Shortcut |
 |------|----------|
@@ -313,7 +313,7 @@ You have completed the initial configuration of SecRandom! You can now start usi
 | **View History** | Right-click tray icon → "History" |
 | **Open Settings** | Right-click tray icon → "Settings" |
 
-### Next Steps
+### ::lucide:footprints:: Next Steps
 
 - ::lucide:book-open:: Read [User Interface Introduction](../guide/interface.md) to learn more about interface functions
 - ::lucide:settings:: View [Software Settings Tutorial](../settings/basic.md) to learn deeply about various settings

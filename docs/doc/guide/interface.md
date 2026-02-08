@@ -5,11 +5,11 @@ createTime: 2025/11/29 12:58:02
 
 # 界面介绍
 
-## 界面概览
+## ::lucide:telescope:: 界面概览
 
 SecRandom 采用 Fluent Design 设计语言，基于 PySide6 和 qfluentwidgets 框架构建现代化用户界面。主窗口继承自 FluentWindow，提供流畅的导航体验和一致的视觉风格。界面支持窗口大小记忆、自动居中、最大化状态保存等功能，确保用户获得舒适的使用体验。
 
-## 主题与个性化
+## ::lucide:palette:: 主题与个性化
 
 ### 预设主题方案
 
@@ -31,7 +31,7 @@ SecRandom 采用 Fluent Design 设计语言，基于 PySide6 和 qfluentwidgets 
 - 支持多种字重选择（Light/Medium/Bold）
 - 可加载自定义字体文件
 
-## 主界面功能导航
+## ::lucide:box:: 主界面功能导航
 
 ### 核心功能区
 
@@ -59,9 +59,9 @@ SecRandom 采用 Fluent Design 设计语言，基于 PySide6 和 qfluentwidgets 
 - 支持自定义导航项位置（顶部/底部/隐藏）
 - 可根据用户偏好调整界面布局
 
-## 系统托盘菜单
+## ::lucide:inbox:: 系统托盘菜单
 
-### 快速操作面板
+### ::lucide:mouse-pointer-click:: 快速操作面板
 
 #### 界面控制
 - 显示/隐藏主窗口：快速切换主窗口显示状态

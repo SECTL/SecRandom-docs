@@ -7,7 +7,7 @@ createTime: 2026/01/17 22:24:44
 >
 > Through flexible voice settings, create the voice broadcast effect that best suits your usage habits. All settings are saved in real-time and take effect automatically.
 
-## Basic Voice Settings
+## ::lucide:settings:: Basic Voice Settings
 
 **Voice Function Switch**: Turn on or off voice broadcast function
 - On: Enable voice broadcast function
@@ -47,7 +47,7 @@ createTime: 2026/01/17 22:24:44
 **System Volume Size**: Set the target volume size when automatically controlling system volume
 - Only takes effect when system volume control is enabled
 
-## Specific Broadcast Settings
+## ::lucide:settings:: Specific Broadcast Settings
 
 **Specific Broadcast Switch**: Turn on or off the general switch for specific result voice broadcast
 - On: Enable voice broadcast function for specific results

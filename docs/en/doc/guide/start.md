@@ -7,9 +7,9 @@ createTime: 2025/11/23 19:46:59
 
 ---
 
-## System Requirements Checklist
+## ::lucide:list:: System Requirements Checklist
 
-### Minimum Requirements
+### ::lucide:clipboard-check:: Minimum Requirements
 | Category | Requirements | Recommended |
 |----------|--------------|-------------|
 | **Processor** | 1GHz or higher | 64-bit 4 cores or more |
@@ -25,7 +25,7 @@ createTime: 2025/11/23 19:46:59
 
 ---
 
-## Download Methods
+## ::lucide:download:: Download Methods
 
 ### Recommended Solutions
 
@@ -152,7 +152,7 @@ Each version's release page provides SHA256 checksum values in the following for
 
 ---
 
-## Technical Support
+## ::lucide:life-buoy:: Technical Support
 
 ### **Problem Feedback Channels**
 - [GitHub Issues](https://github.com/SECTL/SecRandom/issues)

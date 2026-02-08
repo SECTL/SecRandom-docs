@@ -7,7 +7,7 @@ createTime: 2026/01/02 15:29:12
 >
 > Through rich customization options, create a drawing style and floating window experience exclusive to you.
 
-## Drawing Settings
+## ::lucide:settings:: Drawing Settings
 
 Drawing settings include three independent features: **Roll Call Settings**, **Quick Draw Settings**, and **Lottery Settings**. Each feature includes drawing function, display settings, and animation settings.
 

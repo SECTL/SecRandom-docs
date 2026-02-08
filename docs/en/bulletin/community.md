@@ -9,7 +9,7 @@ excerpt: Join the discussion community to participate in communication and get h
 
 To join the discussion community, you need to follow the community guidelines of the corresponding discussion community.
 
-## Join the Community
+## ::lucide:users:: Join the Community
 
 You can also join these communities to seek help:
 

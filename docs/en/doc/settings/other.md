@@ -7,7 +7,7 @@ createTime: 2026/01/17 22:59:36
 >
 > Through flexible shortcut key and update settings, improve your usage efficiency. All settings are saved in real-time and take effect automatically.
 
-## Shortcut Key Settings
+## ::lucide:keyboard:: Shortcut Key Settings
 
 **Enable Shortcut Keys**: After enabling, you can use shortcut keys for quick operations
 :::tip
@@ -16,7 +16,7 @@ Shortcut keys are all global shortcut keys and can be triggered on any page
 - On: Enable shortcut key function
 - Off: Disable shortcut key function
 
-### Shortcut Key Settings
+### ::lucide:settings:: Shortcut Key Settings
 
 Set shortcut keys for opening functions
 
@@ -24,7 +24,7 @@ Set shortcut keys for opening functions
 - Shortcut key settings should avoid conflicts with other software to prevent accidental operations
 :::
 
-## Update Settings
+## ::lucide:settings:: Update Settings
 
 **Force Check for Updates**: Force the application to update to the latest version on the current channel, even if this version is older than the application's current version.
 

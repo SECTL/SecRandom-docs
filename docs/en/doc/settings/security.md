@@ -36,14 +36,14 @@ createTime: 2026/01/11 12:42:47
 - Click button to unbind the bound USB drive
 - After unbinding, the USB drive is no longer used as verification credential
 
-## Security Verification Steps
+## ::lucide:shield-check:: Security Verification Steps
 
 **Security Verification Steps**: Select security verification combination method
 - Single-step verification (choose any one method): Select one from available verification methods to complete verification
 - Only password/Only TOTP/Only USB drive: Only need to perform the selected verification method to complete verification
 - Multi-step verification (combination verification method): Need to complete multiple verification methods
 
-## Security Operations
+## ::lucide:mouse-pointer-click:: Security Operations
 
 **Settings Preview Switch**: Allow previewing settings when entering settings verification
 :::tip

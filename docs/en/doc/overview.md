@@ -52,9 +52,9 @@ SecRandom is open source under the GNU GPL-3.0 license. You are free to use, mod
 - **Activity Organization**: Random lottery, lucky audience selection
 - **Fair Opportunity Distribution**: Any scenario requiring fair random selection
 
-## Core Features
+## ::lucide:star:: Core Features
 
-### Selection Modes
+### ::lucide:dices:: Selection Modes
 
 #### Roll Call Mode
 - **Single Person Selection**: Randomly choose one student
@@ -72,7 +72,7 @@ SecRandom is open source under the GNU GPL-3.0 license. You are free to use, mod
 - **Shortcut Key Support**: Customizable shortcut keys, one-click selection
 - **Uninterrupted Teaching**: Selection process doesn't affect normal teaching flow
 
-### Smart Settings
+### ::lucide:settings:: Smart Settings
 
 #### Fair Selection Algorithm
 SecRandom uses intelligent dynamic weight algorithms combined with average value difference protection mechanisms to ensure every member gets fair selection opportunities:
@@ -84,7 +84,7 @@ SecRandom uses intelligent dynamic weight algorithms combined with average value
 - **Candidate Pool Size Guarantee**: Ensure candidate pool is not smaller than the set minimum size
 - **Real-time Probability Visualization**: Display each member's selection probability, fairness is visible
 
-### Data Management
+### ::lucide:database:: Data Management
 
 #### List Management
 - **Multi-list Support**: One program manages multiple class lists, simpler operation
@@ -98,7 +98,7 @@ SecRandom uses intelligent dynamic weight algorithms combined with average value
 - **Auto Cleanup**: Can set automatic cleanup of expired records
 - **Data Statistics**: Selection count statistics, weight analysis
 
-### Privacy & Security
+### ::lucide:shield-check:: Privacy & Security
 
 #### Multi-layer Protection
 - **Password Protection**: Support setting password to protect settings page
@@ -124,21 +124,21 @@ SecRandom uses intelligent dynamic weight algorithms combined with average value
 - **ClassIsland Integration**: Support integration with ClassIsland software for more convenient roll call result display
 - **IPC/URL Call**: Support calling through IPC/URL interface, seamless integration with other software
 
-## Quick Start
+## ::lucide:play:: Quick Start
 
-### 1. Download and Install
+### ::lucide:download:: 1. Download and Install
 
 Get the latest version from [Download Page](/download), choose the appropriate installation package for your operating system:
 
 - **Windows Users**: Download .exe installer or .zip archive
 - **Linux Users**: Download .deb installation package
 
-### 2. Launch Program
+### ::lucide:rocket:: 2. Launch Program
 
 - **Windows**: Double-click `SecRandom.exe` to launch the program
 - **Linux**: Launch through application menu or command line
 
-### 3. Import List
+### ::lucide:list:: 3. Import List
 
 1. Click the "Settings" button in the top right corner of the main interface
 2. Select "List Management"
@@ -146,7 +146,7 @@ Get the latest version from [Download Page](/download), choose the appropriate i
 4. Select Excel (.xls/.xlsx) or CSV format student list file
 5. Confirm import information, complete list import
 
-### 4. Configure Parameters (Optional)
+### ::lucide:settings:: 4. Configure Parameters (Optional)
 
 1. Go to "Settings" page
 2. Configure selection parameters as needed:
@@ -156,7 +156,7 @@ Get the latest version from [Download Page](/download), choose the appropriate i
    - Whether to enable voice broadcast
    - Theme settings, etc.
 
-### 5. Start Selection
+### ::lucide:dices:: 5. Start Selection
 
 1. Return to main interface
 2. Select selection mode (roll call/lottery)
@@ -164,13 +164,13 @@ Get the latest version from [Download Page](/download), choose the appropriate i
 4. Click "Start Selection" button
 5. View selection results
 
-### 6. View History Records
+### ::lucide:history:: 6. View History Records
 
 1. Click the "History Records" button on the main interface
 2. View all selection history
 3. Support filtering and exporting history records
 
-## System Requirements
+## ::lucide:clipboard-check:: System Requirements
 
 ### Windows
 - **Operating System**: Windows 10 or higher (Windows 7 not supported)
@@ -182,10 +182,10 @@ Get the latest version from [Download Page](/download), choose the appropriate i
 - **Architecture**: x64
 - **Note**: Some features may be limited (such as startup on boot, certain system-level features)
 
-### Not Supported
+### ::lucide:life-buoy:: Not Supported
 - **macOS**: macOS is not currently supported
 
-## Join Community
+## ::lucide:users:: Join Community
 
 - **Official Website**: [https://secrandom.sectl.top](https://secrandom.sectl.top)
 - **GitHub**: [Give us a Star](https://github.com/SECTL/SecRandom)

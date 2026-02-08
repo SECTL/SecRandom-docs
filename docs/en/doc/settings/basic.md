@@ -5,11 +5,11 @@ createTime: 2025/11/24 23:43:05
 
 # SecRandom Basic Settings Documentation
 
-## Overview
+## ::lucide:telescope:: Overview
 
 Basic Settings is the core configuration interface of SecRandom software, used to manage the software's basic functions, appearance, and data. This document will introduce the functionality and usage of each setting item in detail.
 
-## Settings Interface Structure
+## ::lucide:layout-dashboard:: Settings Interface Structure
 
 The Basic Settings interface is divided into three main parts:
 
@@ -19,9 +19,9 @@ The Basic Settings interface is divided into three main parts:
 
 ---
 
-## 1. Basic Function Settings
+## ::lucide:box:: 1. Basic Function Settings
 
-### 1.1 Simplified Settings Mode
+### ::lucide:settings:: 1.1 Simplified Settings Mode
 
 **Function Description**: Hide advanced setting items and display only recommended settings
 
@@ -37,7 +37,7 @@ The Basic Settings interface is divided into three main parts:
 
 ---
 
-### 1.2 Startup with System
+### ::lucide:rocket:: 1.2 Startup with System
 
 **Function Description**: Set whether the software starts automatically with the system
 
@@ -53,7 +53,7 @@ The Basic Settings interface is divided into three main parts:
 
 ---
 
-### 1.3 Show Main Window on Startup
+### ::lucide:rocket:: 1.3 Show Main Window on Startup
 
 **Function Description**: Set whether the main window is automatically displayed when the software starts
 
@@ -77,7 +77,7 @@ The Basic Settings interface is divided into three main parts:
 
 ---
 
-### 1.5 Background Residence
+### ::lucide:history:: 1.5 Background Residence
 
 **Function Description**: Whether to remain resident in the background after closing all windows
 
@@ -93,7 +93,7 @@ The Basic Settings interface is divided into three main parts:
 
 ---
 
-### 1.6 URL Protocol Registration & IPC Service
+### ::lucide:plug:: 1.6 URL Protocol Registration & IPC Service
 
 **Function Description**: Register custom URL protocol (secrandom://) and enable IPC communication, supporting link launching and external integration
 
@@ -117,9 +117,9 @@ secrandom://lottery/draw     # Start lottery function
 
 ---
 
-## 2. Personalization Settings
+## ::lucide:settings:: 2. Personalization Settings
 
-### 2.1 Theme Mode
+### ::lucide:palette:: 2.1 Theme Mode
 
 **Function Description**: Select the software interface theme style
 
@@ -134,7 +134,7 @@ secrandom://lottery/draw     # Start lottery function
 
 ---
 
-### 2.2 Theme Color
+### ::lucide:palette:: 2.2 Theme Color
 
 **Function Description**: Set the software interface theme color
 
@@ -149,7 +149,7 @@ secrandom://lottery/draw     # Start lottery function
 
 ---
 
-### 2.3 Display Language
+### ::lucide:languages:: 2.3 Display Language
 
 **Function Description**: Switch the software interface language
 
@@ -189,7 +189,7 @@ secrandom://lottery/draw     # Start lottery function
 
 ---
 
-### 2.5 Font
+### ::lucide:type:: 2.5 Font
 
 **Function Description**: Set the software interface display font
 
@@ -201,7 +201,7 @@ secrandom://lottery/draw     # Start lottery function
 
 ---
 
-### 2.6 Font Weight
+### ::lucide:type:: 2.6 Font Weight
 
 **Function Description**: Set the software interface font weight
 
@@ -224,9 +224,9 @@ secrandom://lottery/draw     # Start lottery function
 
 ---
 
-## 3. Data Management
+## ::lucide:database:: 3. Data Management
 
-### 3.1 Export Settings
+### ::lucide:settings:: 3.1 Export Settings
 
 **Function Description**: Export current settings to a configuration file for backup and migration
 
@@ -247,7 +247,7 @@ secrandom://lottery/draw     # Start lottery function
 
 ---
 
-### 3.2 Import Settings
+### ::lucide:settings:: 3.2 Import Settings
 
 **Function Description**: Import settings from a configuration file, overwriting current configuration information
 
@@ -263,7 +263,7 @@ secrandom://lottery/draw     # Start lottery function
 
 ---
 
-### 3.3 Export All Data
+### ::lucide:file-output:: 3.3 Export All Data
 
 **Function Description**: Export all data and settings when exiting the software
 
@@ -287,7 +287,7 @@ secrandom://lottery/draw     # Start lottery function
 
 ---
 
-### 3.4 Import All Data
+### ::lucide:file-input:: 3.4 Import All Data
 
 **Function Description**: Restore all data from a backup file when starting the software
 
@@ -305,7 +305,7 @@ secrandom://lottery/draw     # Start lottery function
 
 ---
 
-### 3.5 Export Diagnostic Data
+### ::lucide:file-output:: 3.5 Export Diagnostic Data
 
 **Function Description**: Export diagnostic information when exiting the software for troubleshooting
 
@@ -333,7 +333,7 @@ secrandom://lottery/draw     # Start lottery function
 
 ---
 
-### 3.6 View Logs
+### ::lucide:file-text:: 3.6 View Logs
 
 **Function Description**: View and manage program log files
 
@@ -419,20 +419,20 @@ secrandom://lottery/draw     # Start lottery function
 
 ## 4. Best Practices
 
-### 4.1 Daily Usage Recommendations
+### ::lucide:play:: 4.1 Daily Usage Recommendations
 
 1. **Regular Backup**: It is recommended to perform a complete data backup once a week
 2. **Enable Automatic Backup**: Set up automatic backup to prevent data loss
 3. **Set Theme Reasonably**: Choose an appropriate theme based on your usage environment to protect your eyes
 4. **Adjust DPI Scaling**: Adjust the interface size based on screen resolution and personal preferences
 
-### 4.2 Data Migration Recommendations
+### ::lucide:database:: 4.2 Data Migration Recommendations
 
 1. **Backup Before Export**: Export current data as a backup before performing data migration
 2. **Version Compatibility**: Ensure that the imported data is compatible with the current software version
 3. **Step-by-Step Import**: Import settings first, confirm there are no issues, then import other data
 
-### 4.3 Troubleshooting Recommendations
+### ::lucide:wrench:: 4.3 Troubleshooting Recommendations
 
 1. **View Logs**: When encountering problems, first check the log files to understand detailed information
 2. **Export Diagnostic Data**: If technical support is needed, export diagnostic data and provide it to developers
