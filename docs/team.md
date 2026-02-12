@@ -98,7 +98,7 @@ import VPComment from '@theme/VPComment.vue'
 let animationId = null;
 
 // 速度控制：每帧色调变化量（越大越快）
-const HUE_STEP = 1;
+const HUE_STEP = 10;
 
 onMounted(() => {
   const el = document.getElementById('rainbow-name');
