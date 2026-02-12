@@ -83,7 +83,7 @@ pageLayout: page
             <img src="/avatar/yaqwq.jpg" alt="yaqwq" width="80" />
             <div class="text-content">
                 <p class="name">我是小鸭头</p>
-                <p class="role">艹日志</p>
+                <p class="role">一个人类，love 日志</p>
             </div>
         </div>
     </LinkCard>
