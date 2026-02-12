@@ -78,6 +78,15 @@ pageLayout: page
             </div>
         </div>
     </LinkCard>
+    <LinkCard title="贡献者" href="https://blog.yaqwq.top">
+        <div class="card-content">
+            <img src="/avatar/yaqwq.jpg" alt="yaqwq" width="80" />
+            <div class="text-content">
+                <p class="name">我是小鸭头</p>
+                <p class="role">艹日志</p>
+            </div>
+        </div>
+    </LinkCard>
 </CardGrid>
 
 <VPComment class="comment" />
