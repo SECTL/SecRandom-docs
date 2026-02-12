@@ -41,6 +41,7 @@ export default {
           "LeafS825 (Creativity & Documentation)",
           "Jursin (Responsive Frontend Page Design & Maintenance & Documentation)",
           "lrs2187 (ClassIsland integration and plugin development)"
+          "yaqwq (Logging Function）"
         ];
       } else {
         return [
@@ -52,6 +53,7 @@ export default {
           "叶背影(创意&文档)",
           "Jursin(响应式前端页面设计及维护&文档)",
           "lrs2187(Classlsland 联动部分与插件制作)"
+          "我是小鸭头(一个人类，love 日志)"
         ];
       }
     }
