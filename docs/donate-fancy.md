@@ -89,7 +89,7 @@ title: 落魄龙娘在线要饭
 </style>
 
 <div class="fancy-begging-bg">
-  <video class="fancy-bg-video" src="/donate-fancy/qznz.mp4" autoplay loop muted playsinline></video>
+  <img class="fancy-bg-video" src="/donate-fancy/1.png" />
   <div class="fancy-title">落魄龙娘在线要饭</div>
   <div class="fancy-emoji">🐉💸🥺</div>
   <div class="fancy-desc" style="margin-bottom:1.5rem;">龙娘最近实在太穷了，饭都快吃不起了！</div>
