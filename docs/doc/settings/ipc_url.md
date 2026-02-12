@@ -251,6 +251,26 @@ action 的别名，优先级相同
 - `secrandom://window/float?visible=1` - 显示浮窗（使用 visible 参数）
 - `secrandom://window/float?visible=0` - 隐藏浮窗（使用 visible 参数）
 
+## ::lucide:timer:: window/timer
+
+计时器窗口控制命令，用于打开计时器窗口。
+
+::: info 提示
+该命令目前仅支持**打开**计时器窗口，不支持隐藏或切换状态，且无任何配置参数。
+:::
+
+### 参数表
+
+无参数。
+
+### 行为说明
+
+执行该命令将直接打开计时器窗口。如果窗口已打开，则将其置顶显示。
+
+### ::lucide:play:: 使用示例
+
+- `secrandom://window/timer` - 打开计时器窗口
+
 ## ::lucide:inbox:: tray/* 托盘功能命令
 
 托盘功能命令用于控制托盘菜单的各项功能。

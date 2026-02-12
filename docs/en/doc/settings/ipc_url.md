@@ -251,6 +251,26 @@ Alias for action
 - `secrandom://window/float?visible=1` - Show floating window (using visible parameter)
 - `secrandom://window/float?visible=0` - Hide floating window (using visible parameter)
 
+## ::lucide:timer:: window/timer
+
+Timer window control command, used to open the timer window.
+
+::: info Note
+This command currently only supports **opening** the timer window. It does not support hiding or toggling state, and has no configuration parameters.
+:::
+
+### Parameter Table
+
+No parameters.
+
+### Behavior Description
+
+Executing this command will directly open the timer window. If the window is already open, it will be brought to the front.
+
+### ::lucide:play:: Usage Examples
+
+- `secrandom://window/timer` - Open timer window
+
 ## ::lucide:box:: tray/* Tray Function Commands
 
 Tray function commands are used to control various functions of the tray menu.
