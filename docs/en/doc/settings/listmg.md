@@ -21,14 +21,17 @@ createTime: 2026/01/01 22:26:56
 
 ### Information Management
 
-- **Set Student Information**: Add or modify student information such as name, gender, group, etc.
+- **Set Name**: Modify the name of the selected student
+- **Set Gender**: Set the gender of the selected student (for gender selection mode)
+- **Set Group**: Set the group of the selected student (for group selection mode)
+- **Tag Settings**: Set custom tags for students for easier management and filtering
 
 ## ::lucide:gift:: Lottery List
 
 ### Prize Pool Management
 
 - **Set Prize Pool Name**: Set or modify the name of the prize pool currently being managed
-- **Select Prize Pool**: Select a prize pool from existing prize pools
+- **Select Prize Pool**: Switch and select different prize pools for management
 
 ### ::lucide:file-input:: Prize Import and Export
 
@@ -37,7 +40,10 @@ createTime: 2026/01/01 22:26:56
 
 ### Prize Information Management
 
-- **Set Prize Information**: Add or modify prize name, winning probability, etc.
+- **Set Prize**: Modify the name of the selected prize
+- **Set Weight**: Set the winning weight of the selected prize (higher weight means higher probability)
+- **Tag Settings**: Set custom tags for prizes
+- **Set Quantity**: Set the quantity of the selected prize (for recording purposes only, does not affect selection logic)
 
 ## ::lucide:list:: List Management Tips
 

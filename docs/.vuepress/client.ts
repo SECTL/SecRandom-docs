@@ -1,6 +1,5 @@
 import { defineClientConfig } from 'vuepress/client'
 import Layout from './theme/components/Layout.vue'
-import Download from './theme/components/Download.vue'
 import TeamCard from './theme/components/TeamCard.vue'
 
 // import Swiper from 'vuepress-theme-plume/features/Swiper.vue'
@@ -26,7 +25,6 @@ if (typeof window !== 'undefined') {
 
 export default defineClientConfig({
   enhance({ app }) {
-    app.component('Download', Download)
     app.component('TeamCard', TeamCard)
   },
   layouts: {

@@ -25,12 +25,12 @@ const Doc = defineCollection({
       { text: '通知设置', link: 'notification' },
       { text: '语音设置', link: 'voice' },
       { text: '历史记录', link: 'history' },
-      { text: 'IPC & URL 协议', link: 'ipc_url' },
       { text: '联动设置', link: 'link' },
       { text: '其他设置', link: 'other' },
     ] },
     { text: '资源', icon: 'carbon:document', prefix: 'resources', items: [
       { text: '贡献指南', link: 'contribute' },
+      { text: 'IPC & URL 协议', link: 'ipc_url' },
     ] },
   ],
 });
@@ -72,12 +72,12 @@ const EnDoc = defineCollection({
       { text: 'Notification Settings', link: 'notification' },
       { text: 'Voice Settings', link: 'voice' },
       { text: 'History', link: 'history' },
-      { text: 'IPC & URL Protocol', link: 'ipc_url' },
       { text: 'Link Settings', link: 'link' },
       { text: 'Other Settings', link: 'other' },
     ] },
     { text: 'Resources', icon: 'carbon:document', prefix: 'resources', items: [
       { text: 'Contribute', link: 'contribute' },
+      { text: 'IPC & URL Protocol', link: 'ipc_url' },
     ] },
   ],
 });
