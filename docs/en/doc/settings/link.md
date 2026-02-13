@@ -19,6 +19,7 @@ createTime: 2026/01/17 21:52:27
 **Schedule Import**: Import CSES schedule
 - Import from file: Import CSES schedule through file
 - View current configuration: View existing CSES schedule configuration
+- Clear Schedule: Clear existing CSES schedule configuration
 
 ## ::lucide:settings:: Break Time Disable Settings
 
@@ -33,6 +34,14 @@ createTime: 2026/01/17 21:52:27
 **Unlock Time Before Class**: Set the automatic unlock time before class starts
 - The larger the value, the earlier the unlock time; the smaller the value, the later the unlock time
 - Setting to 0 means unlocking on time
+
+**Disable Delay After Class**: Set the time to delay triggering break time disable after class ends
+- Used to allow teachers time for dragging class or buffering after class
+- The larger the value, the longer the delay disable time
+
+**Hide Floating Window on Class End**: Automatically hide floating window when class ends (non-class time) detected
+- On: Automatically hide when class ends, automatically show when class starts (if display conditions are met)
+- Off: Floating window display is not affected by course status
 
 ## ::lucide:settings:: Pre-class Reset Settings
 
@@ -50,6 +59,11 @@ createTime: 2026/01/17 21:52:27
 **Subject History Filter**: Only use history records of the current subject when calculating weights
 - On: Only use history records generated during current subject class time to calculate weights
 - Off: Use all history records to calculate weights
+
+**Break Time Attribution**: Which category the subject history records during break time belong to
+- Previous Class: Subject history records during break time belong to the previous class subject
+- Next Class: Subject history records during break time belong to the next class subject
+- Break Time: Subject history records during break time belong to a separate break time period
 
 :::tip
 Link settings recommendations:
