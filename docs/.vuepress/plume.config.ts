@@ -44,13 +44,7 @@ export default defineThemeConfig({
   // nextPage: true,   // 是否启用下一页链接
   // createTime: true, // 是否显示文章创建时间
 
-  /**
-   * 公告板
-   * @see https://theme-plume.vuejs.press/guide/features/bulletin/
-   */
-  bulletin: {
-    layout: 'bottom-right',
-  },
+
 
   /* 过渡动画 @see https://theme-plume.vuejs.press/config/basic/#transition */
   transition: {

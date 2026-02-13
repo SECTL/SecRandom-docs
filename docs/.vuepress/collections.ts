@@ -50,17 +50,6 @@ const Faq = defineCollection({
   meta: { createTime: "long" },
 });
 
-const Bulletin = defineCollection({
-  type: "post",
-  dir: "bulletin",
-  title: "公告板",
-  link: "/bulletin/",
-  tags: false,
-  archives: false,
-  categories: false,
-  meta: { createTime: "long" },
-});
-
 // English docs
 const EnDoc = defineCollection({
   type: "doc",
@@ -104,16 +93,5 @@ const EnFaq = defineCollection({
   meta: { createTime: "long" },
 });
 
-const EnBulletin = defineCollection({
-  type: "post",
-  dir: "bulletin",
-  title: "Bulletin",
-  link: "/bulletin/",
-  tags: false,
-  archives: false,
-  categories: false,
-  meta: { createTime: "long" },
-});
-
-export const zhcollections = defineCollections([Doc, Faq, Bulletin]);
-export const encollections = defineCollections([EnDoc, EnFaq, EnBulletin]);
+export const zhcollections = defineCollections([Doc, Faq]);
+export const encollections = defineCollections([EnDoc, EnFaq]);
