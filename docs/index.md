@@ -12,7 +12,7 @@ config:
         - theme: brand
           text: 下载
           icon: lucide:download
-          link: /download
+          link: https://stk.sectl.top/SecRandom
         - theme: brand
           text: 阅读文档
           icon: lucide:list-start
