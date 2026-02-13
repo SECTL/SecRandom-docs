@@ -26,6 +26,7 @@ const Doc = defineCollection({
       { text: '语音设置', link: 'voice' },
       { text: '历史记录', link: 'history' },
       { text: '联动设置', link: 'link' },
+      { text: '高级设置', link: 'advanced' },
       { text: '其他设置', link: 'other' },
     ] },
     { text: '资源', icon: 'carbon:document', prefix: 'resources', items: [
@@ -73,6 +74,7 @@ const EnDoc = defineCollection({
       { text: 'Voice Settings', link: 'voice' },
       { text: 'History', link: 'history' },
       { text: 'Link Settings', link: 'link' },
+      { text: 'Advanced Settings', link: 'advanced' },
       { text: 'Other Settings', link: 'other' },
     ] },
     { text: 'Resources', icon: 'carbon:document', prefix: 'resources', items: [

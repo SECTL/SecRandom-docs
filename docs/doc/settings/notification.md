@@ -16,7 +16,11 @@ createTime: 2026/01/10 00:00:00
 **通知服务类型**
 - SecRandom：使用 SecRandom 内置的通知服务
 - ClassIsland：调用 ClassIsland 的通知接口进行显示（需要 ClassIsland 安装联动插件）
-- SecRandom+ClassIsland：同时使用两种方式进行通知
+- SecRandom + ClassIsland：同时使用两种方式进行通知
+
+:::warning
+使用 ClassIsland 服务前，需要先在 ClassIsland 中安装 ClassIsland 插件和 NET.8 运行时。
+:::
 
 **超过阈值时不显示浮窗通知**：当抽取人数超过设定值时，不显示浮窗通知，而是打开主窗口显示结果。
 
@@ -51,8 +55,7 @@ createTime: 2026/01/10 00:00:00
 **浮窗自动关闭时间**：设置浮窗自动关闭时间
 - 设为0表示不自动关闭，需要连续点击三下以手动关闭
 
-:::tip
-- 在**闪抽通知设置**中如果开启了**精简设置模式**，本部分仅会显示部分设置项，其余设置项值则跟随点名通知设置。  
-你可以通过关闭**精简设置模式**以在此页面对闪抽应用特殊设置。
-- 要查看和编辑 ClassIsland 通知服务相关设置，请转到[联动设置](link.html)设置卡
-:::
+### ::lucide:globe:: ClassIsland 通知服务
+
+**通知显示时长**：设置 ClassIsland 通知显示时长（秒）
+- 控制 ClassIsland 通知的显示时间，确保您有足够时间查看通知内容
