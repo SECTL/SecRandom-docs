@@ -40,4 +40,8 @@ list:
     link: https://cnel.smart-teach.cn/
     avatar: /icon/cnel.png
     desc: 教你如何做一名优秀的电教委员
+  - name: 沉浸式时钟
+    link: https://github.com/QQHKX/Immersive-clock
+    avatar: /icon/immclock.svg
+    desc: 一款全屏数字时钟、倒计时与秒表工具
 ---
