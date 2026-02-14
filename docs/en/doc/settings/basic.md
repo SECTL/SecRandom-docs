@@ -165,7 +165,42 @@ secrandom://lottery/draw     # Start lottery function
 
 ---
 
-### 2.4 DPI Scaling
+### ::lucide:type:: 2.4 Font
+
+**Function Description**: Set the software interface display font
+
+**Operation Method**: Select the font in the dropdown box
+
+**Notes**:
+- Need to restart the software to take effect
+- Select fonts installed on the system
+
+---
+
+### ::lucide:type:: 2.5 Font Weight
+
+**Function Description**: Set the software interface font weight
+
+**Available Options**:
+- Extra Light
+- Thin
+- Light
+- Regular
+- Medium
+- Semi Bold
+- Bold
+- Extra Bold
+- Black
+
+**Operation Method**: Select the font weight in the dropdown box
+
+**Notes**:
+- Need to restart the software to take effect
+- Different fonts may support different weights
+
+---
+
+### 2.6 DPI Scaling
 
 **Function Description**: Adjust the software interface scaling ratio
 
@@ -189,123 +224,94 @@ secrandom://lottery/draw     # Start lottery function
 
 ---
 
-### ::lucide:type:: 2.5 Font
-
-**Function Description**: Set the software interface display font
-
-**Operation Method**: Select the font in the dropdown box
-
-**Notes**:
-- Need to restart the software to take effect
-- Select fonts installed on the system
-
----
-
-### ::lucide:type:: 2.6 Font Weight
-
-**Function Description**: Set the software interface font weight
-
-**Available Options**:
-- Extra Light
-- Thin
-- Light
-- Regular
-- Medium
-- Semi Bold
-- Bold
-- Extra Bold
-- Black
-
-**Operation Method**: Select the font weight in the dropdown box
-
-**Notes**:
-- Need to restart the software to take effect
-- Different fonts may support different weights
-
----
-
 ## ::lucide:database:: 3. Data Management
 
-### ::lucide:settings:: 3.1 Export Settings
+### ::lucide:file-text:: 3.1 View Logs
 
-**Function Description**: Export current settings to a configuration file for backup and migration
+**Function Description**: View and manage program log files
 
-**Operation Method**:
-1. Click the "Export Settings" button
-2. Select the save location
-3. Confirm export
+**Operation Method**: Click the "View Logs" button
 
-**Export Content**:
-- All basic settings
-- Personalization settings
-- Other function settings
+**Functions**:
+- View program running logs
+- Search log content
+- Export log files
+- Clear logs
 
 **Applicable Scenarios**:
-- Backup current configuration
-- Migrate settings between different devices
-- Share configuration with other users
+- Troubleshoot software issues
+- View software running status
+- Technical support needs log information
 
 ---
 
-### ::lucide:settings:: 3.2 Import Settings
+### 3.2 Backup Management
 
-**Function Description**: Import settings from a configuration file, overwriting current configuration information
+**Function Description**: Manage automatic and manual backups
+
+**Operation Method**: Click the "Backup Management" button
+
+#### 3.2.1 Automatic Backup
+
+**Function Description**: Configure automatic backup strategy
+
+**Setting Items**:
+- **Enable**: Enable or disable automatic backup
+- **Auto Backup Interval**: Set automatic backup interval (days)
+- **Auto Backup Limit**: Set the maximum number of automatic backups to keep (0 for unlimited)
+- **Last Successful Backup**: Display the last successful backup time
 
 **Operation Method**:
-1. Click the "Import Settings" button
-2. Select the configuration file
-3. Confirm import
+- Set each parameter in the "Automatic Backup" tab
+- Click the "Enable" button to enable automatic backup
 
-**Notes**:
-- Import will overwrite all current settings
-- Need to restart the software after import to take effect
-- It is recommended to backup current settings before importing
+#### 3.2.2 Manual Backup
 
----
-
-### ::lucide:file-output:: 3.3 Export All Data
-
-**Function Description**: Export all data and settings when exiting the software
+**Function Description**: Immediately backup and manage backup files
 
 **Operation Method**:
-1. Click the "Export All Data" button
-2. Confirm export warning
-3. Select the save location
-4. Wait for export to complete
+- In the "Manual Backup" tab
+- Click the "Backup Now" button to create a backup
+- Click the "View Backup Files" button to open the backup folder
+- View the backup folder size
 
-**Export Content**:
-- Software version information
-- All settings configuration
-- Roll call lists
-- Lottery lists
-- History records
-- Log files
+**Backup Content**:
+- Configuration files (config)
+- List data (list)
+- Language files (Language)
+- History records (history)
+- Audio resources (audio)
+- CSES integration (CSES)
+- Image resources (images)
+- Theme resources (theme)
+- Running logs (logs)
 
 **Notes**:
-- Exported data may contain sensitive information, please keep it safe
-- The export process may take some time, depending on the data volume
+- You can control whether to include certain types of data through toggles
+- After disabling an item, that folder will not be packaged into the backup file
 
----
+#### 3.2.3 Restore Backup
 
-### ::lucide:file-input:: 3.4 Import All Data
-
-**Function Description**: Restore all data from a backup file when starting the software
+**Function Description**: Select a backup file and restore it (takes effect after restart)
 
 **Operation Method**:
-1. Click the "Import All Data" button
-2. Select the backup file
-3. Confirm import warning
-4. Wait for import to complete
+- In the "Restore Backup" tab
+- Click the "Refresh" button to update the backup file list
+- Select the backup file to restore from the list
+- Click the "Restore" button
+- Confirm the restore operation
+- Wait for restore to complete
+- Restart the software to apply changes
 
 **Notes**:
-- Import will overwrite all current data
-- Need to restart the software after import to take effect
-- If versions don't match, a warning prompt will be displayed
-- Some files may be skipped due to being in use
+- Restore will overwrite all current settings and data
+- Restore operation cannot be undone
+- It is recommended to backup current data before restoring
+- You can delete unnecessary backup files
 
 ---
 
-### ::lucide:file-output:: 3.5 Export Diagnostic Data
+### ::lucide:file-output:: 3.3 Export Diagnostic Data
 
 **Function Description**: Export diagnostic information when exiting the software for troubleshooting
 
@@ -333,87 +339,82 @@ secrandom://lottery/draw     # Start lottery function
 
 ---
 
-### ::lucide:file-text:: 3.6 View Logs
+### ::lucide:settings:: 3.4 Export Settings
 
-**Function Description**: View and manage program log files
+**Function Description**: Export current settings to a configuration file for backup and migration
 
-**Operation Method**: Click the "View Logs" button
+**Operation Method**:
+1. Click the "Export Settings" button
+2. Select the save location
+3. Confirm export
 
-**Functions**:
-- View program running logs
-- Search log content
-- Export log files
-- Clear logs
+**Export Content**:
+- All basic settings
+- Personalization settings
+- Other function settings
 
 **Applicable Scenarios**:
-- Troubleshoot software issues
-- View software running status
-- Technical support needs log information
+- Backup current configuration
+- Migrate settings between different devices
+- Share configuration with other users
 
 ---
 
-### 3.7 Backup Management
+### ::lucide:settings:: 3.5 Import Settings
 
-**Function Description**: Manage automatic and manual backups
-
-**Operation Method**: Click the "Backup Management" button
-
-#### 3.7.1 Automatic Backup
-
-**Function Description**: Configure automatic backup strategy
-
-**Setting Items**:
-- **Enable**: Enable or disable automatic backup
-- **Auto Backup Interval**: Set automatic backup interval (days)
-- **Auto Backup Limit**: Set the maximum number of automatic backups to keep (0 for unlimited)
-- **Last Successful Backup**: Display the last successful backup time
+**Function Description**: Import settings from a configuration file, overwriting current configuration information
 
 **Operation Method**:
-1. Set each parameter in the "Automatic Backup" tab
-2. Click the "Enable" button to enable automatic backup
-
-#### 3.7.2 Manual Backup
-
-**Function Description**: Immediately backup and manage backup files
-
-**Operation Method**:
-1. In the "Manual Backup" tab
-2. Click the "Backup Now" button to create a backup
-3. Click the "View Backup Files" button to open the backup folder
-4. View the backup folder size
-
-**Backup Content**:
-- Configuration files (config)
-- List data (list)
-- Language files (Language)
-- History records (history)
-- Audio resources (audio)
-- CSES integration (CSES)
-- Image resources (images)
-- Running logs (logs)
+1. Click the "Import Settings" button
+2. Select the configuration file
+3. Confirm import
 
 **Notes**:
-- You can control whether to include certain types of data through toggles
-- After disabling an item, that folder will not be packaged into the backup file
+- Import will overwrite all current settings
+- Need to restart the software after import to take effect
+- It is recommended to backup current settings before importing
 
-#### 3.7.3 Restore Backup
+---
 
-**Function Description**: Select a backup file and restore it (takes effect after restart)
+### ::lucide:file-output:: 3.6 Export All Data
+
+**Function Description**: Export all data and settings when exiting the software
 
 **Operation Method**:
-1. In the "Restore Backup" tab
-2. Click the "Refresh" button to update the backup file list
-3. Select the backup file to restore from the list
-4. Click the "Restore" button
-5. Confirm the restore operation
-6. Wait for restore to complete
-7. Restart the software to apply changes
+1. Click the "Export All Data" button
+2. Confirm export warning
+3. Select the save location
+4. Wait for export to complete
+
+**Export Content**:
+- Software version information
+- All settings configuration
+- Roll call lists
+- Lottery lists
+- History records
+- Log files
 
 **Notes**:
-- Restore will overwrite all current settings and data
-- Restore operation cannot be undone
-- It is recommended to backup current data before restoring
-- You can delete unnecessary backup files
+- Exported data may contain sensitive information, please keep it safe
+- The export process may take some time, depending on the data volume
+
+---
+
+### ::lucide:file-input:: 3.7 Import All Data
+
+**Function Description**: Restore all data from a backup file when starting the software
+
+**Operation Method**:
+1. Click the "Import All Data" button
+2. Select the backup file
+3. Confirm import warning
+4. Wait for import to complete
+
+**Notes**:
+- Import will overwrite all current data
+- Need to restart the software after import to take effect
+- If versions don't match, a warning prompt will be displayed
+- Some files may be skipped due to being in use
 
 ---
 

@@ -73,16 +73,3 @@ Link settings recommendations:
 4. Configure subject history filter function according to teaching needs
 :::
 
-## ::lucide:bell:: ClassIsland Notification Service
-
-**Notification Service Type**: Select notification service type
-- SecRandom: Use SecRandom notification window to send notifications
-- ClassIsland: Send notifications through ClassIsland via integration plugin
-- SecRandom + ClassIsland: Use both SecRandom and ClassIsland to send notifications
-
-:::warning
-Before using ClassIsland service, you need to install ClassIsland plugin and .NET 8 runtime in ClassIsland first.
-:::
-
-**Notification Display Duration**: Set ClassIsland notification display duration (seconds)
-- Control the display time of ClassIsland notifications to ensure you have enough time to view the notification content
