@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0",
   "description": "",
-  "packageManager": "pnpm@10.28.2",
+  "packageManager": "pnpm@10.29.3",
   "pnpm": {
     "onlyBuiltDependencies": [
       "@parcel/watcher",
@@ -23,13 +23,13 @@
     "vp-update": "pnpm dlx vp-update"
   },
   "devDependencies": {
-    "@iconify-json/lucide": "^1.2.87",
+    "@iconify-json/lucide": "^1.2.90",
     "@vuepress/bundler-vite": "2.0.0-rc.26",
-    "baseline-browser-mapping": "^2.9.18",
+    "baseline-browser-mapping": "^2.9.19",
     "http-server": "^14.1.1",
     "typescript": "^5.9.3",
-    "vue": "^3.5.27",
+    "vue": "^3.5.28",
     "vuepress": "2.0.0-rc.26",
-    "vuepress-theme-plume": "1.0.0-rc.187"
+    "vuepress-theme-plume": "1.0.0-rc.188"
   }
 }
