@@ -78,6 +78,15 @@ pageLayout: page
             </div>
         </div>
     </LinkCard>
+    <LinkCard title="Contributor" href="https://blog.yaqwq.top">
+        <div class="card-content">
+            <img src="/avatar/yaqwq.jpg" alt="yaqwq" width="80" />
+            <div class="text-content">
+                <p class="name">yaqwq</p>
+                <p class="role">A human, loves logs</p>
+            </div>
+        </div>
+    </LinkCard>
 </CardGrid>
 
 <VPComment class="comment" />

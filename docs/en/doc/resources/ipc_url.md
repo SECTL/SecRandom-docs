@@ -23,7 +23,7 @@ SecRandom adopts a unified window management entry. All window operations are im
 - `window/settings` - Settings window control
 - `window/float` - Floating window control
 
-## ::lucide:telescope:: Complete Command Overview Table
+## ::lucide:list:: Complete Command Overview Table
 
 | Command Group | Command | Purpose | Read-Only | Affects Interface |
 |---------------|---------|---------|-----------|-------------------|
@@ -56,7 +56,7 @@ SecRandom adopts a unified window management entry. All window operations are im
 | | `data/roll_call_history` | Get roll call history | <p style="color: green;">Yes</p> | <p style="color: red;">No</p> |
 | | `data/lottery_history` | Get lottery history | <p style="color: green;">Yes</p> | <p style="color: red;">No</p> |
 
-## Common Parameters
+## ::lucide:settings:: Common Parameters
 
 All window commands support the following common parameters for controlling window display behavior:
 
@@ -470,11 +470,11 @@ Set roll call count command, specify the number of people to select in each roll
 **Parameter Table**:
 
 :::: field-group
-::: field name="count" type="正整数" default="1"
+::: field name="count" type="positive integer" default="1"
 Roll call count
 :::
 
-::: field name="value" type="正整数" default="1"
+::: field name="value" type="positive integer" default="1"
 Alias for count
 :::
 ::::
@@ -673,11 +673,11 @@ Set lottery count command, specify the number of people to select in each lotter
 **Parameter Table**:
 
 :::: field-group
-::: field name="count" type="正整数" default="1"
+::: field name="count" type="positive integer" default="1"
 Lottery count
 :::
 
-::: field name="value" type="正整数" default="1"
+::: field name="value" type="positive integer" default="1"
 Alias for count
 :::
 ::::
@@ -834,11 +834,47 @@ Alias for class_name
 - `secrandom://lottery/set_list?class_name=Grade 3 Class 1` - Set lottery list to "Grade 3 Class 1"
 - `secrandom://lottery/set_list?list_name=Grade 3 Class 2` - Set lottery list to "Grade 3 Class 2" (using alias)
 
-## ::lucide:database:: data/* Data Retrieval Commands
+## ::lucide:database:: data/* Data Retrieval Commands (Read-Only)
 
-Data retrieval commands are used to query various data from SecRandom.
+Data retrieval commands are used to get roll call lists, lottery lists, roll call history, and lottery history. These commands **will not modify any settings or status**, they are only used for data query.
 
-### ::lucide:list:: Command List
+### Core Principles
+
+**Important: Only IPC calls will return results (JSON response)**
+
+- Only IPC calls will return results (JSON response)
+- Invoking via system URL protocol (`secrandom://...`) can only trigger actions, the caller cannot synchronously read any returned data
+- Therefore: All `data/*` read commands can only be used as IPC requests (otherwise they are meaningless)
+
+### ::lucide:plug:: How to Get Results via IPC
+
+To get the return result of `data/*` commands via IPC, please send a request and read the response.
+
+**Python Example Code**:
+
+```python
+from app.common.IPC_URL import URLIPCHandler
+
+ipc = URLIPCHandler("SecRandom", "secrandom")
+
+resp = ipc.send_ipc_message_by_name({
+    "type": "url",
+    "payload": {
+        "url": "data/roll_call_list?class_name=Grade 1 Class 1"  # Note: Use IPC command format here, no secrandom:// prefix needed
+    }
+})
+
+# Top level is IPC wrapper
+# resp -> {"success": True/False, "type": "url", "result": {...}} or {"success": False, "error": "..."}
+print(resp)
+```
+
+**Return Value Structure Description**:
+
+- **Top-level fields**: `success` (whether successful), `type` (type), `result` (business result) or `error` (error message)
+- **Real business data**: In `resp["result"]`, this is the dictionary returned by the URL command processor
+
+### Command List
 
 | Command | Description |
 |---------|-------------|
@@ -849,122 +885,332 @@ Data retrieval commands are used to query various data from SecRandom.
 
 ### Parameter Description
 
-#### data/roll_call_list
+#### data/roll_call_list (Get Roll Call List)
 
-Get roll call list command, retrieve the current roll call list.
+**IPC Command**:
+- `data/roll_call_list?class_name=xxx`
 
-**Parameter Table**: No parameters
+**Parameters (query)**:
 
-**Return Value Description**:
+:::: field-group
+::: field name="class_name" type="string" required
+Class name (Compatible aliases: `class` / `name` / `className`)
+:::
+::::
+
+**Success Return (Business Layer result) Fields**:
 ```json
 {
   "status": "success",
   "message": "Roll call list retrieved successfully",
-  "data": {
-    "list_name": "Grade 3 Class 1",
-    "students": [
-      {
-        "name": "Zhang San",
-        "id": "001"
-      },
-      {
-        "name": "Li Si",
-        "id": "002"
-      }
-    ]
-  }
+  "class_name": "Grade 1 Class 1",
+  "data": [
+    {
+      "id": "001",
+      "name": "Zhang San",
+      "gender": "male"
+    },
+    {
+      "id": "002",
+      "name": "Li Si",
+      "gender": "female"
+    }
+  ]
 }
 ```
 
-**Usage Examples**:
-- `secrandom://data/roll_call_list` - Get roll call list
+**Missing Parameter Return (Business Layer result)**:
+```json
+{
+  "status": "error",
+  "message": "Missing parameter: class_name"
+}
+```
 
-#### data/lottery_list
+#### data/lottery_list (Get Lottery List)
 
-Get lottery list command, retrieve the current lottery list.
+**IPC Command**:
+- `data/lottery_list?pool_name=xxx`
 
-**Parameter Table**: No parameters
+**Parameters (query)**:
 
-**Return Value Description**:
+:::: field-group
+::: field name="pool_name" type="string" required
+Prize pool name (Compatible aliases: `pool` / `name` / `poolName`)
+:::
+::::
+
+**Success Return (Business Layer result) Fields**:
 ```json
 {
   "status": "success",
   "message": "Lottery list retrieved successfully",
-  "data": {
-    "list_name": "Grade 3 Class 1",
-    "students": [
-      {
-        "name": "Zhang San",
-        "id": "001"
-      },
-      {
-        "name": "Li Si",
-        "id": "002"
-      }
-    ]
-  }
+  "pool_name": "Special Prize Pool",
+  "data": [
+    {
+      "id": "001",
+      "name": "Zhang San",
+      "gender": "male"
+    },
+    {
+      "id": "002",
+      "name": "Li Si",
+      "gender": "female"
+    }
+  ]
 }
 ```
 
-**Usage Examples**:
-- `secrandom://data/lottery_list` - Get lottery list
+**Missing Parameter Return (Business Layer result)**:
+```json
+{
+  "status": "error",
+  "message": "Missing parameter: pool_name"
+}
+```
 
-#### data/roll_call_history
+#### data/roll_call_history (Get Roll Call History)
 
-Get roll call history command, retrieve the roll call history records.
+**IPC Command**:
+- `data/roll_call_history?class_name=xxx`
 
-**Parameter Table**: No parameters
+**Parameters (query)**:
 
-**Return Value Description**:
+:::: field-group
+::: field name="class_name" type="string" required
+Class name (Compatible aliases: `class` / `name` / `className`)
+:::
+::::
+
+**Success Return (Business Layer result) Fields**:
 ```json
 {
   "status": "success",
   "message": "Roll call history retrieved successfully",
-  "data": {
-    "history": [
-      {
-        "time": "2025-11-29 13:00:00",
-        "students": [
-          {
-            "name": "Zhang San",
-            "id": "001"
-          }
-        ]
-      }
-    ]
-  }
+  "class_name": "Grade 1 Class 1",
+  "data": [
+    {
+      "time": "2025-11-29 13:00:00",
+      "students": [
+        {
+          "id": "001",
+          "name": "Zhang San"
+        }
+      ]
+    }
+  ]
 }
 ```
 
-**Usage Examples**:
-- `secrandom://data/roll_call_history` - Get roll call history
+**Missing Parameter Return (Business Layer result)**:
+```json
+{
+  "status": "error",
+  "message": "Missing parameter: class_name"
+}
+```
 
-#### data/lottery_history
+#### data/lottery_history (Get Lottery History)
 
-Get lottery history command, retrieve the lottery history records.
+**IPC Command**:
+- `data/lottery_history?pool_name=xxx`
 
-**Parameter Table**: No parameters
+**Parameters (query)**:
 
-**Return Value Description**:
+:::: field-group
+::: field name="pool_name" type="string" required
+Prize pool name (Compatible aliases: `pool` / `name` / `poolName`)
+:::
+::::
+
+**Success Return (Business Layer result) Fields**:
 ```json
 {
   "status": "success",
   "message": "Lottery history retrieved successfully",
-  "data": {
-    "history": [
-      {
-        "time": "2025-11-29 13:00:00",
-        "students": [
-          {
-            "name": "Zhang San",
-            "id": "001"
-          }
-        ]
-      }
-    ]
-  }
+  "pool_name": "Special Prize Pool",
+  "data": [
+    {
+      "time": "2025-11-29 13:00:00",
+      "winners": [
+        {
+          "id": "001",
+          "name": "Zhang San",
+          "prize": "Special Prize"
+        }
+      ]
+    }
+  ]
 }
 ```
 
-**Usage Examples**:
-- `secrandom://data/lottery_history` - Get lottery history
+**Missing Parameter Return (Business Layer result)**:
+```json
+{
+  "status": "error",
+  "message": "Missing parameter: pool_name"
+}
+```
+
+## Page List
+
+### Main Window Switchable Page List
+
+The main window supports switching to the following pages, specified by `window/main?page=...` parameter:
+
+| Page ID | Page Name | Description | Short Alias |
+|---------|-----------|-------------|-------------|
+| `roll_call_page` | Roll Call Page | Main window roll call function page | `roll` |
+| `lottery_page` | Lottery Page | Main window lottery function page | `lottery` |
+| `history_page` | History Page | Main window history page | `history` |
+| `settingsInterface` | Settings Placeholder Page | Main window sidebar "Settings" placeholder page | None |
+
+**Description**:
+- `main_window` only means "Show main window", not a switchable sub-page
+- Using short aliases can simplify calling, e.g., `page=roll` is equivalent to `page=roll_call_page`
+- Switching pages automatically executes the window show action (default is show)
+
+### ::lucide:settings:: Settings Window Openable Page List
+
+The settings window supports opening the following pages, specified by `window/settings?page=...` parameter:
+
+| Page ID | Page Name | Description |
+|---------|-----------|-------------|
+| `basicSettingsInterface` | Basic Settings | SecRandom basic function settings |
+| `listManagementInterface` | List Management | List management and editing |
+| `extractionSettingsInterface` | Extraction Settings | Roll call and extraction related settings |
+| `floatingWindowManagementInterface` | Floating Window Management | Floating window display and behavior settings |
+| `notificationSettingsInterface` | Notification Settings | Notification related settings |
+| `safetySettingsInterface` | Security Settings | Security and privacy related settings |
+| `customSettingsInterface` | Custom Settings | User custom function settings |
+| `voiceSettingsInterface` | Voice Settings | Voice broadcast related settings |
+| `historyInterface` | History Settings | History record management and settings |
+| `moreSettingsInterface` | More Settings | Other extended settings |
+| `updateInterface` | Update | Software update related page |
+| `aboutInterface` | About | Software information and version notes |
+
+**Description**:
+- When `page` parameter is not passed, `basicSettingsInterface` (Basic Settings) is opened by default
+- Settings window pages do not support short aliases, complete page IDs must be used
+- Use `preview=1` parameter to open settings page in preview mode
+
+## ::lucide:arrow-right-left:: Migration Guide
+
+URL/IPC protocol entries for older versions (below 2.2.6) have been removed. Please use the new unified entry for replacement.
+
+### Removed Old Entries
+
+The following old entries are no longer supported:
+- `main/roll` → Removed
+- `main/lottery` → Removed
+- `main/` → Removed
+- `settings/basic` → Removed
+- `settings/list` → Removed
+- `settings/extraction` → Removed
+- `settings/floating` → Removed
+- `settings/notification` → Removed
+- `settings/safety` → Removed
+- `settings/custom` → Removed
+- `settings/voice` → Removed
+- `settings/history` → Removed
+- `settings/more` → Removed
+- `settings/update` → Removed
+- `settings/about` → Removed
+- `settings/` → Removed
+
+### Equivalent Replacement Examples
+
+| Old Entry | New Entry (Equivalent Replacement) |
+|-----------|-----------------------------------|
+| `secrandom://main/roll` | `secrandom://window/main?page=roll_call_page` |
+| `secrandom://main/lottery` | `secrandom://window/main?page=lottery_page` |
+| `secrandom://main/` | `secrandom://window/main` |
+| `secrandom://settings/basic` | `secrandom://window/settings?page=basicSettingsInterface` |
+| `secrandom://settings/list` | `secrandom://window/settings?page=listManagementInterface` |
+| `secrandom://settings/extraction` | `secrandom://window/settings?page=extractionSettingsInterface` |
+| `secrandom://settings/floating` | `secrandom://window/settings?page=floatingWindowManagementInterface` |
+| `secrandom://settings/notification` | `secrandom://window/settings?page=notificationSettingsInterface` |
+| `secrandom://settings/safety` | `secrandom://window/settings?page=safetySettingsInterface` |
+| `secrandom://settings/custom` | `secrandom://window/settings?page=customSettingsInterface` |
+| `secrandom://settings/voice` | `secrandom://window/settings?page=voiceSettingsInterface` |
+| `secrandom://settings/history` | `secrandom://window/settings?page=historyInterface` |
+| `secrandom://settings/more` | `secrandom://window/settings?page=moreSettingsInterface` |
+| `secrandom://settings/update` | `secrandom://window/settings?page=updateInterface` |
+| `secrandom://settings/about` | `secrandom://window/settings?page=aboutInterface` |
+| `secrandom://settings/` | `secrandom://window/settings` |
+
+## ::lucide:circle-help:: FAQ
+
+For frequently asked questions about IPC & URL Protocol, please check: [IPC & URL Protocol FAQ](../../faq/ipc-url-faq.md)
+
+## Cheat Sheet
+
+Quick reference for most commonly used commands:
+
+| Function | Command |
+|----------|---------|
+| Open main window and switch to roll call page | `secrandom://window/main?action=show&page=roll_call_page` |
+| Open settings window and show basic settings | `secrandom://window/settings?action=show&page=basicSettingsInterface` |
+| Toggle floating window display state | `secrandom://window/float` |
+| Quick roll call | `secrandom://roll_call/quick_draw` |
+| Start roll call | `secrandom://roll_call/start` |
+| Set roll call count | `secrandom://roll_call/set_count?count=3` |
+| Start lottery | `secrandom://lottery/start` |
+| Set lottery count | `secrandom://lottery/set_count?count=5` |
+| Restart program | `secrandom://tray/restart` |
+
+## ::lucide:play:: Usage Examples
+
+### ::lucide:link-2:: URL Protocol Usage
+
+**Create Shortcut**
+1. Right-click Desktop → New → Shortcut
+2. Enter URL protocol (e.g., `secrandom://window/main?action=show&page=roll_call_page`)
+3. Name the shortcut and complete creation
+
+**Batch Script**
+```batch
+@echo off
+echo Starting SecRandom main interface...
+start secrandom://window/main?action=show&page=roll_call_page
+```
+
+**Browser Call**
+```html
+<a href="secrandom://window/main?action=show&page=roll_call_page">Open SecRandom Roll Call Page</a>
+```
+
+### ::lucide:plug:: IPC Protocol Usage
+
+**Python Example**
+For complete Python usage example, please refer to: [secrandom_ipc_send_url.py](https://github.com/SECTL/SecRandom/blob/master/secrandom_ipc_send_url.py)
+
+**JavaScript Example**
+For complete JavaScript usage example, please refer to: [secrandom_ipc_send_url.js](https://github.com/SECTL/SecRandom/blob/master/secrandom_ipc_send_url.js)
+
+### ::lucide:alert-triangle:: Precautions
+
+1. **Protocol Registration**: Ensure SecRandom has correctly registered URL protocol
+2. **Security Considerations**: Only use protocols listed in official documentation
+3. **Parameter Validation**: Ensure parameter values are correct when using parameters
+4. **Error Handling**: Recommended to add error handling mechanism when using protocols
+5. **IPC Communication**: IPC protocol requires the program to be in running state to use
+6. **Data Read-Only**: `data/*` commands will not modify any data, only used for query
+
+### ::lucide:wrench:: Troubleshooting
+
+**Protocol Cannot Open**
+- Check if SecRandom is correctly installed
+- Reinstall software to fix protocol registration
+- Check if system security software blocked protocol call
+- If all above factors are excluded, report bug to developer
+
+**IPC Communication Failed**
+- Confirm SecRandom program is running
+- Check if IPC service started normally
+- Check software logs for detailed error information
+
+**Command Execution Failed**
+- Check if command format is correct
+- Confirm parameter values are within allowed range
+- Check returned error message to locate problem

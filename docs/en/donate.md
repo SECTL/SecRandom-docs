@@ -9,10 +9,12 @@ title: Donate
 <div class="donate-container">
   <p>Your donation helps us continue developing and improving SecRandom.</p>
 
-  <a href="https://afdian.com/a/lzy0983" target="_blank" class="donate-btn afdian-button">Donate on Afdian
+  <a href="https://afdian.com/a/lzy0983" target="_blank" class="donate-btn">
+    <button class="afdian-button">Donate on Afdian</button>
   </a>
 
   <p class="thanks">Thanks for your support!❤️</p>
+  <a href="/en/donate-fancy.html">Not interested</a>
 </div>
 
 <style scoped>
@@ -95,5 +97,66 @@ p {
     padding: 12px 32px;
     font-size: 1rem;
   }
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 9999;
+}
+
+.modal-card {
+  background: var(--vp-c-bg, #fff);
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-card img {
+  display: block;
+  border-radius: 12px;
+}
+
+.modal-title {
+  margin-top: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.modal-subtitle {
+  margin-top: 6px;
+  font-size: 12px;
+  opacity: 0.7;
+  text-align: center;
+}
+
+.not-interested-btn {
+  margin: 10px 0 0 0;
+  text-decoration: none;
+}
+.not-interested-button {
+  background: linear-gradient(135deg, #aaa 0%, #ccc 100%);
+  color: #333;
+  border: none;
+  padding: 12px 32px;
+  font-size: 1rem;
+  border-radius: 28px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+  box-shadow: 0 2px 8px rgba(100,100,100,0.15);
+}
+.not-interested-button:hover {
+  transform: scale(1.05);
+  opacity: 0.92;
 }
 </style>

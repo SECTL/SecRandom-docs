@@ -13,6 +13,15 @@ createTime: 2026/01/10 00:00:00
 
 **Animation Effect**: Control whether to display roll call notification window animation effect
 
+**Notification Service Type**
+- SecRandom: Use SecRandom built-in notification service
+- ClassIsland: Call ClassIsland notification interface for display (requires ClassIsland linkage plugin installation)
+- SecRandom + ClassIsland: Use both methods for notification simultaneously
+
+:::warning
+Before using ClassIsland service, you need to install the ClassIsland plugin and NET.8 runtime in ClassIsland.
+:::
+
 **Do not show floating notification when exceeding threshold**: When the number of selected people exceeds the set value, do not show floating notification, but open the main window to display results.
 
 **Floating Notification Threshold**: Set the number threshold for triggering transfer to main interface notification
@@ -45,6 +54,11 @@ createTime: 2026/01/10 00:00:00
 
 **Floating Window Auto Close Time**: Set the automatic close time of the floating window
 - Set to 0 to not close automatically, need to click three times continuously to close manually
+
+### ::lucide:globe:: ClassIsland Notification Service
+
+**Notification Display Duration**: Set ClassIsland notification display duration (seconds)
+- Control the display time of ClassIsland notifications to ensure you have enough time to view the notification content
 
 :::tip
 - If `Simplified Settings Mode` is enabled in `Quick Draw Notification Settings`, only some settings will be displayed in this section, and the rest of the settings will follow the roll call notification settings.
