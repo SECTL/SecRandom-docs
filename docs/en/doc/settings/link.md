@@ -12,7 +12,7 @@ createTime: 2026/01/17 21:52:27
 **Data Source Selection**: Select the schedule data source
 - Do not use data integration: Use the system completely independently
 - Use CSES schedule data: Use schedule data from CSES
-- Use Classisland data source: Use schedule data from Classisland (requires installing the integration plugin in Classisland)
+- Use ClassIsland data source: Use schedule data from ClassIsland (requires installing the integration plugin in ClassIsland)
 
 ## ::lucide:file-input:: CSES Schedule Import
 

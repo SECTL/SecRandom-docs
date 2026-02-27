@@ -19,7 +19,7 @@ createTime: 2026/01/10 00:00:00
 - SecRandom + ClassIsland：同时使用两种方式进行通知
 
 :::warning
-使用 ClassIsland 服务前，需要先在 ClassIsland 中安装 ClassIsland 插件和 NET.8 运行时。
+使用 ClassIsland 服务前，需要先在 ClassIsland 中安装 ClassIsland 插件和 .NET 8 运行时。
 :::
 
 **超过阈值时不显示浮窗通知**：当抽取人数超过设定值时，不显示浮窗通知，而是打开主窗口显示结果。
@@ -53,7 +53,7 @@ createTime: 2026/01/10 00:00:00
 - 数值越小越透明（0-100）
 
 **浮窗自动关闭时间**：设置浮窗自动关闭时间
-- 设为0表示不自动关闭，需要连续点击三下以手动关闭
+- 设为 0 表示不自动关闭，需要连续点击三下以手动关闭
 
 ### ::lucide:globe:: ClassIsland 通知服务
 

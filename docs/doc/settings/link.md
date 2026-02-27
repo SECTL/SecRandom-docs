@@ -11,15 +11,15 @@ createTime: 2026/01/17 21:52:27
 
 **数据源选择**：选择课程表数据源
 - 不使用数据联动：完全独立使用本系统
-- 使用CSES课表数据：使用来自CSES课表的课程表数据
-- 使用Classisland数据源：使用来自Classisland的课程表数据（需要在Classisland中安装联动插件）
+- 使用 CSES 课表数据：使用来自 CSES 课表的课程表数据
+- 使用 ClassIsland 数据源：使用来自 ClassIsland 的课程表数据（需要在 ClassIsland 中安装联动插件）
 
-## ::lucide:target:: CSES课程表导入
+## ::lucide:target:: CSES 课程表导入
 
-**课程表导入**：导入CSES课程表
-- 从文件导入：通过文件导入CSES课程表
-- 查看当前配置：查看已有的CSES课程表配置
-- 清除课表：清除已有的CSES课程表配置
+**课程表导入**：导入 CSES 课程表
+- 从文件导入：通过文件导入 CSES 课程表
+- 查看当前配置：查看已有的 CSES 课程表配置
+- 清除课表：清除已有的 CSES 课程表配置
 
 ## ::lucide:target:: 课间禁用设置
 
