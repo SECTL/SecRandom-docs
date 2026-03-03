@@ -214,4 +214,4 @@ createTime: 2026/01/01 22:26:56
 - **批量修改**：通过导出-编辑-导入的方式进行批量信息修改
 - **数据同步**：定期备份名单数据，确保信息安全
 
-> **更多帮助**：如有名单管理相关问题，欢迎查看[常见问题](/faq/)或[联系我们](https://github.com/SECTL/SecRandom-docs/issues)获取支持！
+> **更多帮助**：如有名单管理相关问题，欢迎查看 [常见问题](/faq/) 或 [联系我们](https://github.com/SECTL/SecRandom-docs/issues) 获取支持！
