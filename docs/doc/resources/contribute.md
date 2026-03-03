@@ -6,7 +6,7 @@ createTime: 2025/12/20 18:56:17
 
 SecRandom 欢迎**任何人**向我们的仓库提交代码。您可以帮助我们做很多工作，包括但不限于：
 
-- 提交补丁来修复bug
+- 提交补丁来修复 bug
 - 添加新功能
 - 优化现有的功能
 - 优化代码的性能
@@ -118,7 +118,7 @@ SecRandom 欢迎**任何人**向我们的仓库提交代码。您可以帮助我
 - 避免过于简单的描述（如："修复bug"）
 
 > [!TIP]
-> 我们推荐使用[约定式提交](https://www.conventionalcommits.org/zh-hans/v1.0.0/)撰写提交信息。
+> 我们推荐使用 [约定式提交](https://www.conventionalcommits.org/zh-hans/v1.0.0/) 撰写提交信息。
 
 ### PR 要求
 
@@ -179,4 +179,4 @@ SecRandom 项目使用统一的 GitHub Actions 工作流进行构建和发布，
 **组合使用示例：**
 
 - `git commit -m "优化性能 打包 pi"` - 使用 PyInstaller 构建 Windows 平台
-- `git commit -m "修复bug 打包 pi"` - 使用 PyInstaller 构建 Linux 平台
+- `git commit -m "修复 bug 打包 pi"` - 使用 PyInstaller 构建 Linux 平台
