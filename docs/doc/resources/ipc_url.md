@@ -6,7 +6,7 @@ createTime: 2025/11/29 13:02:57
 
 > **SecRandom IPC & URL 协议参考**
 >
-> 本页面提供了SecRandom软件支持的完整IPC和URL协议列表，通过这些协议可以快速访问软件的各个功能模块和执行特定操作。
+> 本页面提供了 SecRandom 软件支持的完整 IPC 和 URL 协议列表，通过这些协议可以快速访问软件的各个功能模块和执行特定操作。
 
 ## 概述
 
@@ -856,7 +856,7 @@ ipc = URLIPCHandler("SecRandom", "secrandom")
 resp = ipc.send_ipc_message_by_name({
     "type": "url",
     "payload": {
-        "url": "data/roll_call_list?class_name=高一1班"  # 注意：这里使用IPC命令格式，不需要 secrandom:// 前缀
+        "url": "data/roll_call_list?class_name=高一 1 班"  # 注意：这里使用IPC命令格式，不需要 secrandom:// 前缀
     }
 })
 
@@ -899,7 +899,7 @@ print(resp)
 {
   "status": "success",
   "message": "点名名单获取成功",
-  "class_name": "高一1班",
+  "class_name": "高一 1 班",
   "data": [
     {
       "id": "001",
@@ -983,7 +983,7 @@ print(resp)
 {
   "status": "success",
   "message": "点名历史获取成功",
-  "class_name": "高一1班",
+  "class_name": "高一 1 班",
   "data": [
     {
       "time": "2025-11-29 13:00:00",
@@ -1161,13 +1161,13 @@ print(resp)
 
 **快捷方式创建**
 1. 右键桌面 → 新建 → 快捷方式
-2. 输入URL协议（如 `secrandom://window/main?action=show&page=roll_call_page`）
+2. 输入 URL 协议（如 `secrandom://window/main?action=show&page=roll_call_page`）
 3. 命名快捷方式并完成创建
 
 **批处理脚本**
 ```batch
 @echo off
-echo 正在启动SecRandom主界面...
+echo 正在启动 SecRandom 主界面...
 start secrandom://window/main?action=show&page=roll_call_page
 ```
 
@@ -1186,24 +1186,24 @@ start secrandom://window/main?action=show&page=roll_call_page
 
 ### ::lucide:alert-triangle:: 注意事项
 
-1. **协议注册**：确保SecRandom已正确注册URL协议
+1. **协议注册**：确保 SecRandom 已正确注册 URL 协议
 2. **安全考虑**：只使用官方文档中列出的协议
 3. **参数验证**：使用参数时确保参数值正确
 4. **错误处理**：建议在使用协议时添加错误处理机制
-5. **IPC通信**：IPC协议需要程序在运行状态才能使用
+5. **IPC通信**：IPC 协议需要程序在运行状态才能使用
 6. **数据只读**：`data/*` 命令不会修改任何数据，仅用于查询
 
 ### ::lucide:wrench:: 故障排除
 
 **协议无法打开**
-- 检查SecRandom是否正确安装
+- 检查 SecRandom 是否正确安装
 - 重新安装软件以修复协议注册
 - 检查系统安全软件是否阻止了协议调用
-- 如以上因素均排除，则向开发者反馈bug
+- 如以上因素均排除，则向开发者反馈 bug
 
 **IPC通信失败**
-- 确认SecRandom程序正在运行
-- 检查IPC服务是否正常启动
+- 确认 SecRandom 程序正在运行
+- 检查 IPC 服务是否正常启动
 - 查看软件日志获取详细错误信息
 
 **命令执行失败**
