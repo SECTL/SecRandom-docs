@@ -69,7 +69,7 @@ pageLayout: page
             </div>
         </div>
     </LinkCard>
-    <LinkCard title="贡献者" href="github.com/lrsgzs">
+    <LinkCard title="贡献者" href="https://github.com/lrsgzs">
         <div class="card-content">
             <img src="/avatar/lrs2187.jpg" alt="lrs2187" width="80" />
             <div class="text-content">
