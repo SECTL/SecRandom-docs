@@ -6,7 +6,7 @@ createTime: 2026/01/28 18:22:57
 
 > **SecRandom IPC & URL 协议常见问题解答**
 >
-> 本页面提供了SecRandom IPC和URL协议使用过程中的常见问题及解答。
+> 本页面提供了 SecRandom IPC 和 URL 协议使用过程中的常见问题及解答。
 
 ## Q1: 传入未知的 action 参数会怎样？
 
