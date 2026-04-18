@@ -105,6 +105,20 @@
   transform: translateY(-5px);
 }
 
+/* home - section rhythm */
+.vp-home .vp-features {
+  margin-top: 16px;
+}
+
+.vp-home .vp-features + .vp-features {
+  margin-top: 28px;
+}
+
+.vp-home .vp-features .title {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
 /* doc */
 .content-container {
   margin: 0 !important;
