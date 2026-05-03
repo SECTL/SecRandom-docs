@@ -43,7 +43,7 @@ Set shortcut keys for opening functions
 - Auto-detect latency: Automatically detect update source latency and select the fastest update source to download updates
 - github: Download updates from GitHub, slower access in China
 - ghfast/ghproxy: Download updates from ghfast/ghproxy, faster speed
-- ghproxy.sectl.top: Official GitHub mirror source, fastest speed
+- ghproxy.sectl.cn: Official GitHub mirror source, fastest speed
 
 :::tip
 Other settings recommendations:

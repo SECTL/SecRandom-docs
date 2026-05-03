@@ -187,7 +187,7 @@ Get the latest version from [Download Page](/download), choose the appropriate i
 
 ## ::lucide:users:: Join Community
 
-- **Official Website**: [https://secrandom.sectl.top](https://secrandom.sectl.top)
+- **Official Website**: [https://secrandom.sectl.cn](https://secrandom.sectl.cn)
 - **GitHub**: [Give us a Star](https://github.com/SECTL/SecRandom)
 - **QQ Group**: 833875216 [Click to Join](https://qm.qq.com/q/PCqYgev4Em)
 - **Discord**: [Join Server](https://discord.gg/PmE7nPbha)

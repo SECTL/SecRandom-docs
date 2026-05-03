@@ -20,7 +20,7 @@ config:
         - theme: alt
           text: 下载
           icon: lucide:download
-          link: https://stk.sectl.top/SecRandom
+          link: https://stk.sectl.cn/SecRandom
         - theme: alt
           text: GitHub
           icon: fa-brands:github

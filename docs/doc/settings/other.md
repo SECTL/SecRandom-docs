@@ -43,7 +43,7 @@ createTime: 2026/01/17 22:59:36
 - 自动检测延迟：自动检测更新源延迟，选择最快的更新源下载更新
 - github：从 GitHub 下载更新，国内访问速度较慢
 - ghfast/ghproxy：从 ghfast/ghproxy 下载更新，速度更快
-- ghproxy.sectl.top：官方 github 镜像源，速度最快
+- ghproxy.sectl.cn：官方 github 镜像源，速度最快
 
 :::tip 其他设置建议
 1. 根据个人使用习惯设置常用功能的快捷键
