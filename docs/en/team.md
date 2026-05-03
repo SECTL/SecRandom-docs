@@ -37,7 +37,7 @@ pageLayout: page
         <div class="card-content">
             <img src="/avatar/slc.jpg" alt="slc" width="80" />
             <div class="text-content">
-                <p class="name">Fox-block</p>
+                <p class="name">Yukino_fox</p>
                 <p class="role">Application Testing</p>
             </div>
         </div>
