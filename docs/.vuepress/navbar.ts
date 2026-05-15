@@ -1,9 +1,3 @@
-/**
- * @see https://theme-plume.vuejs.press/config/navigation/ 查看文档了解配置详情
- *
- * Navbar 配置文件，它在 `.vuepress/plume.config.ts` 中被导入。
- */
-
 import { defineNavbarConfig } from 'vuepress-theme-plume'
 
 const zhNavbar = defineNavbarConfig([
@@ -16,6 +10,7 @@ const zhNavbar = defineNavbarConfig([
       { text: '资源', icon: 'carbon:document', link: '/doc/resources/contribute' },
     ],
   },
+  { text: '下载', icon: 'ic:outline-download', link: '/download' },
   {
     text: '常见问题',
     icon: 'mingcute:question-line',
@@ -36,6 +31,7 @@ const enNavbar = defineNavbarConfig([
       { text: 'Resources', icon: 'carbon:document', link: '/en/doc/resources/contribute' },
     ],
   },
+  { text: 'Download', icon: 'ic:outline-download', link: '/en/download' },
   {
     text: 'FAQ',
     icon: 'mingcute:question-line',

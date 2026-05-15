@@ -34,7 +34,7 @@ createTime: 2025/11/23 19:46:59
 - **Latest Version** - Provides the latest official version download
 
 **Steps:**
-1. Visit [Official Download Page](https://secrandom.netlify.app/download)
+1. Visit [Official Download Page](https://secrandom.sectl.top/download)
 2. Select and download the version suitable for your system
 
 #### **Solution 2: GitHub Releases**
@@ -155,10 +155,9 @@ Each version's release page provides SHA256 checksum values in the following for
 ## ::lucide:life-buoy:: Technical Support
 
 ### **Problem Feedback Channels**
-- [GitHub Issues](https://github.com/SECTL/SecRandom/issues)
-- [QQ Group](https://qm.qq.com/q/iWcfaPHn7W)
-- [QQ Channel](https://pd.qq.com/s/4x5dafd34?b=9)
-- [Discord Server](https://discord.gg/PmE7nPbha)
-- Email feedback: lzy98276@sectl.com
+- ::simple-icons:github:: [GitHub Issues](https://github.com/SECTL/SecRandom/issues)
+- ::simple-icons:qq:: **QQ Group**：[833875216](https://qm.qq.com/q/PCqYgev4Em)
+- ::simple-icons:qq:: **QQ Channel**: [SECTLStudio](https://pd.qq.com/g/SECTL20250321)
+- ::simple-line-icons:envolope:: **Mail Feedback**：[lzy98276@sectl.com](mailto:lzy98276@sectl.com)
 
 > **Tip**: If you encounter problems, check the `FAQ` page first. 80% of common problems have solutions!

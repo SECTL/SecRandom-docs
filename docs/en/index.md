@@ -14,13 +14,13 @@ config:
           icon: lucide:rocket
           link: /en/doc/guide/start
         - theme: alt
-          text: Read Docs
+          text: Overview
           icon: lucide:book-open
           link: /en/doc/overview
         - theme: alt
           text: Download
           icon: lucide:download
-          link: https://stk.sectl.cn/SecRandom
+          link: /en/download
         - theme: alt
           text: GitHub
           icon: fa-brands:github

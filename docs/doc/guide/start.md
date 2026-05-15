@@ -30,7 +30,7 @@ createTime: 2025/11/23 19:46:59
 
 ### ::lucide:download:: 1. 下载安装
 
-从[下载页面](https://stk.sectl.cn/SecRandom)获取最新版本，进入下载界面的文件列表后，选择合适的文件版本：
+从[下载页面](/download)获取最新版本，进入下载界面的文件列表后，选择合适的文件版本：
 - 一般情况下，最新版本位于文件列表的最顶部
 - 如果需要下载旧版本，可以在文件列表中找到对应的版本号
 - 带有 beta 后缀的版本为预览版本，后缀之后的数字表示预览版本的迭代次数
@@ -88,9 +88,9 @@ createTime: 2025/11/23 19:46:59
 ## ::lucide:life-buoy:: 技术支持
 
 ### ::lucide:circle-help:: **问题反馈渠道**
-- [GitHub Issues](https://github.com/SECTL/SecRandom/issues)
-- [QQ交流群](https://qm.qq.com/q/iWcfaPHn7W)
-- [QQ频道](https://pd.qq.com/s/4x5dafd34?b=9)
-- 邮件反馈：lzy98276@sectl.com
+- ::simple-icons:github:: [GitHub Issues](https://github.com/SECTL/SecRandom/issues)
+- ::simple-icons:qq:: **QQ 交流群**：[833875216](https://qm.qq.com/q/PCqYgev4Em)
+- ::simple-icons:qq:: **QQ 频道**: [SECTLStudio](https://pd.qq.com/g/SECTL20250321)
+- ::simple-line-icons:envolope:: **邮件反馈**：[lzy98276@sectl.com](mailto:lzy98276@sectl.com)
 
 > **提示**：遇到问题先查看`常见问题`页面，80%的常见问题都有解决方案！

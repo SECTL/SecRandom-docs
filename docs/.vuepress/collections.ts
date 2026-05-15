@@ -1,9 +1,6 @@
-/* @see https://theme-plume.vuejs.press/guide/collection/ 查看文档了解配置详情。 */
-
 import { defineCollection, defineCollections } from "vuepress-theme-plume";
 
-
-// 中文文档
+// 中文
 const Doc = defineCollection({
   type: "doc",
   dir: "doc",
@@ -51,7 +48,7 @@ const Faq = defineCollection({
   meta: { createTime: "long" },
 });
 
-// English docs
+// English
 const EnDoc = defineCollection({
   type: "doc",
   dir: "doc",

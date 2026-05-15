@@ -67,7 +67,7 @@ export default defineThemeConfig({
       collections: encollections,
       footer: {
         message: 'Powered by <a target="_blank" href="https://v2.vuepress.vuejs.org/">VuePress</a> & <a target="_blank" href="https://theme-plume.vuejs.press">vuepress-theme-plume</a>',
-        copyright: `© 2025-${currentYear} by <a href="https://sectl.top>SECTL</a> is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a><img class="cc-icon" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg"><img class="cc-icon" src="https://mirrors.creativecommons.org/presskit/icons/by.svg"><img class="cc-icon" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg"><img class="cc-icon" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg"><a href="https://icp.gov.moe/?keyword=20260108" target="_blank">萌ICP备20260108号</a>`,
+        copyright: `© 2025-${currentYear} by <a href="https://sectl.top>SECTL</a> is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a><img class="cc-icon" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg"><img class="cc-icon" src="https://mirrors.creativecommons.org/presskit/icons/by.svg"><img class="cc-icon" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg"><img class="cc-icon" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg"><a href="https://icp.gov.moe/?keyword=20260108" target="_blank">Moe ICP 20260108</a>`,
       },
     },
   },

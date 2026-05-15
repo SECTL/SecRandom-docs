@@ -187,13 +187,10 @@ Get the latest version from [Download Page](/download), choose the appropriate i
 
 ## ::lucide:users:: Join Community
 
-- **Official Website**: [https://secrandom.sectl.cn](https://secrandom.sectl.cn)
-- **GitHub**: [Give us a Star](https://github.com/SECTL/SecRandom)
-- **QQ Group**: 833875216 [Click to Join](https://qm.qq.com/q/PCqYgev4Em)
-- **Discord**: [Join Server](https://discord.gg/PmE7nPbha)
-- **Bilibili**: [Follow Us](https://space.bilibili.com/520571577)
-- **Afdian Support**: [Support Project Development](https://afdian.com/a/lzy0983)
-- **Feedback**: Welcome to contact us anytime
+- ::simple-icons:qq:: **QQ Group**：[833875216](https://qm.qq.com/q/PCqYgev4Em)
+- ::simple-icons:qq:: **QQ Channel**: [SECTLStudio](https://pd.qq.com/g/SECTL20250321)
+- ::simple-icons:discord:: **Discord**: [SECTL Studio](https://discord.gg/PmE7nPbha)
+- ::simple-icons:bilibili:: **bilibili**：[SECTL思拓创联](https://space.bilibili.com/3546966199897009)
 
 ---
 
