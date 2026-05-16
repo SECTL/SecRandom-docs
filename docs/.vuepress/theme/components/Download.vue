@@ -2,7 +2,7 @@
 import { ref, onMounted, computed } from 'vue'
 import { useRouteLocale } from 'vuepress/client'
 
-type DownloadSourceId = 'github.com' | 'ghproxy.sectl.top' | 'gh.llkk.cc' | 'wget.la'
+type DownloadSourceId = 'github.com' | 'ghproxy.sectl.top' | 'wget.la'
 
 interface DownloadSource {
   id: DownloadSourceId
@@ -22,7 +22,6 @@ let copiedShaTimer: number | undefined
 const zhDownloadSources: DownloadSource[] = [
   { id: 'github.com', description: 'GitHub 官方源', icon: '/icon/github-dark.png' },
   { id: 'ghproxy.sectl.top', description: 'GitHub 镜像源', icon: '/icon/github-dark.png' },
-  { id: 'gh.llkk.cc', description: 'GitHub 镜像源', icon: '/icon/github-dark.png' },
   { id: 'wget.la', description: 'GitHub 镜像源', icon: '/icon/github-dark.png' }
 ]
 
@@ -36,7 +35,7 @@ const isEnglish = computed(() => lang.value === '/en/')
 const downloadSources = computed(() => (isEnglish.value ? enDownloadSources : zhDownloadSources))
 
 function isGithubSource(sourceId: DownloadSourceId) {
-  return sourceId === 'github.com' || sourceId === 'ghproxy.sectl.top' || sourceId === 'gh.llkk.cc' || sourceId === 'wget.la'
+  return sourceId === 'github.com' || sourceId === 'ghproxy.sectl.top' || sourceId === 'wget.la'
 }
 
 async function fetchLatestRelease() {
