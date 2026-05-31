@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, onUnmounted, computed, watch } from 'vue'
 import { useRouteLocale } from 'vuepress/client'
 
 type DownloadSourceId = 'github.com' | 'ghproxy.sectl.top' | 'wget.la'
+type ChannelId = 'stable' | 'beta' | 'alpha'
 
 interface DownloadSource {
   id: DownloadSourceId
@@ -16,8 +17,8 @@ const hasError = ref(false)
 const errorMessage = ref('')
 const selectedDownloadSource = ref<DownloadSourceId>('ghproxy.sectl.top')
 const isSourceDropdownOpen = ref(false)
-const copiedShaAssetId = ref<number | null>(null)
-let copiedShaTimer: number | undefined
+const isAssetDropdownOpen = ref(false)
+const selectedChannel = ref<ChannelId>('stable')
 
 const zhDownloadSources: DownloadSource[] = [
   { id: 'github.com', description: 'GitHub 官方源', icon: '/icon/github-dark.png' },
@@ -36,6 +37,14 @@ const downloadSources = computed(() => (isEnglish.value ? enDownloadSources : zh
 
 function isGithubSource(sourceId: DownloadSourceId) {
   return sourceId === 'github.com' || sourceId === 'ghproxy.sectl.top' || sourceId === 'wget.la'
+}
+
+function detectOS(): 'windows' | 'macos' | 'linux' | 'unknown' {
+  const ua = navigator.userAgent.toLowerCase()
+  if (ua.includes('win')) return 'windows'
+  if (ua.includes('mac')) return 'macos'
+  if (ua.includes('linux')) return 'linux'
+  return 'unknown'
 }
 
 async function fetchLatestRelease() {
@@ -84,34 +93,22 @@ function getDownloadUrl(asset: any): string {
   return `https://${selectedDownloadSource.value}/${asset.browser_download_url}`
 }
 
-function getAssetSha256(asset: any): string {
-  const digest = String(asset?.digest || '')
-  if (!digest) return '未提供'
-  return digest.replace(/^sha256:/i, '')
+function detectChannel(tagName: string): ChannelId {
+  const lower = tagName.toLowerCase()
+  if (lower.includes('alpha')) return 'alpha'
+  if (lower.includes('beta')) return 'beta'
+  return 'stable'
 }
 
-async function copyAssetSha256(asset: any) {
-  const sha256 = getAssetSha256(asset)
-  if (!sha256 || sha256 === '未提供') return
-
-  const text = `sha256:${sha256}`
-
-  await navigator.clipboard.writeText(text)
-
-  copiedShaAssetId.value = asset.id
-  if (copiedShaTimer) {
-    window.clearTimeout(copiedShaTimer)
-  }
-  copiedShaTimer = window.setTimeout(() => {
-    copiedShaAssetId.value = null
-  }, 2000)
-}
-
-const currentRelease = computed(() => {
-  return releases.value.length ? releases.value[0] : null
+const channelReleases = computed(() => {
+  return releases.value.filter((r: any) => detectChannel(r.tag_name) === selectedChannel.value)
 })
 
-// 显示除 sha256.txt 与 Source code 外的所有 assets
+const currentRelease = computed(() => {
+  return channelReleases.value.length ? channelReleases.value[0] : null
+})
+
+// Filtered assets: exclude sha256 and source code
 const filteredAssets = computed(() => {
   if (!currentRelease.value?.assets) return []
   return currentRelease.value.assets.filter((asset: any) => {
@@ -121,6 +118,45 @@ const filteredAssets = computed(() => {
     return true
   })
 })
+
+const recommendedAsset = computed(() => {
+  const assets = filteredAssets.value
+  if (!assets.length) return null
+
+  const os = detectOS()
+  const findMatch = (keywords: string[]) =>
+    assets.find((a: any) => {
+      const n = String(a.name || '').toLowerCase()
+      return keywords.some(k => n.includes(k))
+    })
+
+  if (os === 'windows') return findMatch(['.exe', '.msi']) || assets[0]
+  if (os === 'macos') return findMatch(['.dmg', '.pkg']) || assets[0]
+  if (os === 'linux') return findMatch(['.deb', '.rpm', '.appimage']) || assets[0]
+  return assets[0]
+})
+
+const otherAssets = computed(() => {
+  if (!recommendedAsset.value) return filteredAssets.value
+  return filteredAssets.value.filter((a: any) => a.id !== recommendedAsset.value!.id)
+})
+
+function getFileIcon(filename: string): string {
+  const lower = filename.toLowerCase()
+  if (lower.includes('.exe') || lower.includes('.msi')) return 'logos:microsoft-windows'
+  if (lower.includes('.dmg') || lower.includes('.pkg')) return 'logos:apple'
+  if (lower.includes('.deb') || lower.includes('.rpm') || lower.includes('.appimage')) return 'logos:linux-tux'
+  if (lower.includes('.apk')) return 'logos:android-icon'
+  return 'octicon:package-16'
+}
+
+function getFileArch(filename: string): string {
+  const lower = filename.toLowerCase()
+  if (lower.includes('x64') || lower.includes('x86_64') || lower.includes('amd64')) return 'x64'
+  if (lower.includes('arm64') || lower.includes('aarch64')) return 'arm64'
+  if (lower.includes('x86') || lower.includes('i386') || lower.includes('i686')) return 'x86'
+  return ''
+}
 
 const currentDownloadSource = computed(() => {
   return (downloadSources.value || []).find(source => source.id === selectedDownloadSource.value) || (downloadSources.value || [])[0]
@@ -134,26 +170,34 @@ const locales: Record<string, any> = {
     retry: '重新加载',
     fetchingRelease: '正在获取版本信息...',
     downloadSourceLabel: '下载源',
-    assetsTitle: '文件列表',
-    loadingAssets: '正在加载文件列表...',
-    downloadsSuffix: ' 次下载',
     noAssetsTitle: '暂无下载文件',
     noAssetsDesc: '请稍后重试或更换下载源',
     downloadNow: '立即下载',
-    viewReleaseHistory: '查看历史版本'
+    heroTitle: 'SecRandom',
+    heroSubtitle: '一个易用的点名/抽奖软件，专为教育场景设计，让课堂点名更高效透明！',
+    changelogTitle: '更新日志',
+    channelStable: '正式版',
+    channelBeta: 'Beta',
+    channelAlpha: 'Alpha',
+    historyDownload: '历史版本下载',
+    versionLabel: '版本通道'
   },
   '/en/': {
     unableFetch: 'Unable to fetch release info',
     retry: 'Retry',
     fetchingRelease: 'Fetching release info...',
     downloadSourceLabel: 'Download Source',
-    assetsTitle: 'Files',
-    loadingAssets: 'Loading file list...',
-    downloadsSuffix: ' downloads',
     noAssetsTitle: 'No files available',
     noAssetsDesc: 'Please try again later or switch the download source',
     downloadNow: 'Download',
-    viewReleaseHistory: 'View release history'
+    heroTitle: 'SecRandom',
+    heroSubtitle: 'An easy-to-use roll call/lottery tool designed for education, making classroom attendance more efficient and transparent!',
+    changelogTitle: 'Changelog',
+    channelStable: 'Stable',
+    channelBeta: 'Beta',
+    channelAlpha: 'Alpha',
+    historyDownload: 'Release History',
+    versionLabel: 'Channel'
   }
 }
 
@@ -167,15 +211,114 @@ function formatFileSize(bytes: number): string {
   return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i]
 }
 
-const handleSourceDropdownBlur = () => setTimeout(() => isSourceDropdownOpen.value = false, 200)
+function renderMarkdown(text: string): string {
+  if (!text) return '—'
+
+  // Remove images (markdown syntax and HTML img tags)
+  let html = text
+    .replace(/!\[.*?\]\(.*?\)/g, '')
+    .replace(/<img\s[^>]*\/?>/gi, '')
+
+  // Escape HTML
+  html = html
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+
+  // Tables - process before other inline formatting
+  html = html.replace(/^(\|.+\|)\n(\|[-| :]+\|)\n((?:\|.+\|\n?)*)/gm, (match, headerRow, separatorRow, bodyRows) => {
+    const parseCells = (row: string) =>
+      row.split('|').filter((cell: string) => cell.trim() !== '').map((cell: string) => cell.trim())
+
+    const headers = parseCells(headerRow)
+    const rows = bodyRows.trim().split('\n').map((row: string) => parseCells(row))
+
+    let table = '<table><thead><tr>'
+    headers.forEach((h: string) => { table += `<th>${h}</th>` })
+    table += '</tr></thead><tbody>'
+    rows.forEach((cells: string[]) => {
+      table += '<tr>'
+      cells.forEach((c: string) => { table += `<td>${c}</td>` })
+      table += '</tr>'
+    })
+    table += '</tbody></table>'
+    return table
+  })
+
+  // Process block-level elements first
+  html = html
+    // Horizontal rules (---, ***, ___)
+    .replace(/^[-*_]{3,}\s*$/gm, '<hr>')
+    // Blockquotes (> text) - match &gt; since HTML is already escaped
+    .replace(/^&gt;\s?(.+)$/gm, '<blockquote>$1</blockquote>')
+    .replace(/^&gt;\s*$/gm, '<blockquote><br></blockquote>')
+    // Merge consecutive blockquotes
+    .replace(/<\/blockquote>\n<blockquote>/g, '<br>')
+    // Headers
+    .replace(/^### (.+)$/gm, '<h4>$1</h4>')
+    .replace(/^## (.+)$/gm, '<h3>$1</h3>')
+    .replace(/^# (.+)$/gm, '<h2>$1</h2>')
+    // Unordered lists
+    .replace(/^\s*[-*]\s+(.+)$/gm, '<li>$1</li>')
+    // Wrap consecutive <li> in <ul>
+    .replace(/((?:<li>.*<\/li>\n?)+)/g, '<ul>$1</ul>')
+
+  // Split into paragraphs by double newlines
+  const paragraphs = html.split(/\n\n+/)
+  html = paragraphs.map(para => {
+    const trimmed = para.trim()
+    if (!trimmed) return ''
+    // Don't wrap if already a block element
+    if (/^<(h[1-6]|ul|ol|li|blockquote|table|thead|tbody|tr|th|td|hr|div)/.test(trimmed)) {
+      return trimmed
+    }
+    // Replace single newlines with <br> and wrap in <p>
+    return `<p>${trimmed.replace(/\n/g, '<br>')}</p>`
+  }).join('')
+
+  // Inline formatting (applied after paragraph wrapping)
+  html = html
+    // Bold
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    // Italic
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    // Inline code
+    .replace(/`(.+?)`/g, '<code>$1</code>')
+    // Links
+    .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
+
+  return html
+}
+
+// Close dropdown when clicking outside
+function closeDropdowns(e: MouseEvent) {
+  const target = e.target as HTMLElement
+  if (!target.closest('.asset-dropdown-wrapper')) {
+    isAssetDropdownOpen.value = false
+  }
+  if (!target.closest('.source-dropdown')) {
+    isSourceDropdownOpen.value = false
+  }
+}
+
+// Reset channel on channel switch
+watch(selectedChannel, () => {
+  // currentRelease is computed from channelReleases, so it auto-updates
+})
 
 onMounted(() => {
   fetchLatestRelease()
+  document.addEventListener('click', closeDropdowns)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('click', closeDropdowns)
 })
 </script>
 
 <template>
   <div class="download-container">
+    <!-- Error State -->
     <div v-if="hasError" class="error">
       <div class="error-content">
         <span class="error-icon">⚠️</span>
@@ -185,160 +328,199 @@ onMounted(() => {
       </div>
     </div>
 
-    <div class="release-info">
-      <!-- 版本信息头部 -->
-      <div class="release-header">
-          <img src="/logo.png" alt="logo" class="logo">
-        <div class="release-title-row">
-          <template v-if="isLoading">
-            <div class="loading-inline">
-              <div class="loading-spinner small"></div>
-              <span>{{ locale.fetchingRelease }}</span>
-            </div>
-          </template>
-          <template v-else>
-            <Icon name="octicon:tag-16" size="1.5em" />
-            <span class="release-name">{{ currentRelease ? currentRelease.name : '—' }}</span>
-            <span class="release-date">{{ currentRelease ? new Date(currentRelease.published_at).toLocaleDateString(dateLocale) : '' }}</span>
-          </template>
-        </div>
-      </div>
+    <template v-else>
+      <!-- Section A: Hero -->
+      <section class="hero-section">
+        <img src="/logo.png" alt="logo" class="logo">
+        <h1 class="hero-title">{{ locale.heroTitle }}</h1>
+        <p class="hero-subtitle">{{ locale.heroSubtitle }}</p>
+      </section>
 
-      <div class="download-selector">
-        <div class="selector-controls">
-            <div class="dropdown-container">
-              <label class="dropdown-label">{{ locale.downloadSourceLabel }}</label>
-              <div class="dropdown" :class="{ 'is-open': isSourceDropdownOpen }">
-                <button class="dropdown-trigger" @click="isSourceDropdownOpen = !isSourceDropdownOpen"
-                  @blur="handleSourceDropdownBlur">
-                  <span class="dropdown-content">
-                    <template v-if="currentDownloadSource.icon">
-                      <img
-                        v-if="isGithubSource(currentDownloadSource.id)"
-                        src="/icon/github-dark.png"
-                        class="source-icon github-light"
-                      />
-                      <img
-                        v-if="isGithubSource(currentDownloadSource.id)"
-                        src="/icon/github-light.png"
-                        class="source-icon github-dark"
-                      />
-                      <img
-                        v-else
-                        :src="currentDownloadSource.icon"
-                        class="source-icon"
-                      />
-                    </template>
-                    <span class="source-info">
-                      <span class="source-name">{{ currentDownloadSource.id }}</span>
-                      <span class="source-desc">{{ currentDownloadSource.description }}</span>
+      <!-- Section B: Split Download Button -->
+      <section class="download-btn-section">
+        <div v-if="isLoading" class="loading-inline centered">
+          <div class="loading-spinner small"></div>
+          <span>{{ locale.fetchingRelease }}</span>
+        </div>
+
+        <template v-else-if="recommendedAsset">
+          <div class="split-download-btn">
+            <a
+              :href="getDownloadUrl(recommendedAsset)"
+              class="main-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Icon name="lucide:download" />
+              <span>{{ locale.downloadNow }}</span>
+            </a>
+            <div class="asset-dropdown-wrapper">
+              <button
+                class="dropdown-trigger"
+                @mousedown.prevent="isAssetDropdownOpen = !isAssetDropdownOpen"
+              >
+                <Icon name="lucide:chevron-down" />
+              </button>
+              <div
+                class="dropdown-menu asset-dropdown-menu"
+                :class="{ 'is-open': isAssetDropdownOpen }"
+                @mousedown.prevent
+              >
+                <a
+                  v-for="asset in otherAssets"
+                  :key="asset.id"
+                  :href="getDownloadUrl(asset)"
+                  class="dropdown-item asset-dropdown-item"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  @click="isAssetDropdownOpen = false"
+                >
+                  <Icon :name="getFileIcon(asset.name)" class="asset-icon" />
+                  <span class="asset-item-info">
+                    <span class="asset-item-name">{{ asset.name }}</span>
+                    <span class="asset-item-meta">
+                      <span v-if="getFileArch(asset.name)" class="asset-item-arch">{{ getFileArch(asset.name) }}</span>
+                      <span class="asset-item-size">{{ formatFileSize(asset.size) }}</span>
                     </span>
                   </span>
-                  <Icon v-if="isSourceDropdownOpen" name="lucide:chevron-up" class="dropdown-arrow" />
-                  <Icon v-else name="lucide:chevron-down" class="dropdown-arrow" />
-                </button>
-
-                <div class="dropdown-menu">
-                  <button v-for="source in downloadSources" :key="source.id" class="dropdown-item" :class="{
-                    'is-selected': selectedDownloadSource === source.id
-                  }" @click="selectedDownloadSource = source.id; isSourceDropdownOpen = false">
-                    <template v-if="source.icon">
-                      <img
-                        v-if="isGithubSource(source.id)"
-                        src="/icon/github-dark.png"
-                        class="source-icon github-light"
-                      />
-                      <img
-                        v-if="isGithubSource(source.id)"
-                        src="/icon/github-light.png"
-                        class="source-icon github-dark"
-                      />
-                      <img
-                        v-else
-                        :src="source.icon"
-                        class="source-icon"
-                      />
-                    </template>
-                    <span class="source-info">
-                      <span class="source-name">{{ source.id }}</span>
-                      <span class="source-desc">{{ source.description }}</span>
-                    </span>
-                  </button>
+                </a>
+                <div v-if="!otherAssets.length" class="dropdown-item empty">
+                  <span>{{ locale.noAssetsTitle }}</span>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+          <div class="download-meta">
+            <span class="meta-tag" v-if="currentRelease">
+              <Icon name="octicon:tag-16" size="0.9em" />
+              {{ currentRelease.tag_name }}
+            </span>
+            <span class="meta-size">{{ formatFileSize(recommendedAsset.size) }}</span>
+          </div>
+        </template>
+      </section>
 
-      <!-- 下载文件列表 -->
-      <div class="download-section">
-        <h2 style="font-weight: bold;">{{ locale.assetsTitle }}</h2>
+      <!-- Section C: Options Row -->
+      <section class="options-row">
+        <div class="option-group">
+          <label class="option-label">{{ locale.downloadSourceLabel }}</label>
+          <div class="dropdown source-dropdown" :class="{ 'is-open': isSourceDropdownOpen }">
+            <button class="source-trigger" @mousedown.prevent="isSourceDropdownOpen = !isSourceDropdownOpen">
+              <span class="dropdown-content">
+                <template v-if="currentDownloadSource.icon">
+                  <img
+                    v-if="isGithubSource(currentDownloadSource.id)"
+                    src="/icon/github-dark.png"
+                    class="source-icon github-light"
+                  />
+                  <img
+                    v-if="isGithubSource(currentDownloadSource.id)"
+                    src="/icon/github-light.png"
+                    class="source-icon github-dark"
+                  />
+                  <img
+                    v-else
+                    :src="currentDownloadSource.icon"
+                    class="source-icon"
+                  />
+                </template>
+                <span class="source-name">{{ currentDownloadSource.id }}</span>
+              </span>
+              <Icon v-if="isSourceDropdownOpen" name="lucide:chevron-up" class="dropdown-arrow" />
+              <Icon v-else name="lucide:chevron-down" class="dropdown-arrow" />
+            </button>
 
-        <div v-if="isLoading" class="assets-list">
-          <div class="loading-inline">
-            <div class="loading-spinner small"></div>
-            <span>{{ locale.loadingAssets }}</span>
+            <div class="dropdown-menu" @mousedown.prevent>
+              <button v-for="source in downloadSources" :key="source.id" class="dropdown-item" :class="{
+                'is-selected': selectedDownloadSource === source.id
+              }" @click="selectedDownloadSource = source.id; isSourceDropdownOpen = false">
+                <template v-if="source.icon">
+                  <img
+                    v-if="isGithubSource(source.id)"
+                    src="/icon/github-dark.png"
+                    class="source-icon github-light"
+                  />
+                  <img
+                    v-if="isGithubSource(source.id)"
+                    src="/icon/github-light.png"
+                    class="source-icon github-dark"
+                  />
+                  <img
+                    v-else
+                    :src="source.icon"
+                    class="source-icon"
+                  />
+                </template>
+                <span class="source-info">
+                  <span class="source-name">{{ source.id }}</span>
+                  <span class="source-desc">{{ source.description }}</span>
+                </span>
+              </button>
+            </div>
           </div>
         </div>
 
-        <div v-else-if="filteredAssets && filteredAssets.length > 0" class="assets-list">
-          <div v-for="asset in filteredAssets" :key="asset.id" class="asset-item">
-            <div class="asset-info">
-              <div class="asset-header">
-                <Icon name="octicon:package-16" />
-                <h4 class="asset-name">{{ asset.name }}</h4>
-              </div>
-              <div class="asset-meta">
-                <span class="download-count">{{ asset.download_count.toLocaleString() }}{{ locale.downloadsSuffix }}</span>
-                  <span class="asset-size">{{ formatFileSize(asset.size) }}</span>
-                  <span class="asset-sha-wrapper">
-                    <span class="asset-sha" :title="`${getAssetSha256(asset)}`">sha256:{{ getAssetSha256(asset) }}</span>
-                    <button type="button" class="sha-copy-button" @click="copyAssetSha256(asset)">
-                      <Icon v-if="copiedShaAssetId === asset.id" name="octicon:check-16" color="#1a7f37" />
-                      <Icon v-else name="octicon:copy-16" />
-                    </button>
-                  </span>
-              </div>
-            </div>
-
-            <div class="download-action">
-              <a :href="getDownloadUrl(asset)" class="download-btn primary-btn" target="_blank"
-                rel="noopener noreferrer">
-                <Icon name="lucide:download" />
-                <span class="btn-text">{{ locale.downloadNow }}</span>
-              </a>
-            </div>
+        <div class="option-group">
+          <label class="option-label">{{ locale.versionLabel }}</label>
+          <div class="channel-tabs">
+            <button
+              class="channel-tab"
+              :class="{ active: selectedChannel === 'stable' }"
+              @click="selectedChannel = 'stable'"
+            >{{ locale.channelStable }}</button>
+            <button
+              class="channel-tab"
+              :class="{ active: selectedChannel === 'beta' }"
+              @click="selectedChannel = 'beta'"
+            >{{ locale.channelBeta }}</button>
+            <button
+              class="channel-tab"
+              :class="{ active: selectedChannel === 'alpha' }"
+              @click="selectedChannel = 'alpha'"
+            >{{ locale.channelAlpha }}</button>
           </div>
         </div>
+      </section>
 
-        <div v-else class="no-assets">
-            <div class="no-assets-content">
-              <h4>{{ locale.noAssetsTitle }}</h4>
-              <p>{{ locale.noAssetsDesc }}</p>
-            </div>
+      <!-- Section D: History Download -->
+      <div class="history-link">
+        <a href="https://stk.sectl.cn/SecRandom" target="_blank" rel="noopener noreferrer">
+          {{ locale.historyDownload }}
+        </a>
+      </div>
+
+      <!-- Section E: Changelog -->
+      <section class="changelog-section" v-if="currentRelease">
+        <div class="section-header">
+          <h2>{{ locale.changelogTitle }}</h2>
+          <span class="version-badge">{{ currentRelease.tag_name }}</span>
         </div>
+        <div class="changelog-body markdown-body" v-html="renderMarkdown(currentRelease.body)"></div>
+      </section>
 
-        <div class="view-release-history">
-          <a href="https://github.com/SECTL/SecRandom/releases" target="_blank" rel="noopener noreferrer">
-            {{ locale.viewReleaseHistory }}
-          </a>
+      <!-- No assets state -->
+      <div v-if="!isLoading && !filteredAssets.length" class="no-assets">
+        <div class="no-assets-content">
+          <h4>{{ locale.noAssetsTitle }}</h4>
+          <p>{{ locale.noAssetsDesc }}</p>
         </div>
       </div>
-    </div>
+    </template>
+
     <Content class="vp-doc plume-content" vp-content />
   </div>
 </template>
 
 <style scoped>
 .download-container {
-  max-width: 1100px;
+  max-width: 800px;
   margin: 36px auto;
   padding: 12px;
   font-family: var(--vp-font-family-base);
   color: var(--vp-c-text-1);
 }
 
-/* 加载状态 */
+/* Loading */
 .loading,
 .error {
   display: flex;
@@ -373,6 +555,11 @@ onMounted(() => {
   color: var(--vp-c-text-2);
 }
 
+.loading-inline.centered {
+  justify-content: center;
+  padding: 20px 0;
+}
+
 @keyframes spin {
   to {
     transform: rotate(360deg);
@@ -384,7 +571,7 @@ onMounted(() => {
   margin: 0;
 }
 
-/* 错误状态 */
+/* Error */
 .error-content {
   display: flex;
   flex-direction: column;
@@ -423,9 +610,10 @@ onMounted(() => {
   background: var(--vp-c-brand-2);
 }
 
-/* 版本信息头部 */
-.release-header {
+/* Section A: Hero */
+.hero-section {
   text-align: center;
+  padding: 20px 0 32px;
 }
 
 .logo {
@@ -435,94 +623,201 @@ onMounted(() => {
   margin: 0 auto;
 }
 
-.release-title-row {
+.hero-title {
+  margin: 24px 0 8px;
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--vp-c-text-1);
+  letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--vp-c-text-2);
+  line-height: 1.6;
+}
+
+/* Section B: Split Download Button */
+.download-btn-section {
+  text-align: center;
+  padding: 8px 0 24px;
+}
+
+.split-download-btn {
+  display: inline-flex;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.split-download-btn .main-btn {
+  padding: 14px 32px;
+  background: var(--vp-c-brand-1);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 12px 0 0 12px;
+  transition: background 0.2s;
+}
+
+.split-download-btn .main-btn:hover {
+  background: var(--vp-c-brand-2);
+  color: white;
+}
+
+.asset-dropdown-wrapper {
+  position: relative;
+  display: flex;
+}
+
+.split-download-btn .dropdown-trigger {
+  padding: 14px 16px;
+  background: var(--vp-c-brand-2);
+  color: white;
+  border: none;
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0 12px 12px 0;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.split-download-btn .dropdown-trigger:hover {
+  background: var(--vp-c-brand-1);
+}
+
+.asset-icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.asset-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.asset-item-name {
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.asset-item-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--vp-c-text-2);
+}
+
+.asset-item-arch {
+  padding: 1px 6px;
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.asset-item-size {
+  color: var(--vp-c-text-3);
+}
+
+.download-meta {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  margin: 36px auto;
-}
-
-.release-name {
-  margin: 0;
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: var(--vp-c-text-1);
-}
-
-.release-date {
-  padding: 3px 10px;
-  border-radius: 20px;
-  font-size: 0.875rem;
-  background: #83d0da50;
-  color: var(--vp-c-text-1);
-}
-
-/* 下载选择器 */
-.download-selector {
-  background: var(--vp-c-bg-soft);
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 16px;
-  padding: 16px;
-  margin-bottom: 24px;
-}
-
-.selector-controls {
-  display: grid;
-  grid-template-columns: 1fr;
   gap: 12px;
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: var(--vp-c-text-2);
 }
 
-.dropdown-container {
-  position: relative;
-}
-
-.dropdown-label {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 1rem;
+.meta-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 10px;
+  border-radius: 20px;
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
   font-weight: 600;
-  color: var(--vp-c-text-1);
+  font-size: 0.85rem;
 }
 
-.dropdown {
-  position: relative;
+.meta-size {
+  color: var(--vp-c-text-3);
 }
 
-.dropdown-trigger {
-  width: 100%;
+/* Section C: Options Row */
+.options-row {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  padding: 8px 0 16px;
+}
+
+.option-group {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 8px 12px;
+  gap: 10px;
+}
+
+.option-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--vp-c-text-2);
+  white-space: nowrap;
+}
+
+/* Source dropdown (reused pattern) */
+.source-dropdown {
+  position: relative;
+}
+
+.source-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
   background: var(--vp-c-bg);
-  border: 2px solid var(--vp-c-border);
-  border-radius: 12px;
-  font-size: 0.875rem;
+  border: 1px solid var(--vp-c-border);
+  border-radius: 8px;
+  font-size: 0.85rem;
   color: var(--vp-c-text-1);
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.dropdown-trigger:hover,
-.dropdown.is-open .dropdown-trigger {
+.source-trigger:hover,
+.source-dropdown.is-open .source-trigger {
   border-color: var(--vp-c-brand-1);
 }
 
-.dropdown.is-open .dropdown-trigger {
+.source-dropdown.is-open .source-trigger {
   box-shadow: 0 0 0 3px var(--vp-c-brand-soft);
 }
 
 .dropdown-content {
   display: flex;
   align-items: center;
-  gap: 14px;
-  flex: 1;
+  gap: 8px;
 }
 
 .source-icon {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   object-fit: cover;
   border-radius: 4px;
 }
@@ -545,11 +840,11 @@ onMounted(() => {
 .source-name {
   font-weight: 600;
   color: var(--vp-c-text-1);
-  line-height: 1.6;
+  line-height: 1.4;
 }
 
 .source-desc {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: var(--vp-c-text-2);
   line-height: 1.2;
 }
@@ -563,7 +858,7 @@ onMounted(() => {
   position: absolute;
   top: 100%;
   left: 0;
-  right: 0;
+  min-width: 100%;
   max-height: 320px;
   overflow-y: auto;
   background: var(--vp-c-bg);
@@ -577,9 +872,9 @@ onMounted(() => {
   transition: all 0.2s ease;
 }
 
-.dropdown.is-open .dropdown-menu {
+.source-dropdown.is-open .dropdown-menu {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(4px);
   pointer-events: auto;
 }
 
@@ -591,10 +886,11 @@ onMounted(() => {
   padding: 8px 12px;
   background: none;
   border: none;
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   color: var(--vp-c-text-1);
   cursor: pointer;
   transition: background-color 0.2s ease;
+  text-align: left;
 }
 
 .dropdown-item:hover {
@@ -606,134 +902,280 @@ onMounted(() => {
   color: var(--vp-c-brand-1);
 }
 
-/* 下载文件列表 */
-.download-section {
-  margin-bottom: 24px;
-}
-
-.assets-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 12px 0;
-}
-
-.asset-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px;
+/* Asset Dropdown - must come after .dropdown-menu to override min-width */
+.asset-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  min-width: 280px;
+  max-width: 420px;
+  max-height: 320px;
+  overflow-x: hidden;
+  overflow-y: auto;
   background: var(--vp-c-bg);
   border: 1px solid var(--vp-c-border);
   border-radius: 12px;
+  box-shadow: var(--vp-shadow-3);
+  z-index: 50;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
   transition: all 0.2s ease;
+  box-sizing: border-box;
 }
 
-.asset-item:hover {
-  border-color: var(--vp-c-brand-2);
-  box-shadow: var(--vp-shadow-2);
+.asset-dropdown-menu.is-open {
+  opacity: 1;
+  transform: translateY(4px);
+  pointer-events: auto;
 }
 
-.asset-info {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  min-width: 0;
-}
-
-.asset-header {
+.asset-dropdown-item {
   display: flex;
   align-items: center;
-  gap: 4px;
-}
-
-.asset-name {
-  margin: 0;
-  font-size: 1.25rem;
-  font-weight: 600;
-  line-height: 1.4;
+  gap: 12px;
+  padding: 10px 16px;
   color: var(--vp-c-text-1);
-  min-width: 0;
-  overflow-wrap: anywhere;
-  word-break: break-word;
-}
-
-.asset-meta {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-width: 0;
-}
-
-.download-count,
-.asset-size {
-  font-size: 0.95rem;
-  color: var(--vp-c-text-2);
-  white-space: nowrap;
-}
-
-.asset-sha-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex: 0 1 auto;
-  min-width: 0;
-}
-
-.asset-sha {
-  flex: 0 1 auto;
-  min-width: 0;
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: background-color 0.15s;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
   overflow: hidden;
-  font-family: "Monaspace Neon", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-  font-size: 1.05rem;
-  color: var(--vp-c-text-2);
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
-.sha-copy-button:hover {
+.asset-dropdown-item:hover {
+  background-color: var(--vp-c-default-soft);
+}
+
+.asset-dropdown-item.empty {
+  color: var(--vp-c-text-3);
+  justify-content: center;
+  cursor: default;
+}
+
+/* Channel Tabs */
+.channel-tabs {
+  display: flex;
+  background: var(--vp-c-bg-soft);
+  border-radius: 8px;
+  padding: 3px;
+  gap: 2px;
+  border: 1px solid var(--vp-c-border);
+}
+
+.channel-tab {
+  padding: 6px 14px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--vp-c-text-2);
+  transition: all 0.2s;
+  font-weight: 500;
+}
+
+.channel-tab:hover {
+  color: var(--vp-c-text-1);
+}
+
+.channel-tab.active {
+  background: var(--vp-c-brand-1);
+  color: white;
+}
+
+/* Section D: History Link */
+.history-link {
+  display: block;
+  text-align: center;
+  margin: 16px 0;
+}
+
+.history-link a {
+  color: var(--vp-c-text-2);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.history-link a:hover {
   color: var(--vp-c-brand-1);
 }
 
-.download-action {
+/* Section E: Changelog */
+.changelog-section {
+  margin: 24px 0;
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.section-header {
   display: flex;
   align-items: center;
-  margin-left: 20px;
-  flex-shrink: 0;
+  gap: 10px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--vp-c-divider);
 }
 
-.download-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 2px;
-  padding: 8px 16px;
-  background: var(--vp-c-brand-2);
-  color: var(--vp-c-white);
+.section-header h2 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--vp-c-text-1);
+}
+
+.version-badge {
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+}
+
+.changelog-body {
+  padding: 12px 16px;
+}
+
+.markdown-body {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--vp-c-text-2);
+  word-break: break-word;
+}
+
+.markdown-body :deep(h2) {
+  margin: 1.2em 0 0.6em;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--vp-c-text-1);
+  border-bottom: 1px solid var(--vp-c-divider);
+  padding-bottom: 0.3em;
+}
+
+.markdown-body :deep(h3) {
+  margin: 1em 0 0.5em;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+}
+
+.markdown-body :deep(h4) {
+  margin: 0.8em 0 0.4em;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+}
+
+.markdown-body :deep(p) {
+  margin: 0.25em 0;
+  line-height: 1.5;
+}
+
+.markdown-body :deep(strong) {
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+}
+
+.markdown-body :deep(em) {
+  font-style: italic;
+}
+
+.markdown-body :deep(code) {
+  padding: 2px 6px;
+  background: var(--vp-c-bg-mute);
+  border-radius: 4px;
+  font-family: "Monaspace Neon", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 0.85em;
+  color: var(--vp-c-text-1);
+}
+
+.markdown-body :deep(a) {
+  color: var(--vp-c-brand-1);
   text-decoration: none;
-  border-radius: 10px;
-  box-shadow: var(--vp-shadow-2);
-  transition: all 0.2s ease;
 }
 
-.download-btn:hover {
-  background: var(--vp-c-brand-1);
-  box-shadow: var(--vp-shadow-3);
-  color: var(--vp-c-white);
+.markdown-body :deep(a:hover) {
+  text-decoration: underline;
 }
 
-.btn-text {
+.markdown-body :deep(ul) {
+  margin: 0.5em 0;
+  padding-left: 1.5em;
+}
+
+.markdown-body :deep(li) {
+  margin: 0.3em 0;
+  list-style-type: disc;
+}
+
+.markdown-body :deep(li::marker) {
+  color: var(--vp-c-brand-1);
+}
+
+.markdown-body :deep(hr) {
+  border: none;
+  border-top: 2px solid var(--vp-c-divider);
+  margin: 1.5em 0;
+}
+
+.markdown-body :deep(blockquote) {
+  margin: 0.8em 0;
+  padding: 0.6em 1em;
+  border-left: 4px solid var(--vp-c-brand-1);
+  background: var(--vp-c-bg-mute);
+  border-radius: 0 8px 8px 0;
+  color: var(--vp-c-text-2);
+}
+
+.markdown-body :deep(blockquote p) {
+  margin: 0;
+}
+
+.markdown-body :deep(table) {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.8em 0;
   font-size: 0.875rem;
-  font-weight: bold;
+  overflow-x: auto;
+  display: block;
 }
 
-/* 无文件状态 */
+.markdown-body :deep(thead) {
+  background: var(--vp-c-bg-mute);
+}
+
+.markdown-body :deep(th) {
+  padding: 8px 12px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+  border: 1px solid var(--vp-c-divider);
+  white-space: nowrap;
+}
+
+.markdown-body :deep(td) {
+  padding: 8px 12px;
+  border: 1px solid var(--vp-c-divider);
+  color: var(--vp-c-text-2);
+}
+
+.markdown-body :deep(tbody tr:hover) {
+  background: var(--vp-c-bg-soft);
+}
+
+/* No assets */
 .no-assets {
   padding: 40px 20px;
   background: var(--vp-c-bg-soft);
   border: 2px dashed var(--vp-c-border);
   border-radius: 12px;
   text-align: center;
+  margin: 24px 0;
 }
 
 .no-assets-content {
@@ -749,39 +1191,62 @@ onMounted(() => {
   color: var(--vp-c-text-1);
 }
 
-.view-release-history {
-  margin-top: 16px;
-  text-align: center;
+.no-assets-content p {
+  margin: 0;
+  color: var(--vp-c-text-2);
 }
 
-.view-release-history a:hover {
-  color: var(--vp-c-brand-1);
-}
-
-/* 响应式设计 */
+/* Responsive */
 @media (max-width: 640px) {
   .download-container {
     padding: 16px;
   }
 
-  .release-header {
-    padding: 20px;
+  .hero-title {
+    font-size: 1.75rem;
   }
 
-  .release-name {
-    font-size: 1.25rem;
+  .hero-subtitle {
+    font-size: 0.95rem;
   }
 
-  .release-title-row {
-    gap: 4px;
+  .split-download-btn {
+    width: 100%;
   }
 
-  .download-selector {
-    padding: 20px;
+  .split-download-btn .main-btn {
+    flex: 1;
+    justify-content: center;
+    padding: 14px 20px;
+    font-size: 1rem;
   }
 
-  .selector-controls {
-    grid-template-columns: 1fr;
+  .asset-dropdown-menu {
+    min-width: 260px;
+    right: -60px;
+  }
+
+  .options-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .option-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .channel-tabs {
+    width: 100%;
+  }
+
+  .channel-tab {
+    flex: 1;
+    text-align: center;
   }
 
   .asset-item {
