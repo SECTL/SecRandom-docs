@@ -95,5 +95,5 @@ title: 落魄龙娘在线要饭
   <div class="fancy-desc" style="margin-bottom:1.5rem;">龙娘最近实在太穷了，饭都快吃不起了！</div>
   <div class="fancy-desc">请好心人打赏一口饭钱，让龙娘获得开发的动力！</div>
   <a href="https://afdian.com/a/lzy0983" class="fancy-btn">立即打赏</a>
-  <div class="fancy-desc" style="font-size:1.2rem;margin-top:2rem;filter:blur(1px);">（您的每一分善意，都是龙娘前进的动力！）</div>
+  <div class="fancy-desc" style="font-size:1.2rem;margin-top:2rem;filter:blur(1px);">（你的每一分善意，都是龙娘前进的动力！）</div>
 </div>

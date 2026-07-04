@@ -19,7 +19,7 @@ Windows 7 和 x86 用户可前往[此处](https://github.com/SECTL/SecRandom/rel
 :::
 
 ::: info 开源协议
-SecRandom 本体基于 GNU GPL-3.0 协议开源。您可以自由使用、修改和分发本软件，但修改后的版本必须同样以 GPL-3.0 协议开源。
+SecRandom 本体基于 GNU GPL-3.0 协议开源。你可以自由使用、修改和分发本软件，但修改后的版本必须同样以 GPL-3.0 协议开源。
 :::
 
 # 快速开始
