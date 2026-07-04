@@ -217,8 +217,8 @@ Configure background music:
 
 | Setting | Description |
 |--------|------|
-| **Animation Music** | Music played during drawing animation |
-| **Result Music** | Music played when drawing result is displayed |
+| **Animation Music** | Music played during selection animation |
+| **Result Music** | Music played when selection result is displayed |
 | **Music Volume** | Adjust music volume |
 | **Fade In/Out** | Set music fade in/out effect |
 

@@ -28,7 +28,7 @@ createTime: 2026/01/17 22:24:44
 :::warning Edge TTS Notes
 1. **Requires internet**: First use requires downloading voice package
 2. **First time delay**: Each student's first draw will have voice generation delay
-3. **Recommended operation**: First time use, complete a full round of drawing first, subsequent broadcasts will be smooth
+3. **Recommended operation**: First time use, complete a full round of selection first, subsequent broadcasts will be smooth
 4. **Speed setting**: After modifying speed, it is recommended to redraw a round
 :::
 

@@ -23,9 +23,9 @@ createTime: 2026/01/17 21:52:27
 
 ## ::lucide:settings:: Break Time Disable Settings
 
-**Break Time Disable Function**: Require security verification when drawing during break times
-- On: Drawing during break times requires security verification
-- Off: Drawing during break times does not require security verification
+**Break Time Disable Function**: Require security verification when selecting during break times
+- On: Selection during break times requires security verification
+- Off: Selection during break times does not require security verification
 
 **Verification Process Function**: When triggered during non-class time, a security verification will pop up; if disabled, the component will be directly disabled
 - On: Triggering during non-class time requires security verification

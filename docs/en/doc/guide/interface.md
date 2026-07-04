@@ -42,8 +42,8 @@ SecRandom adopts the Fluent Design design language, building a modern user inter
 
 #### Lottery Page
 - Icon: ic_fluent_gift_20_filled
-- Features: Lottery drawing, prize management, lottery history
-- Supports weight settings and fair drawing algorithms
+- Features: Lottery selection, prize management, lottery history
+- Supports weight settings and fair selection algorithms
 
 #### History Page
 - Icon: ic_fluent_history_20_filled
@@ -53,7 +53,7 @@ SecRandom adopts the Fluent Design design language, building a modern user inter
 #### Settings Page
 - Icon: ic_fluent_settings_20_filled
 - Features: Global settings management
-- Includes multiple sub-modules: basic settings, drawing settings, history management, list management, notification settings, voice settings, security settings, etc.
+- Includes multiple sub-modules: basic settings, selection settings, history management, list management, notification settings, voice settings, security settings, etc.
 
 #### Navigation Bar Personalization
 - Supports custom navigation item positions (top/bottom/hidden)

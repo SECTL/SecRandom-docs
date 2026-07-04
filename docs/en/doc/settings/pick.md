@@ -1,27 +1,27 @@
 ---
-title: Drawing Settings
+title: Selection Settings
 createTime: 2026/01/02 15:29:12
 ---
 
-> **Personalize your drawing experience**
+> **Personalize your selection experience**
 >
-> Through rich customization options, create a drawing style and floating window experience exclusive to you.
+> Through rich customization options, create a selection style and floating window experience exclusive to you.
 
-## ::lucide:settings:: Drawing Settings
+## ::lucide:settings:: Selection Settings
 
-Drawing settings include three independent features: **Roll Call Settings**, **Quick Draw Settings**, and **Lottery Settings**. Each feature includes drawing function, display settings, and animation settings.
+Selection settings include three independent features: **Roll Call Settings**, **Quick Draw Settings**, and **Lottery Settings**. Each feature includes selection function, display settings, and animation settings.
 
 ### ::lucide:library:: Roll Call Settings
 
-#### ::lucide:dices:: Drawing Function
+#### ::lucide:dices:: Selection Function
 
 | Configuration | Type | Range/Options | Description |
 |--------------|------|---------------|-------------|
-| **Drawing Mode** | Dropdown | Repetitive/Non-repetitive/Semi-repetitive | Controls drawing logic |
+| **Selection Mode** | Dropdown | Repetitive/Non-repetitive/Semi-repetitive | Controls selection logic |
 | **Clear Record Method** | Dropdown | Manual/Auto/No Clear | Automatically disabled in repetitive mode |
 | **Semi-repetitive Count** | Number Input | 0-100 | Enabled in semi-repetitive mode, sets repeat count |
-| **Drawing Method** | Dropdown | By Class/By Gender/By Range | Controls drawing range |
-| **Default Drawing List** | Dropdown | Dynamically loaded class list | Sets default class to use |
+| **Selection Method** | Dropdown | By Class/By Gender/By Range | Controls selection range |
+| **Default Selection List** | Dropdown | Dynamically loaded class list | Sets default class to use |
 
 #### ::lucide:palette:: Display Settings
 
@@ -63,15 +63,15 @@ Drawing settings include three independent features: **Roll Call Settings**, **Q
 
 ### ::lucide:zap:: Quick Draw Settings
 
-#### ::lucide:dices:: Drawing Function
+#### ::lucide:dices:: Selection Function
 
 | Configuration | Type | Range/Options | Description |
 |--------------|------|---------------|-------------|
-| **Drawing Mode** | Dropdown | Repetitive/Non-repetitive/Semi-repetitive | Controls drawing logic |
+| **Selection Mode** | Dropdown | Repetitive/Non-repetitive/Semi-repetitive | Controls selection logic |
 | **Semi-repetitive Count** | Number Input | 0-100 | Enabled in semi-repetitive mode |
-| **Drawing Method** | Dropdown | By Class/By Gender/By Range | Controls drawing range |
-| **Default Drawing List** | Dropdown | Dynamically loaded class list | Sets default class to use |
-| **Drawing Count** | Number Input | 1-100 | Sets number of people to draw each time |
+| **Selection Method** | Dropdown | By Class/By Gender/By Range | Controls selection range |
+| **Default Selection List** | Dropdown | Dynamically loaded class list | Sets default class to use |
+| **Selection Count** | Number Input | 1-100 | Sets number of people to select each time |
 | **Disable Time After Click** | Number Input | 0-60s | Time to disable button after click |
 
 #### ::lucide:palette:: Display Settings
@@ -103,7 +103,7 @@ Same as Roll Call settings.
 
 #### ::lucide:dices:: Roll Call Settings Recommendations
 
-- **Drawing Mode**: Choose according to teaching needs
+- **Selection Mode**: Choose according to teaching needs
   - Repetitive: Suitable for scenarios where the same person needs to be called multiple times
   - Non-repetitive: Suitable for ensuring every student is called
   - Semi-repetitive: Balance between repetitive and non-repetitive, can set repeat count
@@ -113,14 +113,14 @@ Same as Roll Call settings.
 
 #### ::lucide:zap:: Quick Draw Settings Recommendations
 
-- **Drawing Count**: Recommended 1-3 people, avoid drawing too many at once
+- **Selection Count**: Recommended 1-3 people, avoid selecting too many at once
 - **Disable Time After Click**: Recommended 3-5 seconds, prevent accidental operations
 - **Animation Interval**: Recommended 80-100 ms
 - **Font Size**: Recommended 50-80 px
 
 #### ::lucide:gift:: Lottery Settings Recommendations
 
-- **Drawing Mode**: Choose according to actual situation, ensure fair prize distribution
+- **Selection Mode**: Choose according to actual situation, ensure fair prize distribution
 - **Prize Image**: Recommended to enable, increase visual effect
 - **Animation Interval**: Recommended 80-100 ms
 - **Font Size**: Recommended 50-80 px
@@ -129,7 +129,7 @@ Same as Roll Call settings.
 
 1. **File Monitor**: Roll call settings and lottery settings will automatically monitor changes in the list/prize pool folder and update dropdown options in real time.
 
-2. **Drawing Mode Linkage**:
+2. **Selection Mode Linkage**:
    - Repetitive mode: Disable clear record and semi-repetitive count settings
    - Non-repetitive mode: Enable clear record, disable semi-repetitive count
    - Semi-repetitive mode: Enable clear record and semi-repetitive count settings
@@ -161,7 +161,7 @@ Same as Roll Call settings.
 - Disable: Floating window can get application focus, may cause floating window to get focus when foreground window changes
 
 **Extend Quick Draw Component**: Display more selection controls next to the floating window quick draw button
-- Enable: Display an additional down arrow next to the quick draw button for setting drawing range, gender, etc.
+- Enable: Display an additional down arrow next to the quick draw button for setting selection range, gender, etc.
 - Disable: Only display the quick draw button
 
 **Reset Floating Window Position**: Reset the floating window position to the default position (usually located in the upper left corner of the screen)
@@ -239,12 +239,12 @@ Note: Floating window sizes are all data for 1920×1080 100% scaling, may vary u
 ### 1. Drawing Settings Optimization
 
 - **Display Effect**: Adjust font size according to classroom size to ensure students in the back row can see clearly
-- **Animation Experience**: Appropriately adjust animation interval and play count to balance visual effect and drawing efficiency
-- **Personalized Theme**: Enable color theme or set artistic fonts to make the drawing process more vivid
+- **Animation Experience**: Appropriately adjust animation interval and play count to balance visual effect and selection efficiency
+- **Personalized Theme**: Enable color theme or set artistic fonts to make the selection process more vivid
 
 ### 2. Floating Window Settings Tips
 
-- **Convenient Operation**: Set button count to "Roll Call + Quick Draw" to improve classroom drawing efficiency
+- **Convenient Operation**: Set button count to "Roll Call + Quick Draw" to improve classroom selection efficiency
 - **Interface Cleanliness**: Choose floating window controls and display style according to actual situation to reduce visual interference
 - **Smart Edge Snapping**: Use edge snapping function to maintain floating window convenience without affecting other software use
 - **Foreground Hiding**: Configure hiding conditions according to needs to avoid blocking important content
