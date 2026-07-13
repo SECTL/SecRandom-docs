@@ -2,1211 +2,167 @@
 title: IPC & URL 协议
 createTime: 2025/11/29 13:02:57
 ---
-# SecRandom IPC & URL 协议完整列表
 
-> **SecRandom IPC & URL 协议参考**
->
-> 本页面提供了 SecRandom 软件支持的完整 IPC 和 URL 协议列表，通过这些协议可以快速访问软件的各个功能模块和执行特定操作。
+# SecRandom IPC & URL 协议
 
-## 概述
+SecRandom 提供系统 URL 激活和当前用户本地 IPC 两种自动化入口。两者使用相同的命令路由、参数校验和安全授权。
 
-SecRandom 支持两种协议方式：
-- **URL 协议**：通过 `secrandom://` 协议调用，适用于外部应用和浏览器
-- **IPC 协议**：进程间通信，适用于编程集成和自动化脚本
+## 使用前提
 
-**重要提示：**
-- **返回值说明**：所有的返回值（包括执行结果和数据查询）**仅在 IPC 调用时可用**。
-- **URL 协议限制**：通过系统 URL 协议（如浏览器或快捷方式）调用时，仅能触发动作，**无法获取任何返回值**。
+- 在基础设置中启用 `secrandom://` URL 协议注册后，系统才会将 URL 激活交给 SecRandom。
+- URL 激活是触发式调用，不返回数据。
+- IPC 仅在 SecRandom 已运行时可用，使用当前用户的本地命名管道，不开放网络端口。
+- 所有受保护的窗口、托盘、抽取和外部配置操作仍经过应用内安全验证；IPC 或 URL 不会绕过它。
+- 旧版单向文本命令 `ShowMainWindow`、`Restart` 和 `Url:<uri>` 保留用于重复实例激活。新的自动化客户端应使用本页 JSON 请求/响应帧。
 
-SecRandom 采用统一的窗口管理入口，所有窗口操作均通过以下三个命令实现：
-- `window/main` - 主窗口控制
-- `window/settings` - 设置窗口控制
-- `window/float` - 浮窗控制
+## URL 格式
 
-## ::lucide:list:: 全量命令总览表
-
-| 命令组 | 命令 | 用途 | 是否只读 | 是否影响界面 |
-|--------|------|------|----------|--------------|
-| **窗口控制** {rowspan=3} | `window/main` | 主窗口控制 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
-| | `window/settings` | 设置窗口控制 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
-| | `window/float` | 浮窗控制 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
-| **托盘功能** {rowspan=5} | `tray/toggle` | 切换显示 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
-| | `tray/settings` | 打开设置 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
-| | `tray/float` | 浮窗控制 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
-| | `tray/restart` | 重启程序 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
-| | `tray/exit` | 退出程序 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
-| **点名控制** {rowspan=8} | `roll_call/quick_draw` | 快速点名 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
-| | `roll_call/start` | 开始点名 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
-| | `roll_call/stop` | 停止点名 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
-| | `roll_call/reset` | 重置点名 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
-| | `roll_call/set_count` | 设置点名人数 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
-| | `roll_call/set_group` | 设置分组 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
-| | `roll_call/set_gender` | 设置性别 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
-| | `roll_call/set_list` | 设置名单 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
-| **抽奖控制** {rowspan=8} | `lottery/start` | 开始抽奖 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
-| | `lottery/stop` | 停止抽奖 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
-| | `lottery/reset` | 重置抽奖 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
-| | `lottery/set_count` | 设置抽奖人数 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
-| | `lottery/set_pool` | 设置奖池 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
-| | `lottery/set_range` | 设置范围 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
-| | `lottery/set_gender` | 设置性别 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
-| | `lottery/set_list` | 设置名单 | <p style="color: red;">否</p> | <p style="color: green;">是</p> |
-| **数据获取** {rowspan=4} | `data/roll_call_list` | 获取点名名单 | <p style="color: green;">是</p> | <p style="color: red;">否</p> |
-| | `data/lottery_list` | 获取抽奖名单 | <p style="color: green;">是</p> | <p style="color: red;">否</p> |
-| | `data/roll_call_history` | 获取点名历史 | <p style="color: green;">是</p> | <p style="color: red;">否</p> |
-| | `data/lottery_history` | 获取抽奖历史 | <p style="color: green;">是</p> | <p style="color: red;">否</p> |
-
-## ::lucide:settings:: 通用参数
-
-所有窗口命令均支持以下通用参数，用于控制窗口的显示行为：
-
-### 动作参数
-
-:::: field-group
-::: field name="action" type="'show' | 'hide' | 'toggle'" default="''"
-控制窗口显示状态
-:::
-
-::: field name="mode" type="'show' | 'hide' | 'toggle'" default="''"
-action 的别名，优先级相同
-:::
-
-::: field name="op" type="'show' | 'hide' | 'toggle'" default="''"
-action 的别名，优先级相同
-:::
-
-::: field name="do" type="'show' | 'hide' | 'toggle'" default="''"
-action 的别名，优先级相同
-:::
-
-::: field name="visible" type="1 | 0" default=""
-`1` 等价于 `show`，`0` 等价于 `hide`
-:::
-::::
-
-### ::lucide:scroll-text:: 参数解析规则
-
-1. **优先级**：`action` / `mode` / `op` / `do` / `visible` 优先级相同，按参数出现的顺序解析，后出现的参数会覆盖先出现的参数
-2. **默认值**：不传任何动作参数时，默认执行 `toggle` 操作（当前显示则隐藏，否则显示）
-3. **动作说明**：
-   - `show` - 强制显示窗口
-   - `hide` - 强制隐藏窗口
-   - `toggle` - 切换窗口显示状态
-
-### ::lucide:play:: 参数使用示例
-
-- `secrandom://window/main?action=show` - 显示主窗口
-- `secrandom://window/main?visible=1` - 显示主窗口（使用 visible 参数）
-- `secrandom://window/main?mode=hide` - 隐藏主窗口（使用 mode 别名）
-- `secrandom://window/main` - 切换主窗口显示状态（默认 toggle）
-
-## window/main
-
-主窗口控制命令，用于控制主窗口的显示状态和切换页面。
-
-### 参数表
-
-:::: field-group
-::: field name="action" type="'show' | 'hide' | 'toggle'" default="'toggle'"
-控制窗口显示状态
-:::
-
-::: field name="page" type="'roll_call_page' | 'lottery_page' | 'history_page'" default="''"
-切换主窗口页面
-:::
-
-::: field name="page_name" type="'roll_call_page' | 'lottery_page' | 'history_page'" default="''"
-`page` 的别名
-:::
-
-::: field name="name" type="'roll_call_page' | 'lottery_page' | 'history_page'" default="''"
-`page` 的别名
-:::
-
-::: field name="value" type="'roll_call_page' | 'lottery_page' | 'history_page'" default="''"
-`page` 的别名
-:::
-::::
-
-### 行为说明
-
-1. **不传任何参数**：执行 toggle 操作，切换主窗口显示状态
-2. **仅传动作参数**：执行指定动作（show/hide/toggle），不切换页面
-3. **传 page 参数**：在执行动作的同时切换到指定页面
-4. **page 参数别名**：`page` / `page_name` / `name` / `value` 优先级相同，后出现的参数会覆盖先出现的参数
-5. **页面别名支持**：支持简写别名（如 `roll` → `roll_call_page`），详见页面列表
-
-### ::lucide:play:: 使用示例
-
-- `secrandom://window/main` - 切换主窗口显示状态
-- `secrandom://window/main?action=show` - 显示主窗口
-- `secrandom://window/main?action=hide` - 隐藏主窗口
-- `secrandom://window/main?action=toggle` - 切换主窗口显示状态
-- `secrandom://window/main?page=roll_call_page` - 切换到点名页面
-- `secrandom://window/main?page=lottery_page` - 切换到抽奖页面
-- `secrandom://window/main?page=history_page` - 切换到历史记录页面
-- `secrandom://window/main?action=show&page=roll_call_page` - 显示主窗口并切换到点名页面
-- `secrandom://window/main?action=show&page=lottery` - 显示主窗口并切换到抽奖页面（使用别名）
-- `secrandom://window/main?visible=1&page=history` - 显示主窗口并切换到历史记录页面（使用 visible 和别名）
-
-## ::lucide:settings:: window/settings
-
-设置窗口控制命令，用于控制设置窗口的显示状态和打开特定设置页面。
-
-### 参数表
-
-:::: field-group
-::: field name="action" type="'show' | 'hide' | 'toggle'" default="'toggle'"
-控制窗口显示状态
-:::
-
-::: field name="page" type="'basicSettingsInterface' | 'listManagementInterface' | 'extractionSettingsInterface'" default="'basicSettingsInterface'"
-打开指定设置页面
-:::
-
-::: field name="page_name" type="'basicSettingsInterface' | 'listManagementInterface' | 'extractionSettingsInterface'" default="'basicSettingsInterface'"
-`page` 的别名
-:::
-
-::: field name="name" type="'basicSettingsInterface' | 'listManagementInterface' | 'extractionSettingsInterface'" default="'basicSettingsInterface'"
-`page` 的别名
-:::
-
-::: field name="value" type="'basicSettingsInterface' | 'listManagementInterface' | 'extractionSettingsInterface'" default="'basicSettingsInterface'"
-`page` 的别名
-:::
-
-::: field name="preview" type="'1' | '0' | 'true' | 'false' | 'yes' | 'no' | 'on' | 'off'" default="'false'"
-是否以预览模式打开
-:::
-::::
-
-### 行为说明
-
-1. **不传任何参数**：执行 toggle 操作，打开设置窗口并显示基础设置页面
-2. **仅传动作参数**：执行指定动作（show/hide/toggle），不切换页面
-3. **传 page 参数**：在执行动作的同时打开指定设置页面
-4. **preview 参数**：设置为真值（`1`/`true`/`yes`/`on`）时，以预览模式打开设置页面
-5. **page 参数别名**：`page` / `page_name` / `name` / `value` 优先级相同，后出现的参数会覆盖先出现的参数
-
-### ::lucide:play:: 使用示例
-
-- `secrandom://window/settings` - 切换设置窗口显示状态（默认打开基础设置）
-- `secrandom://window/settings?action=show` - 显示设置窗口
-- `secrandom://window/settings?action=hide` - 隐藏设置窗口
-- `secrandom://window/settings?page=basicSettingsInterface` - 打开基础设置页面
-- `secrandom://window/settings?page=listManagementInterface` - 打开列表管理页面
-- `secrandom://window/settings?page=extractionSettingsInterface` - 打开抽取设置页面
-- `secrandom://window/settings?page=basicSettingsInterface&preview=1` - 以预览模式打开基础设置
-- `secrandom://window/settings?action=show&page=floatingWindowManagementInterface&preview=true` - 显示设置窗口并以预览模式打开浮窗管理
-- `secrandom://window/settings?action=show&page=notificationSettingsInterface&preview=yes` - 显示设置窗口并以预览模式打开通知设置
-- `secrandom://window/settings?action=show&page=safetySettingsInterface&preview=on` - 显示设置窗口并以预览模式打开安全设置
-- `secrandom://window/settings?action=show&page=customSettingsInterface` - 显示设置窗口并打开自定义设置
-- `secrandom://window/settings?action=show&page=voiceSettingsInterface&preview=1` - 显示设置窗口并以预览模式打开语音设置
-- `secrandom://window/settings?action=show&page=historyInterface` - 显示设置窗口并打开历史记录设置
-- `secrandom://window/settings?action=show&page=moreSettingsInterface&preview=true` - 显示设置窗口并以预览模式打开更多设置
-
-## ::lucide:app-window:: window/float
-
-浮窗控制命令，用于控制浮窗的显示状态。
-
-### 参数表
-
-:::: field-group
-::: field name="action" type="'show' | 'hide' | 'toggle'" default="'toggle'"
-控制浮窗显示状态
-:::
-
-::: field name="mode" type="'show' | 'hide' | 'toggle'" default="'toggle'"
-`action` 的别名
-:::
-
-::: field name="op" type="'show' | 'hide' | 'toggle'" default="'toggle'"
-`action` 的别名
-:::
-
-::: field name="do" type="'show' | 'hide' | 'toggle'" default="'toggle'"
-`action` 的别名
-:::
-
-::: field name="visible" type="1 | 0" default="''"
-`1` 等价于 `show`，`0` 等价于 `hide`
-:::
-::::
-
-### 行为说明
-
-1. **不传任何参数**：执行 toggle 操作，切换浮窗显示状态
-2. **传动作参数**：执行指定动作（show/hide/toggle）
-3. **浮窗不支持页面切换**：浮窗命令不支持 `page` 参数
-
-### ::lucide:play:: 使用示例
-
-- `secrandom://window/float` - 切换浮窗显示状态
-- `secrandom://window/float?action=show` - 显示浮窗
-- `secrandom://window/float?action=hide` - 隐藏浮窗
-- `secrandom://window/float?action=toggle` - 切换浮窗显示状态
-- `secrandom://window/float?mode=show` - 显示浮窗（使用 mode 别名）
-- `secrandom://window/float?op=hide` - 隐藏浮窗（使用 op 别名）
-- `secrandom://window/float?visible=1` - 显示浮窗（使用 visible 参数）
-- `secrandom://window/float?visible=0` - 隐藏浮窗（使用 visible 参数）
-
-## ::lucide:timer:: window/timer
-
-计时器窗口控制命令，用于打开计时器窗口。
-
-::: info 提示
-该命令目前仅支持**打开**计时器窗口，不支持隐藏或切换状态，且无任何配置参数。
-:::
-
-### 参数表
-
-无参数。
-
-### 行为说明
-
-执行该命令将直接打开计时器窗口。如果窗口已打开，则将其置顶显示。
-
-### ::lucide:play:: 使用示例
-
-- `secrandom://window/timer` - 打开计时器窗口
-
-## ::lucide:inbox:: tray/* 托盘功能命令
-
-托盘功能命令用于控制托盘菜单的各项功能。
-
-### 命令列表
-
-| 命令 | 说明 |
-|------|------|
-| `tray/toggle` | 切换主界面显示状态 |
-| `tray/settings` | 通过托盘打开设置 |
-| `tray/float` | 切换浮窗显示状态 |
-| `tray/restart` | 重启 SecRandom 程序 |
-| `tray/exit` | 退出 SecRandom 程序 |
-
-### 参数说明
-
-#### tray/toggle
-
-切换主界面显示状态命令。
-
-**参数表**：无参数
-
-**返回值说明**：
-```json
-{
-  "status": "success",
-  "message": "主界面显示状态已切换"
-}
+```text
+secrandom://<route>?<query>
 ```
 
-**使用示例**：
-- `secrandom://tray/toggle` - 切换主界面显示状态
+- 路由和枚举参数不区分大小写。
+- `action`、`mode`、`op`、`do`、`visible` 是同组别名；最后出现的有效参数生效。
+- `page`、`page_name`、`name`、`value` 同样按最后出现者生效。
+- 名单、奖池、分组名称保留原文并按当前可用选项匹配。
+- 请求最大 8 KiB，最多 32 个查询参数，单个值最大 1024 字符。无效百分号编码、控制字符、用户信息、端口或 URL 片段会被拒绝。
 
-#### tray/settings
+窗口动作：`show`、`hide`、`toggle`；`visible=1` 等同 `show`，`visible=0` 等同 `hide`。未提供动作参数时为 `toggle`，但 `window/main` 提供页面时默认 `show`。
 
-通过托盘打开设置命令。
+## IPC 帧
 
-**参数表**：无参数
+当前用户命名管道名为 `SecRandom_IPC_SecRandom_3F2A1B0E`。每个连接发送一行 UTF-8 JSON 请求并读取一行 JSON 响应：
 
-**返回值说明**：
 ```json
 {
-  "status": "success",
-  "message": "设置窗口已打开"
-}
-```
-
-**使用示例**：
-- `secrandom://tray/settings` - 通过托盘打开设置
-
-#### tray/float
-
-切换浮窗显示状态命令。
-
-**参数表**：无参数
-
-**返回值说明**：
-```json
-{
-  "status": "success",
-  "message": "浮窗显示状态已切换"
-}
-```
-
-**使用示例**：
-- `secrandom://tray/float` - 切换浮窗显示状态
-
-#### tray/restart
-
-重启 SecRandom 程序命令。
-
-**参数表**：无参数
-
-**返回值说明**：
-```json
-{
-  "status": "success",
-  "message": "程序正在重启"
-}
-```
-
-**使用示例**：
-- `secrandom://tray/restart` - 重启 SecRandom 程序
-
-#### tray/exit
-
-退出 SecRandom 程序命令。
-
-**参数表**：无参数
-
-**返回值说明**：
-```json
-{
-  "status": "success",
-  "message": "程序正在退出"
-}
-```
-
-**使用示例**：
-- `secrandom://tray/exit` - 退出 SecRandom 程序
-
-## ::lucide:user-check:: roll_call/* 点名控制命令
-
-点名控制命令用于控制点名功能的启动、停止、重置以及设置点名参数。
-
-### 命令列表
-
-| 命令 | 说明 |
-|------|------|
-| `roll_call/quick_draw` | 快速点名（随机抽取一人） |
-| `roll_call/start` | 开始点名 |
-| `roll_call/stop` | 停止点名 |
-| `roll_call/reset` | 重置点名状态 |
-| `roll_call/set_count` | 设置点名人数 |
-| `roll_call/set_group` | 设置分组 |
-| `roll_call/set_gender` | 设置性别筛选 |
-| `roll_call/set_list` | 设置点名名单 |
-
-### 参数说明
-
-#### roll_call/quick_draw
-
-快速点名命令，无需参数，立即随机抽取一人。
-
-**参数表**：无参数
-
-**返回值说明**：
-```json
-{
-  "status": "success",
-  "message": "点名成功",
-  "data": {
-    "name": "张三",
-    "id": "001"
+  "version": 1,
+  "type": "url",
+  "payload": {
+    "url": "data/roll_call_list?name=%E4%B8%80%E7%8F%AD"
   }
 }
 ```
 
-**使用示例**：
-- `secrandom://roll_call/quick_draw` - 快速点名
+成功操作：
 
-#### roll_call/start
-
-开始点名命令，启动点名流程。
-
-**参数表**：无参数
-
-**返回值说明**：
 ```json
 {
-  "status": "success",
-  "message": "点名已开始"
-}
-```
-
-**使用示例**：
-- `secrandom://roll_call/start` - 开始点名
-
-#### roll_call/stop
-
-停止点名命令，停止当前正在进行的点名流程。
-
-**参数表**：无参数
-
-**返回值说明**：
-```json
-{
-  "status": "success",
-  "message": "点名已停止"
-}
-```
-
-**使用示例**：
-- `secrandom://roll_call/stop` - 停止点名
-
-#### roll_call/reset
-
-重置点名命令，重置点名状态和结果。
-
-**参数表**：无参数
-
-**返回值说明**：
-```json
-{
-  "status": "success",
-  "message": "点名已重置"
-}
-```
-
-**使用示例**：
-- `secrandom://roll_call/reset` - 重置点名
-
-#### roll_call/set_count
-
-设置点名人数命令，指定每次点名抽取的人数。
-
-**参数表**：
-
-:::: field-group
-::: field name="count" type="正整数" default="1"
-点名人数
-:::
-
-::: field name="value" type="正整数" default="1"
-`count` 的别名
-:::
-::::
-
-**返回值说明**：
-```json
-{
-  "status": "success",
-  "message": "点名人数已设置为 3",
-  "data": {
-    "count": 3
+  "success": true,
+  "type": "url",
+  "result": {
+    "status": "success",
+    "message": "点名名单获取成功",
+    "data": []
   }
 }
 ```
 
-**使用示例**：
-- `secrandom://roll_call/set_count?count=3` - 设置点名人数为 3
-- `secrandom://roll_call/set_count?value=5` - 设置点名人数为 5（使用别名）
+业务失败仍会返回协议有效的响应，`result.status` 为 `error`，并在 `result.code` 给出机器可读错误码。传输、帧格式或服务不可用错误使用顶层 `success: false` 和 `error`。
 
-#### roll_call/set_group
+常见错误码：`invalid_request`、`invalid_command`、`invalid_parameter`、`missing_parameter`、`authorization_denied`、`not_found`、`invalid_state`、`protocol_disabled`、`pipe_unavailable`、`timeout`。
 
-设置分组命令，指定点名使用的分组。
+Windows PowerShell 示例：
 
-**参数表**：
-
-:::: field-group
-::: field name="group" type="string" default="默认分组"
-分组名称
-:::
-
-::: field name="group_name" type="string" default="默认分组"
-分组名称
-:::
-
-::: field name="name" type="string" default="默认分组"
-`group` 的别名
-:::
-::::
-
-**返回值说明**：
-```json
-{
-  "status": "success",
-  "message": "分组已设置为 一班",
-  "data": {
-    "group": "一班"
-  }
-}
+```powershell
+$pipe = [System.IO.Pipes.NamedPipeClientStream]::new('.', 'SecRandom_IPC_SecRandom_3F2A1B0E', [System.IO.Pipes.PipeDirection]::InOut)
+$pipe.Connect(3000)
+$writer = [System.IO.StreamWriter]::new($pipe)
+$reader = [System.IO.StreamReader]::new($pipe)
+$request = @{ version = 1; type = 'url'; payload = @{ url = 'data/roll_call_list?name=一班' } } | ConvertTo-Json -Compress
+$writer.WriteLine($request); $writer.Flush()
+$reader.ReadLine()
 ```
 
-**使用示例**：
-- `secrandom://roll_call/set_group?group=一班` - 设置分组为"一班"
-- `secrandom://roll_call/set_group?group_name=二班` - 设置分组为"二班"（使用别名）
+## 命令总览
 
-#### roll_call/set_gender
+| 命令组 | 命令 |
+|---|---|
+| 窗口 | `window/main`、`window/settings`、`window/float` |
+| 托盘 | `tray/toggle`、`tray/settings`、`tray/float`、`tray/restart`、`tray/exit` |
+| 点名 | `roll_call/quick_draw`、`roll_call/start`、`roll_call/stop`、`roll_call/reset`、`roll_call/set_count`、`roll_call/set_group`、`roll_call/set_gender`、`roll_call/set_list` |
+| 抽奖 | `lottery/start`、`lottery/stop`、`lottery/reset`、`lottery/set_count`、`lottery/set_pool`、`lottery/set_list`、`lottery/set_group`、`lottery/set_gender` |
+| 只读数据 | `data/roll_call_list`、`data/lottery_list`、`data/roll_call_history`、`data/lottery_history` |
 
-设置性别筛选命令，指定点名时的性别筛选条件。
+`window/timer` 已移除，调用会返回 `invalid_command`。旧的 `lottery/set_range` 也已移除；请使用 `lottery/set_group`。
 
-**参数表**：
+## 窗口与托盘
 
-:::: field-group
-::: field name="gender" type="'all' | 'male' | 'female'" default="'all'"
-性别筛选
-:::
+### `window/main`
 
-::: field name="value" type="'all' | 'male' | 'female'" default="'all'"
-`gender` 的别名
-:::
-::::
+- `page` 别名：`roll_call_page` / `roll`、`lottery_page` / `lottery`、`history_page` / `history`。
+- 示例：`secrandom://window/main?action=show&page=roll`。
 
-**返回值说明**：
-```json
-{
-  "status": "success",
-  "message": "性别筛选已设置为 male",
-  "data": {
-    "gender": "male"
-  }
-}
-```
+### `window/settings`
 
-**使用示例**：
-- `secrandom://roll_call/set_gender?gender=male` - 设置性别筛选为男性
-- `secrandom://roll_call/set_gender?value=female` - 设置性别筛选为女性（使用别名）
-- `secrandom://roll_call/set_gender?gender=all` - 设置性别筛选为全部
+- 默认目标为基础设置；旧 `secrandom://settings` 仍等价于此命令。
+- 页面标识：
 
-#### roll_call/set_list
+| 外部标识 | 当前页面 |
+|---|---|
+| `basicSettingsInterface` | `settings.general.basic` |
+| `listManagementInterface` | `settings.listManagement.rollCallList` |
+| `extractionSettingsInterface` | `settings.picking.default` |
+| `floatingWindowManagementInterface` | `settings.personalized.floatingWindow` |
+| `notificationSettingsInterface` | `settings.notification.legacy` |
+| `safetySettingsInterface` | `settings.general.security` |
+| `customSettingsInterface`、`moreSettingsInterface` | `settings.more` |
+| `voiceSettingsInterface` | `settings.notification.voiceMusic` |
+| `historyInterface` | `settings.history.management` |
+| `updateInterface` | `settings.update` |
+| `aboutInterface` | `settings.about` |
 
-设置点名名单命令，指定点名使用的名单。
+当“打开设置”受到安全保护且“允许只读预览设置”已启用时，验证窗口提供“预览”选项。预览会打开指定页面，但冻结页面内容，保留导航可用；它不会执行受保护动作或写入配置。`preview` 查询参数不会绕过安全验证。
 
-**参数表**：
+### `window/float`
 
-:::: field-group
-::: field name="class_name" type="string" default="默认班级"
-班级名称
-:::
+仅支持窗口动作，不支持页面参数。示例：`secrandom://window/float?visible=0`。
 
-::: field name="list_name" type="string" default="默认班级"
-`class_name` 的别名
-:::
+### `tray/*`
 
-::: field name="name" type="string" default="默认班级"
-`class_name` 的别名
-:::
-::::
+- `tray/toggle` 切换主窗口。
+- `tray/settings` 显示设置窗口。
+- `tray/float` 切换浮窗。
+- `tray/restart` 重启应用。
+- `tray/exit` 退出应用。
 
-**返回值说明**：
-```json
-{
-  "status": "success",
-  "message": "点名名单已设置为 三年级一班",
-  "data": {
-    "list_name": "三年级一班"
-  }
-}
-```
+## 点名与抽奖
 
-**使用示例**：
-- `secrandom://roll_call/set_list?class_name=三年级一班` - 设置点名名单为"三年级一班"
-- `secrandom://roll_call/set_list?list_name=三年级二班` - 设置点名名单为"三年级二班"（使用别名）
+### 点名
 
-## ::lucide:gift:: lottery/* 抽奖控制命令
+- `roll_call/start` 启动点名并立即返回 `{ "state": "running" }`；手动停止动画由 `roll_call/stop` 提交。
+- `roll_call/quick_draw` 等待单次闪抽完成，成功时返回 `{ id, name, gender }`。
+- `roll_call/reset` 清除当前临时记录和显示结果，不清除持久化历史。
+- `roll_call/set_count?count=3` 设置人数。`value` 是别名；人数必须在当前可抽范围内。
+- `roll_call/set_group?group=第一组` 设置分组；`group_name`、`name` 是别名，`all` 选择全部。
+- `roll_call/set_gender?gender=all|male|female` 设置性别；`value` 是别名。
+- `roll_call/set_list?class_name=一班` 设置名单；`list_name`、`name` 是别名。
 
-抽奖控制命令用于控制抽奖功能的启动、停止、重置以及设置抽奖参数。
+### 抽奖
 
-### 命令列表
+- `lottery/start`、`lottery/stop`、`lottery/reset` 与点名具有相同的运行/停止/临时记录语义。
+- `lottery/set_count?count=3`、`lottery/set_pool?pool_name=奖池`、`lottery/set_list?class_name=一班` 分别设置抽取人数、奖池和学生分配名单。
+- `lottery/set_group?group=第一组` 取代旧 `lottery/set_range`。它只在已经通过 `lottery/set_list` 选择学生分配名单时有效，否则返回 `invalid_state`。
+- `lottery/set_gender?gender=all|male|female` 仅对学生分配筛选有效。
 
-| 命令 | 说明 |
-|------|------|
-| `lottery/start` | 开始抽奖 |
-| `lottery/stop` | 停止抽奖 |
-| `lottery/reset` | 重置抽奖状态 |
-| `lottery/set_count` | 设置抽奖人数 |
-| `lottery/set_pool` | 设置奖池 |
-| `lottery/set_range` | 设置抽奖范围 |
-| `lottery/set_gender` | 设置性别筛选 |
-| `lottery/set_list` | 设置抽奖名单 |
+外部配置命令遵循安全设置中的“联动操作”保护；抽取开始与重置分别遵循各自的抽取保护开关。
 
-### 参数说明
+## 只读数据查询
 
-#### lottery/start
+`data/*` 仅供 IPC 使用。系统 URL 调用不会读取或返回数据。IPC 查询直接读取独立的 JSON 快照，不会切换当前名单/奖池、创建缺失文件、规范化 `RecordId` 或修改临时记录。
 
-开始抽奖命令，启动抽奖流程。
+| 命令 | 必填名称参数 | 返回 data |
+|---|---|---|
+| `data/roll_call_list` | `class_name` / `class` / `name` / `list_name` | `{ id, name, gender }[]` |
+| `data/lottery_list` | `pool_name` / `pool` / `name` | `{ id, name, gender }[]` |
+| `data/roll_call_history` | `class_name` / `class` / `name` / `list_name` | `{ time, students }[]` |
+| `data/lottery_history` | `pool_name` / `pool` / `name` | `{ time, winners }[]` |
 
-**参数表**：无参数
+历史响应优先按持久化 `draw_round_id` 聚合同一轮多人结果；旧记录在无该字段时按时间和抽取元数据保守归并。内部 `RecordId` 不会暴露给 IPC。
 
-**返回值说明**：
-```json
-{
-  "status": "success",
-  "message": "抽奖已开始"
-}
-```
+## 安全与故障排除
 
-**使用示例**：
-- `secrandom://lottery/start` - 开始抽奖
-
-#### lottery/stop
-
-停止抽奖命令，停止当前正在进行的抽奖流程。
-
-**参数表**：无参数
-
-**返回值说明**：
-```json
-{
-  "status": "success",
-  "message": "抽奖已停止"
-}
-```
-
-**使用示例**：
-- `secrandom://lottery/stop` - 停止抽奖
-
-#### lottery/reset
-
-重置抽奖命令，重置抽奖状态和结果。
-
-**参数表**：无参数
-
-**返回值说明**：
-```json
-{
-  "status": "success",
-  "message": "抽奖已重置"
-}
-```
-
-**使用示例**：
-- `secrandom://lottery/reset` - 重置抽奖
-
-#### lottery/set_count
-
-设置抽奖人数命令，指定每次抽奖抽取的人数。
-
-**参数表**：
-
-:::: field-group
-::: field name="count" type="正整数" default="1"
-抽奖人数
-:::
-
-::: field name="value" type="正整数" default="1"
-`count` 的别名
-:::
-::::
-
-**返回值说明**：
-```json
-{
-  "status": "success",
-  "message": "抽奖人数已设置为 3",
-  "data": {
-    "count": 3
-  }
-}
-```
-
-**使用示例**：
-- `secrandom://lottery/set_count?count=3` - 设置抽奖人数为 3
-- `secrandom://lottery/set_count?value=5` - 设置抽奖人数为 5（使用别名）
-
-#### lottery/set_pool
-
-设置奖池命令，指定抽奖使用的奖池。
-
-**参数表**：
-
-:::: field-group
-::: field name="pool_name" type="string" default="默认奖池"
-奖池名称
-:::
-
-::: field name="pool" type="string" default="默认奖池"
-`pool_name` 的别名
-:::
-
-::: field name="name" type="string" default="默认奖池"
-`pool_name` 的别名
-:::
-::::
-
-**返回值说明**：
-```json
-{
-  "status": "success",
-  "message": "奖池已设置为 特等奖池",
-  "data": {
-    "pool_name": "特等奖池"
-  }
-}
-```
-
-**使用示例**：
-- `secrandom://lottery/set_pool?pool_name=特等奖池` - 设置奖池为"特等奖池"
-- `secrandom://lottery/set_pool?pool=一等奖池` - 设置奖池为"一等奖池"（使用别名）
-
-#### lottery/set_range
-
-设置抽奖范围命令，指定抽奖的索引范围。
-
-**参数表**：
-
-:::: field-group
-::: field name="index" type="非负整数" default="0"
-范围索引
-:::
-
-::: field name="value" type="非负整数" default="0"
-`index` 的别名
-:::
-::::
-
-**返回值说明**：
-```json
-{
-  "status": "success",
-  "message": "抽奖范围已设置为索引 0",
-  "data": {
-    "index": 0
-  }
-}
-```
-
-**使用示例**：
-- `secrandom://lottery/set_range?index=0` - 设置抽奖范围为索引 0
-- `secrandom://lottery/set_range?value=1` - 设置抽奖范围为索引 1（使用别名）
-
-#### lottery/set_gender
-
-设置性别筛选命令，指定抽奖时的性别筛选条件。
-
-**参数表**：
-
-:::: field-group
-::: field name="gender" type="'all' | 'male' | 'female'" default="'all'"
-性别筛选
-:::
-
-::: field name="value" type="'all' | 'male' | 'female'" default="'all'"
-`gender` 的别名
-:::
-::::
-
-**返回值说明**：
-```json
-{
-  "status": "success",
-  "message": "性别筛选已设置为 male",
-  "data": {
-    "gender": "male"
-  }
-}
-```
-
-**使用示例**：
-- `secrandom://lottery/set_gender?gender=male` - 设置性别筛选为男性
-- `secrandom://lottery/set_gender?value=female` - 设置性别筛选为女性（使用别名）
-- `secrandom://lottery/set_gender?gender=all` - 设置性别筛选为全部
-
-#### lottery/set_list
-
-设置抽奖名单命令，指定抽奖使用的名单。
-
-**参数表**：
-
-:::: field-group
-::: field name="class_name" type="string" default="默认班级"
-班级名称
-:::
-
-::: field name="list_name" type="string" default="默认班级"
-`class_name` 的别名
-:::
-
-::: field name="name" type="string" default="默认班级"
-`class_name` 的别名
-:::
-::::
-
-**返回值说明**：
-```json
-{
-  "status": "success",
-  "message": "抽奖名单已设置为 三年级一班",
-  "data": {
-    "list_name": "三年级一班"
-  }
-}
-```
-
-**使用示例**：
-- `secrandom://lottery/set_list?class_name=三年级一班` - 设置抽奖名单为"三年级一班"
-- `secrandom://lottery/set_list?list_name=三年级二班` - 设置抽奖名单为"三年级二班"（使用别名）
-
-## ::lucide:database:: data/* 数据获取命令（只读）
-
-数据获取命令用于获取点名名单、抽奖名单、点名历史记录和抽奖历史记录。这些命令**不会修改任何设置或状态**，仅用于数据查询。
-
-### 核心原则
-
-**重要：只有 IPC 调用才会有返回结果（JSON 响应）**
-
-- 只有 IPC 调用才会有返回结果（JSON 响应）
-- 通过系统 URL 协议唤起（`secrandom://...`）只能触发动作，调用方无法同步读取任何返回数据
-- 因此：所有 `data/*` 读取类命令，只能作为 IPC 请求来使用（否则没有意义）
-
-### ::lucide:plug:: 如何通过 IPC 获取返回结果
-
-要通过 IPC 获取 `data/*` 命令的返回结果，请发送请求并读取响应。
-
-**Python 示例代码**：
-
-```python
-from app.common.IPC_URL import URLIPCHandler
-
-ipc = URLIPCHandler("SecRandom", "secrandom")
-
-resp = ipc.send_ipc_message_by_name({
-    "type": "url",
-    "payload": {
-        "url": "data/roll_call_list?class_name=高一 1 班"  # 注意：这里使用IPC命令格式，不需要 secrandom:// 前缀
-    }
-})
-
-# 顶层是 IPC 包裹
-# resp -> {"success": True/False, "type": "url", "result": {...}} 或 {"success": False, "error": "..."}
-print(resp)
-```
-
-**返回值结构说明**：
-
-- **顶层字段**：`success`（是否成功）、`type`（类型）、`result`（业务结果）或 `error`（错误信息）
-- **真正业务数据**：在 `resp["result"]` 中，这是 URL 命令处理器返回的字典
-
-### 命令列表
-
-| 命令 | 说明 |
-|------|------|
-| `data/roll_call_list` | 获取点名名单 |
-| `data/lottery_list` | 获取抽奖名单 |
-| `data/roll_call_history` | 获取点名历史 |
-| `data/lottery_history` | 获取抽奖历史 |
-
-### 参数说明
-
-#### data/roll_call_list（获取点名名单）
-
-**IPC 命令**：
-- `data/roll_call_list?class_name=xxx`
-
-**参数（query）**：
-
-:::: field-group
-::: field name="class_name" type="string" required
-班级名称（兼容别名：`class` / `name` / `className`）
-:::
-::::
-
-**成功返回（业务层 result）字段**：
-```json
-{
-  "status": "success",
-  "message": "点名名单获取成功",
-  "class_name": "高一 1 班",
-  "data": [
-    {
-      "id": "001",
-      "name": "张三",
-      "gender": "male"
-    },
-    {
-      "id": "002",
-      "name": "李四",
-      "gender": "female"
-    }
-  ]
-}
-```
-
-**缺参返回（业务层 result）**：
-```json
-{
-  "status": "error",
-  "message": "缺少参数: class_name"
-}
-```
-
-#### data/lottery_list（获取抽奖名单）
-
-**IPC 命令**：
-- `data/lottery_list?pool_name=xxx`
-
-**参数（query）**：
-
-:::: field-group
-::: field name="pool_name" type="string" required
-奖池名称（兼容别名：`pool` / `name` / `poolName`）
-:::
-::::
-
-**成功返回（业务层 result）字段**：
-```json
-{
-  "status": "success",
-  "message": "抽奖名单获取成功",
-  "pool_name": "特等奖池",
-  "data": [
-    {
-      "id": "001",
-      "name": "张三",
-      "gender": "male"
-    },
-    {
-      "id": "002",
-      "name": "李四",
-      "gender": "female"
-    }
-  ]
-}
-```
-
-**缺参返回（业务层 result）**：
-```json
-{
-  "status": "error",
-  "message": "缺少参数: pool_name"
-}
-```
-
-#### data/roll_call_history（获取点名历史）
-
-**IPC 命令**：
-- `data/roll_call_history?class_name=xxx`
-
-**参数（query）**：
-
-:::: field-group
-::: field name="class_name" type="string" required
-班级名称（兼容别名：`class` / `name` / `className`）
-:::
-::::
-
-**成功返回（业务层 result）字段**：
-```json
-{
-  "status": "success",
-  "message": "点名历史获取成功",
-  "class_name": "高一 1 班",
-  "data": [
-    {
-      "time": "2025-11-29 13:00:00",
-      "students": [
-        {
-          "id": "001",
-          "name": "张三"
-        }
-      ]
-    }
-  ]
-}
-```
-
-**缺参返回（业务层 result）**：
-```json
-{
-  "status": "error",
-  "message": "缺少参数: class_name"
-}
-```
-
-#### data/lottery_history（获取抽奖历史）
-
-**IPC 命令**：
-- `data/lottery_history?pool_name=xxx`
-
-**参数（query）**：
-
-:::: field-group
-::: field name="pool_name" type="string" required
-奖池名称（兼容别名：`pool` / `name` / `poolName`）
-:::
-::::
-
-**成功返回（业务层 result）字段**：
-```json
-{
-  "status": "success",
-  "message": "抽奖历史获取成功",
-  "pool_name": "特等奖池",
-  "data": [
-    {
-      "time": "2025-11-29 13:00:00",
-      "winners": [
-        {
-          "id": "001",
-          "name": "张三",
-          "prize": "特等奖"
-        }
-      ]
-    }
-  ]
-}
-```
-
-**缺参返回（业务层 result）**：
-```json
-{
-  "status": "error",
-  "message": "缺少参数: pool_name"
-}
-```
-
-## 页面列表
-
-### 主窗口可切换页面列表
-
-主窗口支持切换到以下页面，通过 `window/main?page=...` 参数指定：
-
-| 页面标识 | 页面名称 | 说明 | 简写别名 |
-|----------|----------|------|----------|
-| `roll_call_page` | 点名页面 | 主窗口的点名功能页面 | `roll` |
-| `lottery_page` | 抽奖页面 | 主窗口的抽奖功能页面 | `lottery` |
-| `history_page` | 历史记录页面 | 主窗口的历史记录页面 | `history` |
-| `settingsInterface` | 设置占位页 | 主窗口侧边栏"设置"占位页 | 无 |
-
-**说明**：
-- `main_window` 仅表示"显示主窗口"，不是一个可切换的子页面
-- 使用简写别名可以简化调用，如 `page=roll` 等价于 `page=roll_call_page`
-- 切换页面时会自动执行窗口显示动作（默认为 show）
-
-### ::lucide:settings:: 设置窗口可打开页面列表
-
-设置窗口支持打开以下页面，通过 `window/settings?page=...` 参数指定：
-
-| 页面标识 | 页面名称 | 说明 |
-|----------|----------|------|
-| `basicSettingsInterface` | 基础设置 | SecRandom 的基础功能设置 |
-| `listManagementInterface` | 列表管理 | 名单列表的管理和编辑 |
-| `extractionSettingsInterface` | 抽取设置 | 点名和抽取的相关设置 |
-| `floatingWindowManagementInterface` | 浮窗管理 | 浮窗的显示和行为设置 |
-| `notificationSettingsInterface` | 通知设置 | 通知提示的相关设置 |
-| `safetySettingsInterface` | 安全设置 | 安全和隐私相关设置 |
-| `customSettingsInterface` | 自定义设置 | 用户自定义功能设置 |
-| `voiceSettingsInterface` | 语音设置 | 语音播报相关设置 |
-| `historyInterface` | 历史记录设置 | 历史记录管理和设置 |
-| `moreSettingsInterface` | 更多设置 | 其他扩展设置 |
-| `updateInterface` | 更新 | 软件更新相关页面 |
-| `aboutInterface` | 关于 | 软件信息和版本说明 |
-
-**说明**：
-- 不传 `page` 参数时，默认打开 `basicSettingsInterface`（基础设置）
-- 设置窗口页面不支持简写别名，必须使用完整的页面标识
-- 配合 `preview=1` 参数可以以预览模式打开设置页面
-
-## ::lucide:arrow-right-left:: 迁移指南
-
-旧版本（2.2.6以下版本）的 URL/IPC 协议入口已移除，请使用新的统一入口进行替换。
-
-### 已移除的旧入口
-
-以下旧入口已不再支持：
-- `main/roll` → 已移除
-- `main/lottery` → 已移除
-- `main/` → 已移除
-- `settings/basic` → 已移除
-- `settings/list` → 已移除
-- `settings/extraction` → 已移除
-- `settings/floating` → 已移除
-- `settings/notification` → 已移除
-- `settings/safety` → 已移除
-- `settings/custom` → 已移除
-- `settings/voice` → 已移除
-- `settings/history` → 已移除
-- `settings/more` → 已移除
-- `settings/update` → 已移除
-- `settings/about` → 已移除
-- `settings/` → 已移除
-
-### 等价替换示例
-
-| 旧入口 | 新入口（等价替换） |
-|--------|-------------------|
-| `secrandom://main/roll` | `secrandom://window/main?page=roll_call_page` |
-| `secrandom://main/lottery` | `secrandom://window/main?page=lottery_page` |
-| `secrandom://main/` | `secrandom://window/main` |
-| `secrandom://settings/basic` | `secrandom://window/settings?page=basicSettingsInterface` |
-| `secrandom://settings/list` | `secrandom://window/settings?page=listManagementInterface` |
-| `secrandom://settings/extraction` | `secrandom://window/settings?page=extractionSettingsInterface` |
-| `secrandom://settings/floating` | `secrandom://window/settings?page=floatingWindowManagementInterface` |
-| `secrandom://settings/notification` | `secrandom://window/settings?page=notificationSettingsInterface` |
-| `secrandom://settings/safety` | `secrandom://window/settings?page=safetySettingsInterface` |
-| `secrandom://settings/custom` | `secrandom://window/settings?page=customSettingsInterface` |
-| `secrandom://settings/voice` | `secrandom://window/settings?page=voiceSettingsInterface` |
-| `secrandom://settings/history` | `secrandom://window/settings?page=historyInterface` |
-| `secrandom://settings/more` | `secrandom://window/settings?page=moreSettingsInterface` |
-| `secrandom://settings/update` | `secrandom://window/settings?page=updateInterface` |
-| `secrandom://settings/about` | `secrandom://window/settings?page=aboutInterface` |
-| `secrandom://settings/` | `secrandom://window/settings` |
-
-## ::lucide:circle-help:: 常见问题
-
-关于 IPC & URL 协议的常见问题解答，请查看：[IPC & URL 协议常见问题](../../faq/ipc-url-faq.md)
-
-## 速查表
-
-最常用的命令快速参考：
-
-| 功能 | 命令 |
-|------|------|
-| 打开主窗口并切换到点名页面 | `secrandom://window/main?action=show&page=roll_call_page` |
-| 打开设置窗口并显示基础设置 | `secrandom://window/settings?action=show&page=basicSettingsInterface` |
-| 切换浮窗显示状态 | `secrandom://window/float` |
-| 快速点名 | `secrandom://roll_call/quick_draw` |
-| 开始点名 | `secrandom://roll_call/start` |
-| 设置点名人数 | `secrandom://roll_call/set_count?count=3` |
-| 开始抽奖 | `secrandom://lottery/start` |
-| 设置抽奖人数 | `secrandom://lottery/set_count?count=5` |
-| 重启程序 | `secrandom://tray/restart` |
-
-## ::lucide:play:: 使用示例
-
-### ::lucide:link-2:: URL 协议使用
-
-**快捷方式创建**
-1. 右键桌面 → 新建 → 快捷方式
-2. 输入 URL 协议（如 `secrandom://window/main?action=show&page=roll_call_page`）
-3. 命名快捷方式并完成创建
-
-**批处理脚本**
-```batch
-@echo off
-echo 正在启动 SecRandom 主界面...
-start secrandom://window/main?action=show&page=roll_call_page
-```
-
-**浏览器调用**
-```html
-<a href="secrandom://window/main?action=show&page=roll_call_page">打开SecRandom点名页面</a>
-```
-
-### ::lucide:plug:: IPC 协议使用
-
-**Python 示例**
-完整的 Python 使用示例请参考：[secrandom_ipc_send_url.py](https://github.com/SECTL/SecRandom/blob/master/secrandom_ipc_send_url.py)
-
-**JavaScript 示例**
-完整的 JavaScript 使用示例请参考：[secrandom_ipc_send_url.js](https://github.com/SECTL/SecRandom/blob/master/secrandom_ipc_send_url.js)
-
-### ::lucide:alert-triangle:: 注意事项
-
-1. **协议注册**：确保 SecRandom 已正确注册 URL 协议
-2. **安全考虑**：只使用官方文档中列出的协议
-3. **参数验证**：使用参数时确保参数值正确
-4. **错误处理**：建议在使用协议时添加错误处理机制
-5. **IPC通信**：IPC 协议需要程序在运行状态才能使用
-6. **数据只读**：`data/*` 命令不会修改任何数据，仅用于查询
-
-### ::lucide:wrench:: 故障排除
-
-**协议无法打开**
-- 检查 SecRandom 是否正确安装
-- 重新安装软件以修复协议注册
-- 检查系统安全软件是否阻止了协议调用
-- 如以上因素均排除，则向开发者反馈 bug
-
-**IPC通信失败**
-- 确认 SecRandom 程序正在运行
-- 检查 IPC 服务是否正常启动
-- 查看软件日志获取详细错误信息
-
-**命令执行失败**
-- 检查命令格式是否正确
-- 确认参数值是否在允许范围内
-- 查看返回的错误信息以定位问题
+- `authorization_denied` 表示用户取消验证、验证失败，或安全策略拒绝操作。
+- `not_found` 表示名单、奖池或历史快照不存在或无法安全读取。
+- `invalid_state` 表示当前没有可抽记录、抽取正在运行，或抽奖未选择学生分配名单。
+- `pipe_unavailable` 表示应用未运行、尚未完成启动或不属于当前用户。
+- URL 协议无法打开时，检查基础设置中的 URL 协议开关和操作系统关联；IPC 无法连接时，先启动 SecRandom。
