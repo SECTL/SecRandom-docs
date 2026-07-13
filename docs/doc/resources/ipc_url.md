@@ -9,7 +9,7 @@ SecRandom 提供系统 URL 激活和当前用户本地 IPC 两种自动化入口
 
 ## 使用前提
 
-- 在基础设置中启用 `secrandom://` URL 协议注册后，系统才会将 URL 激活交给 SecRandom。
+- 在基础设置中启用 `secrandom://` URL 协议注册后，系统才会将 URL 激活交给 SecRandom；该开关不影响已运行应用的本地 IPC 查询和控制。
 - URL 激活是触发式调用，不返回数据。
 - IPC 仅在 SecRandom 已运行时可用，使用当前用户的本地命名管道，不开放网络端口。
 - 所有受保护的窗口、托盘、抽取和外部配置操作仍经过应用内安全验证；IPC 或 URL 不会绕过它。
@@ -42,6 +42,8 @@ secrandom://<route>?<query>
   }
 }
 ```
+
+`version` 为 `1`。为兼容早期 `type: "url"` 客户端，缺失该字段也会按 v1 处理；新客户端应始终发送它。
 
 成功操作：
 
@@ -94,7 +96,7 @@ $reader.ReadLine()
 
 ### `window/settings`
 
-- 默认目标为基础设置；旧 `secrandom://settings` 仍等价于此命令。
+- 默认目标为基础设置；旧 `secrandom://settings` 及 `settings/basic`、`settings/list`、`settings/extraction`、`settings/floating`、`settings/notification`、`settings/safety`、`settings/custom`、`settings/voice`、`settings/history`、`settings/more`、`settings/update`、`settings/about` 仍受支持，并默认执行 `show`。
 - 页面标识：
 
 | 外部标识 | 当前页面 |
@@ -129,20 +131,20 @@ $reader.ReadLine()
 
 ### 点名
 
-- `roll_call/start` 启动点名并立即返回 `{ "state": "running" }`；手动停止动画由 `roll_call/stop` 提交。
+- `roll_call/start` 启动点名并立即返回 `{ "state": "running" }`；手动停止动画由 `roll_call/stop` 停止滚动后提交本轮结果，与页面中的“停止”按钮一致。
 - `roll_call/quick_draw` 等待单次闪抽完成，成功时返回 `{ id, name, gender }`。
 - `roll_call/reset` 清除当前临时记录和显示结果，不清除持久化历史。
 - `roll_call/set_count?count=3` 设置人数。`value` 是别名；人数必须在当前可抽范围内。
 - `roll_call/set_group?group=第一组` 设置分组；`group_name`、`name` 是别名，`all` 选择全部。
-- `roll_call/set_gender?gender=all|male|female` 设置性别；`value` 是别名。
-- `roll_call/set_list?class_name=一班` 设置名单；`list_name`、`name` 是别名。
+- `roll_call/set_gender?gender=...` 设置性别；`value` 是别名。`all` 选择全部，`male` / `female` 是男女快捷别名；也可直接传入当前名单中已有的任意自定义性别值，例如 `non-binary` 或 `未填写`。
+- `roll_call/set_list?class_name=一班` 设置名单；`class`、`className`、`list_name`、`name`、`value` 是别名，也可使用 `list_index` / `index` 指定当前选项索引。
 
 ### 抽奖
 
-- `lottery/start`、`lottery/stop`、`lottery/reset` 与点名具有相同的运行/停止/临时记录语义。
-- `lottery/set_count?count=3`、`lottery/set_pool?pool_name=奖池`、`lottery/set_list?class_name=一班` 分别设置抽取人数、奖池和学生分配名单。
+- `lottery/start`、`lottery/stop`、`lottery/reset` 与点名具有相同的运行/停止滚动/临时记录语义。
+- `lottery/set_count?count=3`、`lottery/set_pool?pool_name=奖池`、`lottery/set_list?class_name=一班` 分别设置抽取人数、奖池和学生分配名单。人数接受 `draw_count` 别名；奖池可用 `poolName` / `value` 或 `pool_index` / `index`，学生名单可用 `class` / `className` / `value` 或 `list_index` / `index`。
 - `lottery/set_group?group=第一组` 取代旧 `lottery/set_range`。它只在已经通过 `lottery/set_list` 选择学生分配名单时有效，否则返回 `invalid_state`。
-- `lottery/set_gender?gender=all|male|female` 仅对学生分配筛选有效。
+- `lottery/set_gender?gender=...` 仅对学生分配筛选有效。它支持 `all`、`male`、`female` 快捷别名，以及已在所选学生名单中定义的任意自定义性别值。
 
 外部配置命令遵循安全设置中的“联动操作”保护；抽取开始与重置分别遵循各自的抽取保护开关。
 
