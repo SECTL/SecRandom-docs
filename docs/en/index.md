@@ -82,7 +82,7 @@ config:
         details: Announce results instantly to improve in-class feedback clarity.
       - title: IPC / URL Calls
         icon: lucide:link
-        details: "Integrate with scripts and external tools. Path: /en/doc/resources/ipc_url"
+        details: "Integrate with scripts and external tools. Path: /en/dev/ipc_url"
       - title: Security Verification
         icon: lucide:lock
         details: Protect critical actions with Password, TOTP, and USB-based verification options.

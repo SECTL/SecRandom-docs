@@ -25,10 +25,34 @@ const Doc = defineCollection({
       { text: '联动设置', link: 'link' },
       { text: '高级设置', link: 'advanced' },
       { text: '其他设置', link: 'other' },
+      { text: '插件设置', link: 'plugins' },
     ] },
-    { text: '资源', icon: 'carbon:document', prefix: 'resources', items: [
-      { text: '贡献指南', link: 'contribute' },
+  ],
+});
+
+const Dev = defineCollection({
+  type: "doc",
+  dir: "dev",
+  linkPrefix: "/dev",
+  title: "开发",
+  meta: { createTime: "long" },
+  sidebar: [
+    { text: '开发文档', icon: 'material-symbols:code-blocks-rounded', link: 'index' },
+    { text: '插件', icon: 'lucide:puzzle', link: 'plugins/index', prefix: 'plugins', items: [
+      { text: '插件', link: 'index' },
+      { text: '配置插件开发环境', link: 'get-started' },
+      { text: '开始编写插件', link: 'create-project' },
+      { text: '插件基础知识', link: 'basics' },
+      { text: '插件入口类', link: 'plugin-base' },
+      { text: '能力面', link: 'capabilities' },
+      { text: '插件依赖', link: 'dependency' },
+      { text: '发布插件', link: 'publishing' },
+    ] },
+    { text: '交互', icon: 'lucide:cable', items: [
       { text: 'IPC & URL 协议', link: 'ipc_url' },
+    ] },
+    { text: '贡献', icon: 'lucide:hand-heart', items: [
+      { text: '贡献指南', link: 'contribute' },
     ] },
   ],
 });
@@ -73,10 +97,34 @@ const EnDoc = defineCollection({
       { text: 'Link Settings', link: 'link' },
       { text: 'Advanced Settings', link: 'advanced' },
       { text: 'Other Settings', link: 'other' },
+      { text: 'Plugins Settings', link: 'plugins' },
     ] },
-    { text: 'Resources', icon: 'carbon:document', prefix: 'resources', items: [
-      { text: 'Contribute', link: 'contribute' },
+  ],
+});
+
+const EnDev = defineCollection({
+  type: "doc",
+  dir: "dev",
+  linkPrefix: "/dev",
+  title: "Development",
+  meta: { createTime: "long" },
+  sidebar: [
+    { text: 'Development Docs', icon: 'material-symbols:code-blocks-rounded', link: 'index' },
+    { text: 'Plugins', icon: 'lucide:puzzle', link: 'plugins/index', prefix: 'plugins', items: [
+      { text: 'Plugins', link: 'index' },
+      { text: 'Set Up a Plugin Environment', link: 'get-started' },
+      { text: 'Create a Plugin', link: 'create-project' },
+      { text: 'Plugin Basics', link: 'basics' },
+      { text: 'Plugin Entry Class', link: 'plugin-base' },
+      { text: 'Capabilities', link: 'capabilities' },
+      { text: 'Plugin Dependencies', link: 'dependency' },
+      { text: 'Publishing', link: 'publishing' },
+    ] },
+    { text: 'Interop', icon: 'lucide:cable', items: [
       { text: 'IPC & URL Protocol', link: 'ipc_url' },
+    ] },
+    { text: 'Contribute', icon: 'lucide:hand-heart', items: [
+      { text: 'Contribution Guide', link: 'contribute' },
     ] },
   ],
 });
@@ -92,5 +140,5 @@ const EnFaq = defineCollection({
   meta: { createTime: "long" },
 });
 
-export const zhcollections = defineCollections([Doc, Faq]);
-export const encollections = defineCollections([EnDoc, EnFaq]);
+export const zhcollections = defineCollections([Doc, Dev, Faq]);
+export const encollections = defineCollections([EnDoc, EnDev, EnFaq]);
