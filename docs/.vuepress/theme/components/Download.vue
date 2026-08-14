@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, computed, watch } from 'vue'
 import { useRouteLocale } from 'vuepress/client'
+import MarkdownIt from 'markdown-it'
+import { alert } from '@mdit/plugin-alert'
 
-type DownloadSourceId = 'github.com' | 'ghproxy.sectl.top' | 'wget.la'
+type DownloadSourceId = 'github.com' | 'ghproxy.sectl.cn' | 'wget.la'
 type ChannelId = 'stable' | 'beta' | 'alpha'
 
 interface DownloadSource {
@@ -15,14 +17,14 @@ const releases = ref<any[]>([])
 const isLoading = ref(false)
 const hasError = ref(false)
 const errorMessage = ref('')
-const selectedDownloadSource = ref<DownloadSourceId>('ghproxy.sectl.top')
+const selectedDownloadSource = ref<DownloadSourceId>('ghproxy.sectl.cn')
 const isSourceDropdownOpen = ref(false)
 const isAssetDropdownOpen = ref(false)
 const selectedChannel = ref<ChannelId>('stable')
 
 const zhDownloadSources: DownloadSource[] = [
   { id: 'github.com', description: 'GitHub 官方源', icon: '/icon/github-dark.png' },
-  { id: 'ghproxy.sectl.top', description: 'GitHub 镜像源', icon: '/icon/github-dark.png' },
+  { id: 'ghproxy.sectl.cn', description: 'GitHub 镜像源', icon: '/icon/github-dark.png' },
   { id: 'wget.la', description: 'GitHub 镜像源', icon: '/icon/github-dark.png' }
 ]
 
@@ -36,7 +38,7 @@ const isEnglish = computed(() => lang.value === '/en/')
 const downloadSources = computed(() => (isEnglish.value ? enDownloadSources : zhDownloadSources))
 
 function isGithubSource(sourceId: DownloadSourceId) {
-  return sourceId === 'github.com' || sourceId === 'ghproxy.sectl.top' || sourceId === 'wget.la'
+  return sourceId === 'github.com' || sourceId === 'ghproxy.sectl.cn' || sourceId === 'wget.la'
 }
 
 function detectOS(): 'windows' | 'macos' | 'linux' | 'unknown' {
@@ -211,83 +213,44 @@ function formatFileSize(bytes: number): string {
   return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i]
 }
 
+const renderer = new MarkdownIt({
+  html: true,
+  linkify: true,
+  breaks: true
+})
+
+// GitHub alert syntax ([!NOTE] etc.) rendered with the site's hint-container classes
+// so release notes match the rest of the documentation.
+const ALERT_TYPE_MAP: Record<string, string> = {
+  note: 'note',
+  tip: 'tip',
+  important: 'important',
+  warning: 'warning',
+  caution: 'danger'
+}
+
+renderer.use(alert, {
+  openRender: (tokens, idx) => {
+    const type = ALERT_TYPE_MAP[tokens[idx].markup] || 'note'
+    return `<div class="hint-container ${type}">\n`
+  },
+  closeRender: () => '</div>\n',
+  titleRender: (tokens, idx) => {
+    const text = tokens[idx].content
+    const title = text.charAt(0).toUpperCase() + text.slice(1).toLowerCase()
+    return `<p class="hint-container-title">${title}</p>\n`
+  }
+})
+
 function renderMarkdown(text: string): string {
   if (!text) return '—'
 
-  // Remove images (markdown syntax and HTML img tags)
-  let html = text
+  // Remove images (markdown syntax and HTML img tags) before rendering.
+  const cleaned = text
     .replace(/!\[.*?\]\(.*?\)/g, '')
     .replace(/<img\s[^>]*\/?>/gi, '')
 
-  // Escape HTML
-  html = html
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-
-  // Tables - process before other inline formatting
-  html = html.replace(/^(\|.+\|)\n(\|[-| :]+\|)\n((?:\|.+\|\n?)*)/gm, (match, headerRow, separatorRow, bodyRows) => {
-    const parseCells = (row: string) =>
-      row.split('|').filter((cell: string) => cell.trim() !== '').map((cell: string) => cell.trim())
-
-    const headers = parseCells(headerRow)
-    const rows = bodyRows.trim().split('\n').map((row: string) => parseCells(row))
-
-    let table = '<table><thead><tr>'
-    headers.forEach((h: string) => { table += `<th>${h}</th>` })
-    table += '</tr></thead><tbody>'
-    rows.forEach((cells: string[]) => {
-      table += '<tr>'
-      cells.forEach((c: string) => { table += `<td>${c}</td>` })
-      table += '</tr>'
-    })
-    table += '</tbody></table>'
-    return table
-  })
-
-  // Process block-level elements first
-  html = html
-    // Horizontal rules (---, ***, ___)
-    .replace(/^[-*_]{3,}\s*$/gm, '<hr>')
-    // Blockquotes (> text) - match &gt; since HTML is already escaped
-    .replace(/^&gt;\s?(.+)$/gm, '<blockquote>$1</blockquote>')
-    .replace(/^&gt;\s*$/gm, '<blockquote><br></blockquote>')
-    // Merge consecutive blockquotes
-    .replace(/<\/blockquote>\n<blockquote>/g, '<br>')
-    // Headers
-    .replace(/^### (.+)$/gm, '<h4>$1</h4>')
-    .replace(/^## (.+)$/gm, '<h3>$1</h3>')
-    .replace(/^# (.+)$/gm, '<h2>$1</h2>')
-    // Unordered lists
-    .replace(/^\s*[-*]\s+(.+)$/gm, '<li>$1</li>')
-    // Wrap consecutive <li> in <ul>
-    .replace(/((?:<li>.*<\/li>\n?)+)/g, '<ul>$1</ul>')
-
-  // Split into paragraphs by double newlines
-  const paragraphs = html.split(/\n\n+/)
-  html = paragraphs.map(para => {
-    const trimmed = para.trim()
-    if (!trimmed) return ''
-    // Don't wrap if already a block element
-    if (/^<(h[1-6]|ul|ol|li|blockquote|table|thead|tbody|tr|th|td|hr|div)/.test(trimmed)) {
-      return trimmed
-    }
-    // Replace single newlines with <br> and wrap in <p>
-    return `<p>${trimmed.replace(/\n/g, '<br>')}</p>`
-  }).join('')
-
-  // Inline formatting (applied after paragraph wrapping)
-  html = html
-    // Bold
-    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    // Italic
-    .replace(/\*(.+?)\*/g, '<em>$1</em>')
-    // Inline code
-    .replace(/`(.+?)`/g, '<code>$1</code>')
-    // Links
-    .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
-
-  return html
+  return renderer.render(cleaned)
 }
 
 // Close dropdown when clicking outside
@@ -1048,6 +1011,15 @@ onUnmounted(() => {
   word-break: break-word;
 }
 
+.markdown-body :deep(h1) {
+  margin: 1.2em 0 0.6em;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--vp-c-text-1);
+  border-bottom: 1px solid var(--vp-c-divider);
+  padding-bottom: 0.3em;
+}
+
 .markdown-body :deep(h2) {
   margin: 1.2em 0 0.6em;
   font-size: 1.2rem;
@@ -1134,6 +1106,55 @@ onUnmounted(() => {
 
 .markdown-body :deep(blockquote p) {
   margin: 0;
+}
+
+.markdown-body :deep(.hint-container) {
+  --vp-hint-container-border: transparent;
+  padding: 16px 16px 8px;
+  margin: 16px 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--vp-hint-container-text);
+  background-color: var(--vp-hint-container-bg);
+  border: 1px solid;
+  border-color: var(--vp-hint-container-border);
+  border-radius: 8px;
+}
+
+.markdown-body :deep(.hint-container-title) {
+  margin: 0 0 8px;
+  font-weight: 600;
+  color: var(--vp-hint-container-text);
+}
+
+.markdown-body :deep(.hint-container.note) {
+  --vp-hint-container-text: var(--vp-custom-block-note-text);
+  --vp-hint-container-bg: var(--vp-custom-block-note-bg);
+  --vp-hint-container-border: var(--vp-custom-block-note-border);
+}
+
+.markdown-body :deep(.hint-container.tip) {
+  --vp-hint-container-text: var(--vp-custom-block-tip-text);
+  --vp-hint-container-bg: var(--vp-custom-block-tip-bg);
+  --vp-hint-container-border: var(--vp-custom-block-tip-border);
+}
+
+.markdown-body :deep(.hint-container.important) {
+  --vp-hint-container-text: var(--vp-custom-block-important-text);
+  --vp-hint-container-bg: var(--vp-custom-block-important-bg);
+  --vp-hint-container-border: var(--vp-custom-block-important-border);
+}
+
+.markdown-body :deep(.hint-container.warning) {
+  --vp-hint-container-text: var(--vp-custom-block-warning-text);
+  --vp-hint-container-bg: var(--vp-custom-block-warning-bg);
+  --vp-hint-container-border: var(--vp-custom-block-warning-border);
+}
+
+.markdown-body :deep(.hint-container.danger) {
+  --vp-hint-container-text: var(--vp-custom-block-danger-text);
+  --vp-hint-container-bg: var(--vp-custom-block-danger-bg);
+  --vp-hint-container-border: var(--vp-custom-block-danger-border);
 }
 
 .markdown-body :deep(table) {

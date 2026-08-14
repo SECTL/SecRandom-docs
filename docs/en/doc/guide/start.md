@@ -34,7 +34,7 @@ createTime: 2025/11/23 19:46:59
 - **Latest Version** - Provides the latest official version download
 
 **Steps:**
-1. Visit [Official Download Page](https://secrandom.sectl.top/download)
+1. Visit [Official Download Page](https://secrandom.sectl.cn/download)
 2. Select and download the version suitable for your system
 
 #### **Solution 2: GitHub Releases**

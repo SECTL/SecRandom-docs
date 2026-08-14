@@ -15,7 +15,7 @@ title: 捐赠
     <button class="afdian-button">点击进入爱发电支持</button>
   </a>
   <p class="thanks">感谢你的支持！❤️</p>
-  <a href="/donate-fancy.html">不感兴趣</a>
+  <RouterLink to="/donate-fancy.html">不感兴趣</RouterLink>
 </div>
 
 <style scoped>

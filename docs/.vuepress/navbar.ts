@@ -18,7 +18,6 @@ const zhNavbar = defineNavbarConfig([
   },
   { text: '团队', icon: 'ic:round-people', link: '/team' },
   { text: '捐赠', icon: 'ic:outline-attach-money', link: '/donate' },
-  { text: '友链', icon: 'ic:round-link', link: '/friends' },
 ])
 
 const enNavbar = defineNavbarConfig([
@@ -39,7 +38,6 @@ const enNavbar = defineNavbarConfig([
   },
   { text: 'Team', icon: 'ic:round-people', link: '/en/team' },
   { text: 'Donate', icon: 'ic:outline-attach-money', link: '/en/donate' },
-  { text: 'Friends', icon: 'ic:round-link', link: '/en/friends' },
 ])
 
 export { zhNavbar, enNavbar }

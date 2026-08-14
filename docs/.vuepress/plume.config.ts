@@ -35,7 +35,7 @@ export default defineThemeConfig({
     },
     author: {
       name: 'SECTL',
-      url: 'https://sectl.top'
+      url: 'https://sectl.cn'
     },
     creation: 'original'
   },

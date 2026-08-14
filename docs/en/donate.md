@@ -14,7 +14,7 @@ title: Donate
   </a>
 
   <p class="thanks">Thanks for your support!❤️</p>
-  <a href="/en/donate-fancy.html">Not interested</a>
+  <RouterLink to="/en/donate-fancy.html">Not interested</RouterLink>
 </div>
 
 <style scoped>
