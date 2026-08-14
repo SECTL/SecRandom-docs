@@ -52,7 +52,7 @@ These settings are in **Settings → Personalized → Appearance**.
 
 ### Quick Draw
 - Quickly draw students via an independent floating window
-- No window switching needed in class; one-click draw
+- No window switching needed; one-click draw
 
 ### Floating Window
 - Main floating window: roll call / quick draw / lottery entries, customizable controls

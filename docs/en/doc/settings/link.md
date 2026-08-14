@@ -9,7 +9,7 @@ createTime: 2026/08/14 10:00:00
 This document corresponds to the **v3** "Settings → Linkage Settings" page. v3 is in Alpha stage; settings may change with versions, please refer to the actual interface.
 :::
 
-> **Course linkage** - Connect schedule data sources so draws stay in sync with classroom time.
+> **Course linkage** - Connect schedule data sources so draws stay in sync with course time.
 
 ## Course Linkage
 

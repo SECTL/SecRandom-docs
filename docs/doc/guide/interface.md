@@ -52,7 +52,7 @@ SecRandom v3 采用 Microsoft Fluent Design 设计语言，基于 **Avalonia + F
 
 ### 闪抽（Quick Draw）
 - 通过独立悬浮窗快速抽取学生
-- 课堂中无需切换窗口，一键完成抽取
+- 无需切换窗口，一键完成抽取
 
 ### 悬浮窗
 - 主悬浮窗：提供点名/闪抽/抽奖入口，可自定义控件

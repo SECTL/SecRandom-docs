@@ -6,7 +6,7 @@ export default defineUserConfig({
   base: '/',
   lang: 'zh-CN', // 默认语言为中文，浏览器会自动检测用户语言
   title: 'SecRandom',
-  description: '一个易用的点名/抽奖软件，专为教育场景设计，让课堂点名更高效透明！',
+  description: '基于动态权重的公平随机抽取工具，面向课堂、团队、活动、决策等场景，让每一次选择都公平透明！',
 
   head: [
     ['link', { rel: 'icon', type: 'image/png', href: '/logo.png' }],

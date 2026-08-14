@@ -9,7 +9,7 @@ createTime: 2026/08/14 10:00:00
 This document corresponds to the **v3** "Settings → Personalized → Floating Window" page. v3 is in Alpha stage; settings may change with versions, please refer to the actual interface.
 :::
 
-> **Quick drawing** - Start roll call, quick draw and lottery anytime from the floating window without breaking class rhythm.
+> **Quick drawing** - Start roll call, quick draw and lottery anytime from the floating window without breaking the rhythm.
 
 ## Window Display
 

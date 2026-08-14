@@ -9,3 +9,4 @@ docs/.vuepress/dist
 /.idea/
 
 AGENTS.md
+/.sisyphus

@@ -5,8 +5,8 @@ config:
     background: tint-plate
     hero:
       name: SecRandom
-      text: More Than Roll Call
-      tagline: A classroom interaction toolkit for fair picking, lottery draws, grouping, quick-draw workflows, and practical teaching support.
+      text: Fair Random Selection for Teams & Events
+      tagline: "A random-selection toolkit for classrooms, teams, events, and decision-making: roll call, lottery, grouping, and quick draw in one place."
       image: /logo.png
       actions:
         - theme: brand
@@ -27,30 +27,30 @@ config:
           link: https://github.com/SECTL/SecRandom
 
   - type: features
-    title: Why It's More Than Roll Call
+    title: Why Fair Random Selection?
     features:
       - title: Fair Participation
         icon: lucide:scale
         details: Fair-pick and anti-repeat mechanisms help keep participation balanced and transparent.
       - title: Interaction Coverage
         icon: lucide:sparkles
-        details: Roll call, lottery, grouping, and quick draw form a continuous classroom interaction flow.
+        details: Roll call, lottery, grouping, and quick draw form a continuous interaction flow.
       - title: Flow Continuity
         icon: lucide:gauge
-        details: Floating-window actions reduce switching overhead and keep teaching pace stable.
+        details: Floating-window actions reduce switching overhead and keep the pace stable.
 
   - type: features
     title: Interaction Core Capabilities
     features:
       - title: Fair Roll Call
         icon: lucide:users
-        details: Pick by list range, group, gender, and count for practical classroom scenarios.
-      - title: Classroom Lottery
+        details: Pick by list range, group, gender, and count for practical scenarios.
+      - title: Lottery
         icon: lucide:gift
         details: Use prize-pool or list-based draw modes for activities, order selection, and incentives.
       - title: Floating Window & Quick Draw
         icon: lucide:mouse-pointer-2
-        details: Trigger draw actions quickly during class with fewer window switches.
+        details: Trigger draw actions quickly with fewer window switches.
       - title: Face Draw (Optional)
         icon: lucide:camera
         details: Enable face-draw mode in camera-ready environments for specific interaction moments.
@@ -63,10 +63,10 @@ config:
         details: "Download a suitable build and start the app. Path: /en/doc/guide/start"
       - title: "Step 2: Complete First-time Guide"
         icon: lucide:map
-        details: "Finish initial setup and prepare your first usable class list. Path: /en/doc/guide/software-guide"
+        details: "Finish initial setup and prepare your first usable list. Path: /en/doc/guide/software-guide"
       - title: "Step 3: Run Your First Draw"
         icon: lucide:play
-        details: "Start with defaults, then refine settings based on classroom feedback. Path: /en/doc/settings/general-basic"
+        details: "Start with defaults, then refine settings based on real-world feedback. Path: /en/doc/settings/general-basic"
 
   - type: features
     title: Management & Integration
@@ -76,7 +76,7 @@ config:
         details: Manage multiple lists, groups, and tags with complete import/export support.
       - title: History & Review
         icon: lucide:file-text
-        details: View and manage history for long-term classroom optimization.
+        details: View and manage history for long-term draw optimization.
       - title: Voice Broadcast
         icon: lucide:volume-2
         details: Announce results instantly to improve in-class feedback clarity.

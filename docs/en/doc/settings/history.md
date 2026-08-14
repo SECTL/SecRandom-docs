@@ -9,7 +9,7 @@ createTime: 2026/08/14 10:00:00
 This document corresponds to the **v3** "Settings → History" page. v3 is in Alpha stage; settings may change with versions, please refer to the actual interface.
 :::
 
-> **Records you can review** - View and manage roll call and lottery history to continuously improve classroom strategy.
+> **Records you can review** - View and manage roll call and lottery history to continuously improve draw strategy.
 
 ## History Page
 

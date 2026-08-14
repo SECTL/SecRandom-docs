@@ -6,7 +6,7 @@ createTime: 2026/08/14 10:00:00
 # Welcome to SecRandom!
 
 > **SecRandom stands as a beacon at the intersection of fairness and randomness**  
-> A random selection tool carefully designed for classrooms, teams, activities and more, ensuring every choice is fair and transparent.
+> A random selection tool for classrooms, teams, events, decision-making and more, ensuring every choice is fair and transparent.
 
 ::: danger Version Warning
 The **v3 version is currently in Alpha stage** and should not be used in production. It may contain unknown bugs and is intended for user experience only. If you encounter issues, please report them on [GitHub Issues](https://github.com/SECTL/SecRandom/issues)!
@@ -30,7 +30,7 @@ SecRandom is open source under the GNU GPL-3.0 license. You are free to use, mod
 
 ## What is it?
 
-**[SecRandom](https://github.com/SECTL/SecRandom)** is a fair random selection system designed specifically for educational scenarios, using intelligent dynamic weight algorithms to ensure every member gets fair selection opportunities. SecRandom v3 is built with **C#/.NET 10**, using **Avalonia + FluentAvalonia** for cross-platform UI, and adopts Microsoft Fluent Design language, combining **fairness, ease of use, and aesthetics**.
+**[SecRandom](https://github.com/SECTL/SecRandom)** is a fair random selection system for classrooms, teams, events, decision-making and other scenarios, using intelligent dynamic weight algorithms to ensure every member gets fair selection opportunities. SecRandom v3 is built with **C#/.NET 10**, using **Avalonia + FluentAvalonia** for cross-platform UI, and adopts Microsoft Fluent Design language, combining **fairness, ease of use, and aesthetics**.
 
 ### Core Advantages
 
@@ -43,17 +43,12 @@ SecRandom is open source under the GNU GPL-3.0 license. You are free to use, mod
 
 ## Applicable Scenarios
 
-### Education
-- **Classroom Roll Call**: Randomly select students to answer questions, avoiding subjective bias
+- **Classroom Roll Call**: Randomly select members without subjective bias
 - **Random Grouping**: Fairly assign group tasks, promoting team collaboration
-- **Question Lottery**: Enliven classroom atmosphere, stimulate student participation
-
-### Corporate Events
+- **Question Lottery**: Boost engagement
 - **Annual Meeting Lottery**: Fairly distribute prizes, enhance event fun
 - **Team Grouping**: Randomly form project teams, promote cross-department collaboration
 - **Welfare Distribution**: Fairly distribute employee benefits, demonstrate corporate care
-
-### Other Scenarios
 - **Competition Selection**: Randomly determine contestant appearance order
 - **Activity Organization**: Random lottery, lucky audience selection
 - **Fair Opportunity Distribution**: Any scenario requiring fair random selection
@@ -63,7 +58,7 @@ SecRandom is open source under the GNU GPL-3.0 license. You are free to use, mod
 ### Draw Modes
 
 #### Roll Call Mode
-- Supports drawing by list scope, group, gender, and quantity, fitting real classroom scenarios
+- Supports drawing by list scope, group, gender, and quantity, fitting real-world scenarios
 - Supports normal random, history-balanced, and repetition control
 - Single/multiple selection with rich draw animations
 

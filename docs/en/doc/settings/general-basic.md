@@ -17,7 +17,7 @@ Basic settings manage the core behavior of the software, including startup behav
 **Description**: Set whether the software auto-starts with the system
 
 **Scenarios**:
-- Classroom big-screen scenarios that need auto-start
+- Big-screen display scenarios that need auto-start
 - Users who want the software always running in the background
 
 **How to use**: Toggle the switch on or off
@@ -108,7 +108,7 @@ secrandom://lottery/draw     # start lottery
 - **Show recovery page and auto-restart**: show the recovery page and auto-restart
 
 **Scenarios**:
-- Classroom scenarios where a crash should recover quickly to avoid disrupting teaching
+- Critical scenarios where a crash should recover quickly to avoid disrupting ongoing activities
 - Need to see the crash reason for feedback
 
 **Notes**:
