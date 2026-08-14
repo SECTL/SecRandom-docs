@@ -1,182 +1,181 @@
 ---
-title: contribute
-createTime: 2025/12/20 18:56:17
+title: Contribution Guide
+createTime: 2026/08/14 10:00:00
 ---
 # ::lucide:book-open:: SecRandom Contribution Guide
 
-SecRandom welcomes **anyone** to submit code to our repository. You can help us with many things, including but not limited to:
+SecRandom welcomes **anyone** to submit code to our repository. You can help us in many ways, including but not limited to:
 
 - Submitting patches to fix bugs
 - Adding new features
 - Optimizing existing features
-- Optimizing code performance
+- Improving code performance
 - Improving documentation and translations
-- And more...
+- More......
 
-By reading this guide, you will understand the various processes for contributing code to SecRandom. You will also learn how to use commit messages for binary builds. Let's get started now!
+By reading this guide, you will understand the process of contributing code to SecRandom, including how to trigger binary builds with commit messages. Let's get started!
+
+::: tip Version Notice
+This document corresponds to the **v3** (C#/.NET 10 + Avalonia) development flow. The old v2 (Python) flow no longer applies.
+:::
 
 ## ::lucide:rocket:: Quick Start
 
-Before contributing code to the SecRandom project, please make sure you have completed the following preparations:
+Before contributing code to SecRandom, please make sure you have completed the following:
 
 > [!NOTE]
-> Besides using the command line, you can also use GitHub Desktop or built-in features/plugins in your IDE.
+> Besides the command line, you can also use GitHub Desktop or the built-in features/plugins of your IDE.
 
-1. **Fork the Project**
+1. **Fork the project**
 
-    - Visit the [SecRandom GitHub Repository](https://github.com/SECTL/SecRandom)
-    - Click the "Fork" button in the upper right corner to create your own copy of the repository
+    - Visit the [SecRandom GitHub repository](https://github.com/SECTL/SecRandom)
+    - Click the "Fork" button in the top right to create your own copy
 
-2. **Clone the Repository**
+2. **Clone the repository**
 
     > [!WARNING]
-    > Make sure that before this step, you have switched the terminal's working directory to where you want to save/modify the SecRandom source code.
+    > Make sure to switch your terminal working directory to where you want to save/modify the SecRandom source code before this step.
 
     ```bash
     git clone https://github.com/your-username/SecRandom.git
     cd SecRandom
     ```
 
-3. **Add Upstream Repository**
+3. **Add the upstream repository**
 
     ```bash
     git remote add upstream https://github.com/SECTL/SecRandom.git
     ```
 
-4. **Install Virtual Environment** (Optional)
+4. **Prepare the development environment**
 
     > [!TIP]
-    > If you do not need to run the code to test the effects, you can skip this section.
+    > If you don't need to run the code to test, you can skip this part.
 
-    SecRandom uses `uv` to manage virtual environments. You need to get it first before executing the following commands. You can get information about `uv` in the [uv official documentation](https://docs.astral.sh/uv/getting-started/).
-
-    ```bash
-    uv venv
-    uv sync
-    ```
-
-    Then you can run the code like this (in the virtual environment):
+    v3 requires the **.NET 10 SDK** (available from [dotnet.microsoft.com](https://dotnet.microsoft.com/download/dotnet/10.0)).
 
     ```bash
-    uv run ./main.py
+    # Restore dependencies
+    dotnet restore SecRandom.sln
+
+    # Build
+    dotnet build SecRandom.sln
+
+    # Run the desktop app
+    dotnet run --project SecRandom.Desktop
     ```
 
 ## ::lucide:upload:: Submit Your Contribution
 
-1. **Create a Branch**
+1. **Create a branch**
 
     ```bash
-    git checkout -b feature/feature-name
+    git checkout -b feature/your-feature
     ```
 
-2. **Make Changes**
+2. **Make changes**
 
     - Write your code
-    - Add necessary comments (please use Chinese if possible, or English)
-    - Ensure compliance with project code standards
+    - Add necessary comments
+    - Follow the project code style
 
-3. **Commit Changes**
+3. **Commit changes**
 
     ```bash
     git add .
     git commit -m "Describe your changes"
     ```
 
-4. **Sync Upstream Changes**
+4. **Sync upstream changes**
 
     ```bash
     git fetch upstream
     git rebase upstream/master
     ```
 
-5. **Push and Create Pull Request (PR)**
+5. **Push and create a Pull Request (PR)**
 
     ```bash
-    git push origin feature/your-feature-name
+    git push origin feature/your-feature
     ```
 
-    - Visit your GitHub Fork repository
-    - Click the "Compare & pull request" button
+    - Visit your GitHub fork
+    - Click "Compare & pull request"
     - Fill in the PR description and submit
 
 ## ::lucide:clipboard-list:: Contribution Guidelines
 
-### Code Standards
+### Code Style
 
-- Use comments in code, don't forget to write Docstrings
-- Follow the style guide advocated by PEP8, check existing code if there are objections
-- Ensure importing all classes/functions/variables you used, do not use `from module import *`
-- Verify the existence of third-party UI components and classes/functions/variables in other libraries
+- Use clear comments; follow the existing project code style (C# / .NET conventions)
+- Follow .NET naming conventions (PascalCase methods/properties, `async` naming suffix, etc.)
+- Make sure there are no unused `using` directives
+- Verify third-party UI components and other library types exist
 
 > [!TIP]
-> You can use tools like **PyRight**, **Ruff** to check if the code has defects/complies with standards.
+> You can use `dotnet format` to check code style:
+>
+> ```bash
+> dotnet format SecRandom.sln --verify-no-changes
+> ```
 
-### Commit Message Standards
+### Commit Message Guidelines
 
 - Use clear, concise commit messages
 - Start with conventional words like fix, feat, etc.
 - Avoid overly simple descriptions (e.g., "fix bug")
 
 > [!TIP]
-> We recommend using [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) to write commit messages.
+> We recommend using [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit messages.
 
 ### PR Requirements
 
-- PR title should clearly describe the changes (if there is only one commit, you can also directly use the title of this commit)
-- Provide detailed change description, including:
-    - Added/Modified/Deleted features
-    - Added/Modified version/Deleted dependency libraries and Python version changes
-    - Please also inform about other breaking changes
-- Ensure all tests pass
-- Ensure your modified code runs normally at least on your computer
+- PR title should concisely describe the changes (if there is only one commit, you can use its title)
+- Provide detailed change notes, including:
+    - Added/modified/removed features
+    - Added/modified/removed dependencies and .NET version/TargetFramework changes
+    - Other breaking changes (if any)
+- Make sure all tests pass
+- Make sure your code runs correctly on your machine at least
 - Link related Issues (if any)
 
-### The Last Step...
+### Last Step……
 
-When SecRandom maintainers have reviewed your PR and ensured there are no issues, your contributed code will be merged into the main branch.
+Once a SecRandom maintainer reviews your PR and confirms there are no issues, your code will be merged into the main branch.
 
-Now we **congratulate you on becoming a member of SecRandom contributors!**
+Now **congratulations, you are a SecRandom contributor!**
 
-If your PR is not passed, it doesn't matter. Please carefully read the suggestions given by our maintainers and continue to work hard. One day, you will become a member of SecRandom contributors. Keep it up ::lucide:smile::::lucide:thumbs-up::!
+If your PR is not accepted, no worries. Read the maintainers' suggestions carefully and keep trying — one day you will become a contributor. Go ::lucide:smile::::lucide:thumbs-up::!
 
 ## ::lucide:book-open:: Actions Build Workflow
 
-If you need to test the automatically built binary program, you can read the following text to get more information.
+If you want to test automatically built binaries, read the following for more info.
 
-### ::lucide:rocket:: GitHub Actions Unified Build Workflow Guide
+### ::lucide:rocket:: GitHub Actions Unified Build Workflow
 
-The SecRandom project uses a unified GitHub Actions workflow for building and releasing, with the configuration file located at `.github/workflows/build-unified.yml`. This workflow supports multiple triggering methods and configuration options.
+SecRandom uses a unified GitHub Actions workflow for building and publishing, located at `.github/workflows/build_publish.yml`. It uses `dotnet publish` to build desktop apps for Windows / Linux / macOS (x64 / x86 / arm64).
 
-#### Trigger Specific Builds via Commit Messages
+#### Triggering a Release Build
 
-You can trigger different build behaviors by including specific keywords in the git commit message:
+The old v2 supported triggering builds via commit message keywords; v3 release builds are triggered by version tags:
 
-1. **Trigger Package Build**
-   - Include the `打包` (Package) keyword in the commit message
-   - Example: `git commit -m "Add feature 打包"`
+1. **Release build**
 
-2. **Specify Build Platform**
-   - `win` - Windows platform
-   - `linux` - Linux platform
-   - `all` - All platforms
-   - Example: `git commit -m "Fix bug 打包 linux"`
+   - Create a tag following the version convention (format: `vNumber.Number.Number`, e.g. `v3.0.0-alpha.2`)
+   - Example: `git tag v3.0.0-alpha.2 && git push origin v3.0.0-alpha.2`
 
-3. **Trigger All Platform Builds**
-   - Create a tag that conforms to the version number specification (Format: `vNumber.Number.Number.Number`)
-   - Example: `git tag v1.2.3.4 && git push origin v1.2.3.4`
+2. **Manual trigger**
 
-#### Build Parameter Keywords Description
+   - On the GitHub Actions page, select the `Build & Publish` workflow
+   - Click **Run workflow** and fill in the release tag
 
-Commit messages can include the following keywords to control build behavior:
+#### Artifact Types
 
-| Keyword | Meaning | Example |
-|---------|---------|---------|
-| `打包` | General packaging trigger | `git commit -m "Add feature 打包"` |
-| `win` | Windows platform | `git commit -m "Fix UI 打包 win"` |
-| `linux` | Linux platform | `git commit -m "Optimize performance 打包 linux"` |
-| `all` | All platforms | `git commit -m "Major update 打包 all"` |
+The workflow outputs **full** and **light** artifacts:
 
-**Combination Usage Examples:**
+| Artifact | Description |
+|----------|-------------|
+| **full** | Self-contained packages with the runtime bundled; no .NET runtime installation needed |
+| **light** | Lightweight packages that depend on the system .NET runtime |
 
-- `git commit -m "Optimize performance 打包 pi"` - Use PyInstaller to build for Windows platform
-- `git commit -m "Fix bug 打包 pi"` - Use PyInstaller to build for Linux platform
+Each artifact produces Setup and Portable packages for the target platforms, verifies artifact length and hash, then publishes.

@@ -1,6 +1,6 @@
 ---
 title: 贡献指南
-createTime: 2025/12/20 18:56:17
+createTime: 2026/08/14 10:00:00
 ---
 # ::lucide:book-open:: SecRandom 贡献指南
 
@@ -14,6 +14,10 @@ SecRandom 欢迎**任何人**向我们的仓库提交代码。你可以帮助我
 - 更多......
 
 通过阅读本指南，你将会了解为 SecRandom 贡献代码的各个流程。你还会了解使用 commit 信息进行二进制构建的方式。现在就开始吧！
+
+::: tip 版本提示
+本文档对应 **v3**（C#/.NET 10 + Avalonia）开发流程。旧版 v2（Python）的贡献流程已不适用。
+:::
 
 ## ::lucide:rocket:: 快速开始
 
@@ -43,22 +47,22 @@ SecRandom 欢迎**任何人**向我们的仓库提交代码。你可以帮助我
     git remote add upstream https://github.com/SECTL/SecRandom.git
     ```
 
-4. **安装虚拟环境** (可选)
+4. **准备开发环境**
 
     > [!TIP]
     > 若你不需要运行代码以测试效果，你可以跳过这个部分。
 
-    SecRandom 使用 `uv` 管理虚拟环境。你需要先获取它再执行以下命令。你可以在 [uv官方文档](https://docs.astral.sh/uv/getting-started/) 中获取关于 `uv` 的信息。
+    v3 需要安装 **.NET 10 SDK**（可从 [dotnet.microsoft.com](https://dotnet.microsoft.com/download/dotnet/10.0) 获取）。
 
     ```bash
-    uv venv
-    uv sync
-    ```
+    # 还原依赖
+    dotnet restore SecRandom.sln
 
-    随后你可以这样运行代码（在虚拟环境中）：
+    # 构建
+    dotnet build SecRandom.sln
 
-    ```bash
-    uv run ./main.py
+    # 运行桌面端
+    dotnet run --project SecRandom.Desktop
     ```
 
 ## ::lucide:upload:: 提交你的贡献
@@ -103,13 +107,17 @@ SecRandom 欢迎**任何人**向我们的仓库提交代码。你可以帮助我
 
 ### 代码规范
 
-- 使用中文编写代码注释，别忘记撰写 Docstring
-- 遵循 PEP8 倡导的风格指南，可以查看现有的代码以获取相关信息
-- 确保导入所有你已使用的类/函数/变量，不要使用 `from module import *`
+- 使用中文编写代码注释，遵循项目现有代码风格（C# / .NET 惯例）
+- 遵循 .NET 官方的命名规范（PascalCase 方法/属性、`async` 命名后缀等）
+- 确保没有未使用的 `using` 指令
 - 验证第三方 UI 组件与其他库中的类/函数/变量是否存在
 
 > [!TIP]
-> 你可以使用 **PyRight** 、 **Ruff** 等工具检查代码是否有缺陷/代码是否符合规范。
+> 你可以使用 `dotnet format` 检查代码风格是否符合规范：
+>
+> ```bash
+> dotnet format SecRandom.sln --verify-no-changes
+> ```
 
 ### 提交 (commit) 信息规范
 
@@ -125,7 +133,7 @@ SecRandom 欢迎**任何人**向我们的仓库提交代码。你可以帮助我
 - PR 标题应简洁明了地描述更改内容（若只有一个提交，也可以直接使用这个提交的标题）
 - 提供详细的更改说明，包括：
     - 新增/修改/删除的功能
-    - 新增/修改版本/删除的依赖库 和 更改 Python 版本
+    - 新增/修改版本/删除的依赖库 和 更改 .NET 版本/TargetFramework
     - 其他破坏性更改（如果存在）
 - 确保所有测试通过
 - 确保你修改的代码至少在你的计算机上运行正常
@@ -145,38 +153,29 @@ SecRandom 欢迎**任何人**向我们的仓库提交代码。你可以帮助我
 
 ### ::lucide:rocket:: GitHub Actions 统一构建工作流使用指南
 
-SecRandom 项目使用统一的 GitHub Actions 工作流进行构建和发布，配置文件位于 `.github/workflows/build-unified.yml`。该工作流支持多种触发方式和配置选项。
+SecRandom 项目使用统一的 GitHub Actions 工作流进行构建和发布，配置文件位于 `.github/workflows/build_publish.yml`。该工作流使用 `dotnet publish` 为 Windows / Linux / macOS 构建桌面端（x64 / x86 / arm64）。
 
 #### 通过提交消息触发特定构建
 
-你可以通过在 git commit 消息中包含特定关键词来触发不同的构建行为：
+旧版 v2 支持通过 commit 消息关键词触发构建；v3 的发布构建通过版本标签（tag）触发：
 
-1. **触发打包构建**
-   - 在 commit 消息中包含 `打包` 关键词
-   - 例如：`git commit -m "新增功能 打包"`
+1. **发布构建**
 
-2. **指定构建平台**
-   - `win` - Windows 平台
-   - `linux` - Linux 平台
-   - `all` - 所有平台
-   - 例如：`git commit -m "修复bug 打包 linux"`
+   - 创建符合版本号规范的 tag（格式：`v数字.数字.数字`，例如 `v3.0.0-alpha.2`）
+   - 例如：`git tag v3.0.0-alpha.2 && git push origin v3.0.0-alpha.2`
 
-3. **触发所有平台构建**
-   - 创建符合版本号规范的 tag（格式：`v数字.数字.数字.数字`）
-   - 例如：`git tag v1.2.3.4 && git push origin v1.2.3.4`
+2. **手动触发**
 
-#### 构建参数关键词说明
+   - 在 GitHub Actions 页面选择 `Build & Publish` 工作流
+   - 点击 **Run workflow** 并填写发布标签
 
-提交消息中可以包含以下关键词来控制构建行为：
+#### 构建产物说明
 
-| 关键词 | 含义 | 示例 |
-|--------|------|------|
-| `打包` | 通用打包触发 | `git commit -m "新增功能 打包"` |
-| `win` | Windows 平台 | `git commit -m "修复UI 打包 win"` |
-| `linux` | Linux 平台 | `git commit -m "优化性能 打包 linux"` |
-| `all` | 所有平台 | `git commit -m "大更新 打包 all"` |
+工作流输出 **完整版（full）** 与 **轻量版（light）** 两类产物：
 
-**组合使用示例：**
+| 产物 | 说明 |
+|------|------|
+| **full** | 自包含完整运行时的安装/便携包，无需安装 .NET 运行时 |
+| **light** | 依赖系统 .NET 运行时的轻量包 |
 
-- `git commit -m "优化性能 打包 pi"` - 使用 PyInstaller 构建 Windows 平台
-- `git commit -m "修复 bug 打包 pi"` - 使用 PyInstaller 构建 Linux 平台
+每个产物会生成对应平台的安装包（Setup）与便携包（Portable），并校验制品长度与哈希后发布。

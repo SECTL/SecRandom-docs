@@ -66,7 +66,7 @@ config:
         details: "Finish initial setup and prepare your first usable class list. Path: /en/doc/guide/software-guide"
       - title: "Step 3: Run Your First Draw"
         icon: lucide:play
-        details: "Start with defaults, then refine settings based on classroom feedback. Path: /en/doc/settings/basic"
+        details: "Start with defaults, then refine settings based on classroom feedback. Path: /en/doc/settings/general-basic"
 
   - type: features
     title: Management & Integration

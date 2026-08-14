@@ -1,9 +1,13 @@
 ---
 title: Download & Run
-createTime: 2025/11/23 19:46:59
+createTime: 2026/08/14 10:00:00
 ---
 
 > **Quick Start** - Complete SecRandom download, verification, and running in three steps
+
+::: danger Alpha Version Warning
+The **v3 version is currently in Alpha stage** and should not be used in production. It may contain unknown bugs and is intended for user experience only.
+:::
 
 ---
 
@@ -18,10 +22,18 @@ createTime: 2025/11/23 19:46:59
 | **Display** | 1024×768 resolution | Recommended 1080p |
 
 ### Software Environment
-| Usage Method | System Requirements | Python Version |
-|--------------|---------------------|----------------|
-| **Executable** | Windows 10/11 & Linux | No installation required |
-| **Source Code** | Windows 10/11 & Linux | Python 3.13 |
+| Usage Method | System Requirements | Runtime |
+|--------------|---------------------|---------|
+| **Executable** | Windows 10/11, Linux, macOS | No installation required |
+| **Source Code** | Windows 10/11, Linux, macOS | .NET 10 SDK |
+
+::: tip Cross-Platform
+Starting from v3, SecRandom is rebuilt with **C#/.NET + Avalonia**, officially supporting **Windows, Linux, macOS, and mobile platforms (Android/iOS)**.
+:::
+
+::: warning Windows Version Notice
+SecRandom has stopped support for Windows 7 and 32-bit systems. We strongly recommend using Windows 10 or higher.
+:::
 
 ---
 
@@ -34,32 +46,17 @@ createTime: 2025/11/23 19:46:59
 - **Latest Version** - Provides the latest official version download
 
 **Steps:**
-1. Visit [Official Download Page](https://secrandom.sectl.top/download)
+1. Visit [Official Download Page](https://stk.sectl.cn/SecRandom)
 2. Select and download the version suitable for your system
 
 #### **Solution 2: GitHub Releases**
 - **Security Verification** - Provides SHA256 checksum values
-- **Version Selection** - Supports official and test versions
+- **Version Selection** - Supports official and preview versions
 
 **Steps:**
 1. Visit [GitHub Releases](https://github.com/SECTL/SecRandom/releases)
-2. Select the latest version (e.g., `v1.2.5.6`)
+2. Select the latest version (e.g., `v3.0.0-alpha.2`)
 3. Download the file for your platform
-
-#### **Solution 3: Third-party Cloud Mirror**
-- **Domestic Acceleration** - Provides domestic download links
-- **123 Cloud Disk Download**: [Click to Download](https://www.123684.com/s/9529jv-U4Fxh)
-
-#### **Solution 4: GitHub Mirror Acceleration**
-- **ghfast.top** - Fast mirror download
-- **gh-proxy.com** - Backup mirror download
-
-**Windows Download Links:**
-- Installer: [ghfast.top](https://ghfast.top/https://github.com/SECTL/SecRandom/releases/latest/download/SecRandom-Windows-Setup-latest-x64.exe)
-- Portable: [ghfast.top](https://ghfast.top/https://github.com/SECTL/SecRandom/releases/latest/download/SecRandom-Windows-Portable-latest-x64.zip)
-
-**Linux Download Links:**
-- Installation Package: [ghfast.top](https://ghfast.top/https://github.com/SECTL/SecRandom/releases/latest/download/SecRandom-linux-Setup-latest-amd64.deb)
 
 ---
 
@@ -72,9 +69,9 @@ Each version's release page provides SHA256 checksum values in the following for
 
 | Filename | SHA256 Checksum |
 |----------|-----------------|
-| SecRandom-Windows-Portable-v1.2.5.6-x64.zip | `Example checksum` |
-| SecRandom-Windows-Setup-v1.2.5.6-x64.exe | `Example checksum` |
-| SecRandom-linux-Setup-v1.2.5.6-amd64.deb | `Example checksum` |
+| SecRandom-Windows-Portable-v3.0.0-alpha.2-x64.zip | `Example checksum` |
+| SecRandom-Windows-Setup-v3.0.0-alpha.2-x64.exe | `Example checksum` |
+| SecRandom-linux-Setup-v3.0.0-alpha.2-amd64.deb | `Example checksum` |
 
 #### **Windows Verification Steps**
 1. **Open PowerShell**
@@ -150,6 +147,28 @@ Each version's release page provides SHA256 checksum values in the following for
    - Find SecRandom in application menu
    - Or run `SecRandom` in terminal
 
+### macOS System
+
+1. Download the macOS package for your architecture (Apple Silicon / Intel)
+2. Open the downloaded `.dmg` or `.zip` and drag SecRandom to Applications
+3. If "unidentified developer" prompt appears: right-click → **Open** → **Open** again to allow first launch
+
+---
+
+## First Launch Guide
+
+The first launch will run an **8-step setup wizard** (OOBE):
+1. **Welcome** - Welcome and feature introduction
+2. **Verifiable Drawing Notice** - Understand the draw verification capabilities
+3. **Privacy Policy** - Confirm privacy policy
+4. **GPLv3 License** - Confirm open source license
+5. **Basic Settings** - Configure basic behavior
+6. **List Management** - Create your first member list
+7. **Enhanced Features** - Optional features (e.g., linkage, verification)
+8. **Complete** - Finish and enter the main interface
+
+See [Software Guide](/en/doc/guide/software-guide) for details.
+
 ---
 
 ## ::lucide:life-buoy:: Technical Support
@@ -157,7 +176,6 @@ Each version's release page provides SHA256 checksum values in the following for
 ### **Problem Feedback Channels**
 - ::simple-icons:github:: [GitHub Issues](https://github.com/SECTL/SecRandom/issues)
 - ::simple-icons:qq:: **QQ Group**：[833875216](https://qm.qq.com/q/PCqYgev4Em)
-- ::simple-icons:qq:: **QQ Channel**: [SECTLStudio](https://pd.qq.com/g/SECTL20250321)
 - ::simple-line-icons:envolope:: **Mail Feedback**：[lzy98276@sectl.com](mailto:lzy98276@sectl.com)
 
 > **Tip**: If you encounter problems, check the `FAQ` page first. 80% of common problems have solutions!

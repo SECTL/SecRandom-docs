@@ -1,73 +1,116 @@
 ---
 title: Security Settings
-createTime: 2026/01/11 12:42:47
+createTime: 2026/08/14 10:00:00
 ---
 
-> **Protect your system security**
+# Security Settings (General)
+
+::: tip Version Notice
+This document corresponds to the **v3** "Settings → General → Security" page. v3 is in Alpha stage; settings may change with versions, please refer to the actual interface.
+:::
+
+> **Protect your configuration**
 >
 > Through flexible security configuration, protect your system from unauthorized access. All settings are saved in real-time and take effect automatically.
 
-## Verification Method
+Security settings protect sensitive operations (settings modification, drawing, window control, etc.). They support three verification methods — **password, TOTP and USB drive binding** — which can be combined.
 
-**Security Switch**: After enabling, all security operations require password verification
-- On: Selected security operations all require password verification
-- Off: Entering settings and other security operations do not require password verification
+## Security Switch
 
-**Set/Change Password**: Set or change security verification password
-- Click button to enter password setting interface
-- Recommended to use strong password containing letters, numbers, and special characters
+**Enable Security Protection**: When enabled, selected operations require verification before execution
 
-**TOTP Verification**: After enabling, TOTP verification can be used in security operations
-- On: Support using TOTP as verification method
-- Off: Do not use TOTP verification function
+- On: All selected security operations require verification
+- Off: Security operations do not require verification
 
-**Set TOTP**: Configure TOTP dynamic password verification (i.e., 2FA verification)
-- Click button to enter TOTP key setting interface
-
-**USB Drive Verification**: After enabling, USB drive verification can be used in security operations
-- On: Support using USB drive as verification method
-- Off: Do not use USB drive verification function
-
-**Bind USB Drive**: Bind the USB drive device used for verification
-- Insert USB drive and click button to complete binding
-- After binding, the USB drive can be used as verification credential
-
-**Unbind USB Drive**: Unbind USB drive device
-- Click button to unbind the bound USB drive
-- After unbinding, the USB drive is no longer used as verification credential
-
-## ::lucide:shield-check:: Security Verification Steps
-
-**Security Verification Steps**: Select security verification combination method
-- Single-step verification (choose any one method): Select one from available verification methods to complete verification
-- Only password/Only TOTP/Only USB drive: Only need to perform the selected verification method to complete verification
-- Multi-step verification (combination verification method): Need to complete multiple verification methods
-
-## ::lucide:mouse-pointer-click:: Security Operations
-
-**Settings Preview Switch**: Allow previewing settings when entering settings verification
-:::tip
-To use preview function, must first enable `Security Switch` and `Open Settings Verification` security operations.
+::: tip
+Security verification always runs through the unified security service and cannot be bypassed.
 :::
-- On: Can preview settings content before verification, can modify settings after verification
-- Off: Do not enable preview function
 
-**Show/Hide Floating Window Verification**: After enabling, security verification is required when showing or hiding floating window
-- On: Show/hide floating window operations require verification
-- Off: Show/hide floating window operations do not require verification
+## Verification Methods
 
-**Restart/Exit Verification**: After enabling, security verification is required when exiting software
-- On: Restart/exit software requires security verification
-- Off: Restart/exit software does not require verification
+### Enable Password Verification
+**Description**: Protect sensitive operations with a local password
 
-**Open Settings Verification**: After enabling, security verification is required when opening settings window
-- On: Opening settings window requires security verification
-- Off: Opening settings window does not require verification
+**How to use**:
+1. Enable "Password Verification"
+2. Click **"Set Password"**, enter a password (at least 6 characters)
+3. Takes effect after saving
 
-:::tip
-Security settings recommendations:
-1. Enable security switch to enhance system security
-2. Set strong password and change regularly
-3. Enable USB drive/TOTP verification as double protection according to needs
-4. Enable verification for important operations (such as exiting software, opening settings)
+**Notes**:
+- Minimum 6 characters; no additional character class restrictions
+- Can **"Change Password"** or **"Remove Password"** anytime
+
+### Enable TOTP Verification
+**Description**: Protect sensitive operations with one-time codes (i.e., 2FA)
+
+**How to use**:
+1. Enable "TOTP Verification"
+2. Click **"Set TOTP"**, scan the QR code or enter the key with an authenticator app (e.g., Google Authenticator, Microsoft Authenticator)
+3. Enter the 6-digit code generated by the authenticator to complete binding
+
+**Notes**:
+- Can **"Reset TOTP"** anytime
+- The code is a 6-digit dynamic passcode
+
+### Bind USB Drive
+**Description**: Only allow verification when the bound device is present
+
+**How to use**:
+1. Enable "USB Binding"
+2. Insert the USB drive to bind
+3. Click **"Bind USB Drive"** to complete
+
+**Notes**:
+- A dedicated security token (`.SecRandom.safety.key`) is stored on the bound drive
+- Multiple devices can be bound; view them in the "Bound Devices" list (drive letter, disk name, device identifier, connection status)
+- Can **"Unbind"** or **"Unbind Selected"** devices
+- Binding records only keep stable device IDs and token hashes, not volatile info like drive letters
+
+## Protection Scope
+
+### Verify Before Sensitive Operations
+**Description**: Require verification before modifying key settings (security, linkage, lists, etc.)
+
+### Verify Before Linkage Operations
+**Description**: Require verification before external linkage triggers drawing or page switching
+
+### Window & App Operations
+Protect the following (optional):
+- **Open Settings**: Verification required when opening the settings window
+- **Allow Read-only Settings Preview**: When entering settings verification, allow previewing settings content (read-only before verification, modifiable after)
+- **Show/Hide Main Window**: Verification required to show/hide the main window
+- **Show/Hide Floating Window**: Verification required to show/hide the floating window
+- **Restart App**: Verification required to restart the software
+- **Exit App**: Verification required to exit the software
+
+### Draw Operations
+Protect the start and reset of each draw type separately:
+- **Roll Call Start / Roll Call Reset**
+- **Quick Draw Start / Quick Draw Clear**
+- **Lottery Start / Lottery Reset**
+
+## Verification Method Combination
+
+### Verification Methods
+Choose the combination of methods to use (password, TOTP, USB drive)
+
+### All Selected Methods Required
+- **On**: Must complete all selected methods to pass
+- **Off**: Passing any selected method is enough to continue
+
+::: tip
+The password always protects the credentials themselves; other methods must be configured before they can be selected.
 :::
+
+## Security Recommendations
+
+1. Enable the security switch to strengthen system security
+2. Set a strong password and change it regularly
+3. Enable USB/TOTP verification as a second factor when needed
+4. Enable verification for important operations (exit, open settings, draws)
+
+## Related Pages
+
+- Verifiable drawing (proof & notarization): see [Verifiable Drawing](/en/doc/settings/verification)
+- Backup & restore: see [Backup Settings](/en/doc/settings/backup)
+- Privacy options: see [Privacy Settings](/en/doc/settings/privacy)

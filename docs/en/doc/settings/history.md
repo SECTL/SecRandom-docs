@@ -1,81 +1,83 @@
 ---
 title: History
-createTime: 2026/01/17 22:40:45
+createTime: 2026/08/14 10:00:00
 ---
 
-> **Manage your history records**
->
-> Through flexible history management settings, you can control the saving and viewing of roll call and lottery history records. All settings are saved in real-time and take effect automatically.
+# History
 
-## ::lucide:history:: History Management
-
-### ::lucide:user-check:: Roll Call History
-
-**Enable Roll Call History**: Control whether to enable the roll call history function
-- On: Save roll call history records
-- Off: Do not save roll call history records
-
-**Select Class**: Select the class to view history records
-- Support selecting different classes to view corresponding roll call history records
-
-**Clear Roll Call History**: Clear roll call history records for the selected class
-- Click the "Clear" button to delete all roll call history records for the selected class
-
-### ::lucide:gift:: Lottery History
-
-**Enable Lottery History**: Control whether to enable the lottery history function
-- On: Save lottery history records
-- Off: Do not save lottery history records
-
-**Select Prize Pool**: Select the prize pool to view history records
-- Support selecting different prize pools to view corresponding lottery history records
-
-**Clear Lottery History**: Clear lottery history records for the selected prize pool
-- Click the "Clear" button to delete all lottery history records for the selected prize pool
-
-## ::lucide:history:: Roll Call History Table
-
-**Select Class**: Select the class to view history records
-- Support selecting different classes to view corresponding roll call history table
-
-**View Mode**: Select the viewing method for history records
-- All Records: Display all roll call history records
-- View by Time: Sort history records by time
-- View by Student: View history records for the selected student
-
-### ::lucide:user-check:: Roll Call History Table
-
-| Field | Description |
-|--------|-------------|
-| **Student ID** | Student's ID information |
-| **Name** | Student's name information |
-| **Roll Call Count** | Total number of times the student was called |
-| **Weight** | Student's weight value in roll call |
-
-## ::lucide:gift:: Lottery History Table
-
-**Select Prize Pool**: Select the prize pool to view history records
-- Support selecting different prize pools to view corresponding lottery history table
-
-**View Mode**: Select the viewing method for history records
-- All Records: Display all lottery history records
-- View by Time: Sort history records by time
-- All Courses: Display lottery history records for all courses
-- View by Course: View history records generated within the selected course
-
-### Lottery History Table
-
-| Field | Description |
-|--------|-------------|
-| **Serial Number** | Serial number of the lottery item |
-| **Name** | Name of the lottery item |
-| **Win Count** | Total number of times the item won |
-| **Weight** | Item's weight value in lottery |
-
-:::tip
-History management recommendations:
-1. Enable or disable history functions according to actual needs
-2. Regularly backup important history data
-3. Use history tables to analyze student participation
-4. Adjust weight settings based on history records to improve fairness
+::: tip Version Notice
+This document corresponds to the **v3** "Settings → History" page. v3 is in Alpha stage; settings may change with versions, please refer to the actual interface.
 :::
+
+> **Records you can review** - View and manage roll call and lottery history to continuously improve classroom strategy.
+
+## History Page
+
+History contains two tabs:
+- **Roll Call History**: view roll call draw records
+- **Lottery History**: view lottery draw records
+
+## Roll Call History
+
+### Select List
+**Description**: choose the member list to view
+
+### View Mode
+**Description**: choose the history view mode
+
+| Mode | Description |
+|------|-------------|
+| **All Records** | aggregated statistics for all members in this list |
+| **View by Time** | view each draw record chronologically |
+
+### Statistics (All Records Mode)
+- **Name**: member name
+- **Roll Call Count**: total times the member was drawn
+- **Number/ID**: member number
+- **Gender**: member gender
+- **Group**: member group
+- **Roll Call Mode**: draw type (random draw / fair draw)
+- **Roll Call Count**: number of people drawn each time
+
+### View by Time
+- Lists each draw record chronologically
+- Shows draw time, draw type, number of people, course, etc.
+
+## Lottery History
+
+### Select Pool
+**Description**: choose the lottery pool to view
+
+### View Mode
+- **All Records**: aggregated statistics for all prizes in this pool
+- **View by Time**: view each draw record chronologically
+
+### Statistics (All Records Mode)
+- **Name**: prize name
+- **Win Count**: total times the prize was drawn
+- **Number**: prize number
+- **Draw Quantity**: number of prizes drawn each time
+
+## Courses & Breaks
+
+### Course Label
+History records show the **course** (subject) each draw belongs to.
+
+### Break Assignment
+When linkage is enabled, draws during breaks are assigned per configuration:
+- **Previous Course**
+- **Next Course**
+- **Break**
+
+::: tip
+When subject history filtering is enabled, fair drawing only uses the current subject's history for weight calculation.
+:::
+
+## Refresh
+
+Click **"Refresh"** to reload history data.
+
+## Related Pages
+
+- Fair draw weights: see [Picking Settings](/en/doc/settings/pick)
+- Course linkage: see [Linkage Settings](/en/doc/settings/link)

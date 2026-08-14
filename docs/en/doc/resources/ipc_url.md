@@ -850,24 +850,19 @@ Data retrieval commands are used to get roll call lists, lottery lists, roll cal
 
 To get the return result of `data/*` commands via IPC, please send a request and read the response.
 
-**Python Example Code**:
+**PowerShell Example Code**:
 
-```python
-from app.common.IPC_URL import URLIPCHandler
-
-ipc = URLIPCHandler("SecRandom", "secrandom")
-
-resp = ipc.send_ipc_message_by_name({
-    "type": "url",
-    "payload": {
-        "url": "data/roll_call_list?class_name=Grade 1 Class 1"  # Note: Use IPC command format here, no secrandom:// prefix needed
-    }
-})
-
-# Top level is IPC wrapper
-# resp -> {"success": True/False, "type": "url", "result": {...}} or {"success": False, "error": "..."}
-print(resp)
+```powershell
+$pipe = [System.IO.Pipes.NamedPipeClientStream]::new('.', 'SecRandom_IPC_SecRandom_3F2A1B0E', [System.IO.Pipes.PipeDirection]::InOut)
+$pipe.Connect(3000)
+$writer = [System.IO.StreamWriter]::new($pipe)
+$reader = [System.IO.StreamReader]::new($pipe)
+$request = @{ version = 1; type = 'url'; payload = @{ url = 'data/roll_call_list?name=Grade 1 Class 1' } } | ConvertTo-Json -Compress
+$writer.WriteLine($request); $writer.Flush()
+$reader.ReadLine()
 ```
+
+> Note: Use IPC command format here, no `secrandom://` prefix needed.
 
 **Return Value Structure Description**:
 
@@ -1182,8 +1177,8 @@ start secrandom://window/main?action=show&page=roll_call_page
 
 ### ::lucide:plug:: IPC Protocol Usage
 
-**Python Example**
-For complete Python usage example, please refer to: [secrandom_ipc_send_url.py](https://github.com/SECTL/SecRandom/blob/master/secrandom_ipc_send_url.py)
+**PowerShell Example**
+For a complete PowerShell usage example, refer to the IPC section above.
 
 **JavaScript Example**
 For complete JavaScript usage example, please refer to: [secrandom_ipc_send_url.js](https://github.com/SECTL/SecRandom/blob/master/secrandom_ipc_send_url.js)

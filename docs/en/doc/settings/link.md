@@ -1,75 +1,102 @@
 ---
-title: Link Settings
-createTime: 2026/01/17 21:52:27
+title: Linkage Settings
+createTime: 2026/08/14 10:00:00
 ---
 
-> **Set up schedule integration features**
->
-> Through flexible schedule integration configuration, achieve exclusive functions for class and break times. All settings are saved in real-time and take effect automatically.
+# Linkage Settings
 
-## ::lucide:database:: Data Source Selection
-
-**Data Source Selection**: Select the schedule data source
-- Do not use data integration: Use the system completely independently
-- Use CSES schedule data: Use schedule data from CSES
-- Use ClassIsland data source: Use schedule data from ClassIsland (requires installing the integration plugin in ClassIsland)
-
-## ::lucide:file-input:: CSES Schedule Import
-
-**Schedule Import**: Import CSES schedule
-- Import from file: Import CSES schedule through file
-- View current configuration: View existing CSES schedule configuration
-- Clear Schedule: Clear existing CSES schedule configuration
-
-## ::lucide:settings:: Break Time Disable Settings
-
-**Break Time Disable Function**: Require security verification when selecting during break times
-- On: Selection during break times requires security verification
-- Off: Selection during break times does not require security verification
-
-**Verification Process Function**: When triggered during non-class time, a security verification will pop up; if disabled, the component will be directly disabled
-- On: Triggering during non-class time requires security verification
-- Off: During non-class time, related components are directly disabled (not hidden)
-
-**Unlock Time Before Class**: Set the automatic unlock time before class starts
-- The larger the value, the earlier the unlock time; the smaller the value, the later the unlock time
-- Setting to 0 means unlocking on time
-
-**Disable Delay After Class**: Set the time to delay triggering break time disable after class ends
-- Used to allow teachers time for dragging class or buffering after class
-- The larger the value, the longer the delay disable time
-
-**Hide Floating Window on Class End**: Automatically hide floating window when class ends (non-class time) detected
-- On: Automatically hide when class ends, automatically show when class starts (if display conditions are met)
-- Off: Floating window display is not affected by course status
-
-## ::lucide:settings:: Pre-class Reset Settings
-
-**Pre-class Reset Function**: Automatically clear temporary records and interface results within a specified number of seconds before class starts
-- On: Automatically clear temporary records and interface results within a specified number of seconds before class
-- Off: Do not perform automatic clearing
-
-**Pre-class Reset Time**: Set the time to automatically clear temporary records and interface results before class (1-1440 seconds)
-- The larger the value, the earlier the clearing time
-- The smaller the value, the later the clearing time
-- Setting to 0 means clearing on time
-
-## ::lucide:history:: Subject History Filter
-
-**Subject History Filter**: Only use history records of the current subject when calculating weights
-- On: Only use history records generated during current subject class time to calculate weights
-- Off: Use all history records to calculate weights
-
-**Break Time Attribution**: Which category the subject history records during break time belong to
-- Previous Class: Subject history records during break time belong to the previous class subject
-- Next Class: Subject history records during break time belong to the next class subject
-- Break Time: Subject history records during break time belong to a separate break time period
-
-:::tip
-Link settings recommendations:
-1. Choose the appropriate data integration method according to actual needs
-2. Regularly import the latest schedule data to ensure accuracy
-3. Reasonably set break time disable and pre-class reset functions to improve classroom management efficiency
-4. Configure subject history filter function according to teaching needs
+::: tip Version Notice
+This document corresponds to the **v3** "Settings → Linkage Settings" page. v3 is in Alpha stage; settings may change with versions, please refer to the actual interface.
 :::
 
+> **Course linkage** - Connect schedule data sources so draws stay in sync with classroom time.
+
+## Course Linkage
+
+### Data Source
+**Description**: choose the course or external linkage data source
+
+| Option | Description |
+|--------|-------------|
+| **Off** | course linkage disabled |
+| **CSES Schedule** | use the CSES schedule file (`cses_schedule.yml`) |
+| **ClassIsland** | get course info via the ClassIsland app |
+
+### Restrict Operations Outside Class Time
+**Description**: when the course source clearly shows a break or non-class period, restrict draws and resets; off means no restriction
+
+### Allow Continue After Verification
+**Description**: only effective when non-class-time restriction is enabled
+
+- On: passing the configured security verification can temporarily continue draws or resets
+- Off: draws/resets are directly blocked during non-class time
+
+### Hide Floating Window After Class
+**Description**: automatically hide the floating window when the course ends
+
+## CSES Schedule
+
+### Import Schedule
+1. Click the **"Import Schedule"** button
+2. Select the CSES schedule file
+3. After import, it is parsed automatically and a summary is shown
+
+### View Summary
+Shows the schedule summary: total N classes, earliest/latest time.
+
+### Clear Schedule
+Click **"Clear Schedule"** to remove the imported schedule.
+
+### Schedule Format Validation
+Import validates the schedule format:
+- File cannot be empty
+- Root node must be an object
+- Must contain valid classes
+- Each class's start time must be before its end time
+- Class times on the same weekday cannot overlap
+
+::: tip
+The CSES schedule file is at `data/CSES/cses_schedule.yml` (desktop).
+:::
+
+## Before/After Class
+
+### Pre-class Reset
+**Description**: automatically reset temporary draw records before class
+
+### Pre-class Reset Time
+**Description**: how many seconds before class the pre-class reset runs
+
+### Pre-class Unlock Time
+**Description**: how many seconds before class the break restriction is lifted early
+
+### Post-class Disable Delay
+**Description**: how many seconds after the course ends the related draw entries are disabled
+
+## Subject History
+
+### Subject History Filtering
+**Description**: only use the current subject's history when calculating weights
+
+### Break Assignment
+**Description**: choose how history records during breaks are assigned
+
+| Option | Description |
+|--------|-------------|
+| **Previous Course** | break draws are assigned to the previous course |
+| **Next Course** | break draws are assigned to the next course |
+| **Break** | break draws are separately marked as "break" |
+
+::: tip
+With subject history filtering enabled, fair draw weight calculation is separated by course, making each class's draws more balanced.
+:::
+
+## Notes
+
+- Only confirmed course break times restrict local draws/resets or hide the floating window; missing data, disconnected or unknown states allow normal operation
+- ClassIsland connection failures, timer not running, schedule disabled or not loaded show corresponding error messages
+
+## Related Pages
+
+- Security verification (linkage operation protection): see [Security Settings](/en/doc/settings/security)
+- Course labels in history: see [History](/en/doc/settings/history)

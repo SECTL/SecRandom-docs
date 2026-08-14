@@ -1,336 +1,205 @@
 ---
 title: Software Guide
-createTime: 2026/01/24 22:55:00
+createTime: 2026/08/14 10:00:00
 ---
 
-# Software Guide ::lucide:rocket::
+# Software Setup Guide
 
-Welcome to SecRandom! When you launch the software for the first time, the setup wizard will help you complete the initial configuration. This guide will provide detailed instructions for each step of the setup process.
+Welcome to SecRandom! On first launch, the initial setup wizard will help you complete the necessary confirmations and basic configuration. This guide walks through every step of the setup flow.
 
-## ::lucide:clipboard-list:: Guide Overview
+::: tip Version Notice
+This document corresponds to the **v3** initial setup flow. v3 is in Alpha stage; details may change with versions, please refer to the actual interface.
+:::
 
-The software setup includes the following **9 pages**. Complete them in order to finish the initial software configuration:
+## Setup Flow Overview
+
+The setup wizard contains **8 steps** (a welcome page + 7 configuration/confirmation pages). Complete them in order to finish the initial configuration:
 
 | Step | Page | Content | Estimated Time |
 |------|------|---------|----------------|
-| ::lucide:circle-1:: | [Welcome Page](#1-welcome-page) | Display app logo and title | 10 seconds |
-| ::lucide:circle-2:: | [Language Selection Page](#2-language-selection-page) | Select application language | 30 seconds |
-| ::lucide:circle-3:: | [License Agreement Page](#3-license-agreement-page) | Agree to license agreement and disclaimer | 1 minute |
-| ::lucide:circle-4:: | [Data Migration Page](#4-data-migration-page) | Import old data (optional) | 2 minutes |
-| ::lucide:circle-5:: | [Basic Settings Page](#5-basic-settings-page) | Simplified mode, theme, theme color | 1 minute |
-| ::lucide:circle-6:: | [List Management Page](#6-list-management-page) | Student list, class management | 5 minutes |
-| ::lucide:circle-7:: | [Enhanced Features Page](#7-enhanced-features-page) | TTS, music, ClassIsland integration | 3 minutes |
-| ::lucide:circle-8:: | [Test Page](#8-test-page) | Test various features | 2 minutes |
-| ::lucide:circle-9:: | [Links Page](#9-links-page) | Complete setup, view related links | 30 seconds |
+| 1 | [Welcome](#1-welcome) | App logo, title and language selection | 10 sec |
+| 2 | [Verifiable Drawing Notice](#2-verifiable-drawing-notice) | Understand the two modes and boundaries of verifiable drawing | 1 min |
+| 3 | [Privacy Policy](#3-privacy-policy) | Read and confirm the privacy policy | 1 min |
+| 4 | [GPLv3 License](#4-gplv3-license) | Read and confirm the open source license | 1 min |
+| 5 | [Basic Settings](#5-basic-settings) | Appearance, theme and other basic configuration | 1 min |
+| 6 | [List Management](#6-list-management) | Import or create roll call/lottery lists | 5 min |
+| 7 | [Enhanced Features](#7-enhanced-features) | Voice, music, linkage and other optional features | 3 min |
+| 8 | [Complete](#8-complete) | Finish the setup and enter the main interface | 10 sec |
 
-::: tip Tip
-Completing the entire setup process takes approximately 15-20 minutes. Data migration and list management are optional steps that you can skip and complete later in settings.
+::: tip
+Completing the whole flow takes about 10-15 minutes. List management is optional; you can skip it and set it up later.
 :::
 
 ---
 
-## ::lucide:circle-1:: Welcome Page
+## 1. Welcome
 
-### ::lucide:layout:: Page Content
+### Page Content
+- Displays the SecRandom logo and title
+- **Language selector** at the bottom left; takes effect immediately (no restart needed)
 
-- Displays SecRandom logo and title
-- Simple welcome interface
+### Steps
+1. Choose your preferred language (中文 / English / 日本語)
+2. Click **"Start"** to continue
 
-### ::lucide:mouse-pointer-click:: Operation Steps
-
-Click the **"Start"** button to proceed to the next step.
+::: tip
+Switching language refreshes the interface text and keeps the current flow; it does not exit the wizard.
+:::
 
 ---
 
-## ::lucide:circle-2:: Language Selection Page
+## 2. Verifiable Drawing Notice
 
-### ::lucide:layout:: Page Content
+### Page Content
+The "About Verifiable Drawing" explanation is collapsed by default. Expand it and confirm:
 
-- Provides multiple language options
-- Language change requires restarting the application to take effect
+**Normal Mode**
+- Records the candidate pool, weights, draw rules, random material and results
+- Can complete local draws offline and save replayable proofs (`.srproof.json`)
+- When online, new draws are submitted to fair.sectl.cn for independent replay and signing
+- The signature can detect tampering with the proof file after submission
 
-### ::lucide:mouse-pointer-click:: Operation Steps
+**Formal Notarization Mode**
+- First locks the anonymous candidate pool, weights and rules to fair.sectl.cn
+- The server generates random material, computes the result and saves an immutable official proof
+- If network fluctuation, disconnection or service unavailability prevents obtaining the server completion proof, no local substitute result is produced and the mode is not switched automatically
+- Prevents replacement of local draw code, random material and result files after the flow is locked; still cannot prove the real-world list is complete and authentic, or that the pool was not filtered before submission
 
-1. Select your preferred language from the dropdown list (e.g., "中文", "English")
-2. Click "Next" to continue
+### Steps
+1. Expand and read the verifiable drawing explanation
+2. Check **"I have read and understood the above limitations"**
+3. Click **"Next"** to continue
+
+::: warning Confirmation Required
+You must check the confirmation box to continue.
+:::
+
+---
+
+## 3. Privacy Policy
+
+### Page Content
+Shows the SecRandom privacy policy (version 1). Key terms include:
+
+- **Local Data**: Lists, prizes, history and settings are stored locally by default
+- **Sentry Telemetry**: When enabled, may upload crashes, logs, traces and performance data (can be disabled)
+- **Online Status Statistics**: Normal reporting includes approximate location; anonymous reporting only counts online users
+- **Choice & Change**: These privacy options can be changed anytime in **Settings → General → Privacy**
+
+### Steps
+1. Read the full privacy policy
+2. Check **"I agree to the privacy policy"**
+3. Click **"Next"** to continue
+
+---
+
+## 4. GPLv3 License
+
+### Page Content
+Shows the GNU GPLv3 license notice:
+
+- SecRandom is released under the GPLv3 license
+- GPLv3 allows running, studying, modifying and redistributing the software
+- When distributing modified versions, you must comply with the copyleft terms, provide the corresponding source code and distribute under GPLv3
+
+### Steps
+1. Read the GPLv3 notice
+2. Check **"I agree to the GPLv3 license"**
+3. Click **"Next"** to continue
+
+::: tip
+When the privacy policy or GPL version is updated, the software re-opens the corresponding confirmation page and asks for re-confirmation.
+:::
+
+---
+
+## 5. Basic Settings
+
+### Page Content
+Configure basic appearance and behavior:
+- **Theme Mode**: Light / Dark / Follow system
+- **Theme Color**: Choose the interface accent color
+- **Font**: Interface font family and weight (default MiSans)
+- **Launch on Startup**: Whether to auto-start with the system (optional)
+- **Crash Recovery**: Choose how the program recovers after a crash
+
+### Steps
+1. Adjust the appearance options as needed
+2. Click **"Next"** to continue
+
+::: tip
+These settings can be changed later in **Settings → General → Basic** and **Settings → Personalized → Appearance**.
+:::
+
+---
+
+## 6. List Management
+
+### Page Content
+Create your first usable list:
+- **Roll Call List**: Import or create a student list (supports `.xlsx`, `.xls`, `.csv`)
+- **Lottery Pool**: Import or create a prize pool (optional)
+
+### Steps
+1. Click **"Import"** and select a list file (Excel/CSV)
+2. Configure **column mapping** in the import dialog (ID/Number, Name, Gender, Group, Tags)
+3. Verify the data in the preview area
+4. Click **"Import"** to finish
 
 ::: warning Note
-Language changes require restarting the application to take effect.
+- Select at least the ID/Number column or the Name column
+- Rows where both are empty are not imported
+- For duplicate names you can choose "keep duplicates" or "auto-rename"; the system uses internal identifiers to distinguish records
+:::
+
+::: tip
+List management is optional. If skipped, you can create and import lists anytime in **Settings → List Management**.
 :::
 
 ---
 
-## ::lucide:circle-3:: License Agreement Page
+## 7. Enhanced Features
 
-### ::lucide:layout:: Page Content
+### Page Content
+Configure optional enhanced features:
+- **Voice Broadcast**: Choose the voice engine (System voice / Edge TTS) and voice
+- **Music Library**: Import draw background music (MP3/WAV/FLAC)
+- **Course Linkage**: Connect CSES schedule or ClassIsland (optional)
+- **Lottery Switch**: Whether to enable the lottery feature
 
-Contains two tabs:
+### Steps
+1. Configure voice, music and other options as needed
+2. Click **"Next"** to continue
 
-- **License Agreement**: Displays GPL license agreement
-- **Disclaimer**: Displays software disclaimer
-
-### ::lucide:mouse-pointer-click:: Operation Steps
-
-1. **Read Agreement**: Switch between the two tabs and read the agreement content completely
-2. **Scroll to Bottom**: Must scroll to the bottom of the agreement to check the agreement option
-3. **Check Agreement**:
-   - ::lucide:check:: Agree to License Agreement
-   - ::lucide:check:: Agree to Disclaimer
-4. Click "Next" to continue
-
-::: warning Must Agree
-You must check both "Agree to License Agreement" and "Agree to Disclaimer" to proceed to the next step.
+::: tip
+These features can be changed later in **Settings → Reminder Settings**, **Settings → Personalized → Music** and **Settings → Linkage Settings**.
 :::
 
 ---
 
-## ::lucide:circle-4:: Data Migration Page
+## 8. Complete
 
-### ::lucide:layout:: Page Content
+### Page Content
+- Shows the completion notice
+- Provides related links (official docs, QQ group, issue tracker, etc.)
 
-- Provides manual import of old data functionality
-- If you have used SecRandom before, you can import data from the old version
+### Steps
+1. Click **"Finish"**
+2. The software automatically opens the **main window**; start using it
 
-### ::lucide:mouse-pointer-click:: Operation Steps
-
-#### If You Need to Import Data
-
-1. Click the "Import" button
-2. Select the old version data file
-3. Wait for the import to complete
-4. Import successfully and automatically jump to the last page
-
-#### If You Do Not Need to Import Data
-
-Click "Next" to skip this step directly.
-
-::: info Optional Step
-Data migration is an optional step. If you are using it for the first time or do not need to import old data, you can skip this step.
+::: tip
+After the wizard, the software enters the normal startup flow and opens the main interface. You can view version and support info in **Settings → About** anytime.
 :::
 
 ---
 
-## ::lucide:circle-5:: Basic Settings Page
+## FAQ
 
-### ::lucide:layout:: Page Content
+### Can I skip the privacy policy confirmation during setup?
+No. The privacy policy, GPLv3 and verifiable drawing notice all require explicit confirmation before continuing. This is a necessary step for first-time use.
 
-Configure the basic appearance and behavior settings of the software.
+### Can I change the language after setup?
+Yes. Change it in **Settings → General → Basic → Display Language** (some versions require a restart).
 
-### ::lucide:mouse-pointer-click:: Operation Steps
-
-#### ::lucide:circle-1:: Simplified Mode
-
-- **On**: Hide advanced functions, simpler interface
-- **Off**: Show all functions, suitable for advanced users
-- **Recommended**: Recommended to turn off for first-time use to understand all functions
-
-#### ::lucide:circle-2:: Theme Settings
-
-Select interface theme:
-
-| Option | Description |
-|------|------|
-| **Light** | Light theme, suitable for daytime use |
-| **Dark** | Dark theme, suitable for night use, eye protection |
-| **Follow System** | Automatically follow system theme settings |
-
-#### ::lucide:circle-3:: Theme Color
-
-Choose your favorite theme color to customize the software appearance.
-
-::: tip Suggestion
-It is recommended to select the "Follow System" theme, so that the software will automatically switch between light/dark modes according to system settings.
-:::
-
----
-
-## ::lucide:circle-6:: List Management Page
-
-### ::lucide:layout:: Page Content
-
-Manage student lists and class information.
-
-### ::lucide:mouse-pointer-click:: Operation Steps
-
-#### ::lucide:circle-1:: Create Class
-
-1. Enter class name (e.g., "Grade 1 (3)")
-2. Click "Create" button
-
-#### ::lucide:circle-2:: Import Student List
-
-**Method 1: Manual Input**
-- Enter student names line by line
-- Optional: Enter gender, group information
-
-**Method 2: Excel Batch Import (Recommended)**
-
-```
-Excel Table Format:
-| Student ID | Name | Gender | Group |
-|------------|------|--------|-------|
-| 01         | John | Male   | A     |
-| 02         | Jane | Female | B     |
-```
-
-**Operation Steps**:
-1. Prepare Excel table, ensure the first row is column names
-2. Click "Import" button
-3. Select Excel file
-4. System automatically identifies column names and imports data
-
-#### ::lucide:circle-3:: Create Prize Pool (Optional)
-
-1. Switch to Lottery Mode
-2. Enter prize pool name (e.g., "Final Exam Prizes")
-3. Enter prize names line by line
-4. Set prize weights (higher weight means higher probability of winning)
-
-::: info Optional Step
-List management is an optional step. You can continue configuring it later in settings.
-:::
-
----
-
-## ::lucide:circle-7:: Enhanced Features Page
-
-### ::lucide:layout:: Page Content
-
-Contains three tabs to configure enhanced features of the software.
-
-### ::lucide:mouse-pointer-click:: Operation Steps
-
-#### Tab 1: TTS Settings
-
-Configure text-to-speech function:
-
-| Setting | Description |
-|--------|------|
-| **Voice Engine** | Select TTS voice engine |
-| **Edge TTS Voice Name** | Select specific voice (e.g., "Microsoft Xiaoxiao Online") |
-| **Volume** | Adjust voice volume |
-| **Speed** | Adjust voice playback speed |
-
-#### Tab 2: Music Settings
-
-Configure background music:
-
-| Setting | Description |
-|--------|------|
-| **Animation Music** | Music played during selection animation |
-| **Result Music** | Music played when selection result is displayed |
-| **Music Volume** | Adjust music volume |
-| **Fade In/Out** | Set music fade in/out effect |
-
-#### Tab 3: ClassIsland Integration
-
-Configure integration with ClassIsland:
-
-| Setting | Description |
-|--------|------|
-| **Data Source Settings** | Configure ClassIsland data source |
-| **CSes Import** | Import ClassIsland course data |
-| **Notification Service** | Set notification service type (0=Off, 1/2=On) |
-| **Dismiss Bell** | Configure dismiss bell function |
-
-::: info Optional Step
-Enhanced features are optional steps. You can continue configuring them later in settings.
-:::
-
----
-
-## ::lucide:circle-8:: Test Page
-
-### ::lucide:layout:: Page Content
-
-Test if the features you configured are working properly.
-
-### ::lucide:mouse-pointer-click:: Operation Steps
-
-#### ::lucide:circle-1:: Test TTS Voice
-
-- Click "Test Voice" button
-- Listen if voice broadcast is normal
-- If there is a problem, return to the previous step to adjust settings
-
-#### ::lucide:circle-2:: Test Music Playback
-
-- Click "Test Animation Music" button
-- Click "Test Result Music" button
-- Check if music plays normally
-- If there is a problem, return to the previous step to adjust settings
-
-#### ::lucide:circle-3:: Test ClassIsland Integration
-
-- Click "Test Integration" button
-- Check if connection with ClassIsland is normal
-- If there is a problem, return to the previous step to adjust settings
-
-::: tip Suggestion
-It is recommended to test all functions to ensure correct configuration before continuing.
-:::
-
----
-
-## ::lucide:circle-9:: Links Page
-
-### ::lucide:layout:: Page Content
-
-Provides related links for you to get more information and support.
-
-### ::lucide:mouse-pointer-click:: Operation Steps
-
-#### View Links
-
-| Link | Description |
-|------|------|
-| **GitHub** | View source code and submit issues |
-| **Bilibili** | Watch video tutorials |
-| **Documentation** | View detailed documentation |
-| **Organization Site** | Learn about organization info |
-| **Feedback** | Submit feedback |
-
-#### Complete Setup
-
-Click **"Finish"** button to end the setup process.
-
-::: tip Setup Completed
-After setup is complete, the software will remember your configuration. If you need to reconfigure, you can find relevant options in settings.
-:::
-
----
-
-## ::lucide:party-popper:: Congratulations on Completing Setup!
-
-You have completed the initial configuration of SecRandom! You can now start using the software.
-
-### ::lucide:play:: Quick Start
-
-| Action | Shortcut |
-|------|----------|
-| **Random Roll Call** | Right-click tray icon → "Roll Call" |
-| **Random Lottery** | Right-click tray icon → "Lottery" |
-| **View History** | Right-click tray icon → "History" |
-| **Open Settings** | Right-click tray icon → "Settings" |
-
-### ::lucide:footprints:: Next Steps
-
-- ::lucide:book-open:: Read [User Interface Introduction](../guide/interface.md) to learn more about interface functions
-- ::lucide:settings:: View [Software Settings Tutorial](../settings/basic.md) to learn deeply about various settings
-- ::lucide:target:: Explore [Core Functions](../core-functions/person-extraction.md) to unleash the full potential of the software
-
----
-
-## ::lucide:life-buoy:: Need Help?
-
-If you encounter problems during the configuration process, you can get help through the following ways:
-
-- ::lucide:library:: View [FAQ](../../faq/trouble.md)
-- ::lucide:message-circle:: Join [QQ Group](https://qm.qq.com/q/PCqYgev4Em)
-- ::lucide:bug:: Submit [GitHub Issues](https://github.com/SECTL/SecRandom/issues)
-- ::lucide:message-circle:: Join [QQ Channel](https://pd.qq.com/s/4x5dafd34?b=9)
-- ::lucide:message-circle:: Join [Discord Server](https://discord.gg/PmE7nPbha)
-
-::: tip Feedback
-Your feedback is very important to us! If you have any suggestions or find problems, please feel free to tell us.
-:::
+### What if importing a list fails during setup?
+Check the file format (`.xlsx`, `.xls`, `.csv` supported, first row as column names) and confirm the column mapping is correct. You can also skip the import and handle it later in **Settings → List Management**.

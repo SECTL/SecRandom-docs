@@ -1,70 +1,138 @@
 ---
 title: List Management
-createTime: 2026/01/01 22:26:56
+createTime: 2026/08/14 10:00:00
 ---
 
-> **Efficiently manage your student lists and lottery lists**
->
-> Through the intuitive list management interface, easily create, import, export, and maintain your student lists and lottery lists.
+# List Management
 
-## ::lucide:list:: Roll Call List
+::: tip Version Notice
+This document corresponds to the **v3** "Settings → List Management" page. v3 is in Alpha stage; settings may change with versions, please refer to the actual interface.
+:::
 
-### ::lucide:users:: Class Management
+> **Efficient management** - Create, import, export and maintain roll call lists and lottery pools through an intuitive list management interface.
 
-- **Set Class Name**: Set or modify the name of the class currently being managed
-- **Select Class**: Select a class from existing classes
+## List Structure
 
-### ::lucide:file-input:: List Import and Export
+v3's list management contains four sub-pages:
 
-- **Import Student List**: Import student list from file. Supported formats: TXT, CSV, Excel
-- **Export Student List**: Export student list to file. Supported formats: TXT, CSV, Excel
+| Page | Description |
+|------|-------------|
+| **Roll Call Lists** | Manage multiple student lists |
+| **Roll Call Table** | Manage roll call list data in table form |
+| **Lottery Lists** | Manage multiple prize pools |
+| **Lottery Table** | Manage lottery pool data in table form |
 
-### Information Management
+---
 
-- **Set Name**: Modify the name of the selected student
-- **Set Gender**: Set the gender of the selected student (for gender selection mode)
-- **Set Group**: Set the group of the selected student (for group selection mode)
-- **Tag Settings**: Set custom tags for students for easier management and filtering
+## 1. Roll Call Lists
 
-## ::lucide:gift:: Lottery List
+### 1.1 Current List
 
-### Prize Pool Management
+**Current List**: choose the member list to view or import
 
-- **Set Prize Pool Name**: Set or modify the name of the prize pool currently being managed
-- **Select Prize Pool**: Switch and select different prize pools for management
+- Switch the current list via the dropdown
+- After switching, the member list below refreshes to that list's data
 
-### ::lucide:file-input:: Prize Import and Export
+### 1.2 List Operations
 
-- **Import Prize List**: Import prize list from file. Supported formats: TXT, CSV, Excel
-- **Export Prize List**: Export prize list to file. Supported formats: TXT, CSV, Excel
+- **New List**: create a new roll call list
+- **Rename**: rename the current list
+- **Delete List**: delete the current list (irreversible)
 
-### Prize Information Management
+### 1.3 Member Management
 
-- **Set Prize**: Modify the name of the selected prize
-- **Set Weight**: Set the winning weight of the selected prize (higher weight means higher probability)
-- **Tag Settings**: Set custom tags for prizes
-- **Set Quantity**: Set the quantity of the selected prize (for recording purposes only, does not affect selection logic)
+- **Add Member**: enter ID/Number or Name (at least one), optionally gender, group, tags
+- **Delete Member**: delete selected members
+- **Refresh**: refresh the member list
 
-## ::lucide:list:: List Management Tips
+#### Fairness Tip When Adding Members
+When all existing members in a list have non-zero draw counts, adding new members may increase their draw probability with fair drawing. The software asks whether to **delete this list's history**; clearing it improves fair drawing.
 
-### ::lucide:play:: Efficient Usage Tips
+### 1.4 Import Member List
 
-**Batch Operations**
-- Priority use the import function to batch add student or prize information
-- Regularly export lists for backup to prevent data loss
+**Supported formats**: `.xlsx`, `.xls`, `.csv` (first row as column names)
 
-**Category Management**
-- Create independent student lists for different classes
-- Create independent lottery prize pools for different activities
+**Steps**:
+1. Click the **"Import List"** button
+2. Select a local file (Excel/CSV)
+3. Set **column mapping**:
+   - ID/Number column, Name column (at least one)
+   - Gender, Group, Tags columns (optional)
+4. Preview the data to import
+5. Handle duplicate names (keep duplicates / auto-rename)
+6. Confirm the overwrite prompt (if the current list has members)
+7. Click **"Import"** to finish
 
-**Information Completion**
-- Complete student information as much as possible (name, gender, group, etc.)
-- Reasonably set prize weights according to needs to adjust winning probability
+**Notes**:
+- Rows where both ID/Number and Name are empty are not imported
+- The system uses internal identifiers to distinguish records; duplicates do not cause data confusion
 
-### ::lucide:mouse-pointer-click:: Quick Operations
+### 1.5 Export Member List
 
-- **Quick Switch**: Use "Select Class" or "Select Prize Pool" function to quickly switch between different lists
-- **Batch Modification**: Perform batch information modification through export-edit-import
-- **Data Synchronization**: Regularly backup list data to ensure information security
+1. Click the **"Export List"** button
+2. Choose the save path and file format
+3. Click **"Save"** to finish
 
-> **More Help**: If you have any questions about list management, please check [FAQ](/faq/) or [contact us](https://github.com/SECTL/SecRandom-docs/issues) for support!
+---
+
+## 2. Lottery Lists (Pools)
+
+### 2.1 Current Pool
+
+**Current Pool**: choose the lottery pool to view or import
+
+### 2.2 Pool Operations
+
+- **New Pool**: create a new pool
+- **Rename**: rename the current pool
+- **Delete Pool**: delete the current pool (irreversible)
+
+### 2.3 Prize Management
+
+- **Add Prize**: enter ID/Number or prize name (at least one), optionally weight, quantity, tags
+  - Weight and quantity must be valid numbers greater than 0
+- **Delete Prize**: delete selected prizes
+
+### 2.4 Import Lottery Pool
+
+**Supported formats**: `.xlsx`, `.xls`, `.csv` (first row as column names)
+
+**Steps**:
+1. Click the **"Import Pool"** button
+2. Select a local file (Excel/CSV)
+3. Set **column mapping**:
+   - ID/Number column, prize name column (at least one)
+   - Weight, quantity, tags columns (optional)
+4. Preview, handle duplicates, confirm overwrite, then import
+
+### 2.5 Export Lottery Pool
+
+Similar to roll call list export: choose the save path and format, then export.
+
+---
+
+## 3. List Transfer (New in v3)
+
+v3 supports transferring lists between devices via QR codes, session codes, etc.:
+
+### Export to Another Device
+- **QR Code Export**: encode the list/settings as a QR code; scan it with another device to import
+- **Session Code Export**: generate a session code; enter it on another device to transfer
+- **Quick/Offline Export**: export quickly via a local file
+
+### Import from Another Device
+- **Camera Scan**: scan the QR code shown on another device with the camera (camera selection supported)
+- **Session Code Import**: enter the other device's session code
+- **File Import**: choose the file exported from the other device
+
+**Notes**:
+- List transfer has a unified transfer size limit
+- Camera scanning supports selecting platform cameras (Windows/Linux/macOS/Android)
+- Cloud sync links and copy buttons are supported
+
+---
+
+## Related Pages
+
+- Picking settings (default list/pool): see [Picking Settings](/en/doc/settings/pick)
+- History: see [History](/en/doc/settings/history)

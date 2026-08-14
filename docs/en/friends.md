@@ -3,26 +3,22 @@ pageLayout: friends
 title: Friends
 editLink: false
 list:
-  - name: Python
-    link: https://www.python.org/
-    avatar: /icon/python.png
-    desc: Powerful programming language, simple and easy to learn
-  - name: PySide6
-    link: https://doc.qt.io/qtforpython/
-    avatar: /icon/qt.png
-    desc: Qt for Python, build cross-platform GUI applications
-  - name: QFluentWidgets
-    link: https://qfluentwidgets.com/
-    avatar: /icon/qfluentwidgets.png
+  - name: .NET
+    link: https://dotnet.microsoft.com/
+    avatar: /icon/dotnet.png
+    desc: Cross-platform development framework, powerful and easy to use
+  - name: Avalonia
+    link: https://avaloniaui.net/
+    avatar: /icon/avalonia.png
+    desc: Cross-platform XAML UI framework
+  - name: FluentAvalonia
+    link: https://github.com/amwx/FluentAvalonia
+    avatar: /icon/fluentavalonia.png
     desc: Elegant Fluent Design component library
-  - name: Loguru
-    link: https://github.com/Delgan/loguru
-    avatar: /icon/loguru.png
-    desc: Python logging library, simple and easy to use
-  - name: uv
-    link: https://github.com/astral-sh/uv
-    avatar: /icon/uv.png
-    desc: Ultra-fast Python package manager
+  - name: Serilog
+    link: https://serilog.net/
+    avatar: /icon/serilog.png
+    desc: .NET logging library, simple and easy to use
   - name: Smart Teach Union
     link: https://forum.smart-teach.cn/
     avatar: /icon/SmartTeach.png

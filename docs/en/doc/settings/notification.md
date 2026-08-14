@@ -1,67 +1,123 @@
 ---
 title: Notification Settings
-createTime: 2026/01/10 00:00:00
+createTime: 2026/08/14 10:00:00
 ---
 
-> **Customize your notification experience**
->
-> Through flexible notification configuration, get the best reminder effect during use. All settings are saved in real-time and take effect automatically.
+# Reminder Settings (Notification)
 
-## ::lucide:settings:: Basic Settings
-
-**Call Notification Service**: After enabling, call the notification service to send roll call results
-
-**Animation Effect**: Control whether to display roll call notification window animation effect
-
-**Notification Service Type**
-- SecRandom: Use SecRandom built-in notification service
-- ClassIsland: Call ClassIsland notification interface for display (requires ClassIsland linkage plugin installation)
-- SecRandom + ClassIsland: Use both methods for notification simultaneously
-
-:::warning
-Before using ClassIsland service, you need to install the ClassIsland plugin and NET.8 runtime in ClassIsland.
+::: tip Version Notice
+This document corresponds to the **v3** "Settings → Reminder Settings" page. v3 is in Alpha stage; settings may change with versions, please refer to the actual interface.
 :::
 
-**Do not show floating notification when exceeding threshold**: When the number of selected people exceeds the set value, do not show floating notification, but open the main window to display results.
+> **Instant feedback** - Configure notifications after draws so results are clear and perceptible.
 
-**Floating Notification Threshold**: Set the number threshold for triggering transfer to main interface notification
+## Reminder Settings Page
 
-### ::lucide:app-window:: Floating Window Mode
+v3's reminder settings contain the following sub-pages:
 
-**Monitor Selection**: Select the monitor to display the roll call notification floating window
+| Page | Description |
+|------|-------------|
+| **Voice & Music** | Voice broadcast engine, voice, volume and draw music (see [Voice & Music](/en/doc/settings/voice)) |
+| **Default Notification Settings** | Global default notification configuration |
+| **Roll Call Notification Settings** | Notification configuration after roll call |
+| **Quick Draw Notification Settings** | Notification configuration after quick draw |
+| **Lottery Notification Settings** | Notification configuration after lottery |
 
-**Floating Window Position**: Set the screen display position of the roll call notification floating window
-- Center: Display in the center of the screen
-- Top: Display in the center of the top of the screen
-- Bottom: Display in the center of the bottom of the screen
-- Left: Display in the center of the left side of the screen
-- Right: Display in the center of the right side of the screen
-- Top Left: Display in the top left corner of the screen
-- Top Right: Display in the top right corner of the screen
-- Bottom Left: Display in the bottom left corner of the screen
-- Bottom Right: Display in the bottom right corner of the screen
+All notification pages share the same configuration structure and support **"Enable Override"**: when enabled, that draw type uses its own configuration to override the default notification settings.
 
-**Horizontal Offset**: Adjust the horizontal offset of the roll call notification floating window relative to the default position (pixels)
-- The larger the value, the more the floating window offsets to the right
-- The smaller the value, the more the floating window offsets to the left
+---
 
-**Vertical Offset**: Adjust the vertical offset of the roll call notification floating window relative to the default position (pixels)
-- The larger the value, the more the floating window offsets downward
-- The smaller the value, the more the floating window offsets upward
+## Notification Service
 
-**Transparency**: Adjust the transparency of the roll call notification floating window
-- The smaller the value, the more transparent (0-100)
+### Notification Service Type
+**Description**: choose how notifications are delivered
 
-**Floating Window Auto Close Time**: Set the automatic close time of the floating window
-- Set to 0 to not close automatically, need to click three times continuously to close manually
+| Option | Description |
+|--------|-------------|
+| **SecRandom Built-in Notification** | use the built-in notification window to show results |
+| **ClassIsland** | deliver via ClassIsland (requires the SecRandom4Ci plugin) |
+| **Both** | use both built-in notifications and ClassIsland |
 
-### ::lucide:globe:: ClassIsland Notification Service
+### Notification Service Failure Fallback
+**Description**: automatically fall back to the built-in notification service when the selected service fails to send
 
-**Notification Display Duration**: Set ClassIsland notification display duration (seconds)
-- Control the display time of ClassIsland notifications to ensure you have enough time to view the notification content
+- On: when the selected external service cannot deliver, the built-in service continues showing the notification
+- Off: no notification shown when the external service fails
 
-:::tip
-- If `Simplified Settings Mode` is enabled in `Quick Draw Notification Settings`, only some settings will be displayed in this section, and the rest of the settings will follow the roll call notification settings.
-- You can disable `Simplified Settings Mode` to apply special settings for quick draw on this page.
-- To view and edit ClassIsland notification service related settings, please go to `Link Settings` settings card
+### Notification Display
+**Description**: specify which display the notification window appears on; defaults to the primary display
+
+---
+
+## Default Notification Settings
+
+### Enable Notification
+**Description**: show a notification with the result after a draw
+
+### Notification Animation
+**Description**: play enter and exit animations when showing the notification
+
+### Notification Position
+**Description**: choose where the notification window appears
+
+Options: Top-Left, Top, Top-Right, Left, Center, Right, Bottom-Left, Bottom, Bottom-Right
+
+### Notification Offset
+**Description**: horizontal and vertical offset of the notification window from its default position
+
+### Notification Opacity
+**Description**: opacity of the notification window
+
+### Notification Display Duration
+**Description**: seconds the notification service shows the result
+
+### Use Main Window When Exceeding Threshold
+**Description**: when the draw count exceeds the threshold, do not show a window notification; only show the result in the main window
+
+### Notification Threshold
+**Description**: above this count, results are shown in the main window
+
+---
+
+## Built-in Notification Window
+
+### Window Display
+**Description**: specify which display the built-in notification window appears on; defaults to the primary display
+
+### Window Position
+**Description**: choose the display position of the built-in notification window
+
+### Window Offset
+**Description**: horizontal and vertical offset of the built-in notification window from its default position
+
+### Window Opacity
+**Description**: opacity of the built-in notification window
+
+### Window Close Time
+**Description**: seconds the built-in notification window stays before auto-closing
+
+---
+
+## Per-Draw-Type Notifications
+
+Roll call / quick draw / lottery each configure independently and can override the defaults:
+
+| Setting | Roll Call | Quick Draw | Lottery |
+|---------|-----------|------------|---------|
+| Enable notification | ✓ | ✓ | ✓ |
+| Notification animation | ✓ | ✓ | ✓ |
+| Notification position | ✓ | ✓ | ✓ |
+| Notification offset | ✓ | ✓ | ✓ |
+| Notification opacity | ✓ | ✓ | ✓ |
+| Notification duration | ✓ | ✓ | ✓ |
+| Use main window when exceeding threshold | ✓ | ✓ | ✓ |
+| Notification threshold | ✓ | ✓ | ✓ |
+
+::: tip
+The threshold meaning differs per draw type: roll call / quick draw use "draw count", lottery uses "prize count".
 :::
+
+## Related Pages
+
+- Voice broadcast: see [Voice & Music](/en/doc/settings/voice)
+- Notification window style (quick draw window): see [Floating Window Settings](/en/doc/settings/floating-window)

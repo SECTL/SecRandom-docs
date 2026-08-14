@@ -66,7 +66,7 @@ config:
         details: 按引导完成基础配置，建立首个可用课堂名单。路径：/doc/guide/software-guide
       - title: 第三步：开始抽取
         icon: lucide:play
-        details: 先用默认设置开始，再根据课堂反馈逐步细化。路径：/doc/settings/basic
+        details: 先用默认设置开始，再根据课堂反馈逐步细化。路径：/doc/settings/general-basic
 
   - type: features
     title: 管理与集成能力

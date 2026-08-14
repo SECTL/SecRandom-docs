@@ -1,54 +1,141 @@
 ---
 title: Other Settings
-createTime: 2026/01/17 22:59:36
+createTime: 2026/08/14 10:00:00
 ---
 
-> **Other function settings**
->
-> Through flexible shortcut key and update settings, improve your usage efficiency. All settings are saved in real-time and take effect automatically.
+# Other Settings
 
-## ::lucide:keyboard:: Shortcut Key Settings
-
-**Enable Shortcut Keys**: After enabling, you can use shortcut keys for quick operations
-:::tip
-Shortcut keys are all global shortcut keys and can be triggered on any page
-:::
-- On: Enable shortcut key function
-- Off: Disable shortcut key function
-
-### ::lucide:settings:: Shortcut Key Settings
-
-Set shortcut keys for opening functions
-
-:::warning
-- Shortcut key settings should avoid conflicts with other software to prevent accidental operations
+::: tip Version Notice
+This document corresponds to the **v3** settings pages (page management, shortcuts, updates, about, logs, etc.). v3 is in Alpha stage; settings may change with versions, please refer to the actual interface.
 :::
 
-## ::lucide:settings:: Update Settings
+> **Deep customization** - Page management, global shortcuts, update strategy and about info in one place.
 
-**Force Check for Updates**: Force the application to update to the latest version on the current channel, even if this version is older than the application's current version.
+## Page Management
 
-**Automatically Check for Updates and Install**: Set the automatic update mode of the application
-- Never automatically update: Do not automatically check for updates at all
-- Automatically check for updates and notify: Automatically check for updates and notify users when there is a new version
-- Automatically check for updates and download: Automatically check for updates and download, but do not automatically install
-- Automatically download and install updates: Automatically check, download, and install updates
+### Enable Lottery
+**Description**: whether to enable the lottery feature
 
-**Update Channel Selection**: Select the software update release channel
-- Stable Channel: Get fully tested stable versions
-- Release Preview Channel: Preview features in the next major version in advance, containing newer features and improvements, may have minor defects
-- Test Channel: Receive the latest test version updates of the application, containing the latest features and improvements, may contain defects and unfinished features
+- On: shows the lottery entry
+- Off: hides the lottery entry and rejects lottery shortcuts and external commands
 
-**Update Source Selection**: Select the software update download source
-- Auto-detect latency: Automatically detect update source latency and select the fastest update source to download updates
-- github: Download updates from GitHub, slower access in China
-- ghfast/ghproxy: Download updates from ghfast/ghproxy, faster speed
-- ghproxy.sectl.cn: Official GitHub mirror source, fastest speed
+### Roll Call Control Panel Position
+**Description**: show the roll call page control panel on the left or right side of the main content
 
-:::tip
-Other settings recommendations:
-1. Set shortcut keys for commonly used functions according to personal usage habits
-2. Regularly check for software updates to get the latest features and security fixes
-3. Choose the appropriate update channel according to stability needs
-4. Choose an update source with better network conditions to improve update speed
+- Left / Right
+
+### Roll Call Page Controls
+**Description**: control which controls appear in the roll call page side panel
+
+Available: Reset Button, Count Adjust, Start Button, List Select, Range Select, Gender Select, Remaining List Button, Count Statistics
+
+### Lottery Control Panel Position
+**Description**: show the lottery page control panel on the left or right side of the main content
+
+- Left / Right
+
+### Lottery Page Controls
+**Description**: control which controls appear in the lottery page side panel
+
+Available: Reset Button, Quantity Adjust, Start Button, Pool Select, Member List Select, Range Select, Gender Select, Remaining List Button, Prize Count Statistics
+
+## Shortcuts
+
+### Enable Shortcuts
+**Description**: enable global shortcut responses
+
+### Shortcut List
+| Shortcut | Function |
+|----------|----------|
+| Open Roll Call Page | open the roll call page (e.g. Ctrl+Alt+R) |
+| Execute Quick Draw | execute a quick draw (e.g. Ctrl+Alt+Q) |
+| Open Lottery Page | open the lottery page (e.g. Ctrl+Alt+L) |
+| Increase Roll Call Count | increase roll call count |
+| Decrease Roll Call Count | decrease roll call count |
+| Increase Lottery Quantity | increase lottery quantity |
+| Decrease Lottery Quantity | decrease lottery quantity |
+| Start/Stop Roll Call | start or stop roll call |
+| Start/Stop Lottery | start or stop lottery |
+
+### Setting Shortcuts
+1. Expand the corresponding shortcut setting
+2. Press the desired combination (e.g. `Ctrl+Alt+R`)
+3. `Esc` cancels input
+
+**Notes**:
+- Combinations already assigned to other actions show a "conflict" warning
+- "Clear Shortcut" removes a set combination
+
+## Update Settings
+
+### Auto Update Mode
+**Description**: when a new version is found by automatic checks, choose to notify, download or install
+
+| Option | Description |
+|--------|-------------|
+| **Off** | do not check for updates automatically |
+| **Auto-check and Notify** | notify when a new version is found |
+| **Auto-check and Download** | download the new version automatically |
+| **Auto-check and Install** | download and install the new version automatically |
+
+### Update Channel
+**Description**: choose stable or preview updates
+
+- **Stable**: official releases
+- **Preview**: preview releases (incl. beta/alpha)
+
+### Update Source
+**Description**: choose the update check source
+
+| Option | Description |
+|--------|-------------|
+| **Auto (Recommended)** | tries SECTL official, GitHub mirror and GitHub in order |
+| **SECTL** | official distribution (stable updates only) |
+| **GitHub Mirror** | GitHub mirror source |
+| **GitHub** | GitHub official source |
+
+### Check for Updates
+Click **"Check for Updates"** to check the latest version on the current channel. Only checks the signed full release manifest; does not download in the background.
+
+**Force Check for Updates**: checks the latest version on the current channel even if it is lower than the current version.
+
+### Update Status
+- Last check time
+- Update status: not checked / checking / up to date / update available / downloading / verifying / ready to install / restarting to apply
+
+::: tip
+Before deployment, the signed release manifest and the artifact's length and hash are verified to ensure the package is complete and trustworthy.
 :::
+
+## About
+
+The "About SecRandom" page shows:
+- App icon, name, version
+- Banner
+- Open source license (GNU GPLv3)
+- Support & community links (QQ group, Bilibili, Afdian, etc.)
+- Thanks to contributors
+
+## Log Viewer
+
+The "Log Viewer" page shows program run logs for troubleshooting. It also supports opening the log directory from the software.
+
+## Open Specific Directories
+
+Supported from within the software:
+- **Log Directory**: run log location
+- **Data Directory**: lists, history, proofs and other data
+- **App Directory**: program installation location
+
+## Feedback
+
+Submit bug reports and feature suggestions directly from the software (based on Sentry reporting).
+
+## Debug
+
+The Debug page is for development and testing some software features (normal users generally don't need it).
+
+## Related Pages
+
+- Basic behavior settings: see [Basic Settings](/en/doc/settings/general-basic)
+- Floating window: see [Floating Window Settings](/en/doc/settings/floating-window)

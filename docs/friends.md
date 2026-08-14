@@ -4,26 +4,22 @@ title: 友情链接
 editLink: false
 cols: 3
 list:
-  - name: Python
-    link: https://www.python.org/
-    avatar: /icon/python.png
-    desc: 强大的编程语言，简单易学
-  - name: PySide6
-    link: https://doc.qt.io/qtforpython/
-    avatar: /icon/qt.png
-    desc: Qt for Python，构建跨平台GUI应用
-  - name: QFluentWidgets
-    link: https://qfluentwidgets.com/
-    avatar: /icon/qfluentwidgets.png
-    desc: 优雅的Fluent Design组件库
-  - name: Loguru
-    link: https://github.com/Delgan/loguru
-    avatar: /icon/loguru.png
-    desc: Python日志库，简单好用
-  - name: uv
-    link: https://github.com/astral-sh/uv
-    avatar: /icon/uv.png
-    desc: 极速的Python包管理器
+  - name: .NET
+    link: https://dotnet.microsoft.com/
+    avatar: /icon/dotnet.png
+    desc: 跨平台开发框架，强大易用
+  - name: Avalonia
+    link: https://avaloniaui.net/
+    avatar: /icon/avalonia.png
+    desc: 跨平台 XAML UI 框架
+  - name: FluentAvalonia
+    link: https://github.com/amwx/FluentAvalonia
+    avatar: /icon/fluentavalonia.png
+    desc: 优雅的 Fluent Design 组件库
+  - name: Serilog
+    link: https://serilog.net/
+    avatar: /icon/serilog.png
+    desc: .NET 日志库，简单好用
   - name: 智教联盟论坛
     link: https://forum.smart-teach.cn/
     avatar: /icon/SmartTeach.png
