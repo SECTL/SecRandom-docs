@@ -82,7 +82,7 @@ config:
         details: 抽取结果即时播报，提升反馈效率与结果可感知性。
       - title: IPC / URL 调用
         icon: lucide:link
-        details: 支持自动化脚本与外部工具联动。路径：/doc/resources/ipc_url
+        details: 支持自动化脚本与外部工具联动。路径：/dev/ipc_url
       - title: 安全验证
         icon: lucide:lock
         details: 支持密码、TOTP、U 盘等校验方式，关键操作更可控。
