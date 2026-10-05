@@ -108,4 +108,4 @@ Use **transfer ownership** for handovers (effective after both sides confirm). *
 
 ### Can I host my own server? How long is the audit kept?
 
-The **server and Web console are not open source**, only the vendor-hosted service exists, and **self-hosting is not supported yet**. No audit retention period is promised; export from the console if you need an archive.
+The **server and Web console are not open source**, only the vendor-hosted service exists, and **self-hosting is not supported yet**. The audit log is **kept for 14 days**; older records are cleaned up automatically, so export from the console if you need a long-term archive.

@@ -29,7 +29,7 @@ Only the **owner** can dissolve a group. The entry sits in the group's danger zo
 - The group you create next is **a different group** (different group ID), so devices must enter the new ID.
 
 ::: warning Export the audit before dissolving
-Once the group is gone, its audit page is gone too. Export the CSV beforehand if you need a record.
+Once the group is gone, its audit page is gone too — and the log itself is only kept for 14 days. Export the CSV beforehand if you need a record.
 :::
 
 ## Members and four roles
@@ -77,6 +77,6 @@ Visible to **admins and above**. It records group creation / rename / **dissolut
 - **Export CSV** (exports the current filter, up to 5000 rows);
 - The audit **never records passwords, tokens or student names**.
 
-::: warning Retention
-No retention period is promised; export regularly if you need a long-term archive.
+::: warning Kept for 14 days only
+The audit log is **kept for 14 days**, after which older records are cleaned up automatically. Export the CSV regularly if you need a long-term archive.
 :::
