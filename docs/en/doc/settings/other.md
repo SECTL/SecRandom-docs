@@ -6,7 +6,7 @@ createTime: 2026/08/14 10:00:00
 # Other Settings
 
 ::: tip Version Notice
-This document corresponds to the **v3** settings pages (page management, shortcuts, updates, about, logs, etc.). v3 is in Alpha stage; settings may change with versions, please refer to the actual interface.
+This document corresponds to the **v3** settings pages (page management, shortcuts, updates, about, logs, etc.). Settings may change with versions; please refer to the actual interface.
 :::
 
 > **Deep customization** - Page management, global shortcuts, update strategy and about info in one place.
@@ -116,6 +116,40 @@ The "About SecRandom" page shows:
 - Support & community links (QQ group, Bilibili, Afdian, etc.)
 - Thanks to contributors
 
+## More Options
+
+The **"More options..."** menu at the top right of the settings page gathers the log, diagnostics and data migration entries:
+
+| Menu item | Description |
+|-----------|-------------|
+| **View Logs** | opens the log viewer (see "Log Viewer" below) |
+| **Export Diagnostic Data** | immediately exports sanitized runtime information and restricted logs for troubleshooting |
+| **Export Settings** | exports the current settings as a SecRandom v3 settings file (`.json`) |
+| **Import Settings** | imports settings only from a SecRandom v3 settings file, overwriting the current configuration |
+| **Export All Data** | exports all non-credential data and settings (`.zip`) |
+| **Import All Data** | imports all data only from a SecRandom v3 backup |
+| **Announcements** | opens the announcements page |
+| **Feedback** | opens the feedback drawer for bug reports or feature suggestions |
+| **Open Log / Data / App Directory** | opens the corresponding directory in the file manager |
+
+### Export Diagnostic Data
+
+Two packages are offered:
+
+- **Standard package**: all sanitized logs and runtime information
+- **Extended package**: everything in the standard package plus a sanitized settings snapshot, profile count summary and sanitized crash reports
+
+Neither package contains lists, history contents or security credentials.
+
+### Export / Import Settings and All Data
+
+- **Export Settings** and **Import Settings** each offer four methods: **export to file / import from file**, **quick QR**, **offline QR** and **session code** (see [List Management](/en/doc/settings/listmg) for how each method works)
+- **Export All Data** packages all non-credential data and settings; **Import All Data** only accepts SecRandom v3 backups
+
+::: warning A snapshot is created before importing
+Confirming an import first creates a recovery snapshot (a settings snapshot for importing settings, a full snapshot for importing all data); nothing is imported if the snapshot fails. Security credentials such as the password, TOTP, USB binding and lock state are never imported.
+:::
+
 ## Log Viewer
 
 The "Log Viewer" page shows program run logs for troubleshooting. It also supports opening the log directory from the software.
@@ -127,9 +161,25 @@ Supported from within the software:
 - **Data Directory**: lists, history, proofs and other data
 - **App Directory**: program installation location
 
+## Announcements
+
+The "Announcements" page shows official announcements (with pinned entries); click **"Refresh announcements"** to fetch them again. When loading fails the page reports that the announcement service cannot be reached and asks you to check your network.
+
 ## Feedback
 
-Submit bug reports and feature suggestions directly from the software (based on Sentry reporting).
+Two entry points: **More options... → Feedback**, and **"In-app feedback"** on the crash recovery page.
+
+**Description**: Submit bug reports, feature or experience suggestions directly from the software
+
+**Steps**:
+1. Choose the feedback type (bug / new feature / improvement)
+2. Fill in the short title, expected behavior, actual result, reproduction steps and other details in the form
+3. Optionally enter a contact email so we can reply when needed
+4. Click **"Submit feedback"**
+
+**Notes**:
+- Submitting automatically generates and uploads the same **sanitized ZIP attachment** as "Export Diagnostic Data" to help locate the problem
+- If that ZIP exceeds the upload limit the feedback is not submitted; clear the logs and retry, or use [GitHub Issues](https://github.com/SECTL/SecRandom/issues) instead
 
 ## Debug
 

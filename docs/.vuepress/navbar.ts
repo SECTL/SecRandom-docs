@@ -10,6 +10,7 @@ const zhNavbar = defineNavbarConfig([
       { text: '开发', icon: 'lucide:code-2', link: '/dev/' },
     ],
   },
+  { text: '集控', icon: 'lucide:gauge', link: '/control/' },
   { text: '下载', icon: 'ic:outline-download', link: '/download' },
   {
     text: '常见问题',
@@ -30,6 +31,7 @@ const enNavbar = defineNavbarConfig([
       { text: 'Development', icon: 'lucide:code-2', link: '/en/dev/' },
     ],
   },
+  { text: 'Control', icon: 'lucide:gauge', link: '/en/control/' },
   { text: 'Download', icon: 'ic:outline-download', link: '/en/download' },
   {
     text: 'FAQ',

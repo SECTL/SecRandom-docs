@@ -6,7 +6,7 @@ createTime: 2026/08/14 10:00:00
 # Basic Settings (General)
 
 ::: tip Version Notice
-This document corresponds to the **v3** "Settings → General → Basic" page. v3 is in Alpha stage; settings may change with versions, please refer to the actual interface.
+This document corresponds to the **v3** "Settings → General → Basic" page. Settings may change with versions; please refer to the actual interface.
 :::
 
 Basic settings manage the core behavior of the software, including startup behavior, window behavior, language and crash recovery.
@@ -96,6 +96,11 @@ secrandom://lottery/draw     # start lottery
 
 **Notes**: Some versions require a restart to take effect
 
+### Disable Crashed Plugins Automatically
+**Description**: Automatically disable a plugin that caused a crash so it is not loaded on the next start
+
+**How to use**: Toggle the switch on or off
+
 ## Crash Recovery
 
 ### Crash Recovery
@@ -114,6 +119,21 @@ secrandom://lottery/draw     # start lottery
 **Notes**:
 - Crash recovery prompt handling happens before single-instance detection
 - A normal restart first releases the single-instance service before restarting
+
+## Performance
+
+### Low-Spec Mode
+**Description**: Turns off page and dialog animations, lowers image scaling quality, and disables the translucent background of the main and settings windows
+
+**Scenarios**:
+- Weaker devices, or graphics drivers with poor animation/transparency support, to reduce UI stutter
+- Remote desktop or virtual machine environments where you want to lower rendering cost
+
+**How to use**: Toggle the switch on or off
+
+**Notes**:
+- **Does not affect draw animations or the floating window**
+- Requires a restart to take effect
 
 ## Related Pages
 

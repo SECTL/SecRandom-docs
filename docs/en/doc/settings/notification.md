@@ -6,7 +6,7 @@ createTime: 2026/08/14 10:00:00
 # Reminder Settings (Notification)
 
 ::: tip Version Notice
-This document corresponds to the **v3** "Settings → Reminder Settings" page. v3 is in Alpha stage; settings may change with versions, please refer to the actual interface.
+This document corresponds to the **v3** "Settings → Reminder Settings" page. Settings may change with versions; please refer to the actual interface.
 :::
 
 > **Instant feedback** - Configure notifications after draws so results are clear and perceptible.

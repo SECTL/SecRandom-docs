@@ -8,10 +8,6 @@ createTime: 2026/08/14 10:00:00
 > **在公平与随机的交汇处，SecRandom 矗立如灯塔**  
 > 面向课堂、团队、活动、决策等场景精心设计的抽取工具，让每一次选择都公平透明。
 
-::: danger 版本警告
-当前 **v3 版本仍处于 Alpha 阶段**，请勿在生产环境使用。当前版本可能存在未知 Bug，仅供用户体验。使用中如遇问题，欢迎前往 [GitHub Issues](https://github.com/SECTL/SecRandom/issues) 反馈！
-:::
-
 <span id="sys_cpb_tip" style="display: block; padding-top: 80px; margin-top: -80px;"></span>
 ::: warning 系统兼容性提示
 重要提示：自 v1.3.1.5 版本起，SecRandom 已停止对 `Windows 7` 和 `32 位` 系统的支持。我们强烈建议使用 Windows 10 或更高版本系统以获取后续功能和稳定更新。
@@ -93,7 +89,7 @@ SecRandom 本体基于 GNU GPL-3.0 协议开源。你可以自由使用、修改
 - 支持崩溃恢复，崩溃后可显示报错信息并自动重启
 
 ### 插件与扩展
-- 支持插件系统，可通过 `.srpx` 包扩展功能（开发中）
+- 支持插件系统，可通过 `.srpx` 插件包或内置插件市场扩展功能
 
 ## 验证边界
 

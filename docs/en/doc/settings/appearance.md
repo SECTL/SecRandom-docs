@@ -6,7 +6,7 @@ createTime: 2026/08/14 10:00:00
 # Appearance Settings (Personalized)
 
 ::: tip Version Notice
-This document corresponds to the **v3** "Settings → Personalized → Appearance" page. v3 is in Alpha stage; settings may change with versions, please refer to the actual interface.
+This document corresponds to the **v3** "Settings → Personalized → Appearance" page. Settings may change with versions; please refer to the actual interface.
 :::
 
 > **Personalized appearance** - Customize theme, font and accent color to make SecRandom match your taste.

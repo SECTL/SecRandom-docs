@@ -6,7 +6,7 @@ createTime: 2026/08/14 10:00:00
 # Backup Settings (General)
 
 ::: tip Version Notice
-This document corresponds to the **v3** "Settings → General → Backup" page. v3 is in Alpha stage; settings may change with versions, please refer to the actual interface.
+This document corresponds to the **v3** "Settings → General → Backup" page. Settings may change with versions; please refer to the actual interface.
 :::
 
 > **Data peace of mind** - Protect your lists, history and configuration with automatic/manual backup and one-click restore.
@@ -72,6 +72,34 @@ Select a backup and click **"Delete"**; this operation cannot be undone.
 ## Backup Usage
 
 Shows the current size occupied by the backup folder for storage assessment.
+
+## Cloud Backup
+
+**Description**: Sign in to your SECTL account to upload data backups to the cloud and restore them anytime; the tab is available on desktop and mobile, and shows a sign-in prompt while signed out.
+
+| Setting | Description |
+|---------|-------------|
+| **Account status** | The SECTL account currently used for cloud sync |
+| **Cloud storage** | Cloud storage usage for the account and for this application; open the SECTL cloud storage page in a browser to manage cloud files |
+| **Cloud backup contents** | Select the data to include in the backup (same items as local backups) |
+| **Device alias** | Distinguishes this device's cloud backups and appears in the cloud file names; leave empty to use this computer's name |
+| **Back up to the cloud now** | Packages the selected data and uploads it to the cloud |
+
+### Automatic Cloud Backup
+**Description**: Backs up to the cloud on the configured interval
+
+- **Automatic backup interval**: cloud backup interval in days
+- **Automatic backup limit**: how many of this device's cloud backups to keep; 0 means unlimited, and this device's oldest backups are removed once the limit is exceeded
+- Only when the cloud space runs out are the account's oldest backups removed as well
+
+### Cloud Backup Management
+Lists uploaded cloud backups that can be **downloaded and restored** or **deleted**; a download is verified before it is restored.
+
+::: warning Note
+- Cloud backup requires signing in to a SECTL account
+- Cloud backups use **no client-side encryption**: the archive is uploaded as produced, so any device that can sign in to the account can list and restore them. Security credentials (password, TOTP, USB binding) are never included
+- Backups uploaded by the removed encryption feature stay listed but are marked as legacy encrypted and cannot be restored — only viewed or deleted
+:::
 
 ## Related Pages
 

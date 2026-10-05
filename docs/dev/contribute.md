@@ -161,8 +161,8 @@ SecRandom 项目使用统一的 GitHub Actions 工作流进行构建和发布，
 
 1. **发布构建**
 
-   - 创建符合版本号规范的 tag（格式：`v数字.数字.数字`，例如 `v3.0.0-alpha.2`）
-   - 例如：`git tag v3.0.0-alpha.2 && git push origin v3.0.0-alpha.2`
+   - 创建符合版本号规范的 tag（格式：`v数字.数字.数字`，例如 `v3.0.0`）
+   - 例如：`git tag v3.0.0 && git push origin v3.0.0`
 
 2. **手动触发**
 

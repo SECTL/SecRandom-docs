@@ -5,10 +5,6 @@ createTime: 2026/08/14 10:00:00
 
 > **Quick Start** - Complete SecRandom download, verification, and running in three steps
 
-::: danger Alpha Version Warning
-The **v3 version is currently in Alpha stage** and should not be used in production. It may contain unknown bugs and is intended for user experience only.
-:::
-
 ---
 
 ## ::lucide:list:: System Requirements Checklist
@@ -24,7 +20,9 @@ The **v3 version is currently in Alpha stage** and should not be used in product
 ### Software Environment
 | Usage Method | System Requirements | Runtime |
 |--------------|---------------------|---------|
-| **Executable** | Windows 10/11, Linux, macOS | No installation required |
+| **Installer / `portable-full`** | Windows 10/11, Linux, macOS | Self-contained, no runtime installation required |
+| **`portable-light`** | Windows 10/11, Linux, macOS | Requires the .NET 10 Desktop Runtime |
+| **Mobile** | Android / iOS | Self-contained; the iOS build is an unsigned `.ipa` |
 | **Source Code** | Windows 10/11, Linux, macOS | .NET 10 SDK |
 
 ::: tip Cross-Platform
@@ -55,8 +53,10 @@ SecRandom has stopped support for Windows 7 and 32-bit systems. We strongly reco
 
 **Steps:**
 1. Visit [GitHub Releases](https://github.com/SECTL/SecRandom/releases)
-2. Select the latest version (e.g., `v3.0.0-alpha.2`)
+2. Select the latest version (e.g., `v3.0.0`)
 3. Download the file for your platform
+
+> **Tip**: For daily use, choose the official (stable) release; preview and alpha builds are for trying new features early.
 
 ---
 
@@ -69,9 +69,9 @@ Each version's release page provides SHA256 checksum values in the following for
 
 | Filename | SHA256 Checksum |
 |----------|-----------------|
-| SecRandom-Windows-Portable-v3.0.0-alpha.2-x64.zip | `Example checksum` |
-| SecRandom-Windows-Setup-v3.0.0-alpha.2-x64.exe | `Example checksum` |
-| SecRandom-linux-Setup-v3.0.0-alpha.2-amd64.deb | `Example checksum` |
+| SecRandom-v3.0.0-win-x64-portable-full.zip | `Example checksum` |
+| SecRandom-v3.0.0-win-x64-setup.exe | `Example checksum` |
+| SecRandom-v3.0.0-linux-x64.deb | `Example checksum` |
 
 #### **Windows Verification Steps**
 1. **Open PowerShell**
@@ -98,7 +98,7 @@ Each version's release page provides SHA256 checksum values in the following for
 #### **Quick Start Checklist**
 - Download Windows version ZIP package or EXE installer
 - Extract ZIP package or run installer
-- Run `SecRandom.exe`
+- Run `SecRandomLauncher.exe`
 - Create desktop shortcut (optional)
 
 #### **Detailed Steps**
@@ -111,17 +111,17 @@ Each version's release page provides SHA256 checksum values in the following for
 
 2. **First run**
    - Navigate to the extracted folder
-   - Double-click to run `SecRandom.exe`
+   - Double-click to run `SecRandomLauncher.exe`
    - If Windows Defender prompt appears:
      - Click "More info" → "Run anyway"
 
 3. **Create shortcut**
-   - Right-click `SecRandom.exe` → "Send to" → "Desktop (create shortcut)"
+   - Right-click `SecRandomLauncher.exe` → "Send to" → "Desktop (create shortcut)"
 
 **Method 2: Installer Version**
 
 1. **Run installer**
-   - Double-click `SecRandom-Windows-Setup-xxx-x64.exe`
+   - Double-click `SecRandom-v<version>-win-x64-setup.exe`
    - Follow the installation wizard to complete installation
 
 2. **Launch program**
@@ -139,7 +139,7 @@ Each version's release page provides SHA256 checksum values in the following for
 
 1. **Install DEB package**
    ```bash
-   sudo dpkg -i SecRandom-linux-Setup-xxx-amd64.deb
+   sudo dpkg -i SecRandom-v<version>-linux-x64.deb
    sudo apt-get install -f  # Fix dependency issues (if any)
    ```
 
@@ -150,7 +150,7 @@ Each version's release page provides SHA256 checksum values in the following for
 ### macOS System
 
 1. Download the macOS package for your architecture (Apple Silicon / Intel)
-2. Open the downloaded `.dmg` or `.zip` and drag SecRandom to Applications
+2. Open the downloaded `.zip` application package and drag `SecRandom.app` to Applications
 3. If "unidentified developer" prompt appears: right-click → **Open** → **Open** again to allow first launch
 
 ---

@@ -6,7 +6,7 @@ createTime: 2026/08/14 10:00:00
 # Music Library (Personalized)
 
 ::: tip Version Notice
-This document corresponds to the **v3** "Settings → Personalized → Music" page. v3 is in Alpha stage; settings may change with versions, please refer to the actual interface.
+This document corresponds to the **v3** "Settings → Personalized → Music" page. Settings may change with versions; please refer to the actual interface.
 :::
 
 > **Draw soundtrack** - Manage draw background music to make every draw more atmospheric.

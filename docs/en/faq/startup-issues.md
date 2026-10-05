@@ -5,7 +5,7 @@ createTime: 2026/08/14 10:00:00
 # ::lucide:circle-help:: Program Cannot Start
 
 ::: tip Version Notice
-This document applies to **v3** (C#/.NET + Avalonia). v3 is in Alpha stage; if you encounter startup issues, try the solutions below first and report to the developer.
+This document applies to **v3** (C#/.NET + Avalonia). If you encounter startup issues, try the solutions below first and report to the developer.
 :::
 
 ## **Symptom 1**: Program cannot start after changing settings

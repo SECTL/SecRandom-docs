@@ -6,7 +6,7 @@ createTime: 2026/08/14 10:00:00
 # History
 
 ::: tip Version Notice
-This document corresponds to the **v3** "Settings → History" page. v3 is in Alpha stage; settings may change with versions, please refer to the actual interface.
+This document corresponds to the **v3** "Settings → History" page. Settings may change with versions; please refer to the actual interface.
 :::
 
 > **Records you can review** - View and manage roll call and lottery history to continuously improve draw strategy.
@@ -76,6 +76,25 @@ When subject history filtering is enabled, fair drawing only uses the current su
 ## Refresh
 
 Click **"Refresh"** to reload history data.
+
+## Export History
+
+Under Settings → History, **"Export history"** exports the two kinds of records separately:
+
+| Item | Description |
+|------|-------------|
+| **Export roll-call history** | With list, course, time-range and sort options; every export covers all members of the selected lists |
+| **Export lottery history** | With pool, time-range and sort options; every export covers all prizes of the selected pools |
+
+**Steps**:
+1. Expand the item to export (roll-call history / lottery history)
+2. Choose the **export scope** (a list or pool, or "All lists"/"All pools"), the course, the time range and the **time order**
+3. Choose the **file format**: Excel (`.xlsx`) or CSV (`.csv`)
+4. Click **"Export"**
+
+**Notes**:
+- One list (or pool) writes one file; several are packaged as a ZIP
+- The summary sheet includes members or prizes that were **never drawn**, not just the drawn records
 
 ## Related Pages
 

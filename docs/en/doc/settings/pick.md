@@ -6,7 +6,7 @@ createTime: 2026/08/14 10:00:00
 # Picking Settings
 
 ::: tip Version Notice
-This document corresponds to the **v3** "Settings → Picking Settings" page. v3 is in Alpha stage; settings may change with versions, please refer to the actual interface.
+This document corresponds to the **v3** "Settings → Picking Settings" page. Settings may change with versions; please refer to the actual interface.
 :::
 
 > **Precise drawing** - Configure draw mode, display effects, animation and reminder text so every draw matches your expectations.

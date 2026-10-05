@@ -41,6 +41,23 @@ const Doc = defineCollection({
   ],
 });
 
+const Control = defineCollection({
+  type: "doc",
+  dir: "control",
+  linkPrefix: "/control",
+  title: "集控",
+  meta: { createTime: "long" },
+  sidebar: [
+    { text: '集控概览', icon: 'material-symbols:overview-outline-rounded', link: 'index' },
+    { text: '快速开始', icon: 'lucide:rocket', link: 'start' },
+    { text: '控制台使用', icon: 'lucide:mouse-pointer-2', link: 'console' },
+    { text: '远程能力与限制', icon: 'material-symbols:tune-rounded', link: 'capabilities' },
+    { text: '设备端设置', icon: 'garden:gear-stroke-16', link: 'device' },
+    { text: '安全与隐私', icon: 'lucide:lock', link: 'security' },
+    { text: '常见问题', icon: 'mingcute:question-line', link: 'faq' },
+  ],
+});
+
 const Dev = defineCollection({
   type: "doc",
   dir: "dev",
@@ -124,6 +141,23 @@ const EnDoc = defineCollection({
   ],
 });
 
+const EnControl = defineCollection({
+  type: "doc",
+  dir: "control",
+  linkPrefix: "/control",
+  title: "Control",
+  meta: { createTime: "long" },
+  sidebar: [
+    { text: 'Control Overview', icon: 'material-symbols:overview-outline-rounded', link: 'index' },
+    { text: 'Getting Started', icon: 'lucide:rocket', link: 'start' },
+    { text: 'Using the Console', icon: 'lucide:mouse-pointer-2', link: 'console' },
+    { text: 'Capabilities & Limits', icon: 'material-symbols:tune-rounded', link: 'capabilities' },
+    { text: 'Device Settings', icon: 'garden:gear-stroke-16', link: 'device' },
+    { text: 'Security & Privacy', icon: 'lucide:lock', link: 'security' },
+    { text: 'FAQ', icon: 'mingcute:question-line', link: 'faq' },
+  ],
+});
+
 const EnDev = defineCollection({
   type: "doc",
   dir: "dev",
@@ -162,5 +196,5 @@ const EnFaq = defineCollection({
   meta: { createTime: "long" },
 });
 
-export const zhcollections = defineCollections([Doc, Dev, Faq]);
-export const encollections = defineCollections([EnDoc, EnDev, EnFaq]);
+export const zhcollections = defineCollections([Doc, Control, Dev, Faq]);
+export const encollections = defineCollections([EnDoc, EnControl, EnDev, EnFaq]);

@@ -8,10 +8,6 @@ createTime: 2026/08/14 10:00:00
 > **SecRandom stands as a beacon at the intersection of fairness and randomness**  
 > A random selection tool for classrooms, teams, events, decision-making and more, ensuring every choice is fair and transparent.
 
-::: danger Version Warning
-The **v3 version is currently in Alpha stage** and should not be used in production. It may contain unknown bugs and is intended for user experience only. If you encounter issues, please report them on [GitHub Issues](https://github.com/SECTL/SecRandom/issues)!
-:::
-
 <span id="sys_cpb_tip" style="display: block; padding-top: 80px; margin-top: -80px;"></span>
 ::: warning System Compatibility Notice
 Important Notice: Starting from version v1.3.1.5, SecRandom has stopped support for Windows 7 and 32-bit systems. We strongly recommend using Windows 10 or higher for continued features and stable updates.

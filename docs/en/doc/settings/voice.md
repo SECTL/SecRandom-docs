@@ -6,7 +6,7 @@ createTime: 2026/08/14 10:00:00
 # Voice & Music (Reminder Settings)
 
 ::: tip Version Notice
-This document corresponds to the **v3** "Settings → Reminder Settings → Voice & Music" page. v3 is in Alpha stage; settings may change with versions, please refer to the actual interface.
+This document corresponds to the **v3** "Settings → Reminder Settings → Voice & Music" page. Settings may change with versions; please refer to the actual interface.
 :::
 
 > **Audio feedback** - Configure the voice broadcast engine, voice, volume and broadcast content so draw results are instantly audible.

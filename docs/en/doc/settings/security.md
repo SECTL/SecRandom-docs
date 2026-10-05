@@ -6,7 +6,7 @@ createTime: 2026/08/14 10:00:00
 # Security Settings (General)
 
 ::: tip Version Notice
-This document corresponds to the **v3** "Settings → General → Security" page. v3 is in Alpha stage; settings may change with versions, please refer to the actual interface.
+This document corresponds to the **v3** "Settings → General → Security" page. Settings may change with versions; please refer to the actual interface.
 :::
 
 > **Protect your configuration**
@@ -101,6 +101,48 @@ Choose the combination of methods to use (password, TOTP, USB drive)
 ::: tip
 The password always protects the credentials themselves; other methods must be configured before they can be selected.
 :::
+
+## Tamper Protection
+
+### Settings File Tamper Check
+**Description**: Records a fingerprint of the whole settings file and verifies at startup that it was not changed outside the app
+
+**Tamper Response** (the action taken when the check finds the file changed outside the app):
+
+| Option | Description |
+|--------|-------------|
+| **Require the security password before continuing** | Enter the security password to accept the current settings file, otherwise the app exits |
+| **Automatically restore the latest backup** | Restores the settings file from a backup; the replaced file is saved aside and the app restarts afterwards |
+
+**Restore Source** (backup sources tried in order during automatic restore):
+- **Local backups only**
+- **Local first, cloud when missing**
+- **Cloud first, local when that fails**
+
+**Notes**:
+- Cloud backups need a signed-in account and **only this device's own uploads are used**, never another device's backup
+
+## Sudo Mode
+
+### Enable Sudo Mode
+**Description**: Verify once and skip repeated verification for a while; operations and the settings window keep independent timers
+
+- **On**: protected actions no longer ask for verification while the window is valid
+- **Off**: every protected action asks for verification again
+
+### Sudo Duration
+**Description**: How long verification is skipped after a successful one
+
+**Range**: 10–600 seconds (default 20 seconds, step 10)
+
+**Operations**: draws, resets, window toggles, exiting the app, shortcuts and IPC commands
+
+**Settings window**: after opening settings with verification, changes in this window are covered too, but **closing the window ends it immediately**; changes that loosen protection — turning security off, clearing a factor, disabling the settings-integrity check or lengthening this duration — always ask for the security password again
+
+**Never affected**: setting up TOTP, changing or removing the password and binding a USB device always ask again
+
+**Notes**:
+- **"Exit Sudo Mode"** in the tray menu ends the verification-free period immediately (it is shown only while Sudo mode is active)
 
 ## Security Recommendations
 

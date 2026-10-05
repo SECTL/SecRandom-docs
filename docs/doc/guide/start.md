@@ -5,10 +5,6 @@ createTime: 2026/08/14 10:00:00
 
 > **快速上手** - 三步完成 SecRandom 的下载、验证与运行
 
-::: danger 版本警告
-当前 **v3 版本仍处于 Alpha 阶段**，请勿在生产环境使用。当前版本可能存在未知 Bug，仅供用户体验。
-:::
-
 ## 系统要求检查
 
 ### 硬件要求
@@ -25,11 +21,11 @@ createTime: 2026/08/14 10:00:00
 | **Windows** | Windows 10/11（x64、x86、arm64） |
 | **Linux** | 主流发行版（x64、arm64，提供 .deb 等格式） |
 | **macOS** | macOS（x64、arm64） |
-| **Android** | Android 移动端（arm64） |
-| **iOS** | iOS 移动端（arm64，开发中） |
+| **Android** | Android 移动端（arm64、x64） |
+| **iOS** | iOS 移动端（arm64，提供未签名 `.ipa`，需自行签名安装） |
 
 ::: tip
-SecRandom v3 为自包含发布，**无需额外安装 Python 或 .NET 运行时**。绝大部分 2017 年后出厂的一体机/办公电脑均满足最低或推荐配置要求。
+SecRandom v3 不再依赖 Python。安装版、`.deb` 与 `portable-full` 均为自包含发布，**无需额外安装 .NET 运行时**；`portable-light` 为精简版，需要自行安装 [.NET 10 桌面运行时](https://dotnet.microsoft.com/download)。绝大部分 2017 年后出厂的一体机/办公电脑均满足最低或推荐配置要求。
 :::
 
 ---
@@ -39,16 +35,19 @@ SecRandom v3 为自包含发布，**无需额外安装 Python 或 .NET 运行时
 
 从[下载页面](/download)获取最新版本。下载页会根据你的操作系统自动推荐合适的安装包，也可手动选择文件：
 
-- **Windows**：`Windows-Setup` 为安装版，`Windows-Portable` 为便携版
+- **Windows**：`win-<架构>-setup.exe` 为安装版，`win-<架构>-portable-full/light.zip` 为便携版
 - **Linux**：`.deb` 安装包（x64/arm64）
-- **macOS**：`.dmg` 安装包
-- **Android**：`.apk` 安装包
+- **macOS**：`.zip` 应用包（解压后为 `SecRandom.app`）
+- **Android**：`.apk` 安装包（arm64/x64）
+- **iOS**：未签名的 `.ipa`（需自行签名安装）
 
 #### 版本通道
 下载页支持按通道筛选版本：
-- **stable**：稳定正式版
+- **stable**：正式版，经过完整测试，推荐日常使用
 - **beta**：预览版本，后缀之后的数字表示预览版本的迭代次数
 - **alpha**：开发版本，后缀之后的数字表示开发版本的迭代次数
+
+日常使用建议选择正式版；预览版本与开发版本用于提前体验新功能。
 
 ::: tip
 建议使用多线程下载工具以提升下载速度。
@@ -72,7 +71,7 @@ SecRandom v3 为自包含发布，**无需额外安装 Python 或 .NET 运行时
   :::
 
 - **Linux 用户**：下载 `.deb` 安装包，双击或使用命令行安装
-- **macOS 用户**：下载 `.dmg`，打开后将应用拖入"应用程序"文件夹
+- **macOS 用户**：下载 `.zip` 应用包，解压后将 `SecRandom.app` 拖入"应用程序"文件夹
 
 ### 2. 启动程序
 

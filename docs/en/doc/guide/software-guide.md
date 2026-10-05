@@ -8,7 +8,7 @@ createTime: 2026/08/14 10:00:00
 Welcome to SecRandom! On first launch, the initial setup wizard will help you complete the necessary confirmations and basic configuration. This guide walks through every step of the setup flow.
 
 ::: tip Version Notice
-This document corresponds to the **v3** initial setup flow. v3 is in Alpha stage; details may change with versions, please refer to the actual interface.
+This document corresponds to the **v3** initial setup flow. Details may change with versions; please refer to the actual interface.
 :::
 
 ## Setup Flow Overview
@@ -140,11 +140,14 @@ Create your first usable list:
 - **Roll Call List**: Import or create a student list (supports `.xlsx`, `.xls`, `.csv`)
 - **Lottery Pool**: Import or create a prize pool (optional)
 
+The import drawer used by the wizard is the same one as in **Settings → List Management**, so the **import method** offers the same four choices: Excel/CSV file, quick QR import, offline QR import and session code import.
+
 ### Steps
-1. Click **"Import"** and select a list file (Excel/CSV)
-2. Configure **column mapping** in the import dialog (ID/Number, Name, Gender, Group, Tags)
-3. Verify the data in the preview area
-4. Click **"Import"** to finish
+1. Click **"Import"** and pick an **import method** at the top of the drawer (an Excel/CSV file is the easiest first choice)
+2. After choosing the file, confirm the **worksheet, header row and data row range** in **"Import Region"** (same as in [List Management](/en/doc/settings/listmg))
+3. Configure **column mapping** (ID/Number, Name, Gender, Group, Tags)
+4. Verify the data in the preview area
+5. Click **"Import"** to finish
 
 ::: warning Note
 - Select at least the ID/Number column or the Name column
@@ -202,4 +205,4 @@ No. The privacy policy, GPLv3 and verifiable drawing notice all require explicit
 Yes. Change it in **Settings → General → Basic → Display Language** (some versions require a restart).
 
 ### What if importing a list fails during setup?
-Check the file format (`.xlsx`, `.xls`, `.csv` supported, first row as column names) and confirm the column mapping is correct. You can also skip the import and handle it later in **Settings → List Management**.
+Check the file format (`.xlsx`, `.xls`, `.csv` supported) and confirm the **import region** (worksheet, header row, data row range) and the **column mapping**. You can also skip the import and handle it later in **Settings → List Management**.

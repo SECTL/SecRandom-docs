@@ -6,7 +6,7 @@ createTime: 2026/08/14 10:00:00
 # Verifiable Drawing
 
 ::: tip Version Notice
-This document corresponds to the **v3** "Settings → General → Draw Verification" page. v3 is in Alpha stage; settings may change with versions, please refer to the actual interface.
+This document corresponds to the **v3** "Settings → General → Draw Verification" page. Settings may change with versions; please refer to the actual interface.
 :::
 
 > **Results you can re-check** - Every draw automatically saves a proof record file. You can optionally let the server witness the draw process and re-check draw results through official channels.

@@ -161,8 +161,8 @@ The old v2 supported triggering builds via commit message keywords; v3 release b
 
 1. **Release build**
 
-   - Create a tag following the version convention (format: `vNumber.Number.Number`, e.g. `v3.0.0-alpha.2`)
-   - Example: `git tag v3.0.0-alpha.2 && git push origin v3.0.0-alpha.2`
+   - Create a tag following the version convention (format: `vNumber.Number.Number`, e.g. `v3.0.0`)
+   - Example: `git tag v3.0.0 && git push origin v3.0.0`
 
 2. **Manual trigger**
 

@@ -6,7 +6,7 @@ createTime: 2026/08/14 10:00:00
 # Privacy Settings (General)
 
 ::: tip Version Notice
-This document corresponds to the **v3** "Settings → General → Privacy" page. v3 is in Alpha stage; settings may change with versions, please refer to the actual interface.
+This document corresponds to the **v3** "Settings → General → Privacy" page. Settings may change with versions; please refer to the actual interface.
 :::
 
 > **Privacy under control** - Understand and manage the software's network reporting. All options are enabled by default and can be changed anytime.
