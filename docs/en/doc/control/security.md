@@ -1,119 +1,107 @@
-﻿---
-title: Security & Privacy
-createTime: 2026/10/05 12:00:00
+---
+title: Security & FAQ
+createTime: 2026/10/06 10:00:00
 ---
 
-# Security & Privacy
+# Security & FAQ
 
-> The control service is vendor-hosted and **not open source**. The right stance is therefore not "trust it", but **treat it as a component that may be compromised**, and keep the real boundary where you can see and touch it.
+> The first half covers security and data; the second half is troubleshooting.
 
-## The four design premises
-
-The vendor lists these four as **design premises** of Control (not nice-to-haves):
-
-1. **Power stays on the device** — any operation that changes device behaviour must be refusable by **local authorization on the device**; account permissions decide *who may send*, not *what the device must accept*.
-2. **Delivered content must be signed** — policies and rosters are applied only after signature verification; "I am the server" is not itself trust.
-3. **Commands must expire** — action commands carry an expiry time, are dropped when expired, and are **never executed late**.
-4. **Disconnectable and auditable** — a device can disconnect locally with one switch, effective even offline; every remote operation leaves an audit record.
-
-::: warning These are commitments, not something you can audit
-The server is not open source, so you cannot verify that these premises are implemented without compromise. In practice, rely on **what you can verify**: the local switch, the device's behaviour, and the audit log.
-:::
-
-## Where the security boundary actually is
+## Where the security boundary is
 
 ```
-Console (UI)  →  Server (authorizes)  →  Device (final authority, may refuse)
+Console (UI) → Server (authorizes) → Device (decides, may refuse)
 ```
 
-- **Interface trimming is not a security boundary**: whether a button is shown is usability; the real role check happens on the server;
-- **The server is not the final authority either**: it can refuse to deliver, but cannot force a device to execute;
-- **The device is the final authority**: with the local switch off, nothing is executed no matter who sends it.
+The control server is vendor-hosted and **not open source today**, so treat it as a component that **may be compromised**. What actually protects you is what you can see and touch:
 
-### The switch on the device cannot be changed by the server
+- **A hidden button is not a security boundary**: roles are checked on the server;
+- **The server cannot force a device**: it can only refuse to deliver;
+- **The device decides**: with its switch off, nothing is executed no matter who sends it.
 
-"Allow remote control":
+The vendor states four design premises for Control: **power stays on the device, delivered content must be signed, action commands must expire, and the device can disconnect and everything is audited**. Because these depend on server-side implementation you cannot verify them yourself — so in practice rely on **device behaviour, group roles and the audit log**.
 
-- Is **reported only by the device itself**; neither the console nor any interface can turn it on or off;
-- When off, it **does not connect at all**, and any command frame received anyway is **refused**;
-- **Does not live in the normal settings file** (it is in `data/config/control/node-state.json`), so **importing settings or restoring a backup never silently enables remote control**.
+## Student rosters and personal data
 
-### "Desired state" versus "action command"
-
-- **Lock / unlock drawing** is a **desired state**: it is stored, applies while the device is offline, and converges when it reconnects;
-- **Draw now / announce / change settings / push roster** are **action commands**: they carry an expiry time and are dropped rather than executed late.
-
-::: tip Turning the local switch off releases the previous lock too
-The drawing lock only applies while remote control is allowed locally. This is intentional: **revoking remote control revokes every remote constraint as well**.
-:::
-
-## Accounts and sessions
-
-- Control has **no separate account system**: identity comes entirely from the **SECTL account**; there is no separate registration or password;
-- The console is browser + server-side session: **the browser only holds an opaque session identifier**, and SECTL access tokens stay on the server;
-- The session is revalidated against SECTL periodically, so **signing out on the SECTL website also ends the console session** (after a revalidation interval, not instantly);
-- **A group is the permission boundary**: outside a group, the console shows **nothing** — not even whether the group exists;
-- **Role changes affect the next command immediately**: after a role change or removal, the next delivery is refused by the server; no notification to the device is needed.
-
-### Dangerous operations are confirmed
-
-- **Draw now**: the button requires **two clicks** (the first arms it, and it resets if you do nothing for a few seconds);
-- **Remove node / bulk remove**: the confirmation spells out "this does not stop the machine from connecting again";
-- **Remove member**: the confirmation explains that the account immediately loses all permissions in the group;
-- **Announce**: nothing is sent directly; a "Broadcast options" dialog confirms text and volumes first.
-
-## Audit: everyone is on the record
-
-- Recorded events cover: group creation/rename, member invite/join/role change/removal, invite create/revoke, transfer request/confirm/reject/expire, node registration, policy delivery;
-- Each record holds time, event, target, detail, **actor**, **source device** (browser session / app) and outcome;
-- **Denied privilege attempts are recorded too** (outcome "denied");
-- The audit is **visible to admins and above only**, filterable by event type, outcome, time range, source device, target device and actor, and **exportable as CSV**;
-- The audit **never records credentials, tokens or student names**; details hold only publishable short strings such as role names or denial codes.
-
-::: info Source device
-The audit distinguishes "operated on a computer" from "operated on a phone" — a phone is the device most likely to be borrowed or unlocked, and that distinction matters in a post-mortem.
-:::
-
-## Data and privacy
-
-### What a device reports
-
-While connected, a device continuously reports **non-sensitive state**: node ID, group ID, platform, version, capabilities, local switch state, display name and the applied policy revision. **Class and lesson information is not reported.**
-
-### Student names only travel when you read them
-
-- Rosters are **not** continuously uploaded: only when someone with **admin or above** clicks "Read device rosters" does the device return the roster (including student names) for that operation;
-- Reads **exclude disabled members by default**, so they are not mistaken for deleted ones;
-- Draw receipts **carry only the member ID and name**, no other member fields;
-- **The text of a remote announcement is not written to logs** — only its length is.
-
-::: warning Handle exported rosters carefully
-The console can export rosters as CSV. Once the file is on your computer it is outside Control — store and dispose of it according to your school's personal-information rules.
-:::
-
-### Two suggestions for administrators
-
-- **Do not** put student names or full classroom names into **node IDs** or display names: the audit keeps them long-term. A display name such as "Class 301 podium PC" is enough;
-- **Export the audit CSV periodically** if you need a long-term archive: no retention period is currently promised.
+- Rosters are **not** uploaded continuously: the device returns one only when someone with **admin or above** clicks "Read device rosters";
+- Reads **exclude disabled members** by default;
+- Draw receipts carry only the member ID and name, and **the text of an announcement is never written to logs**;
+- The audit holds **no names, passwords or tokens** — only who did what, on which device, and with what outcome;
+- Advice: **do not put student names or other private data into display names or node IDs** (the audit keeps them long-term), and store or destroy exported rosters and CSV files according to your school's rules.
 
 ## Self-protection you can use
 
 | You want to | How |
 |---|---|
 | **Revoke remote control immediately** | Turn off "Allow remote control" on that device (effective even offline) |
-| **Keep an account out for good** | **Remove that member** from the group (removing a node only clears its record, it is not a ban) |
+| **Keep an account out** | **Remove that member** from the group (removing a device is not a ban) |
 | **Revoke a device's sign-in** | Sign out of the SECTL account on the device, or on the SECTL website |
-| **Hand the group to someone else** | The owner starts a **transfer**; it takes effect after both sides confirm |
-| **Find out who did what** | Group page → **Audit log** (admin and above) |
-| **Keep classrooms apart** | Use separate groups: groups cannot see each other |
+| **Hand the group to someone else** | The owner starts a **transfer**; it takes effect once both sides confirm |
+| **Find out who did what** | The group's **audit log** (admin and above; exportable — see [Console](/en/doc/control/console)) |
+| **Keep two sets of people apart** | Use two groups: outside a group you see nothing in it |
 
-## Misconceptions to avoid
+## FAQ
 
-- ❌ "The server is official, so it is trustworthy" — it is not open source and must be treated as **possibly compromised**; the real boundary is the local switch and group roles.
-- ❌ "Clicking send means it ran" — wait for the **receipt**; a refusal comes with the reason.
-- ❌ "Admin rights mean I can control devices" — roles decide *who may send*; the device can still refuse.
-- ❌ "I can host my own server" — the protocol is public but the implementation is not, and **no self-hosting option is offered yet**.
+### My classroom machine is missing from the console
 
-## Reporting security issues
+Check in order: is the device **signed in**, is the **Group ID** correct, is **Allow remote control** on, and is **the signed-in account a member of that group**? The connection status on the device tells you which step is failing.
 
-Report problems or questions via [SecRandom issues](https://github.com/SECTL/SecRandom/issues) or [SecRandom-Control-Console issues](https://github.com/SECTL/SecRandom-Control-Console/issues).
+### The device says "stopped retrying"
+
+It hit a failure that retrying cannot fix; the note beside it says whether that is "not signed in", "no group ID", "not a member of that group", "no such node in this group" or "credentials rejected". Fix it and click **Reconnect now**.
+
+### The device flips between online and offline
+
+Online state comes from a long connection with periodic heartbeats. Brief network jitter shows as offline; the device **reconnects automatically** and needs no manual action.
+
+### I clicked "Draw now" and nothing happened
+
+Read the receipt: **queued** means the device is offline (it is delivered on reconnect and **dropped if expired**); **expired** means it took too long in transit — just send it again; **rejected** comes with the reason (switch off, locked, already drawing, local verification required, class time, …).
+
+### Does "lock drawing" still apply while the device is offline?
+
+Yes — it is a stored state and converges when the device comes back. Two caveats: a locked machine **cannot draw locally either**, and if the machine **turns its own switch off**, the lock no longer applies to it.
+
+### I turned the device's switch off — how do I get it managed again?
+
+Turn "Allow remote control" back on that machine: the connection returns and any stored lock applies again. The console has no way to turn that switch on for you.
+
+### Why can I not change settings or read rosters?
+
+**Changing settings, reading rosters and pushing rosters** need admin or above; **reading settings**, locking drawing and starting a draw need operator or above. Settings must also be read from the device before they can be edited, and security, desktop integration or update categories can never be changed remotely.
+
+### Can I cancel a command sent while the device was offline?
+
+A command that is still **queued and not yet delivered** can be revoked (two clicks on "Revoke"), so it will not run when the device reconnects. Once **delivered to the device** it cannot be recalled — you can only wait for it to finish. Revocations are recorded in the audit log.
+
+### The announcement has no sound
+
+Typical causes: the machine's **voice master switch is off** (the interface offers to turn voice on), this announcement's volume was set to 0 (mute), or the device is drawing and refused the command.
+
+### It says "too many commands"
+
+Devices rate limit consecutive commands; wait a moment instead of clicking repeatedly.
+
+### The invite code expired or was already used
+
+Codes are **single-use and expire 72 hours after creation** — ask the inviter to create a new one on the **Invites** tab. Expired codes do not affect members who already joined.
+
+### How many groups can one account create?
+
+**100** by default (the interface shows the progress). At the limit you can **transfer** or **dissolve** groups you no longer need.
+
+### How do I remove someone from Control entirely?
+
+**Remove that member** from the group's member list: they immediately lose all permissions in the group. Note that **removing a device is not a ban** — while that member is still in the group, the machine reappears when it reconnects.
+
+### Can one device belong to two groups?
+
+No. The device has a single **Group ID**; changing it switches the machine to another group.
+
+### How do I hand over or rebuild a group?
+
+Use **transfer ownership** for handovers (effective after both sides confirm). **Dissolving** is irreversible: all permissions, device registrations, command history and settings are deleted, and the rebuilt group is a different group (different group ID) whose ID devices must enter again — so do not use it as a cleanup tool.
+
+### Can I host my own server? How long is the audit kept?
+
+The **server and Web console are not open source**, only the vendor-hosted service exists, and **self-hosting is not supported yet**. No audit retention period is promised; export from the console if you need an archive.

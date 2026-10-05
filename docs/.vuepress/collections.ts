@@ -16,12 +16,9 @@ const Doc = defineCollection({
     ] },
     { text: '集控', icon: 'lucide:gauge', prefix: 'control', items: [
       { text: '集控概览', link: 'index' },
-      { text: '快速开始', link: 'start' },
-      { text: '控制台使用', link: 'console' },
-      { text: '远程能力与限制', link: 'capabilities' },
-      { text: '设备端设置', link: 'device' },
-      { text: '安全与隐私', link: 'security' },
-      { text: '常见问题', link: 'faq' },
+      { text: '控制台', link: 'console' },
+      { text: '远程操作与设备', link: 'remote' },
+      { text: '安全与常见问题', link: 'security' },
     ] },
     { text: '设置', icon: 'garden:gear-stroke-16', prefix: 'settings', items: [
       { text: '通用设置', icon: 'material-symbols:tune-rounded', items: [
@@ -107,13 +104,10 @@ const EnDoc = defineCollection({
       { text: 'Interface', link: 'interface' },
     ] },
     { text: 'Control', icon: 'lucide:gauge', prefix: 'control', items: [
-      { text: 'Control Overview', link: 'index' },
-      { text: 'Getting Started', link: 'start' },
-      { text: 'Using the Console', link: 'console' },
-      { text: 'Capabilities & Limits', link: 'capabilities' },
-      { text: 'Device Settings', link: 'device' },
-      { text: 'Security & Privacy', link: 'security' },
-      { text: 'FAQ', link: 'faq' },
+      { text: 'Overview', link: 'index' },
+      { text: 'Console', link: 'console' },
+      { text: 'Remote Operations & Devices', link: 'remote' },
+      { text: 'Security & FAQ', link: 'security' },
     ] },
     { text: 'Settings', icon: 'garden:gear-stroke-16', prefix: 'settings', items: [
       { text: 'General', icon: 'material-symbols:tune-rounded', items: [
