@@ -89,7 +89,7 @@ On the classroom machine: **Settings → General → Control**.
 | Item | Description |
 |---|---|
 | **Allow remote control** | The master switch. When off, the device **does not connect and executes nothing**, and the console cannot turn it on for you |
-| **Group ID** | Copied from the console |
+| **Group ID** | Copied from the console. The account signed in on this machine **must be a member of that group** (your own group or one you were invited into); **machines do not need to share one account** |
 | **Node channel URL** | Usually leave the default |
 | **Node ID** | Generated at install time and stable; read-only |
 | **Display name** | The name shown in the console; empty uses the host name |

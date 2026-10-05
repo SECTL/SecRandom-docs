@@ -17,7 +17,7 @@ A group is roughly one management unit (a grade, a campus, a lab). **People outs
 
 - Whoever creates a group becomes its **owner**, and the **Group ID** shown on the group page is the value devices enter to join;
 - An account may own up to 100 groups; at the limit you can **transfer** or **dissolve** groups you no longer need — both release the quota;
-- A name like "class · location" is easiest to pick out later.
+- Name groups by **area or venue**, such as "Building 3, Floor 2" or "Lab A": one group per area covers all the classroom machines in it. Naming by class also works, but you will end up with many more groups.
 
 ### Dissolving a group (irreversible)
 
@@ -54,7 +54,8 @@ On the group's **Invites** tab, create an invite, choose the role, and send the 
 
 - A code is **single-use and expires 72 hours after creation** — do not post it in public chats;
 - The role they get is exactly the one you picked;
-- Unredeemed invites can be revoked; **redeemed ones are unaffected**.
+- Unredeemed invites can be revoked; **redeemed ones are unaffected**;
+- Once they join, **their classroom machine signs in with their own account**, enters this group ID and joins as a node — no need to share your account.
 
 ## Transferring ownership
 

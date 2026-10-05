@@ -42,6 +42,10 @@ The vendor states four design premises for Control: **power stays on the device,
 
 ## FAQ
 
+### Do all classroom machines have to sign in with the same account?
+
+**No.** Each machine can use its own SECTL account; the only requirement is that the account is **a member of the group** (a group you created, or one you were invited into). Enter the group ID, turn the switch on, and it joins as a node. If a machine cannot connect, first check whether the account signed in on it belongs to the group.
+
 ### My classroom machine is missing from the console
 
 Check in order: is the device **signed in**, is the **Group ID** correct, is **Allow remote control** on, and is **the signed-in account a member of that group**? The connection status on the device tells you which step is failing.

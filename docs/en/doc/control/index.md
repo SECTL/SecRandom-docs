@@ -26,15 +26,21 @@ Without Control, SecRandom works exactly as before — joining just adds a layer
 
 ## Set up in six steps
 
-1. **Sign in on the classroom machine** with your SECTL account (account area of the settings page).
-2. **Create a group in the console**: [secrandom-control.sectl.cn](https://secrandom-control.sectl.cn). Pick a name you will recognise, such as "Class 1-3 · Podium PC".
-3. (Optional) **Invite others**: generate an invite link; they sign in and join with the role you choose.
+1. **Sign in on the classroom machine**: use that machine's own SECTL account — **the machines do not need to share one account**.
+2. **Create a group in the console**: [secrandom-control.sectl.cn](https://secrandom-control.sectl.cn). Name it by **area**, such as "Building 3, Floor 2" or "Lab A" — one group per area covers every classroom machine there.
+3. (Optional) **Invite others**: generate an invite link; they sign in and join with the role you choose, and their classroom machines can join this group too.
 4. **Enter the group ID on the machine** and turn on "Allow remote control" (Settings → General → Control).
 5. **Check the node list in the console**: the device appears and shows as online once it connects.
 6. **Try it out**: on the device page, click "Draw now" or "Lock drawing".
 
+::: tip The key point: the account on the machine only has to be *in the group*
+The machines do **not** have to share one account. **Each machine can use its own account** — as long as that account is **already a member of this group** (either the group you created or one you were invited into), entering the group ID and turning the switch on makes it join as a node.
+
+Conversely, if the account signed in on that machine is **not in the group**, the connection is refused — invite that account into the group and try again.
+:::
+
 ::: tip No manual device registration
-As long as the device signs in with a **member account**, has the right group ID and the switch on, it appears in the list automatically. If it does not, read the connection status and message on the device itself.
+Once a device joins, it appears in the node list automatically — there is no "add device" step in the console. If it is missing, read the connection status and message on the device first.
 :::
 
 ## One principle
