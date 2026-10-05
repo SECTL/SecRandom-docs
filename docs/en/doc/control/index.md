@@ -1,4 +1,4 @@
----
+﻿---
 title: Control Overview
 createTime: 2026/10/05 12:00:00
 ---
@@ -34,18 +34,18 @@ Control has **no separate account system**. Sign in with your **SECTL (思拓创
 
 ## One principle: the device has the final say
 
-Every classroom machine keeps its own "allow remote control" switch. Once it is off, **nothing sent by the server will be executed** — a stolen account or a mistaken admin does not by itself mean a controlled classroom. See [Security & Privacy](/en/control/security).
+Every classroom machine keeps its own "allow remote control" switch. Once it is off, **nothing sent by the server will be executed** — a stolen account or a mistaken admin does not by itself mean a controlled classroom. See [Security & Privacy](/en/doc/control/security).
 
 ## Get started
 
 | Page | Content |
 |---|---|
-| [Getting Started](/en/control/start) | Connect your first classroom machine in ten minutes |
-| [Using the Console](/en/control/console) | Groups, members, roles, invites, audit |
-| [Capabilities & Limits](/en/control/capabilities) | What each operation requires, and when it is refused |
-| [Device Settings](/en/control/device) | The **Control** page on the classroom machine |
-| [Security & Privacy](/en/control/security) | Design premises, data boundaries, self-protection |
-| [FAQ](/en/control/faq) | Cannot connect, missing device, no response |
+| [Getting Started](/en/doc/control/start) | Connect your first classroom machine in ten minutes |
+| [Using the Console](/en/doc/control/console) | Groups, members, roles, invites, audit |
+| [Capabilities & Limits](/en/doc/control/capabilities) | What each operation requires, and when it is refused |
+| [Device Settings](/en/doc/control/device) | The **Control** page on the classroom machine |
+| [Security & Privacy](/en/doc/control/security) | Design premises, data boundaries, self-protection |
+| [FAQ](/en/doc/control/faq) | Cannot connect, missing device, no response |
 
 ## Open source and feedback
 

@@ -14,6 +14,15 @@ const Doc = defineCollection({
       { text: '软件引导流程', link: 'software-guide' },
       { text: '界面介绍', link: 'interface' },
     ] },
+    { text: '集控', icon: 'lucide:gauge', prefix: 'control', items: [
+      { text: '集控概览', link: 'index' },
+      { text: '快速开始', link: 'start' },
+      { text: '控制台使用', link: 'console' },
+      { text: '远程能力与限制', link: 'capabilities' },
+      { text: '设备端设置', link: 'device' },
+      { text: '安全与隐私', link: 'security' },
+      { text: '常见问题', link: 'faq' },
+    ] },
     { text: '设置', icon: 'garden:gear-stroke-16', prefix: 'settings', items: [
       { text: '通用设置', icon: 'material-symbols:tune-rounded', items: [
         { text: '基本设置', link: 'general-basic' },
@@ -38,23 +47,6 @@ const Doc = defineCollection({
 { text: '插件设置', link: 'plugins' },
 { text: '其他设置', link: 'other' },
     ] },
-  ],
-});
-
-const Control = defineCollection({
-  type: "doc",
-  dir: "control",
-  linkPrefix: "/control",
-  title: "集控",
-  meta: { createTime: "long" },
-  sidebar: [
-    { text: '集控概览', icon: 'material-symbols:overview-outline-rounded', link: 'index' },
-    { text: '快速开始', icon: 'lucide:rocket', link: 'start' },
-    { text: '控制台使用', icon: 'lucide:mouse-pointer-2', link: 'console' },
-    { text: '远程能力与限制', icon: 'material-symbols:tune-rounded', link: 'capabilities' },
-    { text: '设备端设置', icon: 'garden:gear-stroke-16', link: 'device' },
-    { text: '安全与隐私', icon: 'lucide:lock', link: 'security' },
-    { text: '常见问题', icon: 'mingcute:question-line', link: 'faq' },
   ],
 });
 
@@ -114,6 +106,15 @@ const EnDoc = defineCollection({
       { text: 'Software Guide', link: 'software-guide' },
       { text: 'Interface', link: 'interface' },
     ] },
+    { text: 'Control', icon: 'lucide:gauge', prefix: 'control', items: [
+      { text: 'Control Overview', link: 'index' },
+      { text: 'Getting Started', link: 'start' },
+      { text: 'Using the Console', link: 'console' },
+      { text: 'Capabilities & Limits', link: 'capabilities' },
+      { text: 'Device Settings', link: 'device' },
+      { text: 'Security & Privacy', link: 'security' },
+      { text: 'FAQ', link: 'faq' },
+    ] },
     { text: 'Settings', icon: 'garden:gear-stroke-16', prefix: 'settings', items: [
       { text: 'General', icon: 'material-symbols:tune-rounded', items: [
         { text: 'Basic', link: 'general-basic' },
@@ -138,23 +139,6 @@ const EnDoc = defineCollection({
 { text: 'Plugins Settings', link: 'plugins' },
 { text: 'Other Settings', link: 'other' },
     ] },
-  ],
-});
-
-const EnControl = defineCollection({
-  type: "doc",
-  dir: "control",
-  linkPrefix: "/control",
-  title: "Control",
-  meta: { createTime: "long" },
-  sidebar: [
-    { text: 'Control Overview', icon: 'material-symbols:overview-outline-rounded', link: 'index' },
-    { text: 'Getting Started', icon: 'lucide:rocket', link: 'start' },
-    { text: 'Using the Console', icon: 'lucide:mouse-pointer-2', link: 'console' },
-    { text: 'Capabilities & Limits', icon: 'material-symbols:tune-rounded', link: 'capabilities' },
-    { text: 'Device Settings', icon: 'garden:gear-stroke-16', link: 'device' },
-    { text: 'Security & Privacy', icon: 'lucide:lock', link: 'security' },
-    { text: 'FAQ', icon: 'mingcute:question-line', link: 'faq' },
   ],
 });
 
@@ -196,5 +180,5 @@ const EnFaq = defineCollection({
   meta: { createTime: "long" },
 });
 
-export const zhcollections = defineCollections([Doc, Control, Dev, Faq]);
-export const encollections = defineCollections([EnDoc, EnControl, EnDev, EnFaq]);
+export const zhcollections = defineCollections([Doc, Dev, Faq]);
+export const encollections = defineCollections([EnDoc, EnDev, EnFaq]);

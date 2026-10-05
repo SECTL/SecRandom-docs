@@ -6,11 +6,11 @@ const zhNavbar = defineNavbarConfig([
     icon: 'mi:book',
     items: [
       { text: '指南', icon: 'ep:guide', link: '/doc/guide/start' },
+      { text: '集控', icon: 'lucide:gauge', link: '/doc/control/' },
       { text: '设置', icon: 'garden:gear-stroke-16', link: '/doc/settings/general-basic' },
       { text: '开发', icon: 'lucide:code-2', link: '/dev/' },
     ],
   },
-  { text: '集控', icon: 'lucide:gauge', link: '/control/' },
   { text: '下载', icon: 'ic:outline-download', link: '/download' },
   {
     text: '常见问题',
@@ -27,11 +27,11 @@ const enNavbar = defineNavbarConfig([
     icon: 'mi:book',
     items: [
       { text: 'Guide', icon: 'ep:guide', link: '/en/doc/guide/start' },
+      { text: 'Control', icon: 'lucide:gauge', link: '/en/doc/control/' },
       { text: 'Settings', icon: 'garden:gear-stroke-16', link: '/en/doc/settings/general-basic' },
       { text: 'Development', icon: 'lucide:code-2', link: '/en/dev/' },
     ],
   },
-  { text: 'Control', icon: 'lucide:gauge', link: '/en/control/' },
   { text: 'Download', icon: 'ic:outline-download', link: '/en/download' },
   {
     text: 'FAQ',

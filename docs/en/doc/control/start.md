@@ -1,4 +1,4 @@
----
+﻿---
 title: Getting Started
 createTime: 2026/10/05 12:00:00
 ---
@@ -60,7 +60,7 @@ On the classroom machine, open **Settings → General → Control** (desktop onl
 Changes apply immediately; there is no "Save" button on this page.
 
 ::: tip What that switch means
-"Allow remote control" is **the machine's own gate**. When it is on, group members with sufficient roles can operate it; when it is off, nothing sent by the server is executed. See [Device Settings](/en/control/device).
+"Allow remote control" is **the machine's own gate**. When it is on, group members with sufficient roles can operate it; when it is off, nothing sent by the server is executed. See [Device Settings](/en/doc/control/device).
 :::
 
 ## Step 5: confirm it appears in the console
@@ -92,4 +92,4 @@ You can also use the phone app as a remote: sign in with the same account and op
 | Device status is **stopped retrying** | A failure that retrying cannot fix (credentials / group / format) | Follow the note next to it, then click **Reconnect now** |
 | The machine is missing from the node list | Not connected, or the account is not a member | Check the device-side status text first |
 
-For deeper troubleshooting see the [FAQ](/en/control/faq).
+For deeper troubleshooting see the [FAQ](/en/doc/control/faq).
