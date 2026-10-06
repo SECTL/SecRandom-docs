@@ -18,11 +18,32 @@ createTime: 2026/08/14
 | `IAppLifecycleService` | `SecRandom.Core.Abstraction.Services` | `AppStarted` / `AppStopping` 事件 |
 | `IFloatingWindowButtonRegistry` | `SecRandom.Core.Abstraction.Services` | 运行时注册浮窗按钮 |
 | `IPluginDrawService` | `SecRandom.Core.Abstraction.Services` | 受控抽奖 facade（见下文） |
-| 既有 Core 契约 | `SecRandom.Core.Abstraction.Services` | `IProfileCatalogManager`、`IHistoryQueryService`、`IFeatureAvailabilityService`、`IVoiceAnnouncementService`、`ISpeechProvider`、`IViewEngine` 等 |
+| `IPluginManager` | `SecRandom.PluginSdk` | 查询已加载插件与插件目录，禁用 / 卸载插件（见下文） |
+| `IAppHost` | `SecRandom.Core.Abstraction` | 静态服务定位：`Host.Services`、`GetService<T>()` / `TryGetService<T>()` |
+| 既有 Core 契约 | `SecRandom.Core.Abstraction.Services` | `IProfileCatalogManager`、`IHistoryQueryService`、`IFeatureAvailabilityService`、`IVoiceAnnouncementService`、`ISpeechProvider`、`IViewEngine`、`IUiContributionService` / `IOverlayHostService` / `IResultPresentationService` 等 |
 
 ::: note 解析方式
-在插件的 `Initialize` 中注册页面与服务即可，运行时可经构造函数注入或 `IAppHost.GetService<T>()` 解析上述契约。
+在插件的 `Initialize` 中注册页面与服务即可，运行时可经构造函数注入，或用 `IAppHost.TryGetService<T>()` 解析上述契约（`GetService<T>()` 在服务缺失时会抛 `ArgumentException`）。
+注意：`Initialize` 执行时宿主 Host 还没构建（`IAppHost.Host` 为 `null`），此时只做注册；用到这些契约的运行时逻辑请放到 `OnAppStarted()` 之后。
 :::
+
+## ::lucide:puzzle:: 插件信息
+
+`IPluginManager` 暴露宿主当前管理的插件列表；插件可以从 `IPluginManager.Plugins` 中按 `Manifest.EntranceAssembly` 找到自己。
+
+```csharp
+public sealed class PluginInfo
+{
+    public required PluginManifest Manifest { get; init; }      // 清单：id、名称、版本、apiVersion…
+    public required string PluginFolderPath { get; init; }      // 插件所在目录
+    public required string PluginConfigFolder { get; init; }    // 插件私有配置目录
+    public PluginLoadStatus LoadStatus { get; internal set; }   // NotLoaded / Loaded / Disabled / Error
+    public Exception? Exception { get; internal set; }          // 加载失败时的异常
+    public bool IsEnabled { get; internal set; }
+}
+```
+
+插件入口实例上可以直接读取自己的 `Info` 与 `PluginConfigFolder`（见[插件入口类](/dev/plugins/plugin-base)）。
 
 ## ::lucide:panel-left:: 视图与导航
 

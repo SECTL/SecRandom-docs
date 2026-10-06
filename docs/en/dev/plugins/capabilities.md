@@ -18,11 +18,32 @@ The host exposes capabilities to plugins through the stable contracts under `Sec
 | `IAppLifecycleService` | `SecRandom.Core.Abstraction.Services` | `AppStarted` / `AppStopping` events |
 | `IFloatingWindowButtonRegistry` | `SecRandom.Core.Abstraction.Services` | Register floating-window buttons at runtime |
 | `IPluginDrawService` | `SecRandom.Core.Abstraction.Services` | Controlled draw facade (see below) |
-| Existing Core contracts | `SecRandom.Core.Abstraction.Services` | `IProfileCatalogManager`, `IHistoryQueryService`, `IFeatureAvailabilityService`, `IVoiceAnnouncementService`, `ISpeechProvider`, `IViewEngine`, etc. |
+| `IPluginManager` | `SecRandom.PluginSdk` | Query loaded plugins and the plugins directory, disable / uninstall plugins (see below) |
+| `IAppHost` | `SecRandom.Core.Abstraction` | Static service locator: `Host.Services`, `GetService<T>()` / `TryGetService<T>()` |
+| Existing Core contracts | `SecRandom.Core.Abstraction.Services` | `IProfileCatalogManager`, `IHistoryQueryService`, `IFeatureAvailabilityService`, `IVoiceAnnouncementService`, `ISpeechProvider`, `IViewEngine`, `IUiContributionService` / `IOverlayHostService` / `IResultPresentationService`, etc. |
 
 ::: note Resolution
-Register pages and services in the plugin's `Initialize`; at runtime resolve the contracts above through constructor injection or `IAppHost.GetService<T>()`.
+Register pages and services in the plugin's `Initialize`; at runtime resolve the contracts above through constructor injection, or with `IAppHost.TryGetService<T>()` (`GetService<T>()` throws `ArgumentException` when the service is missing).
+Note that when `Initialize` runs the application Host is not built yet (`IAppHost.Host` is `null`), so registration only belongs there; put runtime logic that uses these contracts in or after `OnAppStarted()`.
 :::
+
+## ::lucide:puzzle:: Plugin Information
+
+`IPluginManager` exposes the plugins the host currently manages; a plugin can find itself in `IPluginManager.Plugins` by matching `Manifest.EntranceAssembly`.
+
+```csharp
+public sealed class PluginInfo
+{
+    public required PluginManifest Manifest { get; init; }      // Manifest: id, name, version, apiVersion…
+    public required string PluginFolderPath { get; init; }      // Plugin folder
+    public required string PluginConfigFolder { get; init; }    // Plugin-private config folder
+    public PluginLoadStatus LoadStatus { get; internal set; }   // NotLoaded / Loaded / Disabled / Error
+    public Exception? Exception { get; internal set; }          // Exception when loading failed
+    public bool IsEnabled { get; internal set; }
+}
+```
+
+A plugin entry can read its own `Info` and `PluginConfigFolder` directly (see [Plugin Entry Class](/en/dev/plugins/plugin-base)).
 
 ## ::lucide:panel-left:: Views & Navigation
 

@@ -63,6 +63,7 @@ const Dev = defineCollection({
       { text: '插件入口类', link: 'plugin-base' },
       { text: '能力面', link: 'capabilities' },
       { text: '插件依赖', link: 'dependency' },
+      { text: 'API 版本与兼容性', link: 'api-versioning' },
       { text: '发布插件', link: 'publishing' },
     ] },
     { text: '交互', icon: 'lucide:cable', items: [
@@ -152,6 +153,7 @@ const EnDev = defineCollection({
       { text: 'Plugin Entry Class', link: 'plugin-base' },
       { text: 'Capabilities', link: 'capabilities' },
       { text: 'Plugin Dependencies', link: 'dependency' },
+      { text: 'API Versions & Compatibility', link: 'api-versioning' },
       { text: 'Publishing', link: 'publishing' },
     ] },
     { text: 'Interop', icon: 'lucide:cable', items: [

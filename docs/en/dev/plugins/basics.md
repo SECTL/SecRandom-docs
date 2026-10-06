@@ -25,7 +25,7 @@ On desktop startup, the host processes plugins in the following order:
 
 ## ::lucide:tag:: apiVersion & Versions
 
-- The `apiVersion` in `manifest.yml` declares the host API the plugin targets; its major must be at least the host's `PluginApiVersions.Current.Major` (currently `3`). Plugins that don't meet this are rejected.
+- The `apiVersion` in `manifest.yml` declares the host API the plugin targets; its major must be at least the host's `PluginApiVersions.Current.Major` (currently `3`). Plugins that don't meet this are rejected. See [Plugin API Versions & Compatibility](/en/dev/plugins/api-versioning) for details.
 - `apiVersion` follows the application major version; `version` is the plugin's own version, independent of `apiVersion`.
 - The plugin `version` drives update detection in the market; installation is keyed by `id`, so a package with the same id is treated as an update.
 

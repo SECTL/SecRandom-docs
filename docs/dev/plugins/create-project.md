@@ -9,13 +9,14 @@ createTime: 2026/08/14
 
 ## ::lucide:folder-tree:: 认识插件结构
 
-以仓库模板 `SecRandom.ExamplePlugin` 为例，一个插件项目通常包含以下文件：
+以示例仓库 `SECTL/SecRandom-ExamplePlugins` 为例，一个插件项目通常包含以下文件：
 
 ```plaintext
-SecRandom.ExamplePlugin
+ExamplePlugin
  ├─ SecRandom.ExamplePlugin.csproj   // 项目文件：引用 SDK、开启 CreateSrpx
  ├─ manifest.yml                     // 插件清单文件
  ├─ Plugin.cs                        // 插件入口类（继承 PluginBase）
+ ├─ PluginStateStore.cs              // 在插件配置目录里读写自己的数据
  ├─ README.md                        // 插件自述文件（设置页中渲染）
  ├─ icon.png                         // 插件图标
  ├─ Views/
@@ -65,15 +66,15 @@ SecRandom.ExamplePlugin
 以下是一个清单文件的示例：
 
 ```yaml
-id: secrandom.example
+id: com.example.plugin
 name: SecRandom 示例插件
-description: 一个最小 SecRandom 插件示例
+description: 演示 SecRandom 插件 API 的最小示例插件
 entranceAssembly: SecRandom.ExamplePlugin.dll
-apiVersion: 3.0.0
+apiVersion: 3.1.0
 version: 1.0.0
 author: SECTL
 ```
 
 ## ::lucide:arrow-right:: 继续深入
 
-您可以继续阅读[插件入口类](/dev/plugins/plugin-base)了解入口与生命周期，阅读[能力面](/dev/plugins/capabilities)查看宿主暴露的稳定契约，或参考 GitHub 上的 [SecRandom.ExamplePlugin](https://github.com/SECTL/SecRandom/tree/main/SecRandom.ExamplePlugin)。
+您可以继续阅读[插件入口类](/dev/plugins/plugin-base)了解入口与生命周期，阅读[能力面](/dev/plugins/capabilities)查看宿主暴露的稳定契约，或直接参考 GitHub 上的 [SecRandom-ExamplePlugins](https://github.com/SECTL/SecRandom-ExamplePlugins)。

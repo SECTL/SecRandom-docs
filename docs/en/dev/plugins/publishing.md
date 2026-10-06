@@ -44,15 +44,15 @@ The built-in market loads its index from [SECTL/SecRandom-PluginIndex](https://g
 The generated `plugins/<id>.yaml` looks roughly like this:
 
 ```yaml
-id: secrandom.example
+id: com.example.plugin
 name: SecRandom 示例插件
-description: 一个最小 SecRandom 插件示例
+description: 演示 SecRandom 插件 API 的最小示例插件
 author: SECTL
 version: 1.0.0
-apiVersion: "3.0.0"
+apiVersion: "3.1.0"
 repoOwner: SECTL
-repoName: SecRandom
-projectUrl: https://github.com/SECTL/SecRandom
+repoName: SecRandom-ExamplePlugins
+projectUrl: https://github.com/SECTL/SecRandom-ExamplePlugins
 dependencies:
   - id: some.other.plugin
     required: true

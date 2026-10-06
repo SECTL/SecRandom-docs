@@ -19,6 +19,7 @@ createTime: 2026/08/14
 - [插件入口类](/dev/plugins/plugin-base)：`PluginBase` 入口与生命周期。
 - [能力面](/dev/plugins/capabilities)：宿主向插件暴露的稳定契约。
 - [插件依赖](/dev/plugins/dependency)：宿主提供依赖、外部包依赖与版本冲突。
+- [API 版本与兼容性](/dev/plugins/api-versioning)：版本号规则，以及何时需要重新编译。
 - [发布插件](/dev/plugins/publishing)：打包 `.srpx` 并上架插件市场。
 
 ## ::lucide:store:: 插件市场

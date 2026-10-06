@@ -43,7 +43,7 @@ public sealed class Plugin : PluginBase
 {
     public override void Initialize(HostBuilderContext context, IServiceCollection services)
     {
-        services.AddSettingsPage<ExampleSettingsPage>("ExamplePlugin");
+        services.AddSettingsPage<ExampleSettingsPage>("SecRandom 示例插件");
         services.AddSingleton<MyService>();
     }
 }

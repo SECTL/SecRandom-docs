@@ -18,40 +18,36 @@ createTime: 2026/08/14
 SecRandom 插件通过 NuGet 包 `SecRandom.PluginSdk` 引用宿主提供的 API。在插件项目文件中添加：
 
 ```xml
-<PackageReference Include="SecRandom.PluginSdk" Version="3.0.0">
+<PackageReference Include="SecRandom.PluginSdk" Version="3.1.0">
   <ExcludeAssets>runtime;native</ExcludeAssets>
 </PackageReference>
 ```
 
 - `ExcludeAssets="runtime;native"` 让 SDK 包只提供编译期 API；插件运行时所需的 `SecRandom.Core` 等程序集由宿主在进程内提供。
-- 包版本跟随主程序版本发布，请使用与应用主版本一致的版本（如 `3.0.0`）。当前宿主 API 主版本为 `3`。
+- 包版本跟随主程序版本发布，请使用与应用一致的版本（当前为 `3.1.0`）。`apiVersion` 只比较主版本，插件 API 主版本当前为 `3`。
 - 插件通过 SDK 使用宿主暴露的[能力面](/dev/plugins/capabilities)，即 SDK 所引用到的 Core 契约。
 
-::: note 使用本地 SDK 进行开发
-仓库模板 `SecRandom.ExamplePlugin` 默认使用本地项目引用（`UseLocalPluginSdk=true`），以便在没有发布版本时也能随解决方案构建。发布版插件则使用上面的 NuGet `PackageReference`。
+::: note 随主程序一起构建的模板
+主程序仓库里的 `SecRandom.ExamplePlugin` 会随解决方案一起构建，方便在没有发布版本时验证 SDK；对外分发的插件请按上面的 `PackageReference` 引用 NuGet 包。
 :::
 
 ## ::lucide:folder-tree:: 获取最小模板
 
-`SecRandom.ExamplePlugin` 是仓库内维护的最小插件模板，包含入口类、清单文件、示例设置页与打包配置。您可以将其作为起点：
+[SECTL/SecRandom-ExamplePlugins](https://github.com/SECTL/SecRandom-ExamplePlugins) 是独立的示例插件仓库：只注册一个设置页，用来展示插件自身的信息。可以直接以它为起点：
 
 ```bash
-git clone https://github.com/SECTL/SecRandom.git
-cd SecRandom/SecRandom.ExamplePlugin
-dotnet build
+git clone https://github.com/SECTL/SecRandom-ExamplePlugins.git
+cd SecRandom-ExamplePlugins
+powershell -ExecutionPolicy Bypass -File scripts\build.ps1
 ```
 
-构建完成后会在 `srpx/SecRandom.ExamplePlugin.srpx` 生成插件包。
-
-::: note
-更便捷的 `dotnet new` 插件模板包（`SecRandom.PluginTemplate`）计划中，待发布后会替代手动克隆。
-:::
+构建完成后会在 `ExamplePlugin\srpx\SecRandom.ExamplePlugin.srpx` 生成插件包。主程序仓库里的 `SecRandom.ExamplePlugin` 是同一模板的随仓版本，可对照阅读。
 
 ## ::lucide:bug:: 本地调试
 
 开发插件时不需要反复打包安装：
 
-- 使用启动参数 `--epp <目录>`（或 `--externalPluginPath <目录>`，可重复）追加开发插件目录。目录内的插件原位加载，宿主不会移动或删除，修改后重启应用即可生效。
+- 使用启动参数 `--epp <目录>`（或 `--externalPluginPath <目录>`，可重复）追加开发插件目录：目录应指向**包含插件目录的父目录**，宿主只枚举它的子目录；其中的插件原位加载，宿主不会移动或删除，修改后重启应用即可生效。
 - 也可以将打包好的 `.srpx` 放入 `data/cache/plugin-packages` 并重启桌面应用完成安装。
 
 ## ::lucide:arrow-right:: 下一步

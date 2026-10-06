@@ -19,6 +19,7 @@ The host only loads desktop plugins; mobile (Android / iOS) builds do not load d
 - [Plugin Entry Class](/en/dev/plugins/plugin-base): The `PluginBase` entry point and lifecycle.
 - [Capabilities](/en/dev/plugins/capabilities): The stable contracts the host exposes to plugins.
 - [Plugin Dependencies](/en/dev/plugins/dependency): Host-provided dependencies, external packages, and version conflicts.
+- [API Versions & Compatibility](/en/dev/plugins/api-versioning): Version rules and when a recompile is required.
 - [Publishing](/en/dev/plugins/publishing): Package `.srpx` and list your plugin on the market.
 
 ## ::lucide:store:: Plugin Market

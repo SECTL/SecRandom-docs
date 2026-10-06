@@ -25,7 +25,7 @@ createTime: 2026/08/14
 
 ## ::lucide:tag:: apiVersion 与版本
 
-- `manifest.yml` 的 `apiVersion` 声明插件目标宿主 API，主版本必须不低于宿主 `PluginApiVersions.Current.Major`（当前为 `3`）。不满足时插件会被拒绝加载。
+- `manifest.yml` 的 `apiVersion` 声明插件目标宿主 API，主版本必须不低于宿主 `PluginApiVersions.Current.Major`（当前为 `3`）。不满足时插件会被拒绝加载。详见[插件 API 版本与兼容性](/dev/plugins/api-versioning)。
 - `apiVersion` 跟随应用主版本递增；`version` 是插件自身版本，两者相互独立。
 - 插件包版本（`version`）用于市场中的更新判断；宿主安装包时以 `id` 为准，同 id 即视为更新。
 

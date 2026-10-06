@@ -9,13 +9,14 @@ This page explains how to create, configure, and package a SecRandom plugin proj
 
 ## ::lucide:folder-tree:: Plugin Structure
 
-Using the repository template `SecRandom.ExamplePlugin` as an example, a plugin project usually contains:
+Using the example repository `SECTL/SecRandom-ExamplePlugins` as a reference, a plugin project usually contains:
 
 ```plaintext
-SecRandom.ExamplePlugin
+ExamplePlugin
  ├─ SecRandom.ExamplePlugin.csproj   // Project file: SDK reference, CreateSrpx enabled
  ├─ manifest.yml                     // Plugin manifest
  ├─ Plugin.cs                        // Plugin entry class (inherits PluginBase)
+ ├─ PluginStateStore.cs              // Reads/writes the plugin's own data in its config folder
  ├─ README.md                        // Plugin readme (rendered in the settings page)
  ├─ icon.png                         // Plugin icon
  ├─ Views/
@@ -65,15 +66,15 @@ The manifest has the following properties:
 Here is an example manifest:
 
 ```yaml
-id: secrandom.example
+id: com.example.plugin
 name: SecRandom 示例插件
-description: 一个最小 SecRandom 插件示例
+description: 演示 SecRandom 插件 API 的最小示例插件
 entranceAssembly: SecRandom.ExamplePlugin.dll
-apiVersion: 3.0.0
+apiVersion: 3.1.0
 version: 1.0.0
 author: SECTL
 ```
 
 ## ::lucide:arrow-right:: Continue
 
-Read the [Plugin Entry Class](/en/dev/plugins/plugin-base) for entry and lifecycle details, see [Capabilities](/en/dev/plugins/capabilities) for the stable contracts the host exposes, or check the [SecRandom.ExamplePlugin](https://github.com/SECTL/SecRandom/tree/main/SecRandom.ExamplePlugin) on GitHub.
+Read the [Plugin Entry Class](/en/dev/plugins/plugin-base) for entry and lifecycle details, see [Capabilities](/en/dev/plugins/capabilities) for the stable contracts the host exposes, or check [SecRandom-ExamplePlugins](https://github.com/SECTL/SecRandom-ExamplePlugins) on GitHub.
