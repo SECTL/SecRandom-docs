@@ -24,7 +24,7 @@ SecRandom plugins reference the host API through the NuGet package `SecRandom.Pl
 ```
 
 - `ExcludeAssets="runtime;native"` keeps the SDK package compile-time only; the runtime assemblies your plugin needs (such as `SecRandom.Core`) are supplied in-process by the host.
-- Package versions follow the main application; use the version that matches your app (currently `3.1.0`). Only the major version of `apiVersion` is compared, and the current plugin API major is `3`.
+- Package versions follow the main application; use the version that matches your app (the latest published package is `3.1.0`, and plugin API `3.1.5` corresponds to `v3.1.5`). Only the major version of `apiVersion` is compared, and the current plugin API major is `3`.
 - Plugins use the host-exposed [capabilities](/en/dev/plugins/capabilities) through the SDK, which are the Core contracts the SDK references.
 
 ::: note Template built with the main application

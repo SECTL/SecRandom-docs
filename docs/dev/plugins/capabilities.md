@@ -33,7 +33,7 @@ createTime: 2026/08/14
 
 ::: note 解析方式
 在插件的 `Initialize` 中注册页面与服务即可，运行时可经构造函数注入，或用 `IAppHost.TryGetService<T>()` 解析上述契约（`GetService<T>()` 在服务缺失时会抛 `ArgumentException`）。
-宿主 API 3.2 起可以先用 `ICapabilityService.Has("ui.contribution")` 判断能力是否存在，在老宿主上优雅降级。
+宿主 API 3.1.5 起可以先用 `ICapabilityService.Has("ui.contribution")` 判断能力是否存在，在老宿主上优雅降级。
 注意：`Initialize` 执行时宿主 Host 还没构建（`IAppHost.Host` 为 `null`），此时只做注册；用到这些契约的运行时逻辑请放到 `OnAppStarted()` 之后。
 :::
 
@@ -128,12 +128,12 @@ var result = await drawService.DrawStudentsAsync(
 
 ## ::lucide:gift:: 通知与配置
 
-- 通知：`INotificationService` 提供通知、确认框与输入框（见下方【3.2 新增扩展点】）；插件页面里的轻量提示仍可直接用 Core 辅助方法（如 `this.ShowWarningToast(...)`）。
+- 通知：`INotificationService` 提供通知、确认框与输入框（见下方【3.1.5 新增扩展点】）；插件页面里的轻量提示仍可直接用 Core 辅助方法（如 `this.ShowWarningToast(...)`）。
 - 配置：插件经 DI 注入 `MainConfigHandler` 或继承 `ConfigHandlerBase<T>` 读写配置，私有文件写入 `PluginConfigFolder`（见[插件基础知识](/dev/plugins/basics)）。
 
 ## ::lucide:shield:: 权限与能力
 
-宿主 API 3.2 起，插件可以在 `manifest.yml` 里声明自己要用什么（`permissions`）：
+宿主 API 3.1.5 起，插件可以在 `manifest.yml` 里声明自己要用什么（`permissions`）：
 
 ```yaml
 permissions:
@@ -164,9 +164,9 @@ if (capabilities.Has(HostCapabilities.UiContribution)) { /* 老宿主没有该�
 var permissions = capabilities.GetPermissions("com.example.plugin");   // IsDeclared / Permissions / Allows(...)
 ```
 
-## ::lucide:sparkles:: 3.2 新增扩展点
+## ::lucide:sparkles:: 3.1.5 新增扩展点
 
-以下契约都是宿主 API 3.2 新增的（只是新增，老插件不受影响，见[插件 API 版本与兼容性](/dev/plugins/api-versioning)）：
+以下契约都是宿主 API 3.1.5 新增的（只是新增，老插件不受影响，见[插件 API 版本与兼容性](/dev/plugins/api-versioning)）：
 
 - **私有存储**：`IPluginStorageFactory` / `IPluginStorage` —— 在插件自己的配置目录里读写文本、字节与 JSON，路径越界（`..`、绝对路径）会抛 `UnauthorizedAccessException`。
 - **名单只读查询**：`IListQueryService` —— 取名单 / 奖池快照（`StudentSnapshot` / `PrizeSnapshot`），不会切换宿主当前名单；`Changed` 在 UI 线程触发。
@@ -299,7 +299,7 @@ var permissions = capabilities.GetPermissions("com.example.plugin");   // IsDecl
 | 契约 | 说明 |
 |------|------|
 | `PluginBase` | 插件入口基类（见[插件入口类](/dev/plugins/plugin-base)） |
-| `PluginInfo` / `PluginManifest` / `PluginDependency` / `PluginLoadStatus` / `PluginApiVersions` | 插件信息与清单模型（3.2 起清单多了 `Permissions`） |
+| `PluginInfo` / `PluginManifest` / `PluginDependency` / `PluginLoadStatus` / `PluginApiVersions` | 插件信息与清单模型（3.1.5 起清单多了 `Permissions`） |
 | `PluginPermissionNames` | 权限名与权限位互转：`All` / `TryParse` / `Parse` / `Normalize` / `Describe` |
 | `IPluginManager` | 已加载插件、插件目录，禁用 / 卸载插件，暂存安装包 |
 
@@ -316,7 +316,7 @@ var permissions = capabilities.GetPermissions("com.example.plugin");   // IsDecl
 | `AddAttachedSettingsControl<T>(string name)` | 注册附加设置控件（`AttachedSettingsControlBase`） |
 | `RegisterAttachedSettingsControl<T>(string name)` / `UnregisterAttachedSettingsControl<T>()` | 运行时挂上 / 摘掉附加设置控件，返回是否成功 |
 | `AddRollCallAlgorithm<T>(string id, string name)` / `AddLotteryAlgorithm<T>(string id, string name)` | 注册自定义点名 / 抽奖算法 |
-| `services.AddSingleton<I…, T>()` | 3.2 的贡献点用普通依赖注入注册：`IUiContentContribution`、`IUiStyleContribution`、`IDrawResultPresenter`、`IDrawCandidateFilter`、`IDrawResultPostProcessor`、`IAppShutdownParticipant`、`IDrawAnimationContribution` |
+| `services.AddSingleton<I…, T>()` | 3.1.5 的贡献点用普通依赖注入注册：`IUiContentContribution`、`IUiStyleContribution`、`IDrawResultPresenter`、`IDrawCandidateFilter`、`IDrawResultPostProcessor`、`IAppShutdownParticipant`、`IDrawAnimationContribution` |
 
 ::: tip 用法示例在哪查
 SDK NuGet 包只带程序集、不含 XML 说明，IDE 里只有签名；每个扩展点的可运行示例写在 SDK 包内的 `README.md`（仓库对应文件 `SecRandom.PluginSdk\README.md`），完整签名以客户端源码为准：`SecRandom.Core\Abstraction\`（契约）与 `SecRandom.PluginSdk\`（插件基类）。

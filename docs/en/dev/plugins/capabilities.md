@@ -33,7 +33,7 @@ The host exposes capabilities to plugins through the stable contracts under `Sec
 
 ::: note Resolution
 Register pages and services in the plugin's `Initialize`; at runtime resolve the contracts above through constructor injection, or with `IAppHost.TryGetService<T>()` (`GetService<T>()` throws `ArgumentException` when the service is missing).
-Since host API 3.2 you can first check whether a capability exists with `ICapabilityService.Has("ui.contribution")` and degrade gracefully on older hosts.
+Since host API 3.1.5 you can first check whether a capability exists with `ICapabilityService.Has("ui.contribution")` and degrade gracefully on older hosts.
 Note that when `Initialize` runs the application Host is not built yet (`IAppHost.Host` is `null`), so registration only belongs there; put runtime logic that uses these contracts in or after `OnAppStarted()`.
 :::
 
@@ -128,12 +128,12 @@ Request parameters:
 
 ## ::lucide:gift:: Notifications & Configuration
 
-- Notifications: `INotificationService` provides notifications, confirm dialogs and input prompts (see "Extension Points added in 3.2" below); lightweight toasts inside plugin pages can still use the Core helpers directly (e.g. `this.ShowWarningToast(...)`).
+- Notifications: `INotificationService` provides notifications, confirm dialogs and input prompts (see "Extension Points added in 3.1.5" below); lightweight toasts inside plugin pages can still use the Core helpers directly (e.g. `this.ShowWarningToast(...)`).
 - Configuration: inject `MainConfigHandler` through DI or subclass `ConfigHandlerBase<T>` to read/write config, and put plugin-private files in `PluginConfigFolder` (see [Plugin Basics](/en/dev/plugins/basics)).
 
 ## ::lucide:shield:: Permissions & Capabilities
 
-Since host API 3.2, a plugin can declare in `manifest.yml` what it needs (`permissions`):
+Since host API 3.1.5, a plugin can declare in `manifest.yml` what it needs (`permissions`):
 
 ```yaml
 permissions:
@@ -164,9 +164,9 @@ if (capabilities.Has(HostCapabilities.UiContribution)) { /* degrade gracefully w
 var permissions = capabilities.GetPermissions("com.example.plugin");   // IsDeclared / Permissions / Allows(...)
 ```
 
-## ::lucide:sparkles:: Extension Points added in 3.2
+## ::lucide:sparkles:: Extension Points added in 3.1.5
 
-The contracts below are all new in host API 3.2 (purely additive, older plugins are unaffected; see [Plugin API Versions & Compatibility](/en/dev/plugins/api-versioning)):
+The contracts below are all new in host API 3.1.5 (purely additive, older plugins are unaffected; see [Plugin API Versions & Compatibility](/en/dev/plugins/api-versioning)):
 
 - **Private storage**: `IPluginStorageFactory` / `IPluginStorage` — read/write text, bytes and JSON inside the plugin's own config folder; a path that escapes it (`..`, absolute paths) throws `UnauthorizedAccessException`.
 - **Read-only list queries**: `IListQueryService` — fetch roster / prize-pool snapshots (`StudentSnapshot` / `PrizeSnapshot`) without switching the host's active roster; `Changed` fires on the UI thread.
@@ -299,7 +299,7 @@ Full usage for every extension point (with runnable examples) is in the `README.
 | Contract | Description |
 |----------|-------------|
 | `PluginBase` | Plugin entry base class (see [Plugin Entry Class](/en/dev/plugins/plugin-base)) |
-| `PluginInfo` / `PluginManifest` / `PluginDependency` / `PluginLoadStatus` / `PluginApiVersions` | Plugin information and manifest models (since 3.2 the manifest also has `Permissions`) |
+| `PluginInfo` / `PluginManifest` / `PluginDependency` / `PluginLoadStatus` / `PluginApiVersions` | Plugin information and manifest models (since 3.1.5 the manifest also has `Permissions`) |
 | `PluginPermissionNames` | Convert between permission names and flags: `All` / `TryParse` / `Parse` / `Normalize` / `Describe` |
 | `IPluginManager` | Loaded plugins, plugins directory, disable / uninstall, stage a package for install |
 
@@ -316,7 +316,7 @@ Pages, algorithms and contribution points are all registered in `Initialize` thr
 | `AddAttachedSettingsControl<T>(string name)` | Register an attached settings control (`AttachedSettingsControlBase`) |
 | `RegisterAttachedSettingsControl<T>(string name)` / `UnregisterAttachedSettingsControl<T>()` | Attach / detach an attached settings control at runtime, returning whether it succeeded |
 | `AddRollCallAlgorithm<T>(string id, string name)` / `AddLotteryAlgorithm<T>(string id, string name)` | Register custom roll-call / lottery algorithms |
-| `services.AddSingleton<I…, T>()` | The 3.2 contribution points are registered through ordinary dependency injection: `IUiContentContribution`, `IUiStyleContribution`, `IDrawResultPresenter`, `IDrawCandidateFilter`, `IDrawResultPostProcessor`, `IAppShutdownParticipant`, `IDrawAnimationContribution` |
+| `services.AddSingleton<I…, T>()` | The 3.1.5 contribution points are registered through ordinary dependency injection: `IUiContentContribution`, `IUiStyleContribution`, `IDrawResultPresenter`, `IDrawCandidateFilter`, `IDrawResultPostProcessor`, `IAppShutdownParticipant`, `IDrawAnimationContribution` |
 
 ::: tip Where to find usage examples
 The SDK NuGet package ships only the assemblies without XML documentation, so the IDE shows signatures only; runnable examples for every extension point are in the `README.md` inside the SDK package (repository file `SecRandom.PluginSdk\README.md`), and the authoritative signatures live in the client source: `SecRandom.Core\Abstraction\` (contracts) and `SecRandom.PluginSdk\` (plugin base classes).
