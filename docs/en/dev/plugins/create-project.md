@@ -62,6 +62,7 @@ The manifest has the following properties:
 | `readme` | `string` | No | Plugin readme file name, defaults to `README.md` |
 | `dependencies` | `array` | No | Plugin-to-plugin dependencies (see [Plugin Dependencies](/en/dev/plugins/dependency)) |
 | `supportedPlatforms` | `array` | No | Operating systems the plugin supports |
+| `permissions` | `array` | No | Permission declarations, e.g. `[ui, storage]` (see [Permissions & Capabilities](/en/dev/plugins/capabilities#permissions-capabilities)); **omitting it = undeclared = everything allowed** |
 
 Here is an example manifest:
 
@@ -73,6 +74,9 @@ entranceAssembly: SecRandom.ExamplePlugin.dll
 apiVersion: 3.1.0
 version: 1.0.0
 author: SECTL
+permissions:
+  - ui
+  - storage
 ```
 
 ## ::lucide:arrow-right:: Continue

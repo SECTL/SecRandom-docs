@@ -14,13 +14,13 @@ createTime: 2026/08/14
 | `apiVersion` | `manifest.yml` | 插件针对的宿主插件 API 版本 |
 | `version` | `manifest.yml` | 插件自身版本，市场用它判断更新 |
 
-插件 API 版本由宿主的 `PluginApiVersions.Current` 定义，当前为 `3.0.0`，跟随应用主版本递增。
+插件 API 版本由宿主的 `PluginApiVersions.Current` 定义，当前为 `3.2.0`（宿主插件 API 3.2），跟随应用主版本递增。
 
 ## ::lucide:circle-check:: 加载规则
 
 宿主只比较**主版本号**：`apiVersion` 的主版本不能低于宿主的主版本，否则插件被拒绝加载，日志提示 `Plugin API version 2.0.0 is not supported; 3.0 or higher is required.`。
 
-- 主版本相同即可：`3.0.0`、`3.1.0` 都能装进 3.x 宿主。
+- 主版本相同即可：`3.0.0`、`3.1.0`、`3.2.0` 都能装进 3.x 宿主。
 - 没有上界：声明 `4.0.0` 的插件也能被 3.x 宿主加载。
 - 宿主升到 4.x 后，声明 `3.x` 的插件会被拒绝，需要发布 `apiVersion: 4.x` 的新版本。
 - 插件市场还多一条 `minimumHostVersion`：宿主版本低于它时，插件标记为不兼容、不允许安装。

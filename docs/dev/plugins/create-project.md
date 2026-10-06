@@ -62,6 +62,7 @@ ExamplePlugin
 | `readme` | `string` | 否 | 插件自述文件文件名，默认为 `README.md` |
 | `dependencies` | `array` | 否 | 插件间依赖（见[插件依赖](/dev/plugins/dependency)） |
 | `supportedPlatforms` | `array` | 否 | 插件支持的操作系统平台 |
+| `permissions` | `array` | 否 | 权限声明，如 `[ui, storage]`（见[权限与能力](/dev/plugins/capabilities#权限与能力)）；**不写 = 未声明 = 全部允许** |
 
 以下是一个清单文件的示例：
 
@@ -73,6 +74,9 @@ entranceAssembly: SecRandom.ExamplePlugin.dll
 apiVersion: 3.1.0
 version: 1.0.0
 author: SECTL
+permissions:
+  - ui
+  - storage
 ```
 
 ## ::lucide:arrow-right:: 继续深入

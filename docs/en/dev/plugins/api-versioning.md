@@ -14,13 +14,13 @@ This page explains how `apiVersion` is checked, and when a plugin must be recomp
 | `apiVersion` | `manifest.yml` | The host plugin API version the plugin targets |
 | `version` | `manifest.yml` | The plugin's own version, used by the market for updates |
 
-The plugin API version is defined by the host's `PluginApiVersions.Current`, currently `3.0.0`, and follows the application major version.
+The plugin API version is defined by the host's `PluginApiVersions.Current`, currently `3.2.0` (host plugin API 3.2), and follows the application major version.
 
 ## ::lucide:circle-check:: Loading Rules
 
 The host compares the **major version only**: the major of `apiVersion` must not be below the host major, otherwise the plugin is rejected with `Plugin API version 2.0.0 is not supported; 3.0 or higher is required.`
 
-- The same major is enough: `3.0.0` and `3.1.0` both load on a 3.x host.
+- The same major is enough: `3.0.0`, `3.1.0` and `3.2.0` all load on a 3.x host.
 - There is no upper bound: a plugin declaring `4.0.0` still loads on a 3.x host.
 - Once the host reaches 4.x, plugins declaring `3.x` are rejected; publish a new version with `apiVersion: 4.x`.
 - The plugin market adds one more check, `minimumHostVersion`: when the host is older, the plugin is marked incompatible and cannot be installed.
