@@ -20,7 +20,7 @@ The host exposes capabilities to plugins through the stable contracts under `Sec
 | `IPluginDrawService` | `SecRandom.Core.Abstraction.Services` | Controlled draw facade (see below) |
 | `IPluginManager` | `SecRandom.PluginSdk` | Query loaded plugins and the plugins directory, disable / uninstall plugins (see below) |
 | `IAppHost` | `SecRandom.Core.Abstraction` | Static service locator: `Host.Services`, `GetService<T>()` / `TryGetService<T>()` |
-| Existing Core contracts | `SecRandom.Core.Abstraction.Services` | `IProfileCatalogManager`, `IHistoryQueryService`, `IFeatureAvailabilityService`, `IVoiceAnnouncementService`, `ISpeechProvider`, `IViewEngine`, `IUiContributionService` / `IOverlayHostService` / `IResultPresentationService`, etc. |
+| Other Core contracts | `SecRandom.Core.Abstraction` | Rosters, history, speech, UI slots, theming, overlays, result presentation and more — see the [full contract list](#full-contract-list) below |
 
 ::: note Resolution
 Register pages and services in the plugin's `Initialize`; at runtime resolve the contracts above through constructor injection, or with `IAppHost.TryGetService<T>()` (`GetService<T>()` throws `ArgumentException` when the service is missing).
@@ -120,3 +120,88 @@ Request parameters:
 
 - Toast: no service-level API is needed. Plugin pages use the existing Core toast helpers (e.g. `this.ShowWarningToast(...)`); control events bubble to the `AppToastAdorner`.
 - Configuration: inject `MainConfigHandler` or subclass `ConfigHandlerBase<T>` for config, and put plugin-private files in `PluginConfigFolder` (see [Plugin Basics](/en/dev/plugins/basics)).
+
+## ::lucide:list:: Full Contract List
+
+`SecRandom.PluginSdk` depends on `SecRandom.Core`, so every contract below is available at compile time with no extra reference.
+
+### Draws & history (`SecRandom.Core.Abstraction.Services`)
+
+| Contract | Description |
+|----------|-------------|
+| `IPluginDrawService` | The plugin's only draw entry point (see above) |
+| `PluginStudentDrawRequest` / `PluginStudentDrawResult` / `PluginLotteryDrawRequest` / `PluginLotteryDrawResult` | Draw request and result models |
+| `IHistoryQueryService` | Read history without switching the active profile |
+| `IHistoryExportService` + `HistoryExportKind` / `HistoryExportFormat` / `HistoryExportSort` / `HistoryExportFilter` / `HistoryExportRequest` / `HistoryExportResult` / `HistoryExportLabels` | Export roll-call / lottery history to xlsx or csv |
+| `IDrawCommitService` + `StudentDrawCommit` / `LotteryDrawCommit`, `IRollCallSession`, `ILotterySession`, `IDrawTemporaryRecordService` | Host draw-commit and temporary-record pipeline — **plugins must never call these directly** |
+
+### Rosters, courses & feature switches
+
+| Contract | Description |
+|----------|-------------|
+| `IProfileService` | Current list / prize-pool and history access; **calling `Record*History` is forbidden** |
+| `IProfileCatalogManager` / `IProfileCatalogEditor` | Enumerate, add, delete, snapshot and import/export lists and prize pools (mostly host-internal) |
+| `IFeatureAvailabilityService` | Feature switches (`IsLotteryEnabled`), `Changed` event, `Refresh()` |
+
+### Voice & custom algorithms
+
+| Contract | Description |
+|----------|-------------|
+| `IVoiceAnnouncementService` | Voice announcements |
+| `ISpeechProvider` + `VoiceOption` / `SpeechSynthesisRequest` / `SpeechAudio` | Speech synthesis (enumerate voices, produce audio) |
+| `ISpeechAudioPlayer` | Play back synthesized audio |
+| `IRollCallAlgorithm` + `IRollCallAlgorithmRegistry` | Custom roll-call algorithm: build the weighted candidate pool only, never pick winners or mutate state; register with `AddRollCallAlgorithm<T>` |
+| `ILotteryAlgorithm` + `ILotteryAlgorithmRegistry` | Custom lottery algorithm; register with `AddLotteryAlgorithm<T>` |
+
+### UI extension points (`SecRandom.Core.Abstraction.Services.Views`)
+
+| Contract | Description |
+|----------|-------------|
+| `IDrawerView` / `IMainView` / `ISettingsView` | Drawer and page navigation (see above) |
+| `IUiContributionService` + `IUiContentContribution` / `UiSlotKind` / `UiSlotContext` / `HostUiSlots` | Append, prepend, replace or hide content in named host slots |
+| `IUiStyleService` + `IUiStyleContribution` | Add Avalonia styles and resource overrides to restyle the whole shell |
+| `IOverlayHostService` + `OverlayOptions` / `OverlayClosedEventArgs` | Show your own overlay on top of the host shell without owning a window |
+| `UiContentContributionBase` / `UiStyleContributionBase` | Convenience bases when you only need to build a visual |
+
+### Result presentation (`SecRandom.Core.Abstraction.Services.Presentation`)
+
+| Contract | Description |
+|----------|-------------|
+| `IResultPresentationService` | Host dispatch point for result presentation; you may also call it to replay or present your own result |
+| `IDrawResultPresenter` | Custom presentation for every committed round (`Priority` / `CanPresent` / `PresentAsync`); register with `services.AddSingleton<IDrawResultPresenter, T>()` |
+| `DrawPresentationRequest` / `DrawPresentationDecision` / `DrawPresentationChannel` / `DrawPresentationPhase` | Presentation request, decision, channel and phase |
+
+### Configuration & host (`SecRandom.Core.Abstraction`, `…Abstraction.Controls`)
+
+| Contract | Description |
+|----------|-------------|
+| `IAppHost` | Static service location: `Host.Services`, `GetService<T>()` / `TryGetService<T>()` |
+| `ConfigServiceBase` | Config read/write base: `IsConfigExists` / `LoadConfig` / `SaveConfig` / `DeleteConfig` |
+| `ConfigHandlerBase<T>` | Config handler base: `Data`, `Reload` / `Save` / `Delete`, `Saved` event |
+| `AttachedSettingsControlBase` / `AttachedSettingsControlBase<T>` | Attached settings control base: `Target`, `Settings` |
+
+### Plugin SDK (`SecRandom.PluginSdk`)
+
+| Contract | Description |
+|----------|-------------|
+| `PluginBase` | Plugin entry base class (see [Plugin Entry Class](/en/dev/plugins/plugin-base)) |
+| `PluginInfo` / `PluginManifest` / `PluginDependency` / `PluginLoadStatus` / `PluginApiVersions` | Plugin information and manifest models |
+| `IPluginManager` | Loaded plugins, plugins directory, disable / uninstall, stage a package for install |
+
+## ::lucide:list-checks:: Registration Extensions
+
+Pages, algorithms and contribution points are all registered in `Initialize` through extension methods (`SecRandom.Core.Extensions.Registry`):
+
+| Extension method | Description |
+|------------------|-------------|
+| `AddSettingsPage<T>(string name)` | Register a settings page; `T` must carry `[PageInfo]` |
+| `AddMainPage<T>(string name)` | Register a main page (`T : UserControl`); `T` must carry `[PageInfo]` |
+| `AddSettingsPageSeparator(PageLocation, bool isHide)` / `AddMainPageSeparator(PageLocation)` | Insert page separators |
+| `AddGroup(PageGroupInfo)` | Register a page group |
+| `AddAttachedSettingsControl<T>(string name)` | Register an attached settings control (`AttachedSettingsControlBase`) |
+| `AddRollCallAlgorithm<T>(string id, string name)` / `AddLotteryAlgorithm<T>(string id, string name)` | Register custom roll-call / lottery algorithms |
+| `services.AddSingleton<I…, T>()` | Register contribution points: `IUiContentContribution`, `IUiStyleContribution`, `IDrawResultPresenter`, … |
+
+::: tip Where to find member signatures
+The SDK NuGet package ships the assemblies without XML documentation, so the IDE only shows signatures. The authoritative signatures live in the client source: `SecRandom.Core\Abstraction\` (contracts) and `SecRandom.PluginSdk\` (plugin base classes).
+:::

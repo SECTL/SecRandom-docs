@@ -20,7 +20,7 @@ createTime: 2026/08/14
 | `IPluginDrawService` | `SecRandom.Core.Abstraction.Services` | 受控抽奖 facade（见下文） |
 | `IPluginManager` | `SecRandom.PluginSdk` | 查询已加载插件与插件目录，禁用 / 卸载插件（见下文） |
 | `IAppHost` | `SecRandom.Core.Abstraction` | 静态服务定位：`Host.Services`、`GetService<T>()` / `TryGetService<T>()` |
-| 既有 Core 契约 | `SecRandom.Core.Abstraction.Services` | `IProfileCatalogManager`、`IHistoryQueryService`、`IFeatureAvailabilityService`、`IVoiceAnnouncementService`、`ISpeechProvider`、`IViewEngine`、`IUiContributionService` / `IOverlayHostService` / `IResultPresentationService` 等 |
+| 其余 Core 契约 | `SecRandom.Core.Abstraction` | 名单、历史、语音、UI 插槽、主题、叠加层、结果呈现等，见下方[完整契约清单](#完整契约清单) |
 
 ::: note 解析方式
 在插件的 `Initialize` 中注册页面与服务即可，运行时可经构造函数注入，或用 `IAppHost.TryGetService<T>()` 解析上述契约（`GetService<T>()` 在服务缺失时会抛 `ArgumentException`）。
@@ -120,3 +120,88 @@ var result = await drawService.DrawStudentsAsync(
 
 - Toast：不需要新增服务级 API。插件页面使用现有 Core 提示辅助（如 `this.ShowWarningToast(...)`），控件事件会冒泡到 `AppToastAdorner`。
 - 配置：插件经 DI 注入 `MainConfigHandler` 或继承 `ConfigHandlerBase<T>` 读写配置，私有文件写入 `PluginConfigFolder`（见[插件基础知识](/dev/plugins/basics)）。
+
+## ::lucide:list:: 完整契约清单
+
+`SecRandom.PluginSdk` 包依赖 `SecRandom.Core`，所以下列契约在编译期就能直接用，无需额外引用。
+
+### 抽奖与历史（`SecRandom.Core.Abstraction.Services`）
+
+| 契约 | 说明 |
+|------|------|
+| `IPluginDrawService` | 插件唯一的抽奖入口（见上文） |
+| `PluginStudentDrawRequest` / `PluginStudentDrawResult` / `PluginLotteryDrawRequest` / `PluginLotteryDrawResult` | 抽奖请求与结果模型 |
+| `IHistoryQueryService` | 读取历史记录，不切换当前名单 |
+| `IHistoryExportService` + `HistoryExportKind` / `HistoryExportFormat` / `HistoryExportSort` / `HistoryExportFilter` / `HistoryExportRequest` / `HistoryExportResult` / `HistoryExportLabels` | 把点名/抽奖历史导出成 xlsx / csv |
+| `IDrawCommitService` + `StudentDrawCommit` / `LotteryDrawCommit`、`IRollCallSession`、`ILotterySession`、`IDrawTemporaryRecordService` | 宿主抽奖提交与临时记录流水线，**插件不得直接调用** |
+
+### 名单、课程与功能开关
+
+| 契约 | 说明 |
+|------|------|
+| `IProfileService` | 当前名单/奖池与历史的读写；**禁止调用 `Record*History`** |
+| `IProfileCatalogManager` / `IProfileCatalogEditor` | 名单与奖池目录的枚举、增删、快照与导入导出（宿主内部为主） |
+| `IFeatureAvailabilityService` | 查询功能开关（`IsLotteryEnabled`）、`Changed` 事件、`Refresh()` |
+
+### 语音与自定义算法
+
+| 契约 | 说明 |
+|------|------|
+| `IVoiceAnnouncementService` | 语音播报 |
+| `ISpeechProvider` + `VoiceOption` / `SpeechSynthesisRequest` / `SpeechAudio` | 提供语音合成（枚举音色、产出音频） |
+| `ISpeechAudioPlayer` | 播放合成出的音频 |
+| `IRollCallAlgorithm` + `IRollCallAlgorithmRegistry` | 自定义点名算法：只产生带权候选池，不得选人或改状态；用 `AddRollCallAlgorithm<T>` 注册 |
+| `ILotteryAlgorithm` + `ILotteryAlgorithmRegistry` | 自定义抽奖算法；用 `AddLotteryAlgorithm<T>` 注册 |
+
+### UI 扩展点（`SecRandom.Core.Abstraction.Services.Views`）
+
+| 契约 | 说明 |
+|------|------|
+| `IDrawerView` / `IMainView` / `ISettingsView` | 抽屉与页面导航（见上文） |
+| `IUiContributionService` + `IUiContentContribution` / `UiSlotKind` / `UiSlotContext` / `HostUiSlots` | 往宿主命名插槽追加、前置、替换或隐藏内容 |
+| `IUiStyleService` + `IUiStyleContribution` | 追加 Avalonia 样式与资源覆盖，实现整壳重着色 |
+| `IOverlayHostService` + `OverlayOptions` / `OverlayClosedEventArgs` | 在宿主外壳上叠加自己的浮层，无需自建窗口 |
+| `UiContentContributionBase` / `UiStyleContributionBase` | 只需要构造视觉时的便捷基类 |
+
+### 结果呈现（`SecRandom.Core.Abstraction.Services.Presentation`）
+
+| 契约 | 说明 |
+|------|------|
+| `IResultPresentationService` | 宿主的结果呈现调度点，可自行调用以重放或呈现自己算出的结果 |
+| `IDrawResultPresenter` | 自定义每轮结果的呈现（`Priority` / `CanPresent` / `PresentAsync`）；用 `services.AddSingleton<IDrawResultPresenter, T>()` 注册 |
+| `DrawPresentationRequest` / `DrawPresentationDecision` / `DrawPresentationChannel` / `DrawPresentationPhase` | 呈现请求、决策与通道、阶段 |
+
+### 配置与宿主（`SecRandom.Core.Abstraction`、`…Abstraction.Controls`）
+
+| 契约 | 说明 |
+|------|------|
+| `IAppHost` | 静态服务定位：`Host.Services`、`GetService<T>()` / `TryGetService<T>()` |
+| `ConfigServiceBase` | 配置读写基类：`IsConfigExists` / `LoadConfig` / `SaveConfig` / `DeleteConfig` |
+| `ConfigHandlerBase<T>` | 配置处理基类：`Data`、`Reload` / `Save` / `Delete`、`Saved` 事件 |
+| `AttachedSettingsControlBase` / `AttachedSettingsControlBase<T>` | 附加设置控件基类：`Target`、`Settings` |
+
+### 插件 SDK（`SecRandom.PluginSdk`）
+
+| 契约 | 说明 |
+|------|------|
+| `PluginBase` | 插件入口基类（见[插件入口类](/dev/plugins/plugin-base)） |
+| `PluginInfo` / `PluginManifest` / `PluginDependency` / `PluginLoadStatus` / `PluginApiVersions` | 插件信息与清单模型 |
+| `IPluginManager` | 已加载插件、插件目录，禁用 / 卸载插件，暂存安装包 |
+
+## ::lucide:list-checks:: 注册扩展
+
+页面、算法与贡献点都在 `Initialize` 中用扩展方法注册（`SecRandom.Core.Extensions.Registry`）：
+
+| 扩展方法 | 说明 |
+|----------|------|
+| `AddSettingsPage<T>(string name)` | 注册设置页；`T` 必须带 `[PageInfo]` |
+| `AddMainPage<T>(string name)` | 注册主页面（`T : UserControl`）；`T` 必须带 `[PageInfo]` |
+| `AddSettingsPageSeparator(PageLocation, bool isHide)` / `AddMainPageSeparator(PageLocation)` | 插入页面分隔项 |
+| `AddGroup(PageGroupInfo)` | 注册页面分组 |
+| `AddAttachedSettingsControl<T>(string name)` | 注册附加设置控件（`AttachedSettingsControlBase`） |
+| `AddRollCallAlgorithm<T>(string id, string name)` / `AddLotteryAlgorithm<T>(string id, string name)` | 注册自定义点名 / 抽奖算法 |
+| `services.AddSingleton<I…, T>()` | 注册贡献点：`IUiContentContribution`、`IUiStyleContribution`、`IDrawResultPresenter` 等 |
+
+::: tip 成员签名在哪查
+SDK NuGet 包只带程序集、不含 XML 说明，IDE 里只有签名。完整签名以客户端源码为准：`SecRandom.Core\Abstraction\`（契约）与 `SecRandom.PluginSdk\`（插件基类）。
+:::

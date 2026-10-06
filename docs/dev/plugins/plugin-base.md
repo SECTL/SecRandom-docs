@@ -49,8 +49,8 @@ public sealed class Plugin : PluginBase
 }
 ```
 
-::: note 尽早注册浮窗按钮
-浮窗按钮等能力应在 `Initialize` 中完成注册（宿主 Host 构建前）。运行时只需把实例注册进 DI，宿主会负责装配。
+::: note 浮窗按钮是运行时注册
+浮窗按钮通过运行时注册表添加：解析 `IFloatingWindowButtonRegistry`（如 `IAppHost.TryGetService<IFloatingWindowButtonRegistry>()`）后调用 `Register(...)`。`Initialize` 期间 Host 还没构建、无法解析服务，请放到 `OnAppStarted()` 之后；注册不持久化，浮窗刷新时会清理已消失的项。见[能力面](/dev/plugins/capabilities)。
 :::
 
 ## ::lucide:activity:: 应用生命周期

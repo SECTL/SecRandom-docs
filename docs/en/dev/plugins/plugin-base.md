@@ -49,8 +49,8 @@ public sealed class Plugin : PluginBase
 }
 ```
 
-::: note Register floating-window buttons early
-Capabilities such as floating-window buttons should be registered in `Initialize` (before the host Host is built). For runtime wiring, just register instances in DI and let the host compose them.
+::: note Floating-window buttons are registered at runtime
+Floating-window buttons are added through a runtime registry: resolve `IFloatingWindowButtonRegistry` (e.g. `IAppHost.TryGetService<IFloatingWindowButtonRegistry>()`) and call `Register(...)`. The Host does not exist yet while `Initialize` runs, so do this in or after `OnAppStarted()`; registrations are never persisted and the floating window prunes entries that disappear on refresh. See [Capabilities](/en/dev/plugins/capabilities).
 :::
 
 ## ::lucide:activity:: Application Lifecycle
