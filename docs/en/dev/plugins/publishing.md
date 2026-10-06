@@ -24,14 +24,16 @@ The built-in market loads its index from [SECTL/SecRandom-PluginIndex](https://g
 
 **Author submission flow:**
 
-1. Package the plugin and compute the package checksum:
+1. Package the plugin, then generate the submission metadata with `scripts/publish-plugin.ps1` from the **client source repository** [SECTL/SecRandom](https://github.com/SECTL/SecRandom):
 
-   ```bash
-   dotnet build -c Release
-   ./scripts/publish-plugin.ps1 -SrpxPath .\srpx\My.Plugin.srpx -RepoOwner MyGitHub -RepoName my-plugin-repo
+   ```powershell
+   dotnet build -c Release     # produces srpx\My.Plugin.srpx
+   .\scripts\publish-plugin.ps1 -SrpxPath .\srpx\My.Plugin.srpx -RepoOwner MyGitHub -RepoName my-plugin-repo
    ```
 
-2. Publish a `.srpx` release in your GitHub repository with a tag like `vX.Y.Z`, and embed the SHA-256 block in the release note:
+   The script reads `manifest.yml` from inside the package, writes `plugins/<id>.yaml` next to the `.srpx` (optional `-ProjectUrl` / `-ReadmeUrl` / `-IconUrl`), and prints the SHA-256 block.
+
+2. Publish a `.srpx` release in your GitHub repository: tag it `v<version from manifest>`, attach **exactly one** `.srpx` asset, and embed the SHA-256 block in the release note:
 
    ```
    <!-- SECRANDOM_SHA256: <hex> -->
@@ -39,7 +41,7 @@ The built-in market loads its index from [SECTL/SecRandom-PluginIndex](https://g
 
    The release must contain exactly one `.srpx` asset for the index generator to match.
 
-3. Commit the generated `plugins/<id>.yaml` to `SECTL/SecRandom-PluginIndex` and open a PR. Once reviewed, your plugin enters the market; later updates are picked up automatically by the nightly build, with no further PRs needed.
+3. Fork [SECTL/SecRandom-PluginIndex](https://github.com/SECTL/SecRandom-PluginIndex), add `plugins/<id>.yaml` under its `plugins/` directory, and open a PR. Once merged, the workflow rebuilds and signs `index.json`; later updates are picked up automatically by the nightly build, with no further PR needed.
 
 The generated `plugins/<id>.yaml` looks roughly like this:
 

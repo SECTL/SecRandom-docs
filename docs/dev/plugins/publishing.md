@@ -24,14 +24,16 @@ dotnet build -c Release
 
 **插件作者投稿流程：**
 
-1. 打包插件并计算包校验值：
+1. 打包插件，再用**客户端源码仓库** [SECTL/SecRandom](https://github.com/SECTL/SecRandom) 里的 `scripts/publish-plugin.ps1` 生成投稿元数据：
 
-   ```bash
-   dotnet build -c Release
-   ./scripts/publish-plugin.ps1 -SrpxPath .\srpx\My.Plugin.srpx -RepoOwner MyGitHub -RepoName my-plugin-repo
+   ```powershell
+   dotnet build -c Release     # 生成 srpx\My.Plugin.srpx
+   .\scripts\publish-plugin.ps1 -SrpxPath .\srpx\My.Plugin.srpx -RepoOwner MyGitHub -RepoName my-plugin-repo
    ```
 
-2. 在您的 GitHub 仓库发布 `.srpx` release，tag 形如 `vX.Y.Z`，release note 中内嵌 SHA-256 块：
+   脚本读取包内 `manifest.yml`，在 `.srpx` 同目录写出 `plugins/<id>.yaml`（另可加 `-ProjectUrl` / `-ReadmeUrl` / `-IconUrl`），并打印 SHA-256 块。
+
+2. 在您的 GitHub 仓库发布 `.srpx` release：tag 用 `v<manifest 中的 version>`，**恰好包含一个** `.srpx` 资产，release note 中内嵌 SHA-256 块：
 
    ```
    <!-- SECRANDOM_SHA256: <hex> -->
@@ -39,7 +41,7 @@ dotnet build -c Release
 
    release 需恰好包含一个 `.srpx` 资产，索引生成器才会匹配到它。
 
-3. 将脚本生成的 `plugins/<id>.yaml` 提交到 `SECTL/SecRandom-PluginIndex` 并打开 PR，审核通过后即进入插件市场；后续更新由 nightly 自动收录，无需再次 PR。
+3. Fork [SECTL/SecRandom-PluginIndex](https://github.com/SECTL/SecRandom-PluginIndex)，把 `plugins/<id>.yaml` 放进该仓库的 `plugins/` 目录并打开 PR；合并后 workflow 会重建并签名 `index.json`，之后版本更新由 nightly 自动收录，无需再次 PR。
 
 生成的 `plugins/<id>.yaml` 大致如下：
 
