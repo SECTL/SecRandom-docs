@@ -1,4 +1,4 @@
-﻿---
+---
 title: Security & FAQ
 createTime: 2026/10/06 10:00:00
 ---
@@ -13,7 +13,7 @@ createTime: 2026/10/06 10:00:00
 Console (UI) → Server (authorizes) → Device (decides, may refuse)
 ```
 
-The control server is vendor-hosted and **not open source today**, so treat it as a component that **may be compromised**. What actually protects you is what you can see and touch:
+The vendor-hosted instance is run by us, so treat it as a component that **may be compromised** — the parts of it that are not public (operational configuration and keys) are not something you can verify either. What actually protects you is what you can see and touch:
 
 - **A hidden button is not a security boundary**: roles are checked on the server;
 - **The server cannot force a device**: it can only refuse to deliver;
@@ -108,4 +108,4 @@ Use **transfer ownership** for handovers (effective after both sides confirm). *
 
 ### Can I host my own server? How long is the audit kept?
 
-The **server and Web console are not open source**, only the vendor-hosted service exists, and **self-hosting is not supported yet**. The audit log is **kept for 30 days**; older records are cleaned up automatically, so export from the console if you need a long-term archive.
+**You can deploy it yourself**: the server and Web console source are public, so you can run the server on your own machine — but **for now it is only good for a trial run**, because self-hosted sign-in (local accounts / Feishu / DingTalk) is still in development: the code today contains no identity source, and an instance you deploy cannot be signed into. See [Self-Hosting](/en/doc/control/self-host). The audit log is **kept for 30 days**; older records are cleaned up automatically, so export from the console if you need a long-term archive.

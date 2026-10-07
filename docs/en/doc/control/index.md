@@ -20,9 +20,10 @@ Without Control, SecRandom works exactly as before — joining just adds a layer
 
 | | |
 |---|---|
-| **Account** | A SECTL account. Control has no separate accounts: the console and the device use the same one |
+| **Account** | A SECTL account (the official cloud). The console and the device use the same account, and there is no separate account system |
 | **Devices** | SecRandom v3 desktop client on the classroom machine. A **tablet can be both a remote and a managed device**; a phone can only be a remote |
 | **Network** | The device only needs outbound internet access, so campus network rules usually need no changes |
+| **Self-hosting** | Not the same thing: you run the server yourself with your own sign-in (local accounts / Feishu / DingTalk, still in development) — see [Self-Hosting](/en/doc/control/self-host) |
 
 ## Set up in six steps
 
@@ -49,9 +50,11 @@ Once a device joins, it appears in the node list automatically — there is no "
 
 Every classroom machine keeps its own switch. Once it is off, no remote operation is accepted; a stolen account or a mistaken admin does not by itself mean a controlled classroom. See [Security & FAQ](/en/doc/control/security).
 
-## Open source and feedback
+## Open source and self-hosting
 
-- The **server and Web console are not open source yet**. The public repository [SecRandom-Control-Console](https://github.com/SECTL/SecRandom-Control-Console) currently holds the license and notes only; console source and the protocol specification are planned to follow.
+- The **server and Web console are public**: [SecRandom-Control-Console](https://github.com/SECTL/SecRandom-Control-Console) (server Elastic-2.0, console AGPL-3.0).
+- **You can deploy it yourself**: run the server on your own machine and keep the devices and data with you. The vendor-hosted instance is just one way to run it — see [Self-Hosting](/en/doc/control/self-host).
 - The **device-side implementation is public**: [SECTL/SecRandom](https://github.com/SECTL/SecRandom) (GPL-3.0).
-- Only the **vendor-hosted** service exists today; self-hosting is not supported yet.
 - Feedback: [SecRandom issues](https://github.com/SECTL/SecRandom/issues).
+
+> Self-hosting is **not ready for production yet**: the server and Web console source are already public, but self-hosted sign-in (local accounts / Feishu / DingTalk) is still in development — the code today contains no identity source at all, so an instance you deploy cannot be signed into. See [Self-Hosting](/en/doc/control/self-host).

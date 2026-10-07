@@ -5,7 +5,7 @@ createTime: 2026/08/14
 
 # ::lucide:hammer:: Create a Plugin
 
-This page explains how to create, configure, and package a SecRandom plugin project. Before starting, set up your environment following [Set Up a Plugin Environment](/en/dev/get-started).
+This page explains how to create, configure, and package a SecRandom plugin project. Before starting, set up your environment following [Set Up a Plugin Environment](/en/dev/plugins/get-started).
 
 ## ::lucide:folder-tree:: Plugin Structure
 
@@ -28,7 +28,7 @@ ExamplePlugin
 
 The plugin project needs to:
 
-- Reference `SecRandom.PluginSdk` with `PackageReference` and `ExcludeAssets="runtime;native"` (see [Set Up a Plugin Environment](/en/dev/get-started)).
+- Reference `SecRandom.PluginSdk` with `PackageReference` and `ExcludeAssets="runtime;native"` (see [Set Up a Plugin Environment](/en/dev/plugins/get-started)).
 - Set `<CreateSrpx>true</CreateSrpx>` so the `.srpx` package is produced on every build.
 - Build with `<EnableDynamicLoading>true</EnableDynamicLoading>` to support the isolated load context.
 

@@ -13,7 +13,7 @@ createTime: 2026/08/14
 
 ## ::lucide:rocket:: 开始编写插件
 
-- [配置插件开发环境](/dev/get-started)：准备开发环境并引用插件 SDK。
+- [配置插件开发环境](/dev/plugins/get-started)：准备开发环境并引用插件 SDK。
 - [开始编写插件](/dev/plugins/create-project)：创建项目、了解插件结构并配置清单文件。
 - [插件基础知识](/dev/plugins/basics)：加载流程、apiVersion 规则、页面注册与本地化、配置用法。
 - [插件入口类](/dev/plugins/plugin-base)：`PluginBase` 入口与生命周期。

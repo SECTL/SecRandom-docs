@@ -20,7 +20,7 @@ createTime: 2026/10/06 10:00:00
 
 | | |
 |---|---|
-| **账号** | 思拓创联账号。集控没有另外的账号体系，控制台与设备用同一个账号 |
+| **账号** | 思拓创联账号（官方云）。控制台与设备用同一个账号，没有另外的账号体系 |
 | **设备** | 教室机安装 SecRandom v3 桌面客户端；**平板既可以当遥控器，也可以被远程管理**，手机只能当遥控器 |
 | **网络** | 设备能上网即可。设备是主动连出的，一般不用改校园网设置 |
 
@@ -49,9 +49,11 @@ createTime: 2026/10/06 10:00:00
 
 每台教室机都保留自己的开关，关掉后不接受任何远程操作；账号被盗、管理员误操作，都不等于教室机被控制。详见[安全与常见问题](/doc/control/security)。
 
-## 开源与反馈
+## 开源与自部署
 
-- 集控**服务端与 Web 控制台尚未开源**。公开仓库 [SecRandom-Control-Console](https://github.com/SECTL/SecRandom-Control-Console) 目前只有许可与说明，后续条件允许时会补齐控制台源码与协议规范。
-- **设备端实现随客户端一同公开**：[SECTL/SecRandom](https://github.com/SECTL/SecRandom)（GPL-3.0）。
-- 目前只有**官方托管**的集控服务，暂不支持自建。
+- **服务端与 Web 控制台已经公开**：[SecRandom-Control-Console](https://github.com/SECTL/SecRandom-Control-Console)（服务端 Elastic-2.0、控制台 AGPL-3.0）。
+- **可以自行部署**：把服务端装到你自己的服务器上，设备与数据都在你手里；官方托管只是其中一种跑法，详见[自部署](/doc/control/self-host)。
+- **设备端实现随客户端公开**：[SECTL/SecRandom](https://github.com/SECTL/SecRandom)（GPL-3.0）。
 - 问题反馈：[SecRandom Issues](https://github.com/SECTL/SecRandom/issues)。
+
+> 自部署目前还**不适合正式上线**：服务端与 Web 控制台源码已经公开，但自建登录（本地账号 / 飞书 / 钉钉）还在开发——现在的代码里没有任何身份源，部署出来的实例登不进去。详见[自部署](/doc/control/self-host)。

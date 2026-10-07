@@ -25,13 +25,13 @@ SecRandom 使用了如下技术栈。在参与 SecRandom 开发或为 SecRandom 
 
 您可以通过以下方法来不同程度地扩展 SecRandom 的功能。
 
-- **：** 您可以通过 SecRandom 插件，轻松地扩展应用的功能，例如注册自定义设置页或主页面、注册浮窗按钮、通过受控抽奖接口执行公平抽取等。制作好的插件可以通过[插件市场](/dev/plugins/publishing)与其他用户共享。
-- **：** 您可以通过 [IPC 与 URL 协议](/dev/ipc_url)，从其它进程查询 SecRandom 的数据（如名单、历史记录）以及触发窗口、抽取等操作。
+- **插件开发：** 您可以通过 SecRandom 插件，轻松地扩展应用的功能，例如注册自定义设置页或主页面、注册浮窗按钮、通过受控抽奖接口执行公平抽取等。制作好的插件可以通过[插件市场](/dev/plugins/publishing)与其他用户共享。
+- **外部调用：** 您可以通过 [IPC 与 URL 协议](/dev/ipc_url)，从其它进程查询 SecRandom 的数据（如名单、历史记录）以及触发窗口、抽取等操作。
 - **修改 SecRandom 本体：** 如果上面的方法不能满足您的需求，您也可以通过修改 SecRandom 本体来实现更高程度的自定义。您也可以向 [SecRandom 代码仓库](https://github.com/SECTL/SecRandom)发起 Pull Request，将您的更改合并到主分支上。
 
 ## ::lucide:book-open:: 目录
 
-- [配置插件开发环境](/dev/get-started)：准备 .NET 环境并引用插件 SDK。
+- [配置插件开发环境](/dev/plugins/get-started)：准备 .NET 环境并引用插件 SDK。
 - [插件](/dev/plugins/)：插件是什么，以及如何开始编写插件。
 - [IPC & URL 协议](/dev/ipc_url)：供外部进程调用的自动化接口。
 - [贡献指南](/dev/contribute)：如何向 SecRandom 仓库提交代码。

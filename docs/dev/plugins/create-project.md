@@ -5,7 +5,7 @@ createTime: 2026/08/14
 
 # ::lucide:hammer:: 开始编写插件
 
-本页介绍如何创建、配置并打包一个 SecRandom 插件项目。开始之前，请先按[配置插件开发环境](/dev/get-started)设置好开发环境。
+本页介绍如何创建、配置并打包一个 SecRandom 插件项目。开始之前，请先按[配置插件开发环境](/dev/plugins/get-started)设置好开发环境。
 
 ## ::lucide:folder-tree:: 认识插件结构
 
@@ -28,7 +28,7 @@ ExamplePlugin
 
 插件项目需要：
 
-- 以 `PackageReference` 引用 `SecRandom.PluginSdk`，并设置 `ExcludeAssets="runtime;native"`（见[配置插件开发环境](/dev/get-started)）。
+- 以 `PackageReference` 引用 `SecRandom.PluginSdk`，并设置 `ExcludeAssets="runtime;native"`（见[配置插件开发环境](/dev/plugins/get-started)）。
 - 设置 `<CreateSrpx>true</CreateSrpx>`，构建时自动生成 `.srpx` 包。
 - 在 `<EnableDynamicLoading>true</EnableDynamicLoading>` 下构建，以支持独立加载上下文。
 

@@ -13,7 +13,7 @@ The host only loads desktop plugins; mobile (Android / iOS) builds do not load d
 
 ## ::lucide:rocket:: Get Started
 
-- [Set Up a Plugin Environment](/en/dev/get-started): Prepare the environment and reference the plugin SDK.
+- [Set Up a Plugin Environment](/en/dev/plugins/get-started): Prepare the environment and reference the plugin SDK.
 - [Create a Plugin](/en/dev/plugins/create-project): Create a project, learn the plugin structure, and configure the manifest.
 - [Plugin Basics](/en/dev/plugins/basics): Loading flow, apiVersion rules, page registration and localization, and configuration.
 - [Plugin Entry Class](/en/dev/plugins/plugin-base): The `PluginBase` entry point and lifecycle.

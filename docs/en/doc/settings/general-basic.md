@@ -85,7 +85,7 @@ secrandom://lottery/draw     # start lottery
 
 **Notes**:
 - Registration failure shows an error message
-- Detailed protocol & IPC docs: see [IPC & URL Protocol](/en/doc/resources/ipc_url)
+- Detailed protocol & IPC docs: see [IPC & URL Protocol](/en/dev/ipc_url)
 
 ### Display Language
 **Description**: Switch the software interface language

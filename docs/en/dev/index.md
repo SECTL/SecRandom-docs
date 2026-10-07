@@ -25,13 +25,13 @@ If you intend to contribute code to the SecRandom repository, please read the [C
 
 You can extend SecRandom to varying degrees in the following ways.
 
-- **: You can easily extend the application with SecRandom plugins, such as registering custom settings pages or main pages, registering floating-window buttons, and running fair draws through the controlled draw interface. Finished plugins can be shared with other users through the [plugin market](/en/dev/plugins/publishing).
-- **: You can use the [IPC & URL Protocol](/en/dev/ipc_url) to query SecRandom data (such as lists and history) and trigger operations such as windows and draws from other processes.
+- **Plugin development:** You can easily extend the application with SecRandom plugins, such as registering custom settings pages or main pages, registering floating-window buttons, and running fair draws through the controlled draw interface. Finished plugins can be shared with other users through the [plugin market](/en/dev/plugins/publishing).
+- **External integration:** You can use the [IPC & URL Protocol](/en/dev/ipc_url) to query SecRandom data (such as lists and history) and trigger operations such as windows and draws from other processes.
 - **Modify SecRandom itself:** If the methods above don't meet your needs, you can modify SecRandom itself for deeper customization. You can also open a Pull Request to the [SecRandom repository](https://github.com/SECTL/SecRandom) to merge your changes into the main branch.
 
 ## ::lucide:book-open:: Table of Contents
 
-- [Set Up a Plugin Environment](/en/dev/get-started): Prepare the .NET environment and reference the plugin SDK.
+- [Set Up a Plugin Environment](/en/dev/plugins/get-started): Prepare the .NET environment and reference the plugin SDK.
 - [Plugins](/en/dev/plugins/): What plugins are and how to start writing one.
 - [IPC & URL Protocol](/en/dev/ipc_url): The automation interface for external processes.
 - [Contribution Guide](/en/dev/contribute): How to contribute code to the SecRandom repository.

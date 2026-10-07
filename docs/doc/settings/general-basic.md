@@ -85,7 +85,7 @@ secrandom://lottery/draw     # 启动抽奖功能
 
 **注意事项**：
 - 注册失败会显示错误提示
-- 详细的协议与 IPC 文档见 [IPC & URL 协议](/doc/resources/ipc_url)
+- 详细的协议与 IPC 文档见 [IPC & URL 协议](/dev/ipc_url)
 
 ### 显示语言
 **功能说明**：切换软件界面语言
