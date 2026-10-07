@@ -33,13 +33,34 @@ This is not a deployment preference — it is a **check hard-coded into the clie
 
 An address in the clear such as `http://192.168.x.x:8791` is **rejected outright** by the client — do not waste an afternoon on it.
 
+**The certificate row is the one people underestimate**: the client uses .NET's default certificate validation (the Windows trust store) and there is **no switch in the code to bypass it**. A self-signed certificate, or one signed by an internal CA, must be imported into the **Trusted Root Certification Authorities (Local Computer)** store of **every single** client machine — otherwise the node channel (`wss://`) never completes a handshake. A certificate from a public CA saves you that step. Also make sure the address **resolves and is reachable from every classroom machine** (an internal or public domain name both work — just do not use a `hosts` name only your own machine knows).
+
+## System requirements
+
+What all three routes share:
+
+| Item | Requirement |
+|---|---|
+| Server | 64-bit Linux (x86_64 or arm64). Windows has only been used for development trial runs and is not deployment-tested |
+| CPU | 1 core is enough; with hundreds of devices reporting at once the bottleneck is the network, not the CPU |
+| Memory | 512 MB will do — the server is only a few dozen MB idle (measured: a Windows development build, idle, ~72 MB resident and ~40 threads); add more once you are in the thousands of devices |
+| Disk | Keep 5 GB or more free: the image plus the .NET runtime take a few hundred MB, and the data directory grows with the audit log (30-day retention by default) and command history. The data directory **must be persisted** — losing it means everyone signs in again and every device re-registers |
+| Network | Classroom machines need outbound access to the address you hand out; if you go with route B, the reverse proxy needs 80/443 as well |
+| Certificate | See the section above: the client only accepts `https`/`wss`, and it validates against the trust store of **each machine** |
+
+What to install, per route:
+
+- **Route A (Docker)**: Docker Engine plus the Compose v2 plugin (if `docker compose version` runs, you are fine). The image is built on `node:24`, `dotnet/sdk:10.0` and `dotnet/aspnet:10.0`; all three have amd64 and arm64 variants, and the build pulls the one matching the host architecture. **Give the build machine some room (4 GB of memory or more is a safe bet)**: the first build pulls those base images, installs the npm dependencies and runs `dotnet publish`. The host does **not** need .NET or Node installed.
+- **Route B (bare metal)**: running needs only the **.NET 10 runtime** (`aspnetcore-runtime-10.0`; publish with `dotnet publish --self-contained` and you do not even need that); the build step needs **.NET SDK >= 10.0.103** (see `global.json`) and **Node 20.19+**; systemd; **nginx >= 1.25.1** (the config uses `http2 on;` — on older versions change it to `listen 443 ssl http2;`); and a certificate your clients trust.
+- **Route C (run it directly)**: the .NET 10 SDK or runtime, nothing else; for outside access you handle TLS yourself.
+
 ## Three deployment routes
 
 | Route | Suits | What you need to install |
 |---|---|---|
-| **A. Docker Compose** | You want "one command and it is up" and would rather not install .NET on the machine | Docker + the Compose plugin |
-| **B. Bare metal systemd + nginx** | You already have nginx and a certificate system and want to fit this into existing operations | .NET 10 SDK and Node 20.19+ to build; running needs only the .NET runtime |
-| **C. Run it directly** | Development, trial runs, single machine for your own use | .NET 10 SDK, Node 20.19+ |
+| **A. Docker Compose** | You want "one command and it is up" and would rather not install .NET on the machine | Docker + the Compose plugin (no .NET or Node needed on the host) |
+| **B. Bare metal systemd + nginx** | You already have nginx and a certificate system and want to fit this into existing operations | Build machine: .NET SDK 10.0.103+, Node 20.19+; server: the .NET runtime + systemd + nginx >= 1.25.1 |
+| **C. Run it directly** | Development, trial runs, single machine for your own use | .NET 10 SDK (or the runtime) |
 
 There is one set of configuration options, shared by all three routes: `deploy/.env.example`. **The server reads configuration from environment variables only**, never from `appsettings.json`; an illegal value is refused at startup, and the log says which option it was.
 
@@ -127,6 +148,8 @@ sudo systemctl start secrandom-control
 
 The volume name is **the compose project name + `_control-data`**, and `docker-compose.yml` hard-codes `name: secrandom-control`, so it is `secrandom-control_control-data` (`docker volume ls` will confirm it). If you would rather not stop the service, let the `sqlite3` inside the container do an online backup — but **the key ring has to be backed up along with it**.
 
+**How much space does it take**: the database itself is small — an empty `control.db` is a few KB and the key ring is under 1 KB. What grows is the audit log and the command history, and the audit log is **kept for 30 days only** by default (`CTRL_AUDIT_RETENTION_DAYS`) — so the data directory usually stays in the tens of MB and never runs away. If you need a long-term archive, export the audit records; do not set retention to 0 (that leaves disk usage with no upper bound).
+
 **Restore**: stop the service → overwrite the whole data directory → start the service. The key ring and the data must come from **the same backup**; replacing only one of them throws away every session.
 
 ## Upgrade and rollback
@@ -161,13 +184,16 @@ Then confirm in the browser and on the device side:
 | Symptom | Most likely cause |
 |---|---|
 | Clicking the sign-in button does nothing and the browser gets a blob of HTML | The reverse proxy only proxies `/v1/`, so `/api/auth/*` falls through to the SPA fallback |
-| After the sign-in redirect comes back it reports a `redirect_uri` mismatch | `CTRL_AUTH_REDIRECT_URI` does not exactly match the callback address registered with the platform |
+| The sign-in button comes back with `?error=...`, or a straight 503 `auth_not_configured` | The server ships with no identity source at all. **This is simply what it looks like right now** — self-hosting sign-in is not finished; you did not misconfigure anything |
+| After the callback comes back it reports a `redirect_uri` mismatch | `CTRL_AUTH_REDIRECT_URI` does not exactly match the callback address registered with the identity source |
 | No managed device can complete a handshake | The server has no usable identity source, so the node channel cannot obtain credentials |
 | The phone/tablet App does not work | Same reason: the REST path served with a Bearer token needs an identity source too |
 | After every restart everyone has to sign in again | The Data Protection key ring was not persisted (`keys/data-protection` is not in the data directory) |
 | Devices drop the connection every 60 seconds | The reverse proxy did not lift the timeout for WebSocket (the default is 60s, while the heartbeat is 25s) |
 | After a front-end release you have to press Ctrl+F5 | `index.html` was cached |
 | The service will not start and the log says the authentication configuration is incomplete | An environment variable has an illegal value — the log says which one, and nothing degrades silently |
+
+Among the first four rows, the first two are **simply how the current version behaves** rather than something you misconfigured: that step has to wait for self-hosting sign-in to land.
 
 Logs go to stdout: in a container use `docker compose logs -f control`, on bare metal use `journalctl -u secrandom-control -f`.
 
