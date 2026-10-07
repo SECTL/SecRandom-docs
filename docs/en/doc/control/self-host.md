@@ -50,7 +50,7 @@ What all three routes share:
 
 What to install, per route:
 
-- **Route A (Docker)**: Docker Engine plus the Compose v2 plugin (if `docker compose version` runs, you are fine). The image is built on `node:24`, `dotnet/sdk:10.0` and `dotnet/aspnet:10.0`; all three have amd64 and arm64 variants, and the build pulls the one matching the host architecture. **Give the build machine some room (4 GB of memory or more is a safe bet)**: the first build pulls those base images, installs the npm dependencies and runs `dotnet publish`. The host does **not** need .NET or Node installed.
+- **Route A (Docker)**: Docker Engine plus the Compose v2 plugin (if `docker compose version` runs, you are fine), and a working network path out to `ghcr.io`. The host does **not** need .NET installed, does **not** need Node, and does **not** need the source either — the image is published on GHCR and `docker compose pull` fetches it directly; both amd64 and arm64 are published and compose picks the one matching the host architecture. Only if you **build from source yourself** (you changed the code, the machine has no outbound internet, or you do not trust the official image) do you need the `node:24` and `dotnet/sdk:10.0` base images, and in that case give the build machine 4 GB of memory or more.
 - **Route B (bare metal)**: running needs only the **.NET 10 runtime** (`aspnetcore-runtime-10.0`; publish with `dotnet publish --self-contained` and you do not even need that); the build step needs **.NET SDK >= 10.0.103** (see `global.json`) and **Node 20.19+**; systemd; **nginx >= 1.25.1** (the config uses `http2 on;` — on older versions change it to `listen 443 ssl http2;`); and a certificate your clients trust.
 - **Route C (run it directly)**: the .NET 10 SDK or runtime, nothing else; for outside access you handle TLS yourself.
 
@@ -58,26 +58,76 @@ What to install, per route:
 
 | Route | Suits | What you need to install |
 |---|---|---|
-| **A. Docker Compose** | You want "one command and it is up" and would rather not install .NET on the machine | Docker + the Compose plugin (no .NET or Node needed on the host) |
+| **A. Docker Compose** | You want "one command and it is up" and would rather not install .NET on the machine | Docker + the Compose plugin (no .NET or Node needed on the host, and you do not need the source either) |
 | **B. Bare metal systemd + nginx** | You already have nginx and a certificate system and want to fit this into existing operations | Build machine: .NET SDK 10.0.103+, Node 20.19+; server: the .NET runtime + systemd + nginx >= 1.25.1 |
 | **C. Run it directly** | Development, trial runs, single machine for your own use | .NET 10 SDK (or the runtime) |
 
 There is one set of configuration options, shared by all three routes: `deploy/.env.example`. **The server reads configuration from environment variables only**, never from `appsettings.json`; an illegal value is refused at startup, and the log says which option it was.
 
-## Route A: Docker Compose
+## Route A: Docker Compose (pull the official image)
+
+The image is **prebuilt** and lives in exactly one place: `ghcr.io/sectl/secrandom-control-console`.
+
+So installing it does **not** need the whole repository cloned — one directory and two files is enough:
+
+```bash
+mkdir -p /opt/secrandom-control && cd /opt/secrandom-control
+
+# 1. Fetch the compose file and the configuration template
+curl -fsSLO https://raw.githubusercontent.com/SECTL/SecRandom-Control-Console/main/deploy/docker-compose.yml
+curl -fsSL  https://raw.githubusercontent.com/SECTL/SecRandom-Control-Console/main/deploy/.env.example -o .env
+chmod 600 .env          # it will hold provider secrets later
+vi .env                 # the per-line comments say what happens if you omit each one; at least glance at the data directory and the listen address
+
+# 2. Pull the image and start it
+docker compose pull
+docker compose up -d
+docker compose ps                          # only healthy counts as up
+curl -fsS http://127.0.0.1:8791/healthz    # expected {"status":"ok"}
+```
+
+That is all there is to it: **one directory, one compose file, one `.env`**. The image already contains the built console and the .NET runtime, so the host needs neither Node nor .NET, nor the source.
+
+### The version number is the date
+
+Images are published under three tags, and compose uses `latest` by default:
+
+| tag | What it is | When to use it |
+|---|---|---|
+| `2026.10.07` | The **deployment date**: the build from 2026-10-07 | You want to pin a version and control upgrades |
+| `<commit sha>` | Built from one specific commit | Troubleshooting, checking which code is actually running |
+| `latest` | The newest release | You always want the newest |
+
+To pin a version, add one line to `.env` (compose reads it, the server itself does not):
+
+```bash
+CTRL_IMAGE_TAG=2026.10.07
+```
+
+Likewise, `CTRL_IMAGE` replaces the whole image name, for internal mirrors or a private registry: `CTRL_IMAGE=registry.example.com/xxx/yyy`.
+
+Every release leaves a record in [Releases](https://github.com/SECTL/SecRandom-Control-Console/releases), along with `secrandom-control-<version>-linux-x64.tar.gz` (a self-contained server plus the whole `deploy/` config set, unpack and run) and `SHA256SUMS` — the route to take when the image cannot be pulled, or when you are installing on a machine without Docker.
+
+::: tip When you cannot pull the image
+If `docker pull` reports `403` / `denied` / `manifest unknown`, check three things in order: ① whether that version has been released at all (`latest` only exists after the first release); ② whether this machine can reach `ghcr.io` (an internal network needs a proxy or a mirror — point `CTRL_IMAGE` at it); ③ whether the package visibility is private — a GHCR package created by the release workflow is not necessarily public, and **after the first release you have to switch it to public on GitHub**, otherwise nobody outside the repository can pull it.
+:::
+
+**The port binds to `127.0.0.1:8791` only by default**: outside access always goes through a reverse proxy; if you want the LAN to connect directly, solve the TLS question first instead of simply changing it to `0.0.0.0`. The data lives in the named volume `control-data`.
+
+### When you really do want to build from source
+
+If you changed the code, or this machine simply has no outbound internet, use the build override file from the repository:
 
 ```bash
 git clone https://github.com/SECTL/SecRandom-Control-Console.git
 cd SecRandom-Control-Console/deploy
-cp .env.example .env
-chmod 600 .env          # it will hold provider secrets
-vi .env                 # the few options for the data directory, listen address and reverse proxy; the per-line comments say what happens if you omit each one
-docker compose up -d --build
-docker compose ps       # only healthy counts as up
-curl -fsS http://127.0.0.1:8791/healthz
+cp .env.example .env && chmod 600 .env && vi .env
+docker compose -f docker-compose.yml -f docker-compose.build.yml up -d --build
 ```
 
-The image already contains the built console, so the host does not need Node. **The port binds to `127.0.0.1:8791` only by default**: outside access always goes through a reverse proxy; if you want the LAN to connect directly, solve the TLS question first instead of simply changing it to `0.0.0.0`. The data lives in the named volume `control-data`.
+This route really does build on that machine (`node:24` builds the front end, then `dotnet/sdk:10.0` publishes), so the time and memory are build-machine numbers. The resulting image is called `secrandom-control:local`, **deliberately not the official name** — so that later on you can tell whether you are running the official image or your own build.
+
+With only `docker-compose.yml` it always **pulls the image**; the override file is what makes it build.
 
 ## Route B: Bare metal systemd + nginx
 
@@ -155,16 +205,18 @@ The volume name is **the compose project name + `_control-data`**, and `docker-c
 ## Upgrade and rollback
 
 ```bash
-docker compose up -d --build            # container
-# bare metal
+# Container: pull the new version, then restart
+docker compose pull && docker compose up -d
+
+# Bare metal
 sudo systemctl stop secrandom-control
 sudo rsync -a --delete /tmp/out/ /opt/secrandom-control/current/
 sudo systemctl start secrandom-control
 ```
 
 - The database structure is initialized automatically at startup; no manual migration is needed;
-- Rollback = put the old build back + restore the data directory snapshot from the matching point in time — **back up before you upgrade**;
-- The version number is visible in the console or from `GET /v1/meta` (`server_version`); when troubleshooting, ask for that first.
+- **Rollback**: for containers, change `CTRL_IMAGE_TAG` in `.env` back to the previous date, then `docker compose pull && docker compose up -d`; for bare metal, swap the old artifacts back. Either way it has to go back together with the data-directory snapshot from the matching point in time — **back up before you upgrade**;
+- The version number is the **deployment date**: what the console footer, or `GET /v1/meta` (`server_version`), shows as `2026.10.07` means "this build is the one from 2026-10-07". The date comes from the time of that commit, so the same version reports the same number no matter which machine it was built on — this is the first thing to ask for when troubleshooting.
 
 ## Go-live self-check
 
@@ -183,6 +235,7 @@ Then confirm in the browser and on the device side:
 
 | Symptom | Most likely cause |
 |---|---|
+| `docker compose pull` reports 403 / `denied` / `manifest unknown` | That version has not been released yet, or the package on GHCR is still private visibility. Pinning `CTRL_IMAGE_TAG` to a date that was never released looks exactly the same (see "When you cannot pull the image" above) |
 | Clicking the sign-in button does nothing and the browser gets a blob of HTML | The reverse proxy only proxies `/v1/`, so `/api/auth/*` falls through to the SPA fallback |
 | The sign-in button comes back with `?error=...`, or a straight 503 `auth_not_configured` | The server ships with no identity source at all. **This is simply what it looks like right now** — self-hosting sign-in is not finished; you did not misconfigure anything |
 | After the callback comes back it reports a `redirect_uri` mismatch | `CTRL_AUTH_REDIRECT_URI` does not exactly match the callback address registered with the identity source |
@@ -193,7 +246,7 @@ Then confirm in the browser and on the device side:
 | After a front-end release you have to press Ctrl+F5 | `index.html` was cached |
 | The service will not start and the log says the authentication configuration is incomplete | An environment variable has an illegal value — the log says which one, and nothing degrades silently |
 
-Among the first four rows, the first two are **simply how the current version behaves** rather than something you misconfigured: that step has to wait for self-hosting sign-in to land.
+The two rows in this table that have to do with "the server has no identity source yet" (the one that bounces back to `?error=...`, and the one where no managed device can complete a handshake) are **simply how the current version behaves** rather than something you misconfigured: that step has to wait for self-hosting sign-in to land.
 
 Logs go to stdout: in a container use `docker compose logs -f control`, on bare metal use `journalctl -u secrandom-control -f`.
 
@@ -202,6 +255,7 @@ Logs go to stdout: in a container use `docker compose logs -f control`, on bare 
 - ❌ **Expose 8791 directly to the public internet**: it is plain HTTP, has no TLS, and was not designed for public exposure;
 - ❌ **Enter a plain http address on a LAN IP in the client**: the client will refuse it, and even if it did connect you would be exposing the session on the wire;
 - ❌ **Commit `.env` into git** (the `.gitignore`/`.dockerignore` in the repository already block it — do not work around them);
+- ❌ **Keep running `latest` in production**: upgrades turn into "some day the version quietly changed"; pin `CTRL_IMAGE_TAG=2026.10.07` so that upgrading is a deliberate act and rolling back is just changing it back;
 - ❌ **Back up only the database and not the key ring**: it looks restored, but in reality everyone is signed out and every token is invalid;
 - ❌ **Turn on `proxy_buffering on` in the reverse proxy**: SSE will be held back and never sent, and the console will look "stuck and not moving".
 

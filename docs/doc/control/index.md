@@ -53,6 +53,7 @@ createTime: 2026/10/06 10:00:00
 
 - **服务端与 Web 控制台已经公开**：[SecRandom-Control-Console](https://github.com/SECTL/SecRandom-Control-Console)（服务端 Elastic-2.0、控制台 AGPL-3.0）。
 - **可以自行部署**：把服务端装到你自己的服务器上，设备与数据都在你手里；官方托管只是其中一种跑法，详见[自部署](/doc/control/self-host)。
+- **官方镜像可以直接拉**：发布在 GHCR（`ghcr.io/sectl/secrandom-control-console`），服务器上两个文件、两条命令就能起来，不用 clone 源码、不用装 .NET 与 Node；版本号就是**部署日期**，`2026.10.07` 就是 2026-10-07 那一版。
 - **设备端实现随客户端公开**：[SECTL/SecRandom](https://github.com/SECTL/SecRandom)（GPL-3.0）。
 - 问题反馈：[SecRandom Issues](https://github.com/SECTL/SecRandom/issues)。
 

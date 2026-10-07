@@ -54,6 +54,7 @@ Every classroom machine keeps its own switch. Once it is off, no remote operatio
 
 - The **server and Web console are public**: [SecRandom-Control-Console](https://github.com/SECTL/SecRandom-Control-Console) (server Elastic-2.0, console AGPL-3.0).
 - **You can deploy it yourself**: run the server on your own machine and keep the devices and data with you. The vendor-hosted instance is just one way to run it — see [Self-Hosting](/en/doc/control/self-host).
+- **The official image can be pulled directly**: it is published on GHCR (`ghcr.io/sectl/secrandom-control-console`), and two files plus two commands bring it up on your server — no cloning the source, no installing .NET or Node. The version number is the **deployment date**: `2026.10.07` is the build from 2026-10-07.
 - The **device-side implementation is public**: [SECTL/SecRandom](https://github.com/SECTL/SecRandom) (GPL-3.0).
 - Feedback: [SecRandom issues](https://github.com/SECTL/SecRandom/issues).
 

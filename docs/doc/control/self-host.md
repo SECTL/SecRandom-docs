@@ -50,7 +50,7 @@ createTime: 2026/10/27 10:00:00
 
 分路线要装的东西：
 
-- **路线 A（Docker）**：Docker Engine + Compose v2 插件（`docker compose version` 能跑就行）。镜像基于 `node:24`、`dotnet/sdk:10.0`、`dotnet/aspnet:10.0`，三个都有 amd64 与 arm64 变体，构建时按宿主机架构拉取。**构建阶段机器得宽裕些（建议 4 GB 内存以上）**，第一次构建要拉这几个基础镜像、装 npm 依赖、`dotnet publish`。宿主机**不需要**装 .NET 与 Node。
+- **路线 A（Docker）**：Docker Engine + Compose v2 插件（`docker compose version` 能跑就行），以及一条能出网到 `ghcr.io` 的线路。**宿主机不需要装 .NET、不需要装 Node、也不需要 clone 源码**——镜像发布在 GHCR 上，`docker compose pull` 直接拉；amd64 与 arm64 都发了，compose 按宿主机架构自己挑。只有你要**自己从源码构建**（改了代码、内网没外网、或信不过官方镜像）时才需要 `node:24` 与 `dotnet/sdk:10.0` 这些基础镜像，那种情况下构建机建议 4 GB 内存以上。
 - **路线 B（裸机）**：运行只要 .NET 10 运行时（`aspnetcore-runtime-10.0`；用 `dotnet publish --self-contained` 发布的话连运行时都不用装）；构建那一步需要 **.NET SDK ≥ 10.0.103**（见 `global.json`）与 **Node 20.19+**；systemd；**nginx ≥ 1.25.1**（配置里用了 `http2 on;`，更老的版本换成 `listen 443 ssl http2;`）；一份客户端信任的证书。
 - **路线 C（直接跑）**：.NET 10 SDK 或运行时，仅此而已；要外部访问就得自己解决 TLS。
 
@@ -58,26 +58,76 @@ createTime: 2026/10/27 10:00:00
 
 | 路线 | 适合 | 需要装什么 |
 |---|---|---|
-| **A. Docker Compose** | 想要"一条命令起来"，不想在机器上装 .NET | Docker + Compose 插件（宿主机不需要 .NET / Node） |
+| **A. Docker Compose** | 想要"一条命令起来"，不想在机器上装 .NET | Docker + Compose 插件（宿主机不需要 .NET / Node，也不需要源码） |
 | **B. 裸机 systemd + nginx** | 已有 nginx 与证书体系，要接进现有运维 | 构建机：.NET SDK 10.0.103+、Node 20.19+；服务器：.NET 运行时 + systemd + nginx ≥ 1.25.1 |
 | **C. 直接运行** | 开发、试跑、单机自用 | .NET 10 SDK（或运行时） |
 
 配置项一份，三条路线通用：`deploy/.env.example`。**服务端只从环境变量读配置**，不读 `appsettings.json`；非法值直接拒绝启动，并在日志里说明是哪一项。
 
-## 路线 A：Docker Compose
+## 路线 A：Docker Compose（直接拉官方镜像）
+
+镜像是**发布好的**，装在 **GHCR 这一个地方**：`ghcr.io/sectl/secrandom-control-console`。
+
+所以装的时候**不需要 clone 整个仓库**，只要一个目录、两个文件：
+
+```bash
+mkdir -p /opt/secrandom-control && cd /opt/secrandom-control
+
+# 1. 取 compose 文件与配置样板
+curl -fsSLO https://raw.githubusercontent.com/SECTL/SecRandom-Control-Console/main/deploy/docker-compose.yml
+curl -fsSL  https://raw.githubusercontent.com/SECTL/SecRandom-Control-Console/main/deploy/.env.example -o .env
+chmod 600 .env          # 以后会有身份源的密钥
+vi .env                 # 逐行注释都写了不填会怎样；至少把数据目录与监听地址看一眼
+
+# 2. 拉镜像并起来
+docker compose pull
+docker compose up -d
+docker compose ps                          # 看到 healthy 才算起来
+curl -fsS http://127.0.0.1:8791/healthz    # 期望 {"status":"ok"}
+```
+
+这就是全部：**一个目录、一份 compose、一份 `.env`**。镜像里已经包含构建好的控制台和 .NET 运行时，宿主机不需要 Node、不需要 .NET，也不需要源码。
+
+### 版本号就是日期
+
+镜像按三个 tag 发布，compose 默认用 `latest`：
+
+| tag | 是什么 | 什么时候用 |
+|---|---|---|
+| `2026.10.07` | **部署日期**：2026-10-07 那一版 | 想钉住版本、可控升级 |
+| `<commit sha>` | 某一次提交构建出来的 | 排障、核对到底跑的是哪份代码 |
+| `latest` | 最新发布的一版 | 想一直跟最新 |
+
+要钉版本，在 `.env` 里加一行（compose 会读，服务端本身不读）：
+
+```bash
+CTRL_IMAGE_TAG=2026.10.07
+```
+
+同理，`CTRL_IMAGE` 能整个换掉镜像名，走内网镜像站或私有 registry 时用：`CTRL_IMAGE=registry.example.com/xxx/yyy`。
+
+每次发版在 [Releases](https://github.com/SECTL/SecRandom-Control-Console/releases) 留一份记录，并附上 `secrandom-control-<版本>-linux-x64.tar.gz`（自包含服务端 + 全套 `deploy/` 配置，解包即用）与 `SHA256SUMS` —— 镜像拉不动，或者要装在没有 Docker 的机器上时走这条路。
+
+::: tip 拉不到镜像时
+`docker pull` 报 `403` / `denied` / `manifest unknown`，按顺序查三件事：① 这一版是不是还没发布（`latest` 也要等第一次发版之后才有）；② 这台机器能不能出网到 `ghcr.io`（内网环境要走代理或镜像站，用 `CTRL_IMAGE` 指过去）；③ 镜像包是不是私有可见性 —— 发版流程建出来的 GHCR package 默认可能不是公开的，**第一次发布后需要在 GitHub 上把它改成 public**，否则仓库外的人一律拉不到。
+:::
+
+**端口默认只绑 `127.0.0.1:8791`**：外部访问一律走反向代理；想让内网直连，先把 TLS 那件事解决掉，别改成 `0.0.0.0` 了事。数据在命名卷 `control-data` 里。
+
+### 确实要从源码构建时
+
+改了代码、或这台机器根本出不了外网，就用仓库里的构建覆盖文件：
 
 ```bash
 git clone https://github.com/SECTL/SecRandom-Control-Console.git
 cd SecRandom-Control-Console/deploy
-cp .env.example .env
-chmod 600 .env          # 以后会有身份源的密钥
-vi .env                 # 数据目录、监听地址与反向代理相关的几项，逐行注释都说明了不填会怎样
-docker compose up -d --build
-docker compose ps       # 看到 healthy 才算起来
-curl -fsS http://127.0.0.1:8791/healthz
+cp .env.example .env && chmod 600 .env && vi .env
+docker compose -f docker-compose.yml -f docker-compose.build.yml up -d --build
 ```
 
-镜像里已经包含构建好的控制台，宿主机不需要装 Node。**端口默认只绑 `127.0.0.1:8791`**：外部访问一律走反向代理；想让内网直连，先把 TLS 那件事解决掉，别改成 `0.0.0.0` 了事。数据在命名卷 `control-data` 里。
+这条路会在这台机器上真构建（`node:24` 打前端 → `dotnet/sdk:10.0` 发布），时间和内存都按构建机算。产出的镜像叫 `secrandom-control:local`，**故意不叫官方那个名字** —— 免得以后分不清手上跑的是官方镜像还是自己编的。
+
+只写 `docker-compose.yml` 时永远是**拉镜像**；加上覆盖文件才会构建。
 
 ## 路线 B：裸机 systemd + nginx
 
@@ -155,7 +205,9 @@ sudo systemctl start secrandom-control
 ## 升级与回滚
 
 ```bash
-docker compose up -d --build            # 容器
+# 容器：拉新版再重启
+docker compose pull && docker compose up -d
+
 # 裸机
 sudo systemctl stop secrandom-control
 sudo rsync -a --delete /tmp/out/ /opt/secrandom-control/current/
@@ -163,8 +215,8 @@ sudo systemctl start secrandom-control
 ```
 
 - 数据库结构在启动时自动初始化，不需要手动迁移；
-- 回滚 = 换回旧产物 + 恢复对应时间点的数据目录快照，**先备份再升级**；
-- 版本号在控制台或 `GET /v1/meta`（`server_version`）里能看到，排障时先要这个。
+- **回滚**：容器把 `.env` 里的 `CTRL_IMAGE_TAG` 改成上一个日期，再 `docker compose pull && docker compose up -d`；裸机换回旧产物。两边都要连**对应时间点的数据目录快照**一起回，**先备份再升级**；
+- 版本号就是**部署日期**：控制台页脚或 `GET /v1/meta`（`server_version`）显示的 `2026.10.07`，意思就是"这一版是 2026-10-07 的"。日期取自那次提交的时间，所以同一个版本在哪台机器上装出来都报同一个号 —— 排障时先要这个。
 
 ## 上线自检
 
@@ -183,6 +235,7 @@ curl -fsS https://control.example.com/v1/meta   # 反代这一层也要通
 
 | 症状 | 多半是 |
 |---|---|
+| `docker compose pull` 报 403 / `denied` / `manifest unknown` | 这一版还没发布，或 GHCR 上的包还是私有可见性；钉了 `CTRL_IMAGE_TAG` 的日期而那一版没发出来，也是同一个表现（见上面的"拉不到镜像时"） |
 | 点登录按钮没反应，浏览器拿到一坨 HTML | 反代只代理了 `/v1/`，`/api/auth/*` 落到 SPA 回退 |
 | 登录按钮点了跳回 `?error=...`，或直接 503 `auth_not_configured` | 服务端里没有任何身份源。**现在就长这样**——自建登录还没做完，不是你把哪一项配错了 |
 | 回调回来报 `redirect_uri` 不匹配 | `CTRL_AUTH_REDIRECT_URI` 与身份源那边登记的回调地址不是一字不差 |
@@ -193,7 +246,7 @@ curl -fsS https://control.example.com/v1/meta   # 反代这一层也要通
 | 前端发版后要按 Ctrl+F5 | `index.html` 被缓存了 |
 | 服务起不来，日志说认证配置不完整 | 某个环境变量的值非法——日志会说是哪一项，不会静默降级 |
 
-这张表的前四行里，前两条是**当前版本本来的样子**，不是"你配错了"：这一步要等自建登录做出来。
+这张表里跟"服务端还没有身份源"有关的两行（跳回 `?error=...`、被控端握不上手）是**当前版本本来的样子**，不是"你配错了"：这一步要等自建登录做出来。
 
 日志走 stdout：容器用 `docker compose logs -f control`，裸机用 `journalctl -u secrandom-control -f`。
 
@@ -202,6 +255,7 @@ curl -fsS https://control.example.com/v1/meta   # 反代这一层也要通
 - ❌ **把 8791 直接开到公网**：它是明文 HTTP、没有 TLS、也没按公网暴露设计；
 - ❌ **用明文 http 到内网 IP 给客户端填**：客户端会拒绝，真连上也是把会话暴露在链路上；
 - ❌ **把 `.env` 提交进 git**（仓库里的 `.gitignore`/`.dockerignore` 已经挡了，别绕过去）；
+- ❌ **生产上一直用 `latest`**：升级会变成"哪天悄悄换了个版本"；钉住 `CTRL_IMAGE_TAG=2026.10.07`，升级才是一次有意识的动作，回滚也只是把它改回去；
 - ❌ **只备份数据库、不备份密钥环**：看起来恢复了，实际所有人被登出、令牌全失效；
 - ❌ **在反向代理里开 `proxy_buffering on`**：SSE 会被攒着不发，控制台看起来"卡住不动"。
 
